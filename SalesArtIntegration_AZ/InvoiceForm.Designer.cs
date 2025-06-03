@@ -1,0 +1,284 @@
+﻿namespace SalesArtIntegration_AZ
+{
+    partial class InvoiceForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
+            stripInvoice = new MenuStrip();
+            menüToolStripMenuItem = new ToolStripMenuItem();
+            çıkışToolStripMenuItem = new ToolStripMenuItem();
+            çıkışToolStripMenuItem1 = new ToolStripMenuItem();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            bttnGetInvoice = new MaterialSkin.Controls.MaterialButton();
+            lblType = new MaterialSkin.Controls.MaterialLabel();
+            comboboxType = new MaterialSkin.Controls.MaterialComboBox();
+            divider = new MaterialSkin.Controls.MaterialDivider();
+            lblStartDate = new MaterialSkin.Controls.MaterialLabel();
+            lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
+            dateTimeStartDate = new DateTimePicker();
+            dateTimeFinishDate = new DateTimePicker();
+            bttnSendInvoice = new MaterialSkin.Controls.MaterialButton();
+            dataGridView1 = new DataGridView();
+            stripInvoice.SuspendLayout();
+            materialCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // stripInvoice
+            // 
+            stripInvoice.AllowMerge = false;
+            stripInvoice.BackColor = Color.Transparent;
+            stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
+            stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
+            stripInvoice.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            stripInvoice.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
+            stripInvoice.Location = new Point(0, 0);
+            stripInvoice.Name = "stripInvoice";
+            stripInvoice.RenderMode = ToolStripRenderMode.Professional;
+            stripInvoice.Size = new Size(1090, 24);
+            stripInvoice.TabIndex = 3;
+            stripInvoice.Text = "Fatura Menü";
+            // 
+            // menüToolStripMenuItem
+            // 
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { çıkışToolStripMenuItem });
+            menüToolStripMenuItem.Name = "menüToolStripMenuItem";
+            menüToolStripMenuItem.Size = new Size(50, 20);
+            menüToolStripMenuItem.Text = "Menu";
+            // 
+            // çıkışToolStripMenuItem
+            // 
+            çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
+            çıkışToolStripMenuItem.Size = new Size(126, 22);
+            çıkışToolStripMenuItem.Text = "Turn Back";
+            // 
+            // çıkışToolStripMenuItem1
+            // 
+            çıkışToolStripMenuItem1.Name = "çıkışToolStripMenuItem1";
+            çıkışToolStripMenuItem1.Size = new Size(38, 20);
+            çıkışToolStripMenuItem1.Text = "Exit";
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnSendInvoice);
+            materialCard1.Controls.Add(dateTimeFinishDate);
+            materialCard1.Controls.Add(dateTimeStartDate);
+            materialCard1.Controls.Add(lblFinishDate);
+            materialCard1.Controls.Add(lblStartDate);
+            materialCard1.Controls.Add(comboboxType);
+            materialCard1.Controls.Add(lblType);
+            materialCard1.Controls.Add(bttnGetInvoice);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(0, 38);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(1107, 175);
+            materialCard1.TabIndex = 4;
+            // 
+            // bttnGetInvoice
+            // 
+            bttnGetInvoice.AutoSize = false;
+            bttnGetInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnGetInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnGetInvoice.Depth = 0;
+            bttnGetInvoice.HighEmphasis = true;
+            bttnGetInvoice.Icon = null;
+            bttnGetInvoice.Location = new Point(34, 113);
+            bttnGetInvoice.Margin = new Padding(4, 6, 4, 6);
+            bttnGetInvoice.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnGetInvoice.Name = "bttnGetInvoice";
+            bttnGetInvoice.NoAccentTextColor = Color.Empty;
+            bttnGetInvoice.Size = new Size(220, 42);
+            bttnGetInvoice.TabIndex = 0;
+            bttnGetInvoice.Text = "Get Invoice";
+            bttnGetInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnGetInvoice.UseAccentColor = false;
+            bttnGetInvoice.UseVisualStyleBackColor = true;
+            bttnGetInvoice.Click += bttnGetInvoiceType_Click;
+            // 
+            // lblType
+            // 
+            lblType.AutoSize = true;
+            lblType.Depth = 0;
+            lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblType.Location = new Point(33, 8);
+            lblType.MouseState = MaterialSkin.MouseState.HOVER;
+            lblType.Name = "lblType";
+            lblType.Size = new Size(112, 14);
+            lblType.TabIndex = 1;
+            lblType.Text = "Choose Invoice Type";
+            // 
+            // comboboxType
+            // 
+            comboboxType.AutoResize = false;
+            comboboxType.BackColor = Color.FromArgb(255, 255, 255);
+            comboboxType.Depth = 0;
+            comboboxType.DrawMode = DrawMode.OwnerDrawVariable;
+            comboboxType.DropDownHeight = 174;
+            comboboxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboboxType.DropDownWidth = 121;
+            comboboxType.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            comboboxType.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            comboboxType.FormattingEnabled = true;
+            comboboxType.IntegralHeight = false;
+            comboboxType.ItemHeight = 43;
+            comboboxType.Location = new Point(33, 36);
+            comboboxType.MaxDropDownItems = 4;
+            comboboxType.MouseState = MaterialSkin.MouseState.OUT;
+            comboboxType.Name = "comboboxType";
+            comboboxType.Size = new Size(221, 49);
+            comboboxType.StartIndex = 0;
+            comboboxType.TabIndex = 2;
+            comboboxType.SelectedIndexChanged += materialComboBox1_SelectedIndexChanged;
+            // 
+            // divider
+            // 
+            divider.BackColor = SystemColors.GradientActiveCaption;
+            divider.Depth = 0;
+            divider.Location = new Point(0, 210);
+            divider.MouseState = MaterialSkin.MouseState.HOVER;
+            divider.Name = "divider";
+            divider.Size = new Size(1107, 12);
+            divider.TabIndex = 3;
+            // 
+            // lblStartDate
+            // 
+            lblStartDate.AutoSize = true;
+            lblStartDate.Depth = 0;
+            lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblStartDate.Location = new Point(514, 8);
+            lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblStartDate.Name = "lblStartDate";
+            lblStartDate.Size = new Size(99, 14);
+            lblStartDate.TabIndex = 3;
+            lblStartDate.Text = "Choose Start Date";
+            // 
+            // lblFinishDate
+            // 
+            lblFinishDate.AutoSize = true;
+            lblFinishDate.Depth = 0;
+            lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblFinishDate.Location = new Point(755, 8);
+            lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblFinishDate.Name = "lblFinishDate";
+            lblFinishDate.Size = new Size(106, 14);
+            lblFinishDate.TabIndex = 4;
+            lblFinishDate.Text = "Choose Finish Date";
+            // 
+            // dateTimeStartDate
+            // 
+            dateTimeStartDate.Location = new Point(514, 34);
+            dateTimeStartDate.Name = "dateTimeStartDate";
+            dateTimeStartDate.Size = new Size(200, 23);
+            dateTimeStartDate.TabIndex = 5;
+            // 
+            // dateTimeFinishDate
+            // 
+            dateTimeFinishDate.Location = new Point(755, 34);
+            dateTimeFinishDate.Name = "dateTimeFinishDate";
+            dateTimeFinishDate.Size = new Size(200, 23);
+            dateTimeFinishDate.TabIndex = 6;
+            // 
+            // bttnSendInvoice
+            // 
+            bttnSendInvoice.AutoSize = false;
+            bttnSendInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnSendInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnSendInvoice.Depth = 0;
+            bttnSendInvoice.HighEmphasis = true;
+            bttnSendInvoice.Icon = null;
+            bttnSendInvoice.Location = new Point(755, 113);
+            bttnSendInvoice.Margin = new Padding(4, 6, 4, 6);
+            bttnSendInvoice.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnSendInvoice.Name = "bttnSendInvoice";
+            bttnSendInvoice.NoAccentTextColor = Color.Empty;
+            bttnSendInvoice.Size = new Size(200, 42);
+            bttnSendInvoice.TabIndex = 7;
+            bttnSendInvoice.Text = "Send Invoice";
+            bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnSendInvoice.UseAccentColor = false;
+            bttnSendInvoice.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(0, 224);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1090, 395);
+            dataGridView1.TabIndex = 5;
+            // 
+            // InvoiceForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1090, 626);
+            Controls.Add(dataGridView1);
+            Controls.Add(divider);
+            Controls.Add(materialCard1);
+            Controls.Add(stripInvoice);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "InvoiceForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "SalesArt Integration";
+            stripInvoice.ResumeLayout(false);
+            stripInvoice.PerformLayout();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private MenuStrip stripInvoice;
+        private ToolStripMenuItem menüToolStripMenuItem;
+        private ToolStripMenuItem çıkışToolStripMenuItem;
+        private ToolStripMenuItem çıkışToolStripMenuItem1;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialLabel lblType;
+        private MaterialSkin.Controls.MaterialButton bttnGetInvoice;
+        private MaterialSkin.Controls.MaterialComboBox comboboxType;
+        private MaterialSkin.Controls.MaterialDivider divider;
+        private MaterialSkin.Controls.MaterialLabel lblStartDate;
+        private MaterialSkin.Controls.MaterialLabel lblFinishDate;
+        private MaterialSkin.Controls.MaterialButton bttnSendInvoice;
+        private DateTimePicker dateTimeFinishDate;
+        private DateTimePicker dateTimeStartDate;
+        private DataGridView dataGridView1;
+    }
+}
