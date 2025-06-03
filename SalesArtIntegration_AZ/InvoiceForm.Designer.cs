@@ -34,19 +34,19 @@
             çıkışToolStripMenuItem = new ToolStripMenuItem();
             çıkışToolStripMenuItem1 = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            bttnGetInvoice = new MaterialSkin.Controls.MaterialButton();
-            lblType = new MaterialSkin.Controls.MaterialLabel();
-            comboboxType = new MaterialSkin.Controls.MaterialComboBox();
-            divider = new MaterialSkin.Controls.MaterialDivider();
-            lblStartDate = new MaterialSkin.Controls.MaterialLabel();
-            lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
-            dateTimeStartDate = new DateTimePicker();
-            dateTimeFinishDate = new DateTimePicker();
             bttnSendInvoice = new MaterialSkin.Controls.MaterialButton();
-            dataGridView1 = new DataGridView();
+            dateTimeFinishDate = new DateTimePicker();
+            dateTimeStartDate = new DateTimePicker();
+            lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
+            lblStartDate = new MaterialSkin.Controls.MaterialLabel();
+            comboboxType = new MaterialSkin.Controls.MaterialComboBox();
+            lblType = new MaterialSkin.Controls.MaterialLabel();
+            bttnGetInvoice = new MaterialSkin.Controls.MaterialButton();
+            divider = new MaterialSkin.Controls.MaterialDivider();
+            dataGridInvoiceList = new DataGridView();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
             SuspendLayout();
             // 
             // stripInvoice
@@ -101,8 +101,104 @@
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(1107, 175);
+            materialCard1.Size = new Size(1090, 175);
             materialCard1.TabIndex = 4;
+            // 
+            // bttnSendInvoice
+            // 
+            bttnSendInvoice.AutoSize = false;
+            bttnSendInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnSendInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnSendInvoice.Depth = 0;
+            bttnSendInvoice.HighEmphasis = true;
+            bttnSendInvoice.Icon = null;
+            bttnSendInvoice.Location = new Point(755, 113);
+            bttnSendInvoice.Margin = new Padding(4, 6, 4, 6);
+            bttnSendInvoice.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnSendInvoice.Name = "bttnSendInvoice";
+            bttnSendInvoice.NoAccentTextColor = Color.Empty;
+            bttnSendInvoice.Size = new Size(200, 42);
+            bttnSendInvoice.TabIndex = 7;
+            bttnSendInvoice.Text = "Send Invoice";
+            bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnSendInvoice.UseAccentColor = false;
+            bttnSendInvoice.UseVisualStyleBackColor = true;
+            // 
+            // dateTimeFinishDate
+            // 
+            dateTimeFinishDate.Location = new Point(755, 34);
+            dateTimeFinishDate.Name = "dateTimeFinishDate";
+            dateTimeFinishDate.Size = new Size(200, 23);
+            dateTimeFinishDate.TabIndex = 6;
+            // 
+            // dateTimeStartDate
+            // 
+            dateTimeStartDate.Location = new Point(514, 34);
+            dateTimeStartDate.Name = "dateTimeStartDate";
+            dateTimeStartDate.Size = new Size(200, 23);
+            dateTimeStartDate.TabIndex = 5;
+            // 
+            // lblFinishDate
+            // 
+            lblFinishDate.AutoSize = true;
+            lblFinishDate.Depth = 0;
+            lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblFinishDate.Location = new Point(755, 8);
+            lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblFinishDate.Name = "lblFinishDate";
+            lblFinishDate.Size = new Size(106, 14);
+            lblFinishDate.TabIndex = 4;
+            lblFinishDate.Text = "Choose Finish Date";
+            // 
+            // lblStartDate
+            // 
+            lblStartDate.AutoSize = true;
+            lblStartDate.Depth = 0;
+            lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblStartDate.Location = new Point(514, 8);
+            lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblStartDate.Name = "lblStartDate";
+            lblStartDate.Size = new Size(99, 14);
+            lblStartDate.TabIndex = 3;
+            lblStartDate.Text = "Choose Start Date";
+            // 
+            // comboboxType
+            // 
+            comboboxType.AutoResize = false;
+            comboboxType.BackColor = Color.FromArgb(255, 255, 255);
+            comboboxType.Depth = 0;
+            comboboxType.DrawMode = DrawMode.OwnerDrawVariable;
+            comboboxType.DropDownHeight = 174;
+            comboboxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboboxType.DropDownWidth = 121;
+            comboboxType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            comboboxType.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            comboboxType.FormattingEnabled = true;
+            comboboxType.IntegralHeight = false;
+            comboboxType.ItemHeight = 43;
+            comboboxType.Location = new Point(33, 36);
+            comboboxType.MaxDropDownItems = 4;
+            comboboxType.MouseState = MaterialSkin.MouseState.OUT;
+            comboboxType.Name = "comboboxType";
+            comboboxType.Size = new Size(221, 49);
+            comboboxType.StartIndex = 0;
+            comboboxType.TabIndex = 2;
+            comboboxType.SelectedIndexChanged += materialComboBox1_SelectedIndexChanged;
+            // 
+            // lblType
+            // 
+            lblType.AutoSize = true;
+            lblType.Depth = 0;
+            lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            lblType.Location = new Point(33, 8);
+            lblType.MouseState = MaterialSkin.MouseState.HOVER;
+            lblType.Name = "lblType";
+            lblType.Size = new Size(112, 14);
+            lblType.TabIndex = 1;
+            lblType.Text = "Choose Invoice Type";
             // 
             // bttnGetInvoice
             // 
@@ -125,42 +221,6 @@
             bttnGetInvoice.UseVisualStyleBackColor = true;
             bttnGetInvoice.Click += bttnGetInvoiceType_Click;
             // 
-            // lblType
-            // 
-            lblType.AutoSize = true;
-            lblType.Depth = 0;
-            lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(33, 8);
-            lblType.MouseState = MaterialSkin.MouseState.HOVER;
-            lblType.Name = "lblType";
-            lblType.Size = new Size(112, 14);
-            lblType.TabIndex = 1;
-            lblType.Text = "Choose Invoice Type";
-            // 
-            // comboboxType
-            // 
-            comboboxType.AutoResize = false;
-            comboboxType.BackColor = Color.FromArgb(255, 255, 255);
-            comboboxType.Depth = 0;
-            comboboxType.DrawMode = DrawMode.OwnerDrawVariable;
-            comboboxType.DropDownHeight = 174;
-            comboboxType.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboboxType.DropDownWidth = 121;
-            comboboxType.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            comboboxType.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            comboboxType.FormattingEnabled = true;
-            comboboxType.IntegralHeight = false;
-            comboboxType.ItemHeight = 43;
-            comboboxType.Location = new Point(33, 36);
-            comboboxType.MaxDropDownItems = 4;
-            comboboxType.MouseState = MaterialSkin.MouseState.OUT;
-            comboboxType.Name = "comboboxType";
-            comboboxType.Size = new Size(221, 49);
-            comboboxType.StartIndex = 0;
-            comboboxType.TabIndex = 2;
-            comboboxType.SelectedIndexChanged += materialComboBox1_SelectedIndexChanged;
-            // 
             // divider
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
@@ -171,73 +231,13 @@
             divider.Size = new Size(1107, 12);
             divider.TabIndex = 3;
             // 
-            // lblStartDate
+            // dataGridInvoiceList
             // 
-            lblStartDate.AutoSize = true;
-            lblStartDate.Depth = 0;
-            lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(514, 8);
-            lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
-            lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(99, 14);
-            lblStartDate.TabIndex = 3;
-            lblStartDate.Text = "Choose Start Date";
-            // 
-            // lblFinishDate
-            // 
-            lblFinishDate.AutoSize = true;
-            lblFinishDate.Depth = 0;
-            lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(755, 8);
-            lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
-            lblFinishDate.Name = "lblFinishDate";
-            lblFinishDate.Size = new Size(106, 14);
-            lblFinishDate.TabIndex = 4;
-            lblFinishDate.Text = "Choose Finish Date";
-            // 
-            // dateTimeStartDate
-            // 
-            dateTimeStartDate.Location = new Point(514, 34);
-            dateTimeStartDate.Name = "dateTimeStartDate";
-            dateTimeStartDate.Size = new Size(200, 23);
-            dateTimeStartDate.TabIndex = 5;
-            // 
-            // dateTimeFinishDate
-            // 
-            dateTimeFinishDate.Location = new Point(755, 34);
-            dateTimeFinishDate.Name = "dateTimeFinishDate";
-            dateTimeFinishDate.Size = new Size(200, 23);
-            dateTimeFinishDate.TabIndex = 6;
-            // 
-            // bttnSendInvoice
-            // 
-            bttnSendInvoice.AutoSize = false;
-            bttnSendInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnSendInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnSendInvoice.Depth = 0;
-            bttnSendInvoice.HighEmphasis = true;
-            bttnSendInvoice.Icon = null;
-            bttnSendInvoice.Location = new Point(755, 113);
-            bttnSendInvoice.Margin = new Padding(4, 6, 4, 6);
-            bttnSendInvoice.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnSendInvoice.Name = "bttnSendInvoice";
-            bttnSendInvoice.NoAccentTextColor = Color.Empty;
-            bttnSendInvoice.Size = new Size(200, 42);
-            bttnSendInvoice.TabIndex = 7;
-            bttnSendInvoice.Text = "Send Invoice";
-            bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnSendInvoice.UseAccentColor = false;
-            bttnSendInvoice.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 224);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1090, 395);
-            dataGridView1.TabIndex = 5;
+            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridInvoiceList.Location = new Point(0, 224);
+            dataGridInvoiceList.Name = "dataGridInvoiceList";
+            dataGridInvoiceList.Size = new Size(1090, 395);
+            dataGridInvoiceList.TabIndex = 5;
             // 
             // InvoiceForm
             // 
@@ -245,7 +245,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1090, 626);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
             Controls.Add(materialCard1);
             Controls.Add(stripInvoice);
@@ -258,7 +258,7 @@
             stripInvoice.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -279,6 +279,6 @@
         private MaterialSkin.Controls.MaterialButton bttnSendInvoice;
         private DateTimePicker dateTimeFinishDate;
         private DateTimePicker dateTimeStartDate;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridInvoiceList;
     }
 }
