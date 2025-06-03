@@ -59,6 +59,7 @@
             bttnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnLogin.UseAccentColor = false;
             bttnLogin.UseVisualStyleBackColor = true;
+            bttnLogin.Click += bttnLogin_Click;
             // 
             // txtboxUserName
             // 
@@ -94,7 +95,7 @@
             txtBoxPassword.ScrollBars = RichTextBoxScrollBars.None;
             txtBoxPassword.Size = new Size(336, 50);
             txtBoxPassword.TabIndex = 2;
-            txtBoxPassword.Text = "password";
+            txtBoxPassword.Text = "";
             txtBoxPassword.TrailingIcon = Properties.Resources.key;
             // 
             // lblUsername
@@ -128,7 +129,7 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.FlatStyle = FlatStyle.Flat;
-            materialLabel1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 162);
+            materialLabel1.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
             materialLabel1.Location = new Point(158, 518);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;

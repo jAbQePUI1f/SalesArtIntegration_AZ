@@ -17,14 +17,21 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void materialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboboxInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void bttnGetInvoiceType_Click(object sender, EventArgs e)
+        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
         }
     }
 }

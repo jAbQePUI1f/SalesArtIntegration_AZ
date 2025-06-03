@@ -58,6 +58,7 @@
             bttnWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnWaybill.UseAccentColor = false;
             bttnWaybill.UseVisualStyleBackColor = true;
+            bttnWaybill.Click += bttnWaybill_Click;
             // 
             // bttnCollection
             // 
@@ -78,6 +79,7 @@
             bttnCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnCollection.UseAccentColor = false;
             bttnCollection.UseVisualStyleBackColor = true;
+            bttnCollection.Click += bttnCollection_Click;
             // 
             // bttnInvoice
             // 
@@ -102,6 +104,7 @@
             bttnInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnInvoice.UseAccentColor = false;
             bttnInvoice.UseVisualStyleBackColor = true;
+            bttnInvoice.Click += bttnInvoice_Click;
             // 
             // menuStrip1
             // 
@@ -131,7 +134,7 @@
             // çıkışToolStripMenuItem
             // 
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(180, 22);
+            çıkışToolStripMenuItem.Size = new Size(117, 22);
             çıkışToolStripMenuItem.Text = "Go Back";
             // 
             // çıkışToolStripMenuItem1
