@@ -16,5 +16,17 @@ namespace SalesArtIntegration_AZ
         {
             InitializeComponent();
         }
+
+        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
+        }
+
+        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
