@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace invoiceIntegration.config
+namespace SalesArtIntegration_AZ.config
 {
     public class Configuration
     {

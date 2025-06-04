@@ -17,14 +17,26 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        private void bttnSendWaybill_Click(object sender, EventArgs e)
         {
-            SplashScreen splashScreen = new SplashScreen();
-            splashScreen.Show();
+
+        }
+
+        private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvoiceForm invoiceForm = new InvoiceForm();
+            invoiceForm.Show();
             this.Hide();
         }
 
-        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CollectionForm collectionForm = new CollectionForm();
+            collectionForm.Show();
+            this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
