@@ -33,6 +33,7 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             invoiceToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             bttnSendWaybill = new MaterialSkin.Controls.MaterialButton();
             dateTimeFinishDate = new DateTimePicker();
             dateTimeStartDate = new DateTimePicker();
@@ -44,7 +45,6 @@
             dataGridInvoiceList = new DataGridView();
             divider = new MaterialSkin.Controls.MaterialDivider();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
             materialCard1.SuspendLayout();
@@ -75,16 +75,23 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(127, 22);
             invoiceToolStripMenuItem.Text = "Invoice";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(127, 22);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(127, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // bttnSendWaybill
             // 
@@ -234,20 +241,13 @@
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(10, 33);
+            materialCard1.Location = new Point(10, 31);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1074, 175);
             materialCard1.TabIndex = 18;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // WaybillForm
             // 
