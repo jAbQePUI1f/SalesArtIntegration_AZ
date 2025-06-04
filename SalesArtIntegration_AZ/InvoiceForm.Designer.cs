@@ -75,21 +75,21 @@
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(180, 22);
+            waybillToolStripMenuItem.Size = new Size(127, 22);
             waybillToolStripMenuItem.Text = "Waybill";
             waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(127, 22);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(127, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -106,7 +106,7 @@
             materialCard1.Controls.Add(bttnGetInvoice);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(7, 33);
+            materialCard1.Location = new Point(7, 32);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
