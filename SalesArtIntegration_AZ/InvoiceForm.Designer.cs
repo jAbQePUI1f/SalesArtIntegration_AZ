@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
             stripInvoice = new MenuStrip();
             menüToolStripMenuItem = new ToolStripMenuItem();
-            çıkışToolStripMenuItem = new ToolStripMenuItem();
-            çıkışToolStripMenuItem1 = new ToolStripMenuItem();
+            waybillToolStripMenuItem = new ToolStripMenuItem();
+            collectionToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
@@ -56,7 +57,7 @@
             stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
             stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
             stripInvoice.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            stripInvoice.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
+            stripInvoice.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem });
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
@@ -66,24 +67,31 @@
             // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { çıkışToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 20);
             menüToolStripMenuItem.Text = "Menu";
             // 
-            // çıkışToolStripMenuItem
+            // waybillToolStripMenuItem
             // 
-            çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(180, 22);
-            çıkışToolStripMenuItem.Text = "Turn Back";
-            çıkışToolStripMenuItem.Click += çıkışToolStripMenuItem_Click;
+            waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
+            waybillToolStripMenuItem.Size = new Size(180, 22);
+            waybillToolStripMenuItem.Text = "Waybill";
+            waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
-            // çıkışToolStripMenuItem1
+            // collectionToolStripMenuItem
             // 
-            çıkışToolStripMenuItem1.Name = "çıkışToolStripMenuItem1";
-            çıkışToolStripMenuItem1.Size = new Size(38, 20);
-            çıkışToolStripMenuItem1.Text = "Exit";
-            çıkışToolStripMenuItem1.Click += çıkışToolStripMenuItem1_Click;
+            collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
+            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Text = "Collection";
+            collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // materialCard1
             // 
@@ -258,7 +266,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "InvoiceForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "SalesArt Integration";
+            Text = "Transfer Invoice";
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
             materialCard1.ResumeLayout(false);
@@ -272,8 +280,6 @@
 
         private MenuStrip stripInvoice;
         private ToolStripMenuItem menüToolStripMenuItem;
-        private ToolStripMenuItem çıkışToolStripMenuItem;
-        private ToolStripMenuItem çıkışToolStripMenuItem1;
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialLabel lblType;
         private MaterialSkin.Controls.MaterialButton bttnGetInvoice;
@@ -285,5 +291,8 @@
         private DateTimePicker dateTimeFinishDate;
         private DateTimePicker dateTimeStartDate;
         private DataGridView dataGridInvoiceList;
+        private ToolStripMenuItem waybillToolStripMenuItem;
+        private ToolStripMenuItem collectionToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

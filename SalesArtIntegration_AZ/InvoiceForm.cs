@@ -22,16 +22,23 @@ namespace SalesArtIntegration_AZ
 
         }
 
-        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            WaybillForm waybillForm = new WaybillForm();
+            waybillForm.Show();
+            this.Hide();
         }
 
-        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SplashScreen splashScreen = new SplashScreen();
-            splashScreen.Show();
+            CollectionForm collectionForm = new CollectionForm();
+            collectionForm.Show();
             this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
