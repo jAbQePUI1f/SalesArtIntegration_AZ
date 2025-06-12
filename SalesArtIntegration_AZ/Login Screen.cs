@@ -11,14 +11,9 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void bttnLogin_Click(object sender, EventArgs e)
+        private async void bttnLogin_Click(object sender, EventArgs e)
         {
-
-           
-
             var response = await LoginManager.LoginAsync("operasyon@safa.com", "Os1234");//"operasyon@arpaciogluavr.com", "Oa1234"
-
-    
 
             if (!response.State)
             {
