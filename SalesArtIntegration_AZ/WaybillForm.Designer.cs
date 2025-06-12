@@ -33,6 +33,7 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             invoiceToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             bttnSendWaybill = new MaterialSkin.Controls.MaterialButton();
             dateTimeFinishDate = new DateTimePicker();
             dateTimeStartDate = new DateTimePicker();
@@ -44,7 +45,6 @@
             dataGridInvoiceList = new DataGridView();
             divider = new MaterialSkin.Controls.MaterialDivider();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
             materialCard1.SuspendLayout();
@@ -57,11 +57,13 @@
             stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
             stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
             stripInvoice.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            stripInvoice.ImageScalingSize = new Size(20, 20);
             stripInvoice.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
+            stripInvoice.Padding = new Padding(7, 3, 0, 3);
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1094, 24);
+            stripInvoice.Size = new Size(1250, 30);
             stripInvoice.TabIndex = 4;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -69,22 +71,29 @@
             // 
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, collectionToolStripMenuItem, exitToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            menuToolStripMenuItem.Size = new Size(50, 20);
+            menuToolStripMenuItem.Size = new Size(63, 24);
             menuToolStripMenuItem.Text = "Menu";
             // 
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(160, 26);
             invoiceToolStripMenuItem.Text = "Invoice";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(160, 26);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(160, 26);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // bttnSendWaybill
             // 
@@ -94,31 +103,32 @@
             bttnSendWaybill.Depth = 0;
             bttnSendWaybill.HighEmphasis = true;
             bttnSendWaybill.Icon = null;
-            bttnSendWaybill.Location = new Point(759, 115);
-            bttnSendWaybill.Margin = new Padding(4, 6, 4, 6);
+            bttnSendWaybill.Location = new Point(867, 153);
+            bttnSendWaybill.Margin = new Padding(5, 8, 5, 8);
             bttnSendWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendWaybill.Name = "bttnSendWaybill";
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
-            bttnSendWaybill.Size = new Size(200, 42);
+            bttnSendWaybill.Size = new Size(229, 56);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Send Waybill";
+            bttnSendWaybill.Text = "Send to 1C";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
-            bttnSendWaybill.Click += bttnSendWaybill_Click;
             // 
             // dateTimeFinishDate
             // 
-            dateTimeFinishDate.Location = new Point(759, 33);
+            dateTimeFinishDate.Location = new Point(867, 44);
+            dateTimeFinishDate.Margin = new Padding(3, 4, 3, 4);
             dateTimeFinishDate.Name = "dateTimeFinishDate";
-            dateTimeFinishDate.Size = new Size(200, 23);
+            dateTimeFinishDate.Size = new Size(228, 27);
             dateTimeFinishDate.TabIndex = 14;
             // 
             // dateTimeStartDate
             // 
-            dateTimeStartDate.Location = new Point(518, 32);
+            dateTimeStartDate.Location = new Point(592, 43);
+            dateTimeStartDate.Margin = new Padding(3, 4, 3, 4);
             dateTimeStartDate.Name = "dateTimeStartDate";
-            dateTimeStartDate.Size = new Size(200, 23);
+            dateTimeStartDate.Size = new Size(228, 27);
             dateTimeStartDate.TabIndex = 13;
             // 
             // lblFinishDate
@@ -127,7 +137,7 @@
             lblFinishDate.Depth = 0;
             lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(759, 6);
+            lblFinishDate.Location = new Point(867, 8);
             lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblFinishDate.Name = "lblFinishDate";
             lblFinishDate.Size = new Size(106, 14);
@@ -140,7 +150,7 @@
             lblStartDate.Depth = 0;
             lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(518, 6);
+            lblStartDate.Location = new Point(592, 8);
             lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(99, 14);
@@ -162,13 +172,16 @@
             comboboxInvoiceType.FormattingEnabled = true;
             comboboxInvoiceType.IntegralHeight = false;
             comboboxInvoiceType.ItemHeight = 43;
-            comboboxInvoiceType.Location = new Point(24, 29);
+            comboboxInvoiceType.Items.AddRange(new object[] { "SEÇİNİZ...", "SELLING", "BUYING", "SELLING_RETURN", "BUYING_RETURN", "DAMAGED_SELLING_RETURN", "DAMAGED_BUYING_RETURN", "SELLING_SERVICE", "BUYING_SERVICE" });
+            comboboxInvoiceType.Location = new Point(27, 39);
+            comboboxInvoiceType.Margin = new Padding(3, 4, 3, 4);
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
             comboboxInvoiceType.Name = "comboboxInvoiceType";
-            comboboxInvoiceType.Size = new Size(221, 49);
+            comboboxInvoiceType.Size = new Size(252, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 10;
+            comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
             // 
             // lblType
             // 
@@ -176,12 +189,12 @@
             lblType.Depth = 0;
             lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(24, 6);
+            lblType.Location = new Point(27, 8);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
-            lblType.Size = new Size(112, 14);
+            lblType.Size = new Size(114, 14);
             lblType.TabIndex = 9;
-            lblType.Text = "Choose Invoice Type";
+            lblType.Text = "Choose Waybill Type";
             // 
             // bttnGetWaybill
             // 
@@ -191,34 +204,38 @@
             bttnGetWaybill.Depth = 0;
             bttnGetWaybill.HighEmphasis = true;
             bttnGetWaybill.Icon = null;
-            bttnGetWaybill.Location = new Point(24, 115);
-            bttnGetWaybill.Margin = new Padding(4, 6, 4, 6);
+            bttnGetWaybill.Location = new Point(27, 153);
+            bttnGetWaybill.Margin = new Padding(5, 8, 5, 8);
             bttnGetWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetWaybill.Name = "bttnGetWaybill";
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
-            bttnGetWaybill.Size = new Size(220, 42);
+            bttnGetWaybill.Size = new Size(251, 56);
             bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Get Waybill";
+            bttnGetWaybill.Text = "Get Waybills";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetWaybill.UseAccentColor = false;
             bttnGetWaybill.UseVisualStyleBackColor = true;
+            bttnGetWaybill.Click += bttnGetWaybill_Click;
             // 
             // dataGridInvoiceList
             // 
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridInvoiceList.Location = new Point(7, 231);
+            dataGridInvoiceList.Location = new Point(8, 308);
+            dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
-            dataGridInvoiceList.Size = new Size(1080, 428);
+            dataGridInvoiceList.RowHeadersWidth = 51;
+            dataGridInvoiceList.Size = new Size(1234, 571);
             dataGridInvoiceList.TabIndex = 17;
             // 
             // divider
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-1, 213);
+            divider.Location = new Point(-1, 284);
+            divider.Margin = new Padding(3, 4, 3, 4);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1095, 10);
+            divider.Size = new Size(1251, 13);
             divider.TabIndex = 16;
             // 
             // materialCard1
@@ -234,31 +251,25 @@
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(10, 33);
-            materialCard1.Margin = new Padding(14);
+            materialCard1.Location = new Point(11, 44);
+            materialCard1.Margin = new Padding(16, 19, 16, 19);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(1074, 175);
+            materialCard1.Padding = new Padding(16, 19, 16, 19);
+            materialCard1.Size = new Size(1227, 233);
             materialCard1.TabIndex = 18;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // WaybillForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1094, 671);
+            ClientSize = new Size(1250, 895);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
             Controls.Add(stripInvoice);
             Controls.Add(materialCard1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "WaybillForm";
             Text = "Transfer Waybill";
             stripInvoice.ResumeLayout(false);

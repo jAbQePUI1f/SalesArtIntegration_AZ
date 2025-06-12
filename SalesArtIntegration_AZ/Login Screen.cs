@@ -1,3 +1,7 @@
+using SalesArtIntegration_AZ.Manager.Helper;
+using SalesArtIntegration_AZ.Manager.Login;
+using SalesArtIntegration_AZ.Models;
+
 namespace SalesArtIntegration_AZ
 {
     public partial class loginForm : Form
@@ -7,25 +11,40 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void materialLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttnLogin_Click(object sender, EventArgs e)
         {
-            loginForm login = new loginForm();
-            if (txtboxUserName.Text == "admin" && txtBoxPassword.Text == "1234")
-            {
-                SplashScreen splashScreen = new SplashScreen();
-                splashScreen.Show();
-                this.Hide();
 
-            }
-            else
+           
+
+            var response = await LoginManager.LoginAsync("operasyon@safa.com", "Os1234");//"operasyon@arpaciogluavr.com", "Oa1234"
+
+    
+
+            if (!response.State)
             {
-                MessageBox.Show("Kullanýcý adý veya þifre yanlýþ!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(response.Messages.GetMessages(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
+            UserSharedInfo.UserInfo.UserName = txtboxUserName.Text;
+            UserSharedInfo.UserInfo.Password = txtBoxPassword.Text;
+            UserSharedInfo.UserInfo.Token = response.Token;
+
+            new SplashScreen().Show();
+            this.Hide();
+
+            //loginForm login = new loginForm();
+            //if (txtboxUserName.Text == "admin" && txtBoxPassword.Text == "1234")
+            //{
+            //    SplashScreen splashScreen = new SplashScreen();
+            //    splashScreen.Show();
+            //    this.Hide();
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Kullanýcý adý veya þifre yanlýþ!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }
