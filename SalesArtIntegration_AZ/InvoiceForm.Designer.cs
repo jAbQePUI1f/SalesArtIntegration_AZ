@@ -171,7 +171,7 @@
             bttnSendInvoice.NoAccentTextColor = Color.Empty;
             bttnSendInvoice.Size = new Size(200, 42);
             bttnSendInvoice.TabIndex = 7;
-            bttnSendInvoice.Text = "Send Invoice";
+            bttnSendInvoice.Text = "Send to 1C";
             bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendInvoice.UseAccentColor = false;
             bttnSendInvoice.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             bttnGetInvoice.NoAccentTextColor = Color.Empty;
             bttnGetInvoice.Size = new Size(220, 42);
             bttnGetInvoice.TabIndex = 0;
-            bttnGetInvoice.Text = "Get Invoice";
+            bttnGetInvoice.Text = "Get Invoices";
             bttnGetInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetInvoice.UseAccentColor = false;
             bttnGetInvoice.UseVisualStyleBackColor = true;
@@ -249,7 +249,7 @@
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridInvoiceList.Location = new Point(7, 231);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
-            dataGridInvoiceList.Size = new Size(1071, 389);
+            dataGridInvoiceList.Size = new Size(1067, 389);
             dataGridInvoiceList.TabIndex = 5;
             // 
             // InvoiceForm

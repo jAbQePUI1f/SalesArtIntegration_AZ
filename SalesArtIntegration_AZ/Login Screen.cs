@@ -7,11 +7,6 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void materialLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttnLogin_Click(object sender, EventArgs e)
         {
             loginForm login = new loginForm();

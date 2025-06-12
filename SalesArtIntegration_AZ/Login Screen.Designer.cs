@@ -84,7 +84,7 @@
             txtBoxPassword.AnimateReadOnly = false;
             txtBoxPassword.BorderStyle = BorderStyle.None;
             txtBoxPassword.Depth = 0;
-            txtBoxPassword.Font = new Font("Microsoft Sans Serif", 12F);
+            txtBoxPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBoxPassword.LeadingIcon = null;
             txtBoxPassword.Location = new Point(35, 257);
             txtBoxPassword.MaxLength = 50;
@@ -129,22 +129,21 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.FlatStyle = FlatStyle.Flat;
-            materialLabel1.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
-            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            materialLabel1.Location = new Point(158, 518);
+            materialLabel1.Font = new Font("Roboto", 10F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.Overline;
+            materialLabel1.Location = new Point(2, 524);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(256, 14);
+            materialLabel1.Size = new Size(210, 13);
             materialLabel1.TabIndex = 5;
             materialLabel1.Text = "© Copyright 2025 SalesArt. All Rights Reserved.";
-            materialLabel1.Click += materialLabel1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(2, 511);
+            pictureBox1.Location = new Point(2, 487);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(150, 26);
+            pictureBox1.Size = new Size(150, 34);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -157,8 +156,8 @@
             BackColor = Color.Snow;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(417, 538);
-            Controls.Add(pictureBox1);
             Controls.Add(materialLabel1);
+            Controls.Add(pictureBox1);
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
             Controls.Add(txtBoxPassword);

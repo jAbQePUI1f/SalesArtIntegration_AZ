@@ -108,7 +108,7 @@
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
             bttnSendWaybill.Size = new Size(200, 42);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Send Waybill";
+            bttnSendWaybill.Text = "Send to 1C";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             comboboxInvoiceType.FormattingEnabled = true;
             comboboxInvoiceType.IntegralHeight = false;
             comboboxInvoiceType.ItemHeight = 43;
-            comboboxInvoiceType.Location = new Point(24, 29);
+            comboboxInvoiceType.Location = new Point(24, 32);
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
             comboboxInvoiceType.Name = "comboboxInvoiceType";
@@ -183,12 +183,12 @@
             lblType.Depth = 0;
             lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(24, 6);
+            lblType.Location = new Point(24, 9);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
-            lblType.Size = new Size(112, 14);
+            lblType.Size = new Size(114, 14);
             lblType.TabIndex = 9;
-            lblType.Text = "Choose Invoice Type";
+            lblType.Text = "Choose Waybill Type";
             // 
             // bttnGetWaybill
             // 
@@ -198,14 +198,14 @@
             bttnGetWaybill.Depth = 0;
             bttnGetWaybill.HighEmphasis = true;
             bttnGetWaybill.Icon = null;
-            bttnGetWaybill.Location = new Point(24, 115);
+            bttnGetWaybill.Location = new Point(24, 112);
             bttnGetWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnGetWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetWaybill.Name = "bttnGetWaybill";
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
             bttnGetWaybill.Size = new Size(220, 42);
             bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Get Waybill";
+            bttnGetWaybill.Text = "Get Waybills";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetWaybill.UseAccentColor = false;
             bttnGetWaybill.UseVisualStyleBackColor = true;
@@ -213,9 +213,9 @@
             // dataGridInvoiceList
             // 
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridInvoiceList.Location = new Point(7, 231);
+            dataGridInvoiceList.Location = new Point(10, 231);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
-            dataGridInvoiceList.Size = new Size(1080, 428);
+            dataGridInvoiceList.Size = new Size(1074, 428);
             dataGridInvoiceList.TabIndex = 17;
             // 
             // divider
