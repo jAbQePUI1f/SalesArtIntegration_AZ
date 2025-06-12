@@ -173,7 +173,7 @@
             bttnSendInvoice.NoAccentTextColor = Color.Empty;
             bttnSendInvoice.Size = new Size(229, 56);
             bttnSendInvoice.TabIndex = 7;
-            bttnSendInvoice.Text = "Send Invoice";
+            bttnSendInvoice.Text = "Send to 1C";
             bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendInvoice.UseAccentColor = false;
             bttnSendInvoice.UseVisualStyleBackColor = true;
@@ -218,7 +218,6 @@
             comboboxInvoiceType.Size = new Size(252, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 2;
-            comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
             // 
             // bttnGetInvoice
             // 
@@ -235,7 +234,7 @@
             bttnGetInvoice.NoAccentTextColor = Color.Empty;
             bttnGetInvoice.Size = new Size(251, 56);
             bttnGetInvoice.TabIndex = 0;
-            bttnGetInvoice.Text = "Get Invoice";
+            bttnGetInvoice.Text = "Get Invoices";
             bttnGetInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetInvoice.UseAccentColor = false;
             bttnGetInvoice.UseVisualStyleBackColor = true;

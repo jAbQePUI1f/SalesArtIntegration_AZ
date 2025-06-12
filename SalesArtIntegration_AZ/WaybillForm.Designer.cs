@@ -110,11 +110,10 @@
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
             bttnSendWaybill.Size = new Size(229, 56);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Send Waybill";
+            bttnSendWaybill.Text = "Send to 1C";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
-            bttnSendWaybill.Click += bttnSendWaybill_Click;
             // 
             // dateTimeFinishDate
             // 
@@ -193,9 +192,9 @@
             lblType.Location = new Point(27, 8);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
-            lblType.Size = new Size(112, 14);
+            lblType.Size = new Size(114, 14);
             lblType.TabIndex = 9;
-            lblType.Text = "Choose Invoice Type";
+            lblType.Text = "Choose Waybill Type";
             // 
             // bttnGetWaybill
             // 
@@ -212,7 +211,7 @@
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
             bttnGetWaybill.Size = new Size(251, 56);
             bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Get Waybill";
+            bttnGetWaybill.Text = "Get Waybills";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetWaybill.UseAccentColor = false;
             bttnGetWaybill.UseVisualStyleBackColor = true;
