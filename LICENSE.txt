@@ -1,6 +1,31 @@
+
+[TR]
+MIT Lisansı
+
+Telif Hakkı (c) 2025 SalesArt A.Ş.
+
+İşbu yazılım ve ilgili dokümantasyon dosyalarının (burada "Yazılım" olarak anılacaktır) bir kopyasını edinen her kişiye, 
+Yazılım'ı herhangi bir kısıtlama olmaksızın, kullanma, kopyalama, değiştirme, birleştirme, yayımlama, dağıtma, 
+alt lisanslama ve/veya satma dahil olmak üzere her türlü işlem yapma izni, ücretsiz olarak verilmiştir. 
+Yazılımın sağlandığı kişilere de aşağıdaki koşullara tabi olarak bu izin verilmiştir:
+
+Yukarıdaki telif hakkı bildirimi ve bu izin bildirimi, Yazılımın tüm kopyalarına veya önemli kısımlarına dahil edilecektir.
+
+YAZILIM, SATILABİLİRLİK, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME GARANTİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAYAN, 
+AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN "OLDUĞU GİBİ" SAĞLANIR. YAZARLAR VEYA TELİF HAKKI SAHİPLERİ HİÇBİR DURUMDA, 
+YAZILIMIN KULLANIMINDAN VEYA DİĞER İŞLEMLERİNDEN KAYNAKLANAN VEYA BUNLARLA BAĞLANTILI OLAN, SÖZLEŞME, 
+HAKSIZ FİİL VEYA BAŞKA BİR ŞEKİLDEKİ HİÇBİR İDDİA, HASAR VEYA BAŞKA BİR YÜKÜMLÜLÜKTEN SORUMLU TUTULAMAZLAR.
+
+
+**Bu yazılıma özel (SalesArt A.Ş. için C# ile geliştirilmiş bir masaüstü uygulaması):**
+
+Bu lisans, orijinal kod tabanı ve SalesArt A.Ş. için C# ile geliştirilmiş masaüstü uygulaması için yapılan sonraki tüm değişiklikler veya eklemeler için geçerlidir. MIT Lisansının genel şartları geçerli olmakla birlikte, bu özel uygulamanın herhangi bir değişikliği veya dağıtımı, SalesArt A.Ş.'nin elinde bulunan orijinal telif hakkını kabul etmelidir.
+
+
+[ENG]
 MIT License
 
-Copyright (c) [2025] [SalesArt Inc]
+Copyright (c) 2025 SalesArt INC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +44,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+**Specifics for this software (a desktop application developed in C# for SalesArt INC):**
+
+This license applies to the original codebase and all subsequent modifications or additions made to it for the desktop application developed in C#. While the general terms of the MIT License apply, any modifications or distributions of this specific application should acknowledge the original copyright held by SalesArt INC.
+
+
+
