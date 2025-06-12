@@ -17,11 +17,6 @@ namespace SalesArtIntegration_AZ
             InitializeComponent();
         }
 
-        private void comboboxInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WaybillForm waybillForm = new WaybillForm();

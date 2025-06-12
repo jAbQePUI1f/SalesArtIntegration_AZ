@@ -7,11 +7,6 @@
             InitializeComponent();
         }
 
-        private void bttnSendWaybill_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InvoiceForm invoiceForm = new InvoiceForm();

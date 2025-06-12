@@ -212,7 +212,6 @@
             comboboxInvoiceType.Size = new Size(221, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 2;
-            comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
             // 
             // bttnGetInvoice
             // 
