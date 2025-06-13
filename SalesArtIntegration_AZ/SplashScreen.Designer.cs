@@ -109,7 +109,6 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.BackgroundImage = Properties.Resources.logo_1920;
             menuStrip1.BackgroundImageLayout = ImageLayout.Zoom;
             menuStrip1.Dock = DockStyle.Left;
             menuStrip1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);

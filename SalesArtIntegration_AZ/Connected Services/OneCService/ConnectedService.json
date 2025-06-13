@@ -1,0 +1,21 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "enableDataBinding": true,
+    "namespaceMappings": [
+      "*, OneCService"
+    ],
+    "references": [
+      "MaterialSkin, {MaterialSkin.2, 2.3.1}",
+      "Newtonsoft.Json, {Newtonsoft.Json, 13.0.3}"
+    ],
+    "targetFramework": "net8.0-windows",
+    "typeReuseMode": "All"
+  }
+}
