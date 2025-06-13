@@ -1,0 +1,119 @@
+<----------------------------- SalesArt & 1C Integration Info ----------------------------->
+
+<----------------------------- API User & Link Info ----------------------------->
+API Link :  https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice?wsdl
+User Info : U: web_user, P: wb_123
+
+
+<----------------------------- API Structures ----------------------------->
+
+1. InsertNewIncomingPayment (Tahsilat)
+
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <InsertNewIncomingPayment xmlns="http://127.0.0.1">
+            <Date>[date]</Date>  - Tahsilat Tarihi (2020-01-01)
+            <Type>[string]</Type> - Tip ("KASSA TAHSILAT" və ya da "GELEN HEVALE")
+            <DocNumber>[string]</DocNumber> - Fatura Numarası
+            <PartnerCode>[string]</PartnerCode> - Müşteri Kodu (VÖENi)
+            <Bank_Acc_Code>[string]</Bank_Acc_Code> - Bank Hesabı Kodu
+            <Bank_Acc_Name>[string]</Bank_Acc_Name> - Bank Hesabı Adı
+            <Bank_Cash_Name>[string]</Bank_Cash_Name>  - Bankanın yada Kasanın Adı
+            <Vat_Acc_Code>[string]</Vat_Acc_Code> - KDV bilgisi
+            <Amount>[decimal]</Amount> - Tutar
+            <Description>[string]</Description> -  Açıklama
+        </InsertNewIncomingPayment>
+    </Body>
+</Envelope>
+
+2. InsertNewInvoice (Satış Faturası)
+
+<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">
+    <Body>
+        <InsertNewInvoice xmlns="http://127.0.0.1">
+            <EnterpriseCode>[string]</EnterpriseCode> - Şirket Kodu
+            <Date>[string]</Date>   - Fatura Tarihi (2020-01-01)
+            <InvoiceNumber>[string]</InvoiceNumber> Fatura Numarası
+            <PartnersCode>[string]</PartnersCode> - Müşteri Kodu (VÖENi)
+            <AmountIncludesVat>[int]</AmountIncludesVat> - KDV (1 - KDV Dahildir , 0 - KDV Hariçtir)
+            <StockID>[string]</StockID> - Depo Kodu
+            <ItemTable>
+                <TableLine>
+                    <ItemCode>[string]</ItemCode> - Ürün Kodu
+                    <Quantity>[decimal]</Quantity> - Miktar
+                    <Unit>[string]</Unit> - Birim
+                    <Price>[decimal]</Price> - Birim Fiyatı
+                </TableLine>
+            </ItemTable>
+        </InsertNewInvoice>
+    </Body>
+</Envelope>
+
+3. InsertNewRefundOfInvoice (Satış İade Faturası)
+
+<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">
+    <Body>
+        <InsertNewRefundOfInvoice xmlns="http://127.0.0.1">
+            <EnterpriseCode>[string]</EnterpriseCode> - Şirket Kodu
+            <Date>[string]</Date>   - Fatura Tarihi (2020-01-01)
+            <InvoiceNumber>[string]</InvoiceNumber> -  Fatura Numarası
+            <PartnersCode>[string]</PartnersCode> - Müşteri Kodu (VÖENi)
+            <AmountIncludesVat>[int]</AmountIncludesVat> - KDV (1 - KDV Dahildir , 0 - KDV Hariçtir)
+            <StockID>[string]</StockID> - Depo Kodu
+            <ItemTable>
+                <TableLine>
+                    <ItemCode>[string]</ItemCode> - Ürün Kodu
+                    <Quantity>[decimal]</Quantity> - Miktar
+                    <Unit>[string]</Unit> - Birim
+                    <Price>[decimal]</Price> - Birim Fiyatı
+                </TableLine>
+            </ItemTable>
+        </InsertNewRefundOfInvoice>
+    </Body>
+</Envelope>
+
+4. InsertNewReceipt (Alım Faturası)
+
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <InsertNewReceipt xmlns="http://127.0.0.1">
+            <EnterpriseCode>[string]</EnterpriseCode> - Şirket Kodu
+            <Date>[string]</Date>   - Fatura Tarihi (2020-01-01)
+            <ReceiptNumber>[string]</ReceiptNumber>   -  Fatura Numarası
+            <PartnersCode>[string]</PartnersCode> - Müşteri Kodu (VÖENi)
+            <AmountIncludesVat>[int]</AmountIncludesVat> - KDV (1 - KDV Dahildir , 0 - KDV Hariçtir)
+            <StockID>[string]</StockID> - Depo Kodu
+            <ItemTable>
+                 <TableLine>
+                    <ItemCode>[string]</ItemCode> - Ürün Kodu
+                    <Quantity>[decimal]</Quantity> - Miktar
+                    <Unit>[string]</Unit> - Birim
+                    <Price>[decimal]</Price> - Birim Fiyatı
+                </TableLine>
+            </ItemTable>
+        </InsertNewReceipt>
+    </Body>
+</Envelope>
+
+5) InsertNewRefundOfReceipt (Alım İade Faturası)
+
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <InsertNewRefundOfReceipt xmlns="http://127.0.0.1">
+            <EnterpriseCode>[string]</EnterpriseCode> - Şirket Kodu
+            <Date>[string]</Date>   - Fatura Tarihi (2020-01-01)
+            <ReceiptNumber>[string]</ReceiptNumber>   -  Fatura Numarası
+            <PartnersCode>[string]</PartnersCode> - Müşteri Kodu (VÖENi)
+            <AmountIncludesVat>[int]</AmountIncludesVat> - KDV (1 - KDV Dahildir , 0 - KDV Hariçtir)
+            <StockID>[string]</StockID> - Depo Kodu
+            <ItemTable>
+                 <TableLine>
+                    <ItemCode>[string]</ItemCode> - Ürün Kodu
+                    <Quantity>[decimal]</Quantity> - Miktar
+                    <Unit>[string]</Unit> - Birim
+                    <Price>[decimal]</Price> - Birim Fiyatı
+                </TableLine>
+            </ItemTable>
+        </InsertNewRefundOfReceipt>
+    </Body>
+</Envelope>

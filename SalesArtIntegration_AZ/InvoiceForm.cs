@@ -42,10 +42,6 @@ namespace SalesArtIntegration_AZ
             {
                 documentType = string.Empty;
             }
-
-
-
-
         }
 
         private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
