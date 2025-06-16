@@ -148,6 +148,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(407, 500);
+            ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
             Controls.Add(bttnWaybill);
