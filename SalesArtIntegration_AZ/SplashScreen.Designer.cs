@@ -47,7 +47,7 @@
             bttnWaybill.Depth = 0;
             bttnWaybill.HighEmphasis = true;
             bttnWaybill.Icon = null;
-            bttnWaybill.Location = new Point(338, 338);
+            bttnWaybill.Location = new Point(336, 384);
             bttnWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnWaybill.Name = "bttnWaybill";
@@ -68,7 +68,7 @@
             bttnCollection.Depth = 0;
             bttnCollection.HighEmphasis = true;
             bttnCollection.Icon = null;
-            bttnCollection.Location = new Point(598, 338);
+            bttnCollection.Location = new Point(594, 384);
             bttnCollection.Margin = new Padding(4, 6, 4, 6);
             bttnCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnCollection.Name = "bttnCollection";
@@ -92,7 +92,7 @@
             bttnInvoice.FlatAppearance.BorderSize = 8;
             bttnInvoice.HighEmphasis = true;
             bttnInvoice.Icon = null;
-            bttnInvoice.Location = new Point(78, 338);
+            bttnInvoice.Location = new Point(76, 384);
             bttnInvoice.Margin = new Padding(4, 6, 4, 6);
             bttnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnInvoice.Name = "bttnInvoice";
