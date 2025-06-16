@@ -47,14 +47,14 @@
             bttnWaybill.Depth = 0;
             bttnWaybill.HighEmphasis = true;
             bttnWaybill.Icon = null;
-            bttnWaybill.Location = new Point(122, 174);
+            bttnWaybill.Location = new Point(338, 338);
             bttnWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnWaybill.Name = "bttnWaybill";
             bttnWaybill.NoAccentTextColor = Color.Empty;
-            bttnWaybill.Size = new Size(212, 130);
+            bttnWaybill.Size = new Size(174, 59);
             bttnWaybill.TabIndex = 0;
-            bttnWaybill.Text = "Irsalıye";
+            bttnWaybill.Text = "Aktar";
             bttnWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnWaybill.UseAccentColor = false;
             bttnWaybill.UseVisualStyleBackColor = true;
@@ -68,14 +68,14 @@
             bttnCollection.Depth = 0;
             bttnCollection.HighEmphasis = true;
             bttnCollection.Icon = null;
-            bttnCollection.Location = new Point(122, 333);
+            bttnCollection.Location = new Point(598, 338);
             bttnCollection.Margin = new Padding(4, 6, 4, 6);
             bttnCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnCollection.Name = "bttnCollection";
             bttnCollection.NoAccentTextColor = Color.Empty;
-            bttnCollection.Size = new Size(212, 129);
+            bttnCollection.Size = new Size(174, 59);
             bttnCollection.TabIndex = 0;
-            bttnCollection.Text = "Tahsılat";
+            bttnCollection.Text = "Aktar";
             bttnCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnCollection.UseAccentColor = false;
             bttnCollection.UseVisualStyleBackColor = true;
@@ -92,15 +92,15 @@
             bttnInvoice.FlatAppearance.BorderSize = 8;
             bttnInvoice.HighEmphasis = true;
             bttnInvoice.Icon = null;
-            bttnInvoice.Location = new Point(122, 31);
+            bttnInvoice.Location = new Point(78, 338);
             bttnInvoice.Margin = new Padding(4, 6, 4, 6);
             bttnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnInvoice.Name = "bttnInvoice";
             bttnInvoice.NoAccentTextColor = Color.Empty;
             bttnInvoice.Padding = new Padding(10);
-            bttnInvoice.Size = new Size(212, 115);
+            bttnInvoice.Size = new Size(174, 59);
             bttnInvoice.TabIndex = 1;
-            bttnInvoice.Text = "Fatura ";
+            bttnInvoice.Text = "Aktar";
             bttnInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnInvoice.UseAccentColor = false;
             bttnInvoice.UseVisualStyleBackColor = true;
@@ -108,18 +108,20 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             menuStrip1.BackColor = Color.White;
             menuStrip1.BackgroundImageLayout = ImageLayout.Zoom;
-            menuStrip1.Dock = DockStyle.Left;
+            menuStrip1.Dock = DockStyle.None;
             menuStrip1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
-            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            menuStrip1.Location = new Point(743, 9);
             menuStrip1.MdiWindowListItem = çıkışToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
             menuStrip1.RightToLeft = RightToLeft.No;
-            menuStrip1.Size = new Size(56, 500);
+            menuStrip1.Size = new Size(96, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "stripSplash";
             // 
@@ -127,7 +129,7 @@
             // 
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { çıkışToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(43, 19);
+            menüToolStripMenuItem.Size = new Size(50, 20);
             menüToolStripMenuItem.Text = "Menu";
             // 
             // çıkışToolStripMenuItem
@@ -139,7 +141,7 @@
             // çıkışToolStripMenuItem1
             // 
             çıkışToolStripMenuItem1.Name = "çıkışToolStripMenuItem1";
-            çıkışToolStripMenuItem1.Size = new Size(43, 19);
+            çıkışToolStripMenuItem1.Size = new Size(38, 20);
             çıkışToolStripMenuItem1.Text = "Exit";
             // 
             // SplashScreen
@@ -147,12 +149,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(407, 500);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(848, 538);
             ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
             Controls.Add(bttnWaybill);
             Controls.Add(menuStrip1);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;

@@ -45,6 +45,7 @@
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             dataGridInvoiceList = new DataGridView();
             divider = new MaterialSkin.Controls.MaterialDivider();
+            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -75,27 +76,28 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(114, 22);
             invoiceToolStripMenuItem.Text = "Invoice";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(114, 22);
             collectionToolStripMenuItem.Text = "Waybill";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(114, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(comboboxInvoiceType);
             materialCard1.Controls.Add(lblType);
             materialCard1.Controls.Add(bttnSendWaybill);
@@ -158,14 +160,14 @@
             bttnSendWaybill.Depth = 0;
             bttnSendWaybill.HighEmphasis = true;
             bttnSendWaybill.Icon = null;
-            bttnSendWaybill.Location = new Point(759, 115);
+            bttnSendWaybill.Location = new Point(742, 115);
             bttnSendWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnSendWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendWaybill.Name = "bttnSendWaybill";
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
             bttnSendWaybill.Size = new Size(200, 42);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Send to 1C";
+            bttnSendWaybill.Text = "Gönder";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
@@ -176,7 +178,7 @@
             lblStartDate.Depth = 0;
             lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(518, 6);
+            lblStartDate.Location = new Point(501, 6);
             lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(99, 14);
@@ -198,21 +200,21 @@
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
             bttnGetWaybill.Size = new Size(220, 42);
             bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Get Collections";
+            bttnGetWaybill.Text = "Getİr";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetWaybill.UseAccentColor = false;
             bttnGetWaybill.UseVisualStyleBackColor = true;
             // 
             // dateTimeFinishDate
             // 
-            dateTimeFinishDate.Location = new Point(759, 33);
+            dateTimeFinishDate.Location = new Point(742, 33);
             dateTimeFinishDate.Name = "dateTimeFinishDate";
             dateTimeFinishDate.Size = new Size(200, 23);
             dateTimeFinishDate.TabIndex = 14;
             // 
             // dateTimeStartDate
             // 
-            dateTimeStartDate.Location = new Point(518, 32);
+            dateTimeStartDate.Location = new Point(501, 32);
             dateTimeStartDate.Name = "dateTimeStartDate";
             dateTimeStartDate.Size = new Size(200, 23);
             dateTimeStartDate.TabIndex = 13;
@@ -223,7 +225,7 @@
             lblFinishDate.Depth = 0;
             lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(759, 6);
+            lblFinishDate.Location = new Point(742, 6);
             lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblFinishDate.Name = "lblFinishDate";
             lblFinishDate.Size = new Size(106, 14);
@@ -247,6 +249,28 @@
             divider.Name = "divider";
             divider.Size = new Size(1095, 10);
             divider.TabIndex = 20;
+            // 
+            // bttnLogs
+            // 
+            bttnLogs.AutoSize = false;
+            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Depth = 0;
+            bttnLogs.HighEmphasis = true;
+            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
+            bttnLogs.Location = new Point(982, 128);
+            bttnLogs.Margin = new Padding(4, 6, 4, 6);
+            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnLogs.Name = "bttnLogs";
+            bttnLogs.NoAccentTextColor = Color.Empty;
+            bttnLogs.Size = new Size(92, 40);
+            bttnLogs.TabIndex = 16;
+            bttnLogs.Text = "Logs";
+            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
+            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
+            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnLogs.UseAccentColor = false;
+            bttnLogs.UseVisualStyleBackColor = true;
             // 
             // CollectionForm
             // 
@@ -287,5 +311,6 @@
         private MaterialSkin.Controls.MaterialLabel lblFinishDate;
         private DataGridView dataGridInvoiceList;
         private MaterialSkin.Controls.MaterialDivider divider;
+        private MaterialSkin.Controls.MaterialButton bttnLogs;
     }
 }

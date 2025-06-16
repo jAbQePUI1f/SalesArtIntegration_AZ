@@ -35,6 +35,7 @@
             collectionToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -45,7 +46,6 @@
             bttnGetInvoice = new MaterialSkin.Controls.MaterialButton();
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
-            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -54,6 +54,7 @@
             // stripInvoice
             // 
             stripInvoice.AllowMerge = false;
+            stripInvoice.AutoSize = false;
             stripInvoice.BackColor = Color.Transparent;
             stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
             stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
@@ -110,12 +111,34 @@
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(7, 33);
-            materialCard1.Margin = new Padding(14, 14, 14, 14);
+            materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14, 14, 14, 14);
+            materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1071, 175);
             materialCard1.TabIndex = 4;
+            // 
+            // bttnLogs
+            // 
+            bttnLogs.AutoSize = false;
+            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Depth = 0;
+            bttnLogs.HighEmphasis = true;
+            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
+            bttnLogs.Location = new Point(972, 130);
+            bttnLogs.Margin = new Padding(4, 6, 4, 6);
+            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnLogs.Name = "bttnLogs";
+            bttnLogs.NoAccentTextColor = Color.Empty;
+            bttnLogs.Size = new Size(92, 40);
+            bttnLogs.TabIndex = 8;
+            bttnLogs.Text = "Logs";
+            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
+            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
+            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnLogs.UseAccentColor = false;
+            bttnLogs.UseVisualStyleBackColor = true;
             // 
             // lblFinishDate
             // 
@@ -174,7 +197,7 @@
             bttnSendInvoice.NoAccentTextColor = Color.Empty;
             bttnSendInvoice.Size = new Size(200, 42);
             bttnSendInvoice.TabIndex = 7;
-            bttnSendInvoice.Text = "Send to 1C";
+            bttnSendInvoice.Text = "Gönder";
             bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendInvoice.UseAccentColor = false;
             bttnSendInvoice.UseVisualStyleBackColor = true;
@@ -232,7 +255,7 @@
             bttnGetInvoice.NoAccentTextColor = Color.Empty;
             bttnGetInvoice.Size = new Size(220, 42);
             bttnGetInvoice.TabIndex = 0;
-            bttnGetInvoice.Text = "Get Invoices";
+            bttnGetInvoice.Text = "Getİr";
             bttnGetInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetInvoice.UseAccentColor = false;
             bttnGetInvoice.UseVisualStyleBackColor = true;
@@ -257,28 +280,6 @@
             dataGridInvoiceList.Size = new Size(1071, 389);
             dataGridInvoiceList.TabIndex = 5;
             // 
-            // bttnLogs
-            // 
-            bttnLogs.AutoSize = false;
-            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnLogs.Depth = 0;
-            bttnLogs.HighEmphasis = true;
-            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(972, 52);
-            bttnLogs.Margin = new Padding(4, 6, 4, 6);
-            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnLogs.Name = "bttnLogs";
-            bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(92, 49);
-            bttnLogs.TabIndex = 8;
-            bttnLogs.Text = "Logs";
-            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
-            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
-            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            bttnLogs.UseAccentColor = false;
-            bttnLogs.UseVisualStyleBackColor = true;
-            // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -291,16 +292,18 @@
             Controls.Add(stripInvoice);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
             Name = "InvoiceForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Transfer Invoice";
+            FormClosed += InvoiceForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
