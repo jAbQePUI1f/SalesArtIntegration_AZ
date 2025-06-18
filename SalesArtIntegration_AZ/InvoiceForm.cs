@@ -99,5 +99,10 @@ namespace SalesArtIntegration_AZ
 
             dataGridInvoiceList.DataSource = displayInfoList;
         }
+
+        private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Form kapatıldığında uygulamayı kapat
+        }
     }
 }
