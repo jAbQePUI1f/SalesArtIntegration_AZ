@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -121,6 +121,24 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bttnLogs.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DgAACw4BQL7hQQAAAuRJREFUeF7tmbuKFUEURbei6A8omvtAxVdkbmBqov/gLzmmPhIFEVSMFF8YGGmg
+        iZmomaJGig8OnIaiuHuqbtdM7Wo4C4rp3reKWXOY3h1cIAiCIAiCIAiC7vwbaL0DcDAXHJ38j1CvxQ1x
+        Elez2CGONsC3yc/9+aYRYQN8AeBZHm4jk4cNbVFDZAO04T3Nw20k9VjUENkAe5N77APwxrOhOzEXV7HK
+        YxFDXCVuqDowZ/jHmYkrOzBn6CFuJt6Tksewj3NJvBc1HkMOkYmP0oE5wz3OTHykDswZaojriG8nk8ec
+        ZUOUMUmoyYey7pLBBHp34FyYfzeYQO8OnAvz74ZcoBG5v1ygEbk/E4gOrIQJRAdWIhdoRO4vF2hE7s8E
+        ogMrYQLRgZXIBRqR+8sFGpH7M4HowEqYQHRgJXKBRuT+coFG5P5MoNSB7JxxFsAjAD992bVlOZbdB/Ad
+        wFcAjwGczzcV2MyjC0yg1IHs3HEfmn1m35zZsmvLjiX7Tib7PgB4DeAvgN8ALiT7SjCPbswVYOdueb4B
+        YIcvu7bsRrLvjmfXAez07IpnT5J9JZhHN+YKsHNfPD+UZIc9+5xk3zxb9WivA/PoBhOY24H2CFq+J8n2
+        evbL73cl5w8kn6erlnX3bzlMYG4HrvoPPOLZpySzl4Zl5wDsBnAVwDXP7KVSC/PoxlwBdu6m52kHToOx
+        vpu47dldH6Bx0bOXyb4SzKMbcwWmc+ky7E37w+/f+7Jry44m508k+z4CeAXgj99fTvaVmOu/ZTCB2g7M
+        B2icAfDQB2TrAYDTyecTpwDc88fZXirPAVzKNxXIf3d3mECpA0eB+XdDLtCI3F8u0IjcnwmUOnAUmH83
+        mEB0YCVygUbk/nKBRuT+TCA6sBImEB1YiVygEbm/XKARuT8TiA6shAlEB1YiF2hE7i8XaETuzwSiAyth
+        AtGBlcgFGpH7ywUakftPAktfMnKRpa4gCIIgCIIgCHryHxe7ZUuJJR8wAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMIOAADCDgAAAAAAAAAA
