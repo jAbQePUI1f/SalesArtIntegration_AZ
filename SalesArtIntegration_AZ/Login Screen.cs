@@ -13,7 +13,13 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnLogin_Click(object sender, EventArgs e)
         {
-            var response = await LoginManager.LoginAsync("operasyon@safa.com", "Os1234");//"operasyon@arpaciogluavr.com", "Oa1234"
+            if(string.IsNullOrEmpty(txtboxUserName.Text) || string.IsNullOrEmpty(txtBoxPassword.Text))
+            {
+                MessageBox.Show("Kullanýcý bilgisi giriniz..", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var response = await LoginManager.LoginAsync(txtboxUserName.Text, txtBoxPassword.Text);//"operasyon@safa.com", "Os1234"
 
             if (!response.State)
             {
