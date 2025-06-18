@@ -35,7 +35,6 @@
             collectionToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -101,7 +100,6 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Controls.Add(lblStartDate);
             materialCard1.Controls.Add(lblType);
@@ -119,29 +117,7 @@
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1071, 175);
             materialCard1.TabIndex = 4;
-            // 
-            // bttnLogs
-            // 
-            bttnLogs.AutoSize = false;
-            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnLogs.Depth = 0;
-            bttnLogs.HighEmphasis = true;
-            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(972, 130);
-            bttnLogs.Margin = new Padding(4, 6, 4, 6);
-            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnLogs.Name = "bttnLogs";
-            bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(92, 40);
-            bttnLogs.TabIndex = 8;
-            bttnLogs.Text = "Logs";
-            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
-            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
-            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            bttnLogs.UseAccentColor = false;
-            bttnLogs.UseVisualStyleBackColor = true;
-            // 
+            //             
             // lblFinishDate
             // 
             lblFinishDate.AutoSize = true;
