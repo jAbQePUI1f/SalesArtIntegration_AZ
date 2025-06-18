@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
 using SalesArtIntegration_AZ.Manager.Login;
 using SalesArtIntegration_AZ.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SalesArtIntegration_AZ.Manager.Api
 {

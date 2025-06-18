@@ -35,6 +35,7 @@
             collectionToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -47,6 +48,14 @@
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
             chk = new DataGridViewCheckBoxColumn();
+            ficheNumber = new DataGridViewTextBoxColumn();
+            docDate = new DataGridViewTextBoxColumn();
+            doccNumber = new DataGridViewTextBoxColumn();
+            customerCode = new DataGridViewTextBoxColumn();
+            customerName = new DataGridViewTextBoxColumn();
+            discountTotal = new DataGridViewTextBoxColumn();
+            vatTotal = new DataGridViewTextBoxColumn();
+            grossTotal = new DataGridViewTextBoxColumn();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -65,7 +74,7 @@
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1084, 24);
+            stripInvoice.Size = new Size(1143, 24);
             stripInvoice.TabIndex = 3;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -100,6 +109,7 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Controls.Add(lblStartDate);
             materialCard1.Controls.Add(lblType);
@@ -115,9 +125,31 @@
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(1071, 175);
+            materialCard1.Size = new Size(1130, 175);
             materialCard1.TabIndex = 4;
-            //             
+            // 
+            // bttnLogs
+            // 
+            bttnLogs.AutoSize = false;
+            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Depth = 0;
+            bttnLogs.HighEmphasis = true;
+            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
+            bttnLogs.Location = new Point(1030, 130);
+            bttnLogs.Margin = new Padding(4, 6, 4, 6);
+            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnLogs.Name = "bttnLogs";
+            bttnLogs.NoAccentTextColor = Color.Empty;
+            bttnLogs.Size = new Size(92, 40);
+            bttnLogs.TabIndex = 17;
+            bttnLogs.Text = "Logs";
+            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
+            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
+            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnLogs.UseAccentColor = false;
+            bttnLogs.UseVisualStyleBackColor = true;
+            // 
             // lblFinishDate
             // 
             lblFinishDate.AutoSize = true;
@@ -244,10 +276,14 @@
             // chckAll
             // 
             chckAll.AutoSize = true;
-            chckAll.Location = new Point(110, 317);
+            chckAll.Font = new Font("Segoe Fluent Icons", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chckAll.Location = new Point(63, 235);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(18, 17);
+            chckAll.Size = new Size(68, 15);
             chckAll.TabIndex = 6;
+            chckAll.Text = "Tümünü Seç";
+            chckAll.TextAlign = ContentAlignment.MiddleRight;
+            chckAll.TextImageRelation = TextImageRelation.TextAboveImage;
             chckAll.UseVisualStyleBackColor = true;
             chckAll.Visible = false;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
@@ -259,7 +295,7 @@
             divider.Location = new Point(0, 212);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1085, 10);
+            divider.Size = new Size(1151, 12);
             divider.TabIndex = 3;
             // 
             // dataGridInvoiceList
@@ -267,14 +303,17 @@
             dataGridInvoiceList.AllowUserToAddRows = false;
             dataGridInvoiceList.AllowUserToDeleteRows = false;
             dataGridInvoiceList.AllowUserToOrderColumns = true;
-            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
-            dataGridInvoiceList.Location = new Point(8, 308);
+            dataGridInvoiceList.AllowUserToResizeColumns = false;
+            dataGridInvoiceList.AllowUserToResizeRows = false;
+            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk, ficheNumber, docDate, doccNumber, customerCode, customerName, discountTotal, vatTotal, grossTotal });
+            dataGridInvoiceList.Location = new Point(8, 231);
             dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
+            dataGridInvoiceList.ReadOnly = true;
             dataGridInvoiceList.RowHeadersWidth = 51;
             dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(1224, 519);
+            dataGridInvoiceList.Size = new Size(1129, 369);
             dataGridInvoiceList.TabIndex = 5;
             dataGridInvoiceList.Visible = false;
             // 
@@ -283,14 +322,76 @@
             chk.HeaderText = "";
             chk.MinimumWidth = 6;
             chk.Name = "chk";
-            chk.Width = 125;
+            chk.ReadOnly = true;
+            chk.Width = 80;
+            // 
+            // ficheNumber
+            // 
+            ficheNumber.HeaderText = "Fiche Number";
+            ficheNumber.Name = "ficheNumber";
+            ficheNumber.ReadOnly = true;
+            ficheNumber.ToolTipText = "Fiche Number";
+            ficheNumber.Width = 120;
+            // 
+            // docDate
+            // 
+            docDate.HeaderText = "Date";
+            docDate.Name = "docDate";
+            docDate.ReadOnly = true;
+            docDate.ToolTipText = "Document Date";
+            // 
+            // doccNumber
+            // 
+            doccNumber.HeaderText = "Document Number";
+            doccNumber.Name = "doccNumber";
+            doccNumber.ReadOnly = true;
+            doccNumber.ToolTipText = "Document Number";
+            doccNumber.Width = 120;
+            // 
+            // customerCode
+            // 
+            customerCode.HeaderText = "Customer Code";
+            customerCode.Name = "customerCode";
+            customerCode.ReadOnly = true;
+            customerCode.ToolTipText = "Customer Code";
+            // 
+            // customerName
+            // 
+            customerName.HeaderText = "Customer Name";
+            customerName.Name = "customerName";
+            customerName.ReadOnly = true;
+            customerName.ToolTipText = "Custome Name";
+            customerName.Width = 200;
+            // 
+            // discountTotal
+            // 
+            discountTotal.HeaderText = "Discount Total";
+            discountTotal.Name = "discountTotal";
+            discountTotal.ReadOnly = true;
+            discountTotal.ToolTipText = "Discount Total";
+            discountTotal.Width = 80;
+            // 
+            // vatTotal
+            // 
+            vatTotal.HeaderText = "Vat Total";
+            vatTotal.Name = "vatTotal";
+            vatTotal.ReadOnly = true;
+            vatTotal.ToolTipText = "Vat Total";
+            vatTotal.Width = 80;
+            // 
+            // grossTotal
+            // 
+            grossTotal.HeaderText = "Gross Total";
+            grossTotal.Name = "grossTotal";
+            grossTotal.ReadOnly = true;
+            grossTotal.ToolTipText = "Gross Total";
             // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1239, 835);
+            ClientSize = new Size(1143, 611);
             Controls.Add(chckAll);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
@@ -310,6 +411,7 @@
             materialCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -331,6 +433,15 @@
         private ToolStripMenuItem collectionToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private CheckBox chckAll;
+        private MaterialSkin.Controls.MaterialButton bttnLogs;
         private DataGridViewCheckBoxColumn chk;
+        private DataGridViewTextBoxColumn ficheNumber;
+        private DataGridViewTextBoxColumn docDate;
+        private DataGridViewTextBoxColumn doccNumber;
+        private DataGridViewTextBoxColumn customerCode;
+        private DataGridViewTextBoxColumn customerName;
+        private DataGridViewTextBoxColumn discountTotal;
+        private DataGridViewTextBoxColumn vatTotal;
+        private DataGridViewTextBoxColumn grossTotal;
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using OneCService;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using OneCService;
 
 namespace SalesArtIntegration_AZ.Manager.Service
 {
