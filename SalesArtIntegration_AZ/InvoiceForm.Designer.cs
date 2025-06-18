@@ -340,10 +340,10 @@
             docDate.ReadOnly = true;
             docDate.ToolTipText = "Document Date";
             // 
-            // doccNumber
+            // docNumber
             // 
             doccNumber.HeaderText = "Document Number";
-            doccNumber.Name = "doccNumber";
+            doccNumber.Name = "docNumber";
             doccNumber.ReadOnly = true;
             doccNumber.ToolTipText = "Document Number";
             doccNumber.Width = 120;
