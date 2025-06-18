@@ -100,6 +100,7 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(comboboxInvoiceType);
             materialCard1.Controls.Add(lblType);
             materialCard1.Controls.Add(bttnSendWaybill);
@@ -171,7 +172,7 @@
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
             bttnSendWaybill.Size = new Size(229, 56);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Send to 1C";
+            bttnSendWaybill.Text = "Gönder";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
             bttnGetWaybill.Size = new Size(251, 56);
             bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Get Collections";
+            bttnGetWaybill.Text = "Getİr";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetWaybill.UseAccentColor = false;
             bttnGetWaybill.UseVisualStyleBackColor = true;

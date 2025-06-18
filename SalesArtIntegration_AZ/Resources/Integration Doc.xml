@@ -1,13 +1,13 @@
-<----------------------------- SalesArt & 1C Integration Info ----------------------------->
+<!-- SalesArt & 1C Integration Info -->
 
-<----------------------------- API User & Link Info ----------------------------->
+<!-- API User & Link Info 
 API Link :  https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice?wsdl
-User Info : U: web_user, P: wb_123
+User Info : U: web_user, P: wb_123 -->
 
 
-<----------------------------- API Structures ----------------------------->
+<!-- API Structures -->
 
-1. InsertNewIncomingPayment (Tahsilat)
+<!-- 1. InsertNewIncomingPayment (Tahsilat) -->
 
 <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
     <Body>
@@ -26,7 +26,7 @@ User Info : U: web_user, P: wb_123
     </Body>
 </Envelope>
 
-2. InsertNewInvoice (Satış Faturası)
+<!-- 2. InsertNewInvoice (Satış Faturası) -->
 
 <Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">
     <Body>
@@ -49,7 +49,7 @@ User Info : U: web_user, P: wb_123
     </Body>
 </Envelope>
 
-3. InsertNewRefundOfInvoice (Satış İade Faturası)
+<!-- 3. InsertNewRefundOfInvoice (Satış İade Faturası) -->
 
 <Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">
     <Body>
@@ -72,7 +72,7 @@ User Info : U: web_user, P: wb_123
     </Body>
 </Envelope>
 
-4. InsertNewReceipt (Alım Faturası)
+<!-- 4. InsertNewReceipt (Alım Faturası) -->
 
 <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
     <Body>
@@ -95,7 +95,7 @@ User Info : U: web_user, P: wb_123
     </Body>
 </Envelope>
 
-5) InsertNewRefundOfReceipt (Alım İade Faturası)
+<!-- 5. InsertNewRefundOfReceipt (Alım İade Faturası) -->
 
 <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
     <Body>

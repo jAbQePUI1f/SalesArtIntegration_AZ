@@ -369,5 +369,10 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
+
+        private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Form kapatıldığında uygulamayı kapat
+        }
     }
 }
