@@ -35,7 +35,6 @@
             collectionToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -44,8 +43,10 @@
             dateTimeStartDate = new DateTimePicker();
             comboboxInvoiceType = new MaterialSkin.Controls.MaterialComboBox();
             bttnGetInvoice = new MaterialSkin.Controls.MaterialButton();
+            chckAll = new CheckBox();
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
+            chk = new DataGridViewCheckBoxColumn();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -99,7 +100,6 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Controls.Add(lblStartDate);
             materialCard1.Controls.Add(lblType);
@@ -117,29 +117,7 @@
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1071, 175);
             materialCard1.TabIndex = 4;
-            // 
-            // bttnLogs
-            // 
-            bttnLogs.AutoSize = false;
-            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnLogs.Depth = 0;
-            bttnLogs.HighEmphasis = true;
-            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(972, 130);
-            bttnLogs.Margin = new Padding(4, 6, 4, 6);
-            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnLogs.Name = "bttnLogs";
-            bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(92, 40);
-            bttnLogs.TabIndex = 8;
-            bttnLogs.Text = "Logs";
-            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
-            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
-            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            bttnLogs.UseAccentColor = false;
-            bttnLogs.UseVisualStyleBackColor = true;
-            // 
+            //             
             // lblFinishDate
             // 
             lblFinishDate.AutoSize = true;
@@ -201,6 +179,7 @@
             bttnSendInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendInvoice.UseAccentColor = false;
             bttnSendInvoice.UseVisualStyleBackColor = true;
+            bttnSendInvoice.Click += bttnSendInvoice_Click;
             // 
             // dateTimeFinishDate
             // 
@@ -231,14 +210,15 @@
             comboboxInvoiceType.FormattingEnabled = true;
             comboboxInvoiceType.IntegralHeight = false;
             comboboxInvoiceType.ItemHeight = 43;
-            comboboxInvoiceType.Items.AddRange(new object[] { "SEÇİNİZ...", "SELLING", "BUYING", "SELLING_RETURN", "BUYING_RETURN", "DAMAGED_SELLING_RETURN", "DAMAGED_BUYING_RETURN", "SELLING_SERVICE", "BUYING_SERVICE" });
-            comboboxInvoiceType.Location = new Point(33, 36);
+            comboboxInvoiceType.Location = new Point(38, 48);
+            comboboxInvoiceType.Margin = new Padding(3, 4, 3, 4);
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
             comboboxInvoiceType.Name = "comboboxInvoiceType";
             comboboxInvoiceType.Size = new Size(221, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 2;
+            comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
             // 
             // bttnGetInvoice
             // 
@@ -261,6 +241,17 @@
             bttnGetInvoice.UseVisualStyleBackColor = true;
             bttnGetInvoice.Click += bttnGetInvoice_Click;
             // 
+            // chckAll
+            // 
+            chckAll.AutoSize = true;
+            chckAll.Location = new Point(110, 317);
+            chckAll.Name = "chckAll";
+            chckAll.Size = new Size(18, 17);
+            chckAll.TabIndex = 6;
+            chckAll.UseVisualStyleBackColor = true;
+            chckAll.Visible = false;
+            chckAll.CheckedChanged += chckAll_CheckedChanged;
+            // 
             // divider
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
@@ -273,19 +264,34 @@
             // 
             // dataGridInvoiceList
             // 
+            dataGridInvoiceList.AllowUserToAddRows = false;
+            dataGridInvoiceList.AllowUserToDeleteRows = false;
+            dataGridInvoiceList.AllowUserToOrderColumns = true;
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridInvoiceList.Location = new Point(7, 231);
+            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
+            dataGridInvoiceList.Location = new Point(8, 308);
+            dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
-            dataGridInvoiceList.Size = new Size(1071, 389);
+            dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridInvoiceList.Size = new Size(1224, 519);
             dataGridInvoiceList.TabIndex = 5;
+            dataGridInvoiceList.Visible = false;
+            // 
+            // chk
+            // 
+            chk.HeaderText = "";
+            chk.MinimumWidth = 6;
+            chk.Name = "chk";
+            chk.Width = 125;
             // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1084, 626);
+            ClientSize = new Size(1239, 835);
+            Controls.Add(chckAll);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
             Controls.Add(materialCard1);
@@ -324,6 +330,7 @@
         private ToolStripMenuItem waybillToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private MaterialSkin.Controls.MaterialButton bttnLogs;
+        private CheckBox chckAll;
+        private DataGridViewCheckBoxColumn chk;
     }
 }
