@@ -100,7 +100,6 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(comboboxInvoiceType);
             materialCard1.Controls.Add(lblType);
             materialCard1.Controls.Add(bttnSendWaybill);
