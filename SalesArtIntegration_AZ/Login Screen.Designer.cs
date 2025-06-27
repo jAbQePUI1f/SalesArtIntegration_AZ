@@ -62,7 +62,7 @@
             // txtboxUserName
             // 
             txtboxUserName.AnimateReadOnly = false;
-            txtboxUserName.BorderStyle = BorderStyle.None;
+            txtboxUserName.BorderStyle = BorderStyle.FixedSingle;
             txtboxUserName.Depth = 0;
             txtboxUserName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtboxUserName.LeadingIcon = null;
@@ -80,7 +80,7 @@
             // txtBoxPassword
             // 
             txtBoxPassword.AnimateReadOnly = false;
-            txtBoxPassword.BorderStyle = BorderStyle.None;
+            txtBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             txtBoxPassword.Depth = 0;
             txtBoxPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBoxPassword.LeadingIcon = null;
@@ -95,7 +95,7 @@
             txtBoxPassword.Size = new Size(336, 50);
             txtBoxPassword.TabIndex = 2;
             txtBoxPassword.Text = "";
-            txtBoxPassword.TrailingIcon = (Image)resources.GetObject("txtBoxPassword.TrailingIcon");
+            txtBoxPassword.TrailingIcon = Properties.Resources.key;
             // 
             // lblUsername
             // 
@@ -104,7 +104,7 @@
             lblUsername.Depth = 0;
             lblUsername.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             lblUsername.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            lblUsername.Location = new Point(43, 207);
+            lblUsername.Location = new Point(48, 210);
             lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(56, 14);
@@ -118,7 +118,7 @@
             lblPassword.Depth = 0;
             lblPassword.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             lblPassword.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            lblPassword.Location = new Point(43, 293);
+            lblPassword.Location = new Point(46, 295);
             lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(55, 14);

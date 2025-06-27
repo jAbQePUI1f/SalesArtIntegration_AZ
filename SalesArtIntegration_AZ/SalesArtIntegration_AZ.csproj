@@ -25,15 +25,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="model\Collection\" />
-    <Folder Include="model\Discount\" />
-    <Folder Include="model\Invoice\" />
-    <Folder Include="model\Waybill\" />
-    <Folder Include="repository\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.ServiceModel.Http" Version="8.*" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="8.*" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="8.*" />
   </ItemGroup>
 </Project>

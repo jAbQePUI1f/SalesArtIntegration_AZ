@@ -35,6 +35,7 @@
             collectionToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -65,7 +66,7 @@
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1084, 24);
+            stripInvoice.Size = new Size(1143, 24);
             stripInvoice.TabIndex = 3;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -100,6 +101,7 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnLogs);
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Controls.Add(lblStartDate);
             materialCard1.Controls.Add(lblType);
@@ -115,9 +117,31 @@
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(1071, 175);
+            materialCard1.Size = new Size(1130, 175);
             materialCard1.TabIndex = 4;
-            //             
+            // 
+            // bttnLogs
+            // 
+            bttnLogs.AutoSize = false;
+            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Depth = 0;
+            bttnLogs.HighEmphasis = true;
+            bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
+            bttnLogs.Location = new Point(1030, 130);
+            bttnLogs.Margin = new Padding(4, 6, 4, 6);
+            bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnLogs.Name = "bttnLogs";
+            bttnLogs.NoAccentTextColor = Color.Empty;
+            bttnLogs.Size = new Size(92, 40);
+            bttnLogs.TabIndex = 17;
+            bttnLogs.Text = "Logs";
+            bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
+            bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
+            bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnLogs.UseAccentColor = false;
+            bttnLogs.UseVisualStyleBackColor = true;
+            // 
             // lblFinishDate
             // 
             lblFinishDate.AutoSize = true;
@@ -244,12 +268,16 @@
             // chckAll
             // 
             chckAll.AutoSize = true;
-            chckAll.Location = new Point(110, 317);
+            chckAll.CheckAlign = ContentAlignment.MiddleRight;
+            chckAll.Cursor = Cursors.Hand;
+            chckAll.FlatStyle = FlatStyle.Popup;
+            chckAll.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chckAll.Location = new Point(62, 235);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(18, 17);
-            chckAll.TabIndex = 6;
+            chckAll.Size = new Size(75, 16);
+            chckAll.TabIndex = 22;
+            chckAll.Text = "Tümünü Seç";
             chckAll.UseVisualStyleBackColor = true;
-            chckAll.Visible = false;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
             // 
             // divider
@@ -259,7 +287,7 @@
             divider.Location = new Point(0, 212);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1085, 10);
+            divider.Size = new Size(1151, 12);
             divider.TabIndex = 3;
             // 
             // dataGridInvoiceList
@@ -267,30 +295,35 @@
             dataGridInvoiceList.AllowUserToAddRows = false;
             dataGridInvoiceList.AllowUserToDeleteRows = false;
             dataGridInvoiceList.AllowUserToOrderColumns = true;
-            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridInvoiceList.BorderStyle = BorderStyle.Fixed3D;
+            dataGridInvoiceList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
-            dataGridInvoiceList.Location = new Point(8, 308);
+            dataGridInvoiceList.Cursor = Cursors.Hand;
+            dataGridInvoiceList.GridColor = SystemColors.ControlDark;
+            dataGridInvoiceList.ImeMode = ImeMode.On;
+            dataGridInvoiceList.Location = new Point(8, 231);
             dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
-            dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(1224, 519);
-            dataGridInvoiceList.TabIndex = 5;
-            dataGridInvoiceList.Visible = false;
+            dataGridInvoiceList.Size = new Size(1129, 369);
+            dataGridInvoiceList.StandardTab = true;
+            dataGridInvoiceList.TabIndex = 12;
+            dataGridInvoiceList.CellContentClick += dataGridInvoiceList_CellContentClick;
             // 
             // chk
             // 
             chk.HeaderText = "";
             chk.MinimumWidth = 6;
             chk.Name = "chk";
-            chk.Width = 125;
+            chk.Width = 80;
             // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1239, 835);
+            ClientSize = new Size(1143, 611);
             Controls.Add(chckAll);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
@@ -310,6 +343,7 @@
             materialCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -331,6 +365,7 @@
         private ToolStripMenuItem collectionToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private CheckBox chckAll;
+        private MaterialSkin.Controls.MaterialButton bttnLogs;
         private DataGridViewCheckBoxColumn chk;
     }
 }

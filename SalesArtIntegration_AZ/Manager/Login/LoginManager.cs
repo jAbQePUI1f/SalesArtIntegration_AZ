@@ -1,11 +1,7 @@
 ﻿using SalesArtIntegration_AZ.Manager.Config;
 using SalesArtIntegration_AZ.Models.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SalesArtIntegration_AZ.Manager.Login
 {
