@@ -112,6 +112,7 @@ namespace SalesArtIntegration_AZ
                 MessageBox.Show("Lütfen bir fatura tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            
             // ServiceFactory ile istemciyi al
             using var client = ServiceFactory.GetServiceClient();
 
@@ -348,6 +349,11 @@ namespace SalesArtIntegration_AZ
         private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit(); // Form kapatıldığında uygulamayı kapat
+        }
+
+        private void dataGridInvoiceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

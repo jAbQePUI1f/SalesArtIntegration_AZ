@@ -48,14 +48,6 @@
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
             chk = new DataGridViewCheckBoxColumn();
-            ficheNumber = new DataGridViewTextBoxColumn();
-            docDate = new DataGridViewTextBoxColumn();
-            doccNumber = new DataGridViewTextBoxColumn();
-            customerCode = new DataGridViewTextBoxColumn();
-            customerName = new DataGridViewTextBoxColumn();
-            discountTotal = new DataGridViewTextBoxColumn();
-            vatTotal = new DataGridViewTextBoxColumn();
-            grossTotal = new DataGridViewTextBoxColumn();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -276,16 +268,16 @@
             // chckAll
             // 
             chckAll.AutoSize = true;
-            chckAll.Font = new Font("Segoe Fluent Icons", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chckAll.Location = new Point(63, 235);
+            chckAll.CheckAlign = ContentAlignment.MiddleRight;
+            chckAll.Cursor = Cursors.Hand;
+            chckAll.FlatStyle = FlatStyle.Popup;
+            chckAll.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chckAll.Location = new Point(62, 235);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(68, 15);
-            chckAll.TabIndex = 6;
+            chckAll.Size = new Size(75, 16);
+            chckAll.TabIndex = 22;
             chckAll.Text = "Tümünü Seç";
-            chckAll.TextAlign = ContentAlignment.MiddleRight;
-            chckAll.TextImageRelation = TextImageRelation.TextAboveImage;
             chckAll.UseVisualStyleBackColor = true;
-            chckAll.Visible = false;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
             // 
             // divider
@@ -303,88 +295,28 @@
             dataGridInvoiceList.AllowUserToAddRows = false;
             dataGridInvoiceList.AllowUserToDeleteRows = false;
             dataGridInvoiceList.AllowUserToOrderColumns = true;
-            dataGridInvoiceList.AllowUserToResizeColumns = false;
-            dataGridInvoiceList.AllowUserToResizeRows = false;
+            dataGridInvoiceList.BorderStyle = BorderStyle.Fixed3D;
+            dataGridInvoiceList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk, ficheNumber, docDate, doccNumber, customerCode, customerName, discountTotal, vatTotal, grossTotal });
+            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
+            dataGridInvoiceList.Cursor = Cursors.Hand;
+            dataGridInvoiceList.GridColor = SystemColors.ControlDark;
+            dataGridInvoiceList.ImeMode = ImeMode.On;
             dataGridInvoiceList.Location = new Point(8, 231);
             dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
-            dataGridInvoiceList.ReadOnly = true;
             dataGridInvoiceList.RowHeadersWidth = 51;
-            dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridInvoiceList.Size = new Size(1129, 369);
-            dataGridInvoiceList.TabIndex = 5;
-            dataGridInvoiceList.Visible = false;
+            dataGridInvoiceList.StandardTab = true;
+            dataGridInvoiceList.TabIndex = 12;
+            dataGridInvoiceList.CellContentClick += dataGridInvoiceList_CellContentClick;
             // 
             // chk
             // 
             chk.HeaderText = "";
             chk.MinimumWidth = 6;
             chk.Name = "chk";
-            chk.ReadOnly = true;
             chk.Width = 80;
-            // 
-            // ficheNumber
-            // 
-            ficheNumber.HeaderText = "Fiche Number";
-            ficheNumber.Name = "ficheNumber";
-            ficheNumber.ReadOnly = true;
-            ficheNumber.ToolTipText = "Fiche Number";
-            ficheNumber.Width = 120;
-            // 
-            // docDate
-            // 
-            docDate.HeaderText = "Date";
-            docDate.Name = "docDate";
-            docDate.ReadOnly = true;
-            docDate.ToolTipText = "Document Date";
-            // 
-            // docNumber
-            // 
-            doccNumber.HeaderText = "Document Number";
-            doccNumber.Name = "docNumber";
-            doccNumber.ReadOnly = true;
-            doccNumber.ToolTipText = "Document Number";
-            doccNumber.Width = 120;
-            // 
-            // customerCode
-            // 
-            customerCode.HeaderText = "Customer Code";
-            customerCode.Name = "customerCode";
-            customerCode.ReadOnly = true;
-            customerCode.ToolTipText = "Customer Code";
-            // 
-            // customerName
-            // 
-            customerName.HeaderText = "Customer Name";
-            customerName.Name = "customerName";
-            customerName.ReadOnly = true;
-            customerName.ToolTipText = "Custome Name";
-            customerName.Width = 200;
-            // 
-            // discountTotal
-            // 
-            discountTotal.HeaderText = "Discount Total";
-            discountTotal.Name = "discountTotal";
-            discountTotal.ReadOnly = true;
-            discountTotal.ToolTipText = "Discount Total";
-            discountTotal.Width = 80;
-            // 
-            // vatTotal
-            // 
-            vatTotal.HeaderText = "Vat Total";
-            vatTotal.Name = "vatTotal";
-            vatTotal.ReadOnly = true;
-            vatTotal.ToolTipText = "Vat Total";
-            vatTotal.Width = 80;
-            // 
-            // grossTotal
-            // 
-            grossTotal.HeaderText = "Gross Total";
-            grossTotal.Name = "grossTotal";
-            grossTotal.ReadOnly = true;
-            grossTotal.ToolTipText = "Gross Total";
             // 
             // InvoiceForm
             // 
@@ -435,13 +367,5 @@
         private CheckBox chckAll;
         private MaterialSkin.Controls.MaterialButton bttnLogs;
         private DataGridViewCheckBoxColumn chk;
-        private DataGridViewTextBoxColumn ficheNumber;
-        private DataGridViewTextBoxColumn docDate;
-        private DataGridViewTextBoxColumn doccNumber;
-        private DataGridViewTextBoxColumn customerCode;
-        private DataGridViewTextBoxColumn customerName;
-        private DataGridViewTextBoxColumn discountTotal;
-        private DataGridViewTextBoxColumn vatTotal;
-        private DataGridViewTextBoxColumn grossTotal;
     }
 }
