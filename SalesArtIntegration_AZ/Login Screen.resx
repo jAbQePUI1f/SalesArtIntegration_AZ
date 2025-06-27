@@ -121,21 +121,10 @@
   <data name="txtboxUserName.TrailingIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAMtJREFUSEvtkj0KwkAYRB9YeAUFrT2Hd/IKehdFELHTTg+glTewU/GnsFQGNhCG
+        DwAACw8BkvkDpQAAAMtJREFUSEvtkj0KwkAYRB9YeAUFrT2Hd/IKehdFELHTTg+glTewU/GnsFQGNhCG
         TUjWlHnwIJD5ZpfdhZaGGAJL4BVcASMPpaLyG/A17+Hf32jnXp658HAKOhIvznx6OIWyBR4eTkEX6sWZ
         cw+noNeiC/XyKzDwcCp6LbpQnbnUzhsrbymkA4yBGbADzsA7qO8tMA0ZZSvTBSbAJfJyilRWM5otpQ+c
         IgVVPQI9L82ziQzVde2leT6RgbqqoxAPp1rIIRKu695LW0r5AQ0bmx5nTgzZAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="txtBoxPassword.TrailingIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAARlJREFUSEvtlEtKg0EQhL999FRRTxDEO/hYm2ySq8RbqHgXBZ83iFmoFGTRFEP+
-        HiezUPJBEX46U0XP9Azs+QMcAlfAA/AKrDe/+r4EDnzBLjgDPoDvLXoHTn1hCzPgqxBUkv43dYPfoE6z
-        oTG8qXOd6bbtfQTGwAg4Ap5C7a3lzDVIHhal0Mix1S+snkbT6mFR3pF2KNbvrZ5GV8XDorS9Ee/4xepp
-        PgthUTpjhanzEztjaeWGWTQgHlajZzfMclswq9GdG2ZZFsxqdO6GGRYFoxrp/mvKq2gN1cs1cdMhdhF6
-        7aZDtIbqFnTr9GYz7XpcdM/1SGh6NUh6s6vIhs59YQtDod3wIFc3PMjVDQ/qGhbx0P8fvKcbPwAFGM2W
-        632LAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -120,14 +120,11 @@
   <metadata name="stripInvoice.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="chk.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bttnLogs.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAAuRJREFUeF7tmbuKFUEURbei6A8omvtAxVdkbmBqov/gLzmmPhIFEVSMFF8YGGmg
+        DAAACwwBP0AiyAAAAuRJREFUeF7tmbuKFUEURbei6A8omvtAxVdkbmBqov/gLzmmPhIFEVSMFF8YGGmg
         iZmomaJGig8OnIaiuHuqbtdM7Wo4C4rp3reKWXOY3h1cIAiCIAiCIAiC7vwbaL0DcDAXHJ38j1CvxQ1x
         Elez2CGONsC3yc/9+aYRYQN8AeBZHm4jk4cNbVFDZAO04T3Nw20k9VjUENkAe5N77APwxrOhOzEXV7HK
         YxFDXCVuqDowZ/jHmYkrOzBn6CFuJt6Tksewj3NJvBc1HkMOkYmP0oE5wz3OTHykDswZaojriG8nk8ec
@@ -142,6 +139,12 @@
         AtGBlcgFGpH7ywUakftPAktfMnKRpa4gCIIgCIIgCHryHxe7ZUuJJR8wAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="chk.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chk.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMIOAADCDgAAAAAAAAAA
