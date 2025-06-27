@@ -175,6 +175,7 @@
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
+            bttnSendWaybill.Click += bttnSendWaybill_Click;
             // 
             // lblStartDate
             // 

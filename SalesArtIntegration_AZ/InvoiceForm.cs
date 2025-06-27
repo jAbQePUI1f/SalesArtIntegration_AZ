@@ -96,6 +96,27 @@ namespace SalesArtIntegration_AZ
             dataGridInvoiceList.Visible = true;
 
             dataGridInvoiceList.DataSource = displayInfoList;
+            dataGridInvoiceList.AutoGenerateColumns = false;
+            // Sütun başlıklarını Türkçe olarak ayarla
+            dataGridInvoiceList.Columns["Number"].HeaderText = "Fatura Numarası";
+            dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
+            dataGridInvoiceList.Columns["DocumentNumber"].HeaderText = "Belge Numarası";
+            dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
+            dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dataGridInvoiceList.Columns["DiscountTotal"].HeaderText = "İndirim Toplamı";
+            dataGridInvoiceList.Columns["VatTotal"].HeaderText = "KDV Toplamı";
+            dataGridInvoiceList.Columns["GrossTotal"].HeaderText = "Genel Toplam";
+
+            // Sütun genişliklerini ayarla (içeriğe göre otomatik genişlik)
+            dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["DocumentNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["CustomerCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["CustomerName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["DiscountTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["VatTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["GrossTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             chckAll.Visible = true;
             chckAll.BringToFront();
         }
@@ -181,20 +202,22 @@ namespace SalesArtIntegration_AZ
 
 
 
-                                var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
-                                    selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
+                                var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.customerBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
+                                    selectedInvoice.number,selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
 
-                                success = invoiceResponse != null; // Daha spesifik kontrol eklenebilir
+                                
                                 remoteInvoiceNumber = selectedInvoice.number;
 
-                                if (success)
+                                if (invoiceResponse.@return.ErrorTable != null && invoiceResponse.@return.ErrorTable.Any())
                                 {
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} başarıyla gönderildi!", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, invoiceResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    errorMessage = "Bilinmeyen hata";
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} gönderilemedi: {errorMessage}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 break;
 
@@ -222,19 +245,22 @@ namespace SalesArtIntegration_AZ
 
 
                                 var invoiceBuyingResponse = await client.InsertNewReceiptAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
-                                    selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
+                                    selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
 
-                                success = invoiceBuyingResponse != null; // Daha spesifik kontrol eklenebilir
+                      
                                 remoteInvoiceNumber = selectedInvoice.number;
 
-                                if (success)
+                                if (invoiceBuyingResponse.@return.ErrorTable != null && invoiceBuyingResponse.@return.ErrorTable.Any())
                                 {
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} başarıyla gönderildi!", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, invoiceBuyingResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    errorMessage = "Bilinmeyen hata";
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} gönderilemedi: {errorMessage}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 break;
 
@@ -264,17 +290,18 @@ namespace SalesArtIntegration_AZ
                                 var invoiceRefundResponse = await client.InsertNewRefundOfInvoiceAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableLinesRe.ToArray());
 
-                                success = invoiceRefundResponse != null; // Daha spesifik kontrol eklenebilir
                                 remoteInvoiceNumber = selectedInvoice.number;
 
-                                if (success)
+                                if (invoiceRefundResponse.@return.ErrorTable != null && invoiceRefundResponse.@return.ErrorTable.Any())
                                 {
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} başarıyla gönderildi!", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, invoiceRefundResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    errorMessage = "Bilinmeyen hata";
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} gönderilemedi: {errorMessage}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 break;
 
@@ -304,17 +331,18 @@ namespace SalesArtIntegration_AZ
                                 var invoiceBuyingRefundResponse = await client.InsertNewRefundOfReceiptAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableRefundReceiptLines.ToArray());
 
-                                success = invoiceBuyingRefundResponse != null; // Daha spesifik kontrol eklenebilir
                                 remoteInvoiceNumber = selectedInvoice.number;
 
-                                if (success)
+                                if (invoiceBuyingRefundResponse.@return.ErrorTable != null && invoiceBuyingRefundResponse.@return.ErrorTable.Any())
                                 {
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} başarıyla gönderildi!", "Başarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    success = false;
+                                     errorMessage = string.Join(Environment.NewLine, invoiceBuyingRefundResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    errorMessage = "Bilinmeyen hata";
-                                    MessageBox.Show($"Fatura {remoteInvoiceNumber} gönderilemedi: {errorMessage}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 break;
 
