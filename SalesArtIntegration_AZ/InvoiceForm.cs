@@ -7,19 +7,8 @@ using SalesArtIntegration_AZ.Models.Enums;
 using SalesArtIntegration_AZ.Models.Invoice;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesArtIntegration_AZ
 {
@@ -144,9 +133,7 @@ namespace SalesArtIntegration_AZ
                 MessageBox.Show("Lütfen bir fatura tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-
-
+            
             // ServiceFactory ile istemciyi al
             using var client = ServiceFactory.GetServiceClient();
 
@@ -242,8 +229,6 @@ namespace SalesArtIntegration_AZ
                                     });
                                 }
 
-
-
                                 var invoiceBuyingResponse = await client.InsertNewReceiptAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
 
@@ -284,9 +269,6 @@ namespace SalesArtIntegration_AZ
                                         Price = Math.Round(Convert.ToDecimal(detail.price), 2) // 2 ondalık basamak
                                     });
                                 }
-
-
-
                                 var invoiceRefundResponse = await client.InsertNewRefundOfInvoiceAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableLinesRe.ToArray());
 
@@ -325,9 +307,6 @@ namespace SalesArtIntegration_AZ
                                         Price = Math.Round(Convert.ToDecimal(detail.price), 2) // 2 ondalık basamak
                                     });
                                 }
-
-
-
                                 var invoiceBuyingRefundResponse = await client.InsertNewRefundOfReceiptAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerName, 1, selectedInvoice.warehouseCode, tableRefundReceiptLines.ToArray());
 
@@ -401,6 +380,11 @@ namespace SalesArtIntegration_AZ
         private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit(); // Form kapatıldığında uygulamayı kapat
+        }
+
+        private void dataGridInvoiceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
