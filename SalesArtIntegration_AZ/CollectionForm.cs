@@ -1,12 +1,15 @@
-﻿using SalesArtIntegration_AZ.Helper;
+﻿using OneCService;
+using SalesArtIntegration_AZ.Helper;
 using SalesArtIntegration_AZ.Manager.Api;
 using SalesArtIntegration_AZ.Manager.Config;
+using SalesArtIntegration_AZ.Manager.Service;
 using SalesArtIntegration_AZ.Models.Collection;
 using SalesArtIntegration_AZ.Models.Enums;
 using SalesArtIntegration_AZ.Models.Invoice;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
 using System.Xml.Linq;
+using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
 
 namespace SalesArtIntegration_AZ
 {
@@ -22,8 +25,8 @@ namespace SalesArtIntegration_AZ
         private void LoadComboBox()
         {
             // ComboBox'a InvoiceType enum değerlerini ekle
-            comboboxInvoiceType.DataSource = Enum.GetValues(typeof(Enums.InvoiceType))
-                .Cast<Enums.InvoiceType>()
+            comboboxInvoiceType.DataSource = Enum.GetValues(typeof(Enums.TransactionType))
+                .Cast<Enums.TransactionType>()
                 .Select(value => new
                 {
                     Value = value,
@@ -86,6 +89,23 @@ namespace SalesArtIntegration_AZ
             dataGridInvoiceList.Visible = true;
 
             dataGridInvoiceList.DataSource = displayInfoList;
+
+            // Sütun başlıklarını Türkçe olarak ayarla
+            dataGridInvoiceList.Columns["Number"].HeaderText = "Numara";
+            dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
+            dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Belge No";
+            dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
+            dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dataGridInvoiceList.Columns["Amount"].HeaderText = "Tutar";
+
+            // Sütun genişliklerini içeriğe göre otomatik ayarla
+            dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["DocumentNo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["CustomerCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["CustomerName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["Amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             chckAll.Visible = true;
             chckAll.BringToFront();
         }
@@ -113,6 +133,102 @@ namespace SalesArtIntegration_AZ
             if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.TransactionType)
             {
                 documentType = comboboxInvoiceType.SelectedValue.ToString();
+            }
+        }
+
+        private async void bttnSendWaybill_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(documentType))
+            {
+                MessageBox.Show("Lütfen bir fatura tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+
+            // ServiceFactory ile istemciyi al
+            using var client = ServiceFactory.GetServiceClient();
+
+
+            foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["chk"].Value))
+                {
+                    string number = row.Cells["Number"].Value?.ToString();
+                    if (string.IsNullOrEmpty(number))
+                    {
+                        MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+
+                    var selectedInvoice = collectionResponse?.data?.FirstOrDefault(inv => inv.documentNo == number);
+                    if (selectedInvoice == null)
+                    {
+                        MessageBox.Show($"Fatura numarası {number} bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+
+                    bool success = false;
+                    string errorMessage = "";
+                    string remoteInvoiceNumber = "";
+
+                    try
+                    {
+
+                        // Fatura tipine göre işlem
+                        switch (documentType)
+                        {
+                            case nameof(Enums.TransactionType.CASH_PAYMENT):
+
+
+                                // TableLine listesi oluştur
+
+
+
+
+                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
+                                    , selectedInvoice.customerCode, selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, selectedInvoice.customerCode, selectedInvoice.amount, selectedInvoice.description);
+
+
+                                remoteInvoiceNumber = selectedInvoice.documentNo;
+
+
+                                success = true;
+                                MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                break;
+
+                            default:
+                                errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
+
+                    #region Faturalar Başarılı/Başarısız İşaretle
+                    InvoiceSyncRequest syncRequest = new InvoiceSyncRequest
+                    {
+                        integratedInvoices = new[]
+                        {
+                            new IntegratedInvoice
+                            {
+                                successfullyIntegrated = success,
+                                invoiceNumber = selectedInvoice.documentNo,
+                                remoteInvoiceNumber = remoteInvoiceNumber,
+                                errorMessage = errorMessage
+                            }
+                        }
+                    };
+
+                    var syncResponse = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(
+                        syncRequest, Configuration.GetUrl() + "management/sync-invoice-statuses");
+
+
+                    #endregion
+                }
             }
         }
     }
