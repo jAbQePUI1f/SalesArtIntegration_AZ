@@ -47,6 +47,13 @@ namespace SalesArtIntegration_AZ
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Önce koleksiyonu diziye aktarın:
+            var openForms = Application.OpenForms.Cast<Form>().ToArray();
+            foreach (Form f in openForms)
+            {
+                f.Close();
+            }
+            // Formlar kapandıktan sonra çıkış:
             Application.Exit();
         }
 
@@ -133,7 +140,7 @@ namespace SalesArtIntegration_AZ
                 MessageBox.Show("Lütfen bir fatura tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             // ServiceFactory ile istemciyi al
             using var client = ServiceFactory.GetServiceClient();
 
@@ -190,9 +197,9 @@ namespace SalesArtIntegration_AZ
 
 
                                 var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.customerBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
-                                    selectedInvoice.number,selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
+                                    selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
 
-                                
+
                                 remoteInvoiceNumber = selectedInvoice.number;
 
                                 if (invoiceResponse.@return.ErrorTable != null && invoiceResponse.@return.ErrorTable.Any())
@@ -232,7 +239,7 @@ namespace SalesArtIntegration_AZ
                                 var invoiceBuyingResponse = await client.InsertNewReceiptAsync(selectedInvoice.distributorBranchCode, selectedInvoice.documentDate.ToString("yyyy-MM-dd"),
                                     selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
 
-                      
+
                                 remoteInvoiceNumber = selectedInvoice.number;
 
                                 if (invoiceBuyingResponse.@return.ErrorTable != null && invoiceBuyingResponse.@return.ErrorTable.Any())
@@ -315,7 +322,7 @@ namespace SalesArtIntegration_AZ
                                 if (invoiceBuyingRefundResponse.@return.ErrorTable != null && invoiceBuyingRefundResponse.@return.ErrorTable.Any())
                                 {
                                     success = false;
-                                     errorMessage = string.Join(Environment.NewLine, invoiceBuyingRefundResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    errorMessage = string.Join(Environment.NewLine, invoiceBuyingRefundResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
                                     MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
@@ -382,9 +389,9 @@ namespace SalesArtIntegration_AZ
             Application.Exit(); // Form kapatıldığında uygulamayı kapat
         }
 
-        private void dataGridInvoiceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void InvoiceForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            Application.Exit(); // Form kapatıldığında uygulamayı kapat
         }
     }
 }
