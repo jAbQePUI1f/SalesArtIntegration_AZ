@@ -67,11 +67,8 @@
             stripInvoice.Name = "stripInvoice";
             stripInvoice.Padding = new Padding(7, 3, 0, 3);
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-<<<<<<< HEAD
             stripInvoice.Size = new Size(1416, 32);
-=======
             stripInvoice.Size = new Size(1143, 24);
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             stripInvoice.TabIndex = 3;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -121,12 +118,10 @@
             materialCard1.Margin = new Padding(16, 19, 16, 19);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-<<<<<<< HEAD
             materialCard1.Padding = new Padding(16, 19, 16, 19);
             materialCard1.Size = new Size(1224, 233);
             materialCard1.TabIndex = 4;
             // 
-=======
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1130, 175);
             materialCard1.TabIndex = 4;
@@ -153,7 +148,6 @@
             bttnLogs.UseAccentColor = false;
             bttnLogs.UseVisualStyleBackColor = true;
             // 
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             // lblFinishDate
             // 
             lblFinishDate.AutoSize = true;
@@ -282,16 +276,13 @@
             // chckAll
             // 
             chckAll.AutoSize = true;
-<<<<<<< HEAD
             chckAll.Location = new Point(118, 423);
             chckAll.Margin = new Padding(3, 4, 3, 4);
-=======
             chckAll.CheckAlign = ContentAlignment.MiddleRight;
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
             chckAll.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chckAll.Location = new Point(62, 235);
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             chckAll.Name = "chckAll";
             chckAll.Size = new Size(75, 16);
             chckAll.TabIndex = 22;
@@ -307,11 +298,8 @@
             divider.Margin = new Padding(3, 4, 3, 4);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-<<<<<<< HEAD
             divider.Size = new Size(1240, 13);
-=======
             divider.Size = new Size(1151, 12);
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             divider.TabIndex = 3;
             // 
             // dataGridInvoiceList
@@ -323,7 +311,6 @@
             dataGridInvoiceList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
-<<<<<<< HEAD
             dataGridInvoiceList.Location = new Point(9, 411);
             dataGridInvoiceList.Margin = new Padding(3, 5, 3, 5);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
@@ -332,7 +319,6 @@
             dataGridInvoiceList.Size = new Size(1399, 692);
             dataGridInvoiceList.TabIndex = 5;
             dataGridInvoiceList.Visible = false;
-=======
             dataGridInvoiceList.Cursor = Cursors.Hand;
             dataGridInvoiceList.GridColor = SystemColors.ControlDark;
             dataGridInvoiceList.ImeMode = ImeMode.On;
@@ -344,7 +330,6 @@
             dataGridInvoiceList.StandardTab = true;
             dataGridInvoiceList.TabIndex = 12;
             dataGridInvoiceList.CellContentClick += dataGridInvoiceList_CellContentClick;
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             // 
             // chk
             // 
@@ -358,11 +343,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-<<<<<<< HEAD
             ClientSize = new Size(1416, 1055);
-=======
             ClientSize = new Size(1143, 611);
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
             Controls.Add(chckAll);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);

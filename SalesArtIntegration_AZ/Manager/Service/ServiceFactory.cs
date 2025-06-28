@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-=======
 ﻿using OneCService;
->>>>>>> 5189a69db1c43cc89b9f5649234969dc9100903b
 using System.ServiceModel;
 
 namespace SalesArtIntegration_AZ.Manager.Service
