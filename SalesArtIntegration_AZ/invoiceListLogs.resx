@@ -118,15 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="txtboxUserName.TrailingIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAMtJREFUSEvtkj0KwkAYRB9YeAUFrT2Hd/IKehdFELHTTg+glTewU/GnsFQGNhCG
-        TUjWlHnwIJD5ZpfdhZaGGAJL4BVcASMPpaLyG/A17+Hf32jnXp658HAKOhIvznx6OIWyBR4eTkEX6sWZ
-        cw+noNeiC/XyKzDwcCp6LbpQnbnUzhsrbymkA4yBGbADzsA7qO8tMA0ZZSvTBSbAJfJyilRWM5otpQ+c
-        IgVVPQI9L82ziQzVde2leT6RgbqqoxAPp1rIIRKu695LW0r5AQ0bmx5nTgzZAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMIOAADCDgAAAAAAAAAA
