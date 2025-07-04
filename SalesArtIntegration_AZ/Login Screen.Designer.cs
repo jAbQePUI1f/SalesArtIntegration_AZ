@@ -46,7 +46,7 @@
             bttnLogin.FlatStyle = FlatStyle.Flat;
             bttnLogin.HighEmphasis = true;
             bttnLogin.Icon = null;
-            bttnLogin.Location = new Point(116, 360);
+            bttnLogin.Location = new Point(155, 381);
             bttnLogin.Margin = new Padding(4, 6, 4, 6);
             bttnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogin.Name = "bttnLogin";
@@ -66,7 +66,7 @@
             txtboxUserName.Depth = 0;
             txtboxUserName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtboxUserName.LeadingIcon = null;
-            txtboxUserName.Location = new Point(42, 206);
+            txtboxUserName.Location = new Point(81, 227);
             txtboxUserName.MaxLength = 50;
             txtboxUserName.MouseState = MaterialSkin.MouseState.OUT;
             txtboxUserName.Multiline = false;
@@ -85,7 +85,7 @@
             txtBoxPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBoxPassword.LeadingIcon = null;
             txtBoxPassword.LeaveOnEnterKey = true;
-            txtBoxPassword.Location = new Point(42, 291);
+            txtBoxPassword.Location = new Point(81, 312);
             txtBoxPassword.MaxLength = 50;
             txtBoxPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtBoxPassword.Multiline = false;
@@ -104,7 +104,7 @@
             lblUsername.Depth = 0;
             lblUsername.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             lblUsername.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            lblUsername.Location = new Point(48, 210);
+            lblUsername.Location = new Point(86, 229);
             lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(56, 14);
@@ -118,7 +118,7 @@
             lblPassword.Depth = 0;
             lblPassword.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             lblPassword.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            lblPassword.Location = new Point(46, 295);
+            lblPassword.Location = new Point(84, 314);
             lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(55, 14);
@@ -132,7 +132,7 @@
             materialLabel1.FlatStyle = FlatStyle.Flat;
             materialLabel1.Font = new Font("Roboto", 10F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.Overline;
-            materialLabel1.Location = new Point(2, 524);
+            materialLabel1.Location = new Point(0, 582);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(210, 13);
@@ -145,9 +145,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.Snow;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.Login;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(410, 538);
+            ClientSize = new Size(514, 596);
             Controls.Add(materialLabel1);
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
@@ -157,6 +157,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "loginForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
