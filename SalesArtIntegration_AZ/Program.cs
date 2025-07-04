@@ -2,16 +2,21 @@ namespace SalesArtIntegration_AZ
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new loginForm());
+            bool AcikUygulamaVar = false;
+            Mutex m = new Mutex(true, "PaketServis", out AcikUygulamaVar);
+            if (AcikUygulamaVar)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new loginForm());
+            }
+            else
+            {
+                MessageBox.Show("SalesArt Integrator zaten çalýþýyor!", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

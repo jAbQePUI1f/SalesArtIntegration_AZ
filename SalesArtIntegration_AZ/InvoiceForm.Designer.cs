@@ -80,21 +80,21 @@
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(180, 22);
+            waybillToolStripMenuItem.Size = new Size(127, 22);
             waybillToolStripMenuItem.Text = "Waybill";
             waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(127, 22);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(127, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -141,6 +141,7 @@
             bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnLogs.UseAccentColor = false;
             bttnLogs.UseVisualStyleBackColor = true;
+            bttnLogs.Click += bttnLogs_Click;
             // 
             // lblFinishDate
             // 
@@ -234,7 +235,7 @@
             comboboxInvoiceType.FormattingEnabled = true;
             comboboxInvoiceType.IntegralHeight = false;
             comboboxInvoiceType.ItemHeight = 43;
-            comboboxInvoiceType.Location = new Point(38, 48);
+            comboboxInvoiceType.Location = new Point(33, 35);
             comboboxInvoiceType.Margin = new Padding(3, 4, 3, 4);
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
