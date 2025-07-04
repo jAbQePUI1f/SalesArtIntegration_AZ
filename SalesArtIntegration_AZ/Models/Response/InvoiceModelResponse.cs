@@ -57,6 +57,7 @@ namespace SalesArtIntegration_AZ.Models.Response
             public int? orderId { get; set; }
             public List<InvoiceDetail> details { get; set; }
             public bool ebillCustomer { get; set; }
+            public string distCode { get; set; }
         }
     }
 }
