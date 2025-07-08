@@ -26,9 +26,8 @@ namespace SalesArtIntegration_AZ
         {
             if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.InvoiceType)
             {
-                documentType = comboboxInvoiceType.SelectedValue.ToString();
+                documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty; 
             }
-
         }
         private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -157,7 +156,7 @@ namespace SalesArtIntegration_AZ
             {
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
-                    string number = row.Cells["Number"].Value?.ToString();
+                    string? number = row.Cells["Number"].Value?.ToString();
                     if (string.IsNullOrEmpty(number))
                     {
                         MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -227,8 +226,6 @@ namespace SalesArtIntegration_AZ
                                     bttnGetInvoice.Enabled = true;
                                 }
                                 break;
-
-                            // Other cases remain unchanged...
 
                             default:
                                 errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";

@@ -119,9 +119,14 @@ namespace SalesArtIntegration_AZ
 
         private void comboboxInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.TransactionType)
+
+            if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.TransactionType transactionType)
             {
-                documentType = comboboxInvoiceType.SelectedValue.ToString();
+                documentType = transactionType.ToString();
+            }
+            else
+            {
+                documentType = string.Empty;
             }
         }
 
@@ -140,7 +145,7 @@ namespace SalesArtIntegration_AZ
             {
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
-                    string number = row.Cells["Number"].Value?.ToString();
+                    string? number = row.Cells["Number"].Value?.ToString();
                     if (string.IsNullOrEmpty(number))
                     {
                         MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
