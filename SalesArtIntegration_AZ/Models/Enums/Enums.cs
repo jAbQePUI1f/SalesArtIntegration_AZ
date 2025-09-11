@@ -8,44 +8,44 @@ namespace SalesArtIntegration_AZ.Models.Enums
         {
             [Display(Name = "Satış Faturası")]
             SELLING,
-            [Display(Name = "Alış Faturası")]
+            [Display(Name = "Satın Alma Faturası")]
             BUYING,
             [Display(Name = "Satış Iade Faturası")]
             SELLING_RETURN,
-            [Display(Name = "Alış Iade Faturası")]
+            [Display(Name = "Satın Alma Iade Faturası")]
             BUYING_RETURN,
             [Display(Name = "Hasarlı Satış Iade")]
             DAMAGED_SELLING_RETURN,
-            [Display(Name = "Hasarlı Alış Iade")]
+            [Display(Name = "Hasarlı Satın Alma Iade")]
             DAMAGED_BUYING_RETURN,
-            [Display(Name = "Hizmet Satış")]
+            [Display(Name = "Satılan Hizmet Faturası")]
             SELLING_SERVICE,
-            [Display(Name = "Hizmet Alış")]
+            [Display(Name = "Alınan Hizmet Faturası")]
             BUYING_SERVICE,
 
         }
         public enum TransactionType
         {
-            [Display(Name = "Çek Ödemesi")]
+            [Display(Name = "Çek Ödeme")]
             CHECK_PAYMENT,
-            [Display(Name = "Nakit")]
-            CASH_COLLECTION,
-            [Display(Name = "Kredi Kartı")]
-            CREDIT_CARD_PAYMENT,
-            [Display(Name = "BANK_TRANSFER_COLLECTION")]
-            BANK_TRANSFER_COLLECTION,
-            [Display(Name = "BOND_PAYMENT")]
+            [Display(Name = "Senet Ödeme")] 
             BOND_PAYMENT,
-            [Display(Name = "BOND_COLLECTION")]
-            BOND_COLLECTION,
-            [Display(Name = "CREDIT_CARD_COLLECTION")]
-            CREDIT_CARD_COLLECTION,
-            [Display(Name = "CHECK_COLLECTION")]
-            CHECK_COLLECTION,
-            [Display(Name = "BANK_TRANSFER_PAYMENT")]
+            [Display(Name = "Kredi Kartı Ödeme")]
+            CREDIT_CARD_PAYMENT,
+            [Display(Name = "Havale Ödeme")]
             BANK_TRANSFER_PAYMENT,
-            [Display(Name = "CASH_PAYMENT")]
-            CASH_PAYMENT
+            [Display(Name = "Nakit Ödeme")]
+            CASH_PAYMENT,
+            [Display(Name = "Nakit Tahsilat")]
+            CASH_COLLECTION,
+            [Display(Name = "Senet Tahsilat")]
+            BOND_COLLECTION,
+            [Display(Name = "Havale Tahsilat")]
+            BANK_TRANSFER_COLLECTION,
+            [Display(Name = "Kredi Kartı Tahsilat")]
+            CREDIT_CARD_COLLECTION,
+            [Display(Name = "Çek Tahsilat")]
+            CHECK_COLLECTION
         }
     }
 }

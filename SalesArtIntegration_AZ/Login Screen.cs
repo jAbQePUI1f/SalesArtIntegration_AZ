@@ -13,39 +13,48 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnLogin_Click(object sender, EventArgs e)
         {
-            //if(string.IsNullOrEmpty(txtboxUserName.Text) || string.IsNullOrEmpty(txtBoxPassword.Text))
-            //{
-            //    MessageBox.Show("Kullanýcý bilgisi giriniz..", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return;
-            //}
-
-            var response = await LoginManager.LoginAsync("operasyon@safa.com", "Os1234");//"operasyon@safa.com", "Os1234"
-
+            var response = await LoginManager.LoginAsync(txtboxUserName.Text, txtBoxPassword.Text);
             if (!response.State)
             {
                 MessageBox.Show(response.Messages.GetMessages(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             UserSharedInfo.UserInfo.UserName = txtboxUserName.Text;
             UserSharedInfo.UserInfo.Password = txtBoxPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
-
+            // Beni hatýrla seçiliyse kullanýcý bilgilerini kaydet
+            if (rememberMeBox.Checked)
+            {
+                Properties.Settings.Default.RememberMe = true;
+                Properties.Settings.Default.SavedUserName = txtboxUserName.Text;
+                Properties.Settings.Default.SavedPassword = txtBoxPassword.Text;
+            }
+            else // Deðilse temizle
+            {
+                Properties.Settings.Default.RememberMe = false;
+                Properties.Settings.Default.SavedUserName = "";
+                Properties.Settings.Default.SavedPassword = "";
+            }
+            Properties.Settings.Default.Save();
             new SplashScreen().Show();
             this.Hide();
 
-            //loginForm login = new loginForm();
-            //if (txtboxUserName.Text == "admin" && txtBoxPassword.Text == "1234")
-            //{
-            //    SplashScreen splashScreen = new SplashScreen();
-            //    splashScreen.Show();
-            //    this.Hide();
+        }
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Kullanýcý adý veya þifre yanlýþ!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+        private void loginForm_Load(object sender, EventArgs e)
+        {
+            // Kaydedilmiþ bilgiler varsa otomatik doldur
+            if (Properties.Settings.Default.RememberMe)
+            {
+                txtboxUserName.Text = Properties.Settings.Default.SavedUserName;
+                txtBoxPassword.Text = Properties.Settings.Default.SavedPassword;
+                rememberMeBox.Checked = true;
+            }
+            else
+            {
+                rememberMeBox.Checked = false;
+            }
         }
     }
 }
+

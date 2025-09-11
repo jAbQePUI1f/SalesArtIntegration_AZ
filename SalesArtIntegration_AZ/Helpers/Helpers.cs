@@ -1,5 +1,4 @@
-﻿using SalesArtIntegration_AZ.Models.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SalesArtIntegration_AZ.Helper
 {
@@ -27,7 +26,7 @@ namespace SalesArtIntegration_AZ.Helper
             }
             log.WriteLine("------------------------");
             log.WriteLine("Hata Mesajı: " + message);
-            //log.WriteLine("Faturalar listeleniyor: " + invoiceNumber );
+            log.WriteLine("Faturalar listeleniyor: " + invoiceNumber );
             log.WriteLine("Log Adı: " + logCaption);
             log.WriteLine("Log Zamanı: " + DateTime.Now);
 

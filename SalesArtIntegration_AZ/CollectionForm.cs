@@ -1,14 +1,11 @@
-﻿using OneCService;
-using SalesArtIntegration_AZ.Helper;
+﻿using SalesArtIntegration_AZ.Helper;
 using SalesArtIntegration_AZ.Manager.Api;
 using SalesArtIntegration_AZ.Manager.Config;
 using SalesArtIntegration_AZ.Manager.Service;
 using SalesArtIntegration_AZ.Models.Collection;
 using SalesArtIntegration_AZ.Models.Enums;
-using SalesArtIntegration_AZ.Models.Invoice;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
-using System.Xml.Linq;
 using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
 
 namespace SalesArtIntegration_AZ
@@ -51,11 +48,6 @@ namespace SalesArtIntegration_AZ
             this.Hide();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private async void bttnGetWaybill_Click(object sender, EventArgs e)
         {
             // "Seçiniz" kontrolü
@@ -69,13 +61,18 @@ namespace SalesArtIntegration_AZ
 
             var invoiceRequest = new CollectionRequest
             {
-                startDate = beginDate, //"2023-12-01",
-                endDate = endDate,//"2024-01-01",
+                startDate = beginDate + " 00:00:00.000 ",
+                endDate = endDate + " 23:59:59.999 ",
                 transactionTypes = new[] { documentType }
             };
 
             collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelResponse>(Configuration.GetUrl() + "management/collections-for-erp", invoiceRequest);
 
+            if (collectionResponse?.data == null)
+            {
+                MessageBox.Show("Veri alınamadı veya sonuç bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
             {
                 Number = header.invoiceNo,
@@ -90,15 +87,12 @@ namespace SalesArtIntegration_AZ
 
             dataGridInvoiceList.DataSource = displayInfoList;
 
-            // Sütun başlıklarını Türkçe olarak ayarla
             dataGridInvoiceList.Columns["Number"].HeaderText = "Numara";
             dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
             dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Belge No";
             dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
             dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
             dataGridInvoiceList.Columns["Amount"].HeaderText = "Tutar";
-
-            // Sütun genişliklerini içeriğe göre otomatik ayarla
             dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["DocumentNo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -130,9 +124,14 @@ namespace SalesArtIntegration_AZ
 
         private void comboboxInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.TransactionType)
+
+            if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.TransactionType transactionType)
             {
-                documentType = comboboxInvoiceType.SelectedValue.ToString();
+                documentType = transactionType.ToString();
+            }
+            else
+            {
+                documentType = string.Empty;
             }
         }
 
@@ -144,17 +143,14 @@ namespace SalesArtIntegration_AZ
                 return;
             }
 
-
-
             // ServiceFactory ile istemciyi al
             using var client = ServiceFactory.GetServiceClient();
-
 
             foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
             {
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
-                    string number = row.Cells["Number"].Value?.ToString();
+                    string? number = row.Cells["Number"].Value?.ToString();
                     if (string.IsNullOrEmpty(number))
                     {
                         MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -174,24 +170,14 @@ namespace SalesArtIntegration_AZ
 
                     try
                     {
-
-                        // Fatura tipine göre işlem
                         switch (documentType)
                         {
                             case nameof(Enums.TransactionType.CASH_PAYMENT):
 
-
-                                // TableLine listesi oluştur
-
-
-
-
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
                                     , selectedInvoice.customerCode, selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, selectedInvoice.customerCode, selectedInvoice.amount, selectedInvoice.description);
 
-
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
-
 
                                 success = true;
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
