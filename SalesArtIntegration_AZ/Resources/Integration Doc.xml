@@ -117,3 +117,153 @@ User Info : U: web_user, P: wb_123 -->
         </InsertNewRefundOfReceipt>
     </Body>
 </Envelope>
+
+<!--  Data Aktarımı Müşter & Ürün POST/GET -->
+
+<!--  Web-servisin linki:
+http://10.100.0.55/BARDA_TEST_1/ws/WebService/
+Kullanıcı adı: WEB_USER, Şifre: Wb_123  -->
+
+<!--1.Tüm Ürün listesini almak için: GetItemList -->
+
+<!--Örnek GET Request:-->
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <Body>
+    <GetItemList xmlns="http://127.0.0.1"/>
+  </Body>
+</Envelope>
+
+<!-- Örnek GET Response: -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <m:GetItemListResponse xmlns:m="http://127.0.0.1">
+      <m:return xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <m:TableLine>
+          <m:ItemName>SEKER TOZU_50KQ_MAX 80 IU_AZE</m:ItemName>
+          <m:ParentName>Mallar</m:ParentName>
+          <m:ParentCode>00000000000000000002</m:ParentCode>
+          <m:UnitCode>KQ</m:UnitCode>
+          <m:UnitYSPCode>KG</m:UnitYSPCode>
+          <m:UnitSAPCode>KG</m:UnitSAPCode>
+        </m:TableLine>
+        <m:TableLine>
+          <m:ItemName>KRESTYANSKOE KERELI YAG_5KQ</m:ItemName>
+          <m:ParentName>Mallar</m:ParentName>
+          <m:ParentCode>00000000000000000002</m:ParentCode>
+          <m:UnitCode>KQ</m:UnitCode>
+          <m:UnitYSPCode>KG</m:UnitYSPCode>
+          <m:UnitSAPCode>KG</m:UnitSAPCode>
+        </m:TableLine>
+        <m:TableLine>
+          <m:ItemName>ANA-BALA ER.YAG_1.745KQ*6</m:ItemName>
+          <m:ParentName>Mallar</m:ParentName>
+          <m:ParentCode>000
+           </m:return>
+    </m:GetItemListResponse>
+  </soap:Body>
+</soap:Envelope>
+
+<!-- 2.Tüm Müşterileri almak içim : GetPartnersList -->
+
+Örnek GET Request:
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <Body>
+    <GetPartnersList xmlns="http://127.0.0.1">
+      <TIN></TIN>
+      <PartnerCode></PartnerCode>
+    </GetPartnersList>
+  </Body>
+</Envelope>
+
+<!-- Örnek GET Response: -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <m:GetPartnersListResponse xmlns:m="http://127.0.0.1">
+      <m:return xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <m:TableLine>
+          <m:Code>3400040002</m:Code>
+          <m:Name>HÜMBƏTOV HAFİZ ƏJDƏR OĞLU</m:Name>
+          <m:FullDescription>HÜMBƏTOV HAFİZ ƏJDƏR OĞLU</m:FullDescription>
+          <m:TIN>3400040002</m:TIN>
+          <m:MainBankAccount/>
+          <m:MainContactPerson/>
+          <m:IndividualOrJuridical/>
+          <m:MainPartnersCode></m:MainPartnersCode>
+          <m:IdentityDocument/>
+          <m:ParentCode></m:ParentCode>
+          <m:IsGroup>0</m:IsGroup>
+          <m:Comment/>
+        </m:TableLine>
+        <m:TableLine>
+          <m:Code>4001311912</m:Code>
+          <m:Name>ƏLİYEV ELŞAD ƏRŞAD OĞLU</m:Name>
+          <m:FullDescription>ƏLİYEV ELŞAD ƏRŞAD OĞLU</m:FullDescription>
+          <m:TIN>4001311912</m:TIN>
+          <m:MainBankAccount/>
+          <m:MainContactPerson/>
+          <m:IndividualOrJuridical/>
+          <m:MainPartnersCode></m:MainPartnersCode>
+          <m:IdentityDocument/>
+          <m:ParentCode></m:ParentCode>
+          <m:IsGroup>0</m:IsGroup>
+          <m:Comment/>
+        </m:TableLine>
+      </m:return>
+    </m:GetPartnersListResponse>
+  </soap:Body>
+</soap:Envelope>
+
+<!-- 3.Müşteri Oluşturma: InsertNewPartner -->
+
+<!--Örnek Post Request:-->
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <Body>
+    <InsertNewPartner xmlns="http://127.0.0.1">
+      <PartnerCode>0000555</PartnerCode>
+      <PartnerTIN>8888888888</PartnerTIN>
+      <PartnerName>Test Test oğlu Testov</PartnerName>
+      <IsJuridicalPerson>false</IsJuridicalPerson>
+    </InsertNewPartner>
+  </Body>
+</Envelope>
+
+<!-- Örnek Post Response:-->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <m:InsertNewPartnerResponse xmlns:m="http://127.0.0.1">
+      <m:return xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <m:Message>1C proqramında məlumatlar yeniləndi</m:Message>
+        <m:Result>true</m:Result>
+      </m:return>
+    </m:InsertNewPartnerResponse>
+  </soap:Body>
+</soap:Envelope>
+
+<!-- 4.Malzeme Oluşturma: InsertNewItem-->
+<!--Örnek Post Request:-->
+<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">
+  <Body>
+    <InsertNewItem xmlns="http://127.0.0.1">
+      <ItemCode>00001111</ItemCode>
+      <ItemName>Test Item</ItemName>
+      <IsService>false</IsService>
+      <Unit>Eded</Unit>
+    </InsertNewItem>
+  </Body>
+</Envelope>
+
+<!-- Örnek Post Response:-->
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <m:InsertNewItemResponse xmlns:m="http://127.0.0.1">
+      <m:return xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <m:Message>1C proqramında məlumatlar yeniləndi</m:Message>
+        <m:Result>true</m:Result>
+      </m:return>
+    </m:InsertNewItemResponse>
+  </soap:Body>
+</soap:Envelope>

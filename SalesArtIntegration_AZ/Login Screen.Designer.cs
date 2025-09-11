@@ -35,6 +35,7 @@
             lblUsername = new MaterialSkin.Controls.MaterialLabel();
             lblPassword = new MaterialSkin.Controls.MaterialLabel();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            rememberMeBox = new MaterialSkin.Controls.MaterialCheckbox();
             SuspendLayout();
             // 
             // bttnLogin
@@ -46,7 +47,7 @@
             bttnLogin.FlatStyle = FlatStyle.Flat;
             bttnLogin.HighEmphasis = true;
             bttnLogin.Icon = null;
-            bttnLogin.Location = new Point(155, 381);
+            bttnLogin.Location = new Point(149, 389);
             bttnLogin.Margin = new Padding(4, 6, 4, 6);
             bttnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogin.Name = "bttnLogin";
@@ -85,7 +86,7 @@
             txtBoxPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtBoxPassword.LeadingIcon = null;
             txtBoxPassword.LeaveOnEnterKey = true;
-            txtBoxPassword.Location = new Point(81, 312);
+            txtBoxPassword.Location = new Point(81, 293);
             txtBoxPassword.MaxLength = 50;
             txtBoxPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtBoxPassword.Multiline = false;
@@ -118,7 +119,7 @@
             lblPassword.Depth = 0;
             lblPassword.Font = new Font("Roboto", 12F, FontStyle.Italic, GraphicsUnit.Pixel);
             lblPassword.FontType = MaterialSkin.MaterialSkinManager.fontType.SubtleEmphasis;
-            lblPassword.Location = new Point(84, 314);
+            lblPassword.Location = new Point(84, 295);
             lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(55, 14);
@@ -139,6 +140,25 @@
             materialLabel1.TabIndex = 5;
             materialLabel1.Text = "© Copyright 2025 SalesArt. All Rights Reserved.";
             // 
+            // rememberMeBox
+            // 
+            rememberMeBox.Checked = true;
+            rememberMeBox.CheckState = CheckState.Checked;
+            rememberMeBox.Depth = 0;
+            rememberMeBox.FlatStyle = FlatStyle.System;
+            rememberMeBox.Location = new Point(86, 346);
+            rememberMeBox.Margin = new Padding(0);
+            rememberMeBox.MouseLocation = new Point(-1, -1);
+            rememberMeBox.MouseState = MaterialSkin.MouseState.HOVER;
+            rememberMeBox.Name = "rememberMeBox";
+            rememberMeBox.ReadOnly = false;
+            rememberMeBox.Ripple = false;
+            rememberMeBox.Size = new Size(145, 37);
+            rememberMeBox.TabIndex = 6;
+            rememberMeBox.Text = "Remember Me";
+            rememberMeBox.TextAlign = ContentAlignment.MiddleCenter;
+            rememberMeBox.UseVisualStyleBackColor = true;
+            // 
             // loginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -148,6 +168,7 @@
             BackgroundImage = Properties.Resources.Login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(514, 596);
+            Controls.Add(rememberMeBox);
             Controls.Add(materialLabel1);
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
@@ -161,6 +182,7 @@
             Name = "loginForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
+            Load += loginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +195,6 @@
         private MaterialSkin.Controls.MaterialLabel lblUsername;
         private MaterialSkin.Controls.MaterialLabel lblPassword;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialCheckbox rememberMeBox;
     }
 }

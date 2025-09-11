@@ -33,7 +33,6 @@
             menüToolStripMenuItem = new ToolStripMenuItem();
             waybillToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
@@ -72,7 +71,7 @@
             // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, exitToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 27);
             menüToolStripMenuItem.Text = "Menu";
@@ -80,23 +79,16 @@
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(127, 22);
+            waybillToolStripMenuItem.Size = new Size(180, 22);
             waybillToolStripMenuItem.Text = "Waybill";
             waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(127, 22);
+            collectionToolStripMenuItem.Size = new Size(180, 22);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(127, 22);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // materialCard1
             // 
@@ -336,8 +328,6 @@
             Name = "InvoiceForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Transfer Invoice";
-            FormClosing += InvoiceForm_FormClosing;
-            FormClosed += InvoiceForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
             materialCard1.ResumeLayout(false);
@@ -364,7 +354,6 @@
         private DataGridView dataGridInvoiceList;
         private ToolStripMenuItem waybillToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItem;
         private CheckBox chckAll;
         private MaterialSkin.Controls.MaterialButton bttnLogs;
         private DataGridViewCheckBoxColumn chk;
