@@ -34,7 +34,7 @@
             bttnInvoice = new MaterialSkin.Controls.MaterialButton();
             menuStrip1 = new MenuStrip();
             menüToolStripMenuItem = new ToolStripMenuItem();
-            çıkışToolStripMenuItem = new ToolStripMenuItem();
+            veriAktarımıToolStripMenuItem = new ToolStripMenuItem();
             çıkışToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -116,33 +116,35 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(743, 9);
+            menuStrip1.Location = new Point(623, 9);
             menuStrip1.MdiWindowListItem = çıkışToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
             menuStrip1.RightToLeft = RightToLeft.No;
-            menuStrip1.Size = new Size(96, 24);
+            menuStrip1.Size = new Size(216, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "stripSplash";
             // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { çıkışToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { veriAktarımıToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 20);
             menüToolStripMenuItem.Text = "Menu";
             // 
-            // çıkışToolStripMenuItem
+            // veriAktarımıToolStripMenuItem
             // 
-            çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(117, 22);
-            çıkışToolStripMenuItem.Text = "Go Back";
+            veriAktarımıToolStripMenuItem.Name = "veriAktarımıToolStripMenuItem";
+            veriAktarımıToolStripMenuItem.Size = new Size(180, 22);
+            veriAktarımıToolStripMenuItem.Text = "Veri Aktarımı";
+            veriAktarımıToolStripMenuItem.Click += veriAktarımıToolStripMenuItem_Click;
             // 
             // çıkışToolStripMenuItem1
             // 
             çıkışToolStripMenuItem1.Name = "çıkışToolStripMenuItem1";
             çıkışToolStripMenuItem1.Size = new Size(38, 20);
             çıkışToolStripMenuItem1.Text = "Exit";
+            çıkışToolStripMenuItem1.Click += çıkışToolStripMenuItem1_Click;
             // 
             // SplashScreen
             // 
@@ -160,6 +162,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "SplashScreen";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
@@ -177,7 +180,7 @@
         private MaterialSkin.Controls.MaterialButton bttnInvoice;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menüToolStripMenuItem;
-        private ToolStripMenuItem çıkışToolStripMenuItem;
         private ToolStripMenuItem çıkışToolStripMenuItem1;
+        private ToolStripMenuItem veriAktarımıToolStripMenuItem;
     }
 }

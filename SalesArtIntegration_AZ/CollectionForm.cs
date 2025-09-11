@@ -68,6 +68,11 @@ namespace SalesArtIntegration_AZ
 
             collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelResponse>(Configuration.GetUrl() + "management/collections-for-erp", invoiceRequest);
 
+            if (collectionResponse?.data == null)
+            {
+                MessageBox.Show("Veri alınamadı veya sonuç bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
             {
                 Number = header.invoiceNo,

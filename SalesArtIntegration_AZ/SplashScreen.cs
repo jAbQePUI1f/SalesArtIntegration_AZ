@@ -1,4 +1,5 @@
 ﻿using SalesArtIntegration_AZ.Manager.Config;
+using SalesArtIntegration_AZ.Resources;
 
 namespace SalesArtIntegration_AZ
 
@@ -48,6 +49,18 @@ namespace SalesArtIntegration_AZ
             {
                 bttnInvoice.Enabled = true;
             }
+        }
+
+        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void veriAktarımıToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
+            dataIntegrationForm.Show();
+            this.Hide();
         }
     }
 }

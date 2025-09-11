@@ -124,7 +124,6 @@ namespace SalesArtIntegration_AZ
                 helper.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş.", invoiceNumber: "N/A", "-", "-", "-");
             }
         }
-
         private void LoadComboBox()
         {
             // ComboBox'a InvoiceType enum değerlerini ekle
@@ -264,7 +263,6 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
-
         private void chckAll_CheckedChanged(object sender, EventArgs e)
         {
             if (chckAll.Checked)
@@ -282,7 +280,6 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
-
         private void bttnLogs_Click(object sender, EventArgs e)
         {
             invoiceListLogs invoiceListLogs = new invoiceListLogs();
