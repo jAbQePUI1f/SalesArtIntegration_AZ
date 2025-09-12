@@ -79,14 +79,14 @@
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(180, 22);
+            waybillToolStripMenuItem.Size = new Size(127, 22);
             waybillToolStripMenuItem.Text = "Waybill";
             waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(127, 22);
             collectionToolStripMenuItem.Text = "Collection";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
@@ -120,12 +120,12 @@
             bttnLogs.Depth = 0;
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(1003, 113);
+            bttnLogs.Location = new Point(1029, 120);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(82, 46);
+            bttnLogs.Size = new Size(121, 46);
             bttnLogs.TabIndex = 17;
             bttnLogs.Text = "Logs";
             bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
