@@ -118,7 +118,7 @@ User Info : U: web_user, P: wb_123 -->
     </Body>
 </Envelope>
 
-<!--  Data Aktarımı Müşter & Ürün POST/GET -->
+<!--  Data Aktarımı Müşteri & Ürün POST/GET -->
 
 <!--  Web-servisin linki:
 http://10.100.0.55/BARDA_TEST_1/ws/WebService/
@@ -166,7 +166,7 @@ Kullanıcı adı: WEB_USER, Şifre: Wb_123  -->
 
 <!-- 2.Tüm Müşterileri almak içim : GetPartnersList -->
 
-Örnek GET Request:
+<!--Örnek GET Request:-->
 <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
   <Body>
     <GetPartnersList xmlns="http://127.0.0.1">
