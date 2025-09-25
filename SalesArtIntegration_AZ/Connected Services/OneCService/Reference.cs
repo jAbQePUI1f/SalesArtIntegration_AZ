@@ -87,6 +87,20 @@ namespace OneCService
         [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewIncomingPayment", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<OneCService.InsertNewIncomingPaymentResponse> InsertNewIncomingPaymentAsync(OneCService.InsertNewIncomingPaymentRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewPartner", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        System.Threading.Tasks.Task<OneCService.PartnerResponse> InsertNewPartnerAsync(string PartnerCode, string PartnerTIN, string PartnerName, bool IsJuridicalPerson);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewItem", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        System.Threading.Tasks.Task<OneCService.ItemsResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:GetItemList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Threading.Tasks.Task<OneCService.GetItemListResponse> GetItemListAsync(OneCService.GetItemListRequest request);
     }
     
     /// <remarks/>
@@ -161,6 +175,267 @@ namespace OneCService
             {
                 this.priceField = value;
                 this.RaisePropertyChanged("Price");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
+    public partial class ItemListTableLine : object, System.ComponentModel.INotifyPropertyChanged
+    {
+        
+        private string itemCodeCodeField;
+        
+        private string itemNameField;
+        
+        private bool isServiseField;
+        
+        private string parentNameField;
+        
+        private string parentCodeField;
+        
+        private string unitCodeField;
+        
+        private string unitYSPCodeField;
+        
+        private string unitSAPCodeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ItemCodeCode
+        {
+            get
+            {
+                return this.itemCodeCodeField;
+            }
+            set
+            {
+                this.itemCodeCodeField = value;
+                this.RaisePropertyChanged("ItemCodeCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string ItemName
+        {
+            get
+            {
+                return this.itemNameField;
+            }
+            set
+            {
+                this.itemNameField = value;
+                this.RaisePropertyChanged("ItemName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public bool IsServise
+        {
+            get
+            {
+                return this.isServiseField;
+            }
+            set
+            {
+                this.isServiseField = value;
+                this.RaisePropertyChanged("IsServise");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string ParentName
+        {
+            get
+            {
+                return this.parentNameField;
+            }
+            set
+            {
+                this.parentNameField = value;
+                this.RaisePropertyChanged("ParentName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string ParentCode
+        {
+            get
+            {
+                return this.parentCodeField;
+            }
+            set
+            {
+                this.parentCodeField = value;
+                this.RaisePropertyChanged("ParentCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string UnitCode
+        {
+            get
+            {
+                return this.unitCodeField;
+            }
+            set
+            {
+                this.unitCodeField = value;
+                this.RaisePropertyChanged("UnitCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string UnitYSPCode
+        {
+            get
+            {
+                return this.unitYSPCodeField;
+            }
+            set
+            {
+                this.unitYSPCodeField = value;
+                this.RaisePropertyChanged("UnitYSPCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string UnitSAPCode
+        {
+            get
+            {
+                return this.unitSAPCodeField;
+            }
+            set
+            {
+                this.unitSAPCodeField = value;
+                this.RaisePropertyChanged("UnitSAPCode");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
+    public partial class ItemsResponse : object, System.ComponentModel.INotifyPropertyChanged
+    {
+        
+        private string messageField;
+        
+        private bool resultField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Message
+        {
+            get
+            {
+                return this.messageField;
+            }
+            set
+            {
+                this.messageField = value;
+                this.RaisePropertyChanged("Message");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public bool Result
+        {
+            get
+            {
+                return this.resultField;
+            }
+            set
+            {
+                this.resultField = value;
+                this.RaisePropertyChanged("Result");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
+    public partial class PartnerResponse : object, System.ComponentModel.INotifyPropertyChanged
+    {
+        
+        private string messageField;
+        
+        private bool resultField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Message
+        {
+            get
+            {
+                return this.messageField;
+            }
+            set
+            {
+                this.messageField = value;
+                this.RaisePropertyChanged("Message");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public bool Result
+        {
+            get
+            {
+                return this.resultField;
+            }
+            set
+            {
+                this.resultField = value;
+                this.RaisePropertyChanged("Result");
             }
         }
         
@@ -4265,6 +4540,39 @@ namespace OneCService
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetItemList", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class GetItemListRequest
+    {
+        
+        public GetItemListRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetItemListResponse", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class GetItemListResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("TableLine", IsNullable=false)]
+        public OneCService.ItemListTableLine[] @return;
+        
+        public GetItemListResponse()
+        {
+        }
+        
+        public GetItemListResponse(OneCService.ItemListTableLine[] @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     public interface WebServicePortTypeChannel : OneCService.WebServicePortType, System.ServiceModel.IClientChannel
     {
@@ -4558,6 +4866,28 @@ namespace OneCService
             inValue.Amount = Amount;
             inValue.Description = Description;
             return ((OneCService.WebServicePortType)(this)).InsertNewIncomingPaymentAsync(inValue);
+        }
+        
+        public System.Threading.Tasks.Task<OneCService.PartnerResponse> InsertNewPartnerAsync(string PartnerCode, string PartnerTIN, string PartnerName, bool IsJuridicalPerson)
+        {
+            return base.Channel.InsertNewPartnerAsync(PartnerCode, PartnerTIN, PartnerName, IsJuridicalPerson);
+        }
+        
+        public System.Threading.Tasks.Task<OneCService.ItemsResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit)
+        {
+            return base.Channel.InsertNewItemAsync(ItemCode, ItemName, IsService, Unit);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<OneCService.GetItemListResponse> OneCService.WebServicePortType.GetItemListAsync(OneCService.GetItemListRequest request)
+        {
+            return base.Channel.GetItemListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<OneCService.GetItemListResponse> GetItemListAsync()
+        {
+            OneCService.GetItemListRequest inValue = new OneCService.GetItemListRequest();
+            return ((OneCService.WebServicePortType)(this)).GetItemListAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
