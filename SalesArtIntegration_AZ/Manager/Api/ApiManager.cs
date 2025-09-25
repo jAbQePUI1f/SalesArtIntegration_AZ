@@ -178,6 +178,73 @@ namespace SalesArtIntegration_AZ.Manager.Api
             Console.WriteLine($"Error: Maximum retry limit reached");
             return default; // veya isteğe bağlı olarak hata işleme stratejisi
         }
+        public static async Task<TResponse> GetAsync<TResponse>(string apiUrl)
+        {
+            int maxRetryCount = 3; // Tekrar deneme limiti
+            string jwtToken = UserSharedInfo.GetToken();
+
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            for (int retryCount = 0; retryCount < maxRetryCount; retryCount++)
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Add JWT token to request headers
+                    client.DefaultRequestHeaders.Add("x-auth-token", $"Bearer {jwtToken}");
+
+                    try
+                    {
+                        // Make GET request
+                        HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                        // Check if request is successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Read response content as string
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent, settings);
+                            return responseObject;
+                        }
+                        else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında
+                        {
+                            // Burada kullanıcı kimlik doğrulama işlemlerini gerçekleştirmeniz gerekecek
+                            // Bu örnekte varsayılan bir sınıf kullanılıyor, gerçek duruma göre uyarlayın
+                            var newToken = await AuthenticateAndGetToken();
+
+                            // Eğer yeni bir token alındıysa, yeni token ile tekrar deneme yapın
+                            if (!string.IsNullOrEmpty(newToken))
+                            {
+                                jwtToken = newToken;
+                                continue; // Retry
+                            }
+                        }
+
+                        // Diğer hatalar için uyarı veya log işlemleri eklenebilir
+                        MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
+                        return default; // veya isteğe bağlı olarak hata işleme stratejisi
+                    }
+                    catch (Exception ex)
+                    {
+                        // Network hataları veya diğer istisnalar için
+                        Console.WriteLine($"Request failed: {ex.Message}");
+                        if (retryCount == maxRetryCount - 1)
+                        {
+                            MessageBox.Show($"Request Error: {ex.Message}");
+                            return default;
+                        }
+                        // Kısa bir bekleme süresi ekleyebilirsiniz
+                        await Task.Delay(1000);
+                    }
+                }
+            }
+
+            // Retry limitine ulaşıldığında
+            Console.WriteLine($"Error: Maximum retry limit reached");
+            return default; // veya isteğe bağlı olarak hata işleme stratejisi
+        }
         private static async Task<string> AuthenticateAndGetToken()
         {
             var response = await LoginManager.LoginAsync(UserSharedInfo.UserInfo.UserName, UserSharedInfo.UserInfo.Password);
