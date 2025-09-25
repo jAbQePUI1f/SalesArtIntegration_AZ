@@ -16,12 +16,12 @@ namespace SalesArtIntegration_AZ
     {
         string documentType = "";
         InvoiceModelResponse invoiceResponse = new InvoiceModelResponse();
+     
         public InvoiceForm()
         {
             InitializeComponent();
             LoadComboBox();
         }
-        Helpers helper = new Helpers();
         private void comboboxInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.InvoiceType)
@@ -45,6 +45,9 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnGetInvoice_Click(object sender, EventArgs e)
         {
+
+ 
+
             if (string.IsNullOrEmpty(documentType) || documentType == "SEÇİNİZ...")
             {
                 documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
@@ -112,7 +115,7 @@ namespace SalesArtIntegration_AZ
                 if (invoiceResponse.data.Any())
                 {
                     invoiceNumbers = string.Join(", ", invoiceResponse.data.Select(header => header.number));
-                    helper.LogFile("Fatura Numarası: ", invoiceNumber: invoiceNumbers, "-", "-", "-");
+                    Helpers.LogFile("Fatura Numarası: ", invoiceNumber: invoiceNumbers, "-", "-", "-");
                 }
                 else
                 {
@@ -121,7 +124,7 @@ namespace SalesArtIntegration_AZ
             }
             else
             {
-                helper.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş.", invoiceNumber: "N/A", "-", "-", "-");
+                Helpers.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş.", invoiceNumber: "N/A", "-", "-", "-");
             }
         }
         private void LoadComboBox()
@@ -150,6 +153,7 @@ namespace SalesArtIntegration_AZ
             }
 
             using var client = ServiceFactory.GetServiceClient();
+            string distributorCode = await Helpers.GetDistributorCodeAsync();
 
             foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
             {
@@ -159,7 +163,7 @@ namespace SalesArtIntegration_AZ
                     if (string.IsNullOrEmpty(number))
                     {
                         MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        helper.LogFile("Faturalar Aktarılmadı! ", invoiceNumber: "N/A", "-", "-", "-"); // Fix: Use "N/A" for null or empty invoiceNumber
+                        Helpers.LogFile("Faturalar Aktarılmadı! ", invoiceNumber: "N/A", "-", "-", "-"); // Fix: Use "N/A" for null or empty invoiceNumber
                         continue;
                     }
 
@@ -202,7 +206,7 @@ namespace SalesArtIntegration_AZ
                                     });
                                 }
 
-                                var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = "000000001", formattedDate,
+                                var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
                                     selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
 
                                 remoteInvoiceNumber = selectedInvoice.number;
@@ -212,7 +216,7 @@ namespace SalesArtIntegration_AZ
                                     success = false;
                                     errorMessage = string.Join(Environment.NewLine, invoiceResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
                                     MessageBox.Show(errorMessage, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    helper.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
                                     bttnSendInvoice.Enabled = true;
                                     bttnGetInvoice.Enabled = true;
                                 }
@@ -220,7 +224,7 @@ namespace SalesArtIntegration_AZ
                                 {
                                     success = true;
                                     MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    helper.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
                                     bttnSendInvoice.Enabled = true;
                                     bttnGetInvoice.Enabled = true;
                                 }
@@ -237,7 +241,7 @@ namespace SalesArtIntegration_AZ
                     {
                         errorMessage = ex.Message;
                         MessageBox.Show(ex.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        helper.LogFile("Bağlantı hatası", ex.Message.ToString(), "-", "-", "-");
+                        Helpers.LogFile("Bağlantı hatası", ex.Message.ToString(), "-", "-", "-");
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle
