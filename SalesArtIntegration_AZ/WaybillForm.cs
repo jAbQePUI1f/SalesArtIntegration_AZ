@@ -98,5 +98,10 @@ namespace SalesArtIntegration_AZ
                 documentType = string.Empty;
             }
         }
+
+        private void bttnSendWaybill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

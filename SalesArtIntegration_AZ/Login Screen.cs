@@ -36,7 +36,8 @@ namespace SalesArtIntegration_AZ
                 Properties.Settings.Default.SavedPassword = "";
             }
             Properties.Settings.Default.Save();
-            new SplashScreen().Show();
+            new DataIntegrationForm().Show();
+            //new SplashScreen().Show();
             this.Hide();
 
         }
