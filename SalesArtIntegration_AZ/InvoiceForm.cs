@@ -124,7 +124,7 @@ namespace SalesArtIntegration_AZ
             }
             else
             {
-                Helpers.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş.", invoiceNumber: "N/A", "-", "-", "-");
+                Helpers.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş olamaz.", invoiceNumber: "N/A", "-", "-", "-");
             }
         }
         private void LoadComboBox()
