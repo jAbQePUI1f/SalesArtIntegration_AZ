@@ -51,12 +51,12 @@ namespace SalesArtIntegration_AZ
             }
         }
 
-        private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void veriAktarımıToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DataIntegrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
             dataIntegrationForm.Show();

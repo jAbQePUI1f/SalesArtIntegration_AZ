@@ -47,8 +47,5 @@ namespace SalesArtIntegration_AZ.Helper
 
             return ""; // Veya hata durumunu belirten bir değer/istisna döndürebilirsiniz.
         }
-
-
-        0
     }
 }
