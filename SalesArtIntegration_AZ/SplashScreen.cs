@@ -1,5 +1,5 @@
 ﻿using SalesArtIntegration_AZ.Manager.Config;
-using SalesArtIntegration_AZ.Resources;
+
 
 namespace SalesArtIntegration_AZ
 

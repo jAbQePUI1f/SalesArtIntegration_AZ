@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SalesArtIntegration_AZ.Manager.Api;
+using SalesArtIntegration_AZ.Models.Response;
+using SalesArtIntegration_AZ.Manager.Config;
+using System.ComponentModel.DataAnnotations;
+using static SalesArtIntegration_AZ.Models.Response.DistributorsResponseModel;
 
 namespace SalesArtIntegration_AZ.Helper
 {
@@ -13,7 +17,7 @@ namespace SalesArtIntegration_AZ.Helper
             var attributes = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
             return attributes?.Length > 0 ? attributes[0].Name : value.ToString();
         }
-        public void LogFile(string logCaption, string invoiceNumber, string remoteInvoiceNumber, string isSuccess, string message)
+        public static void LogFile(string logCaption, string invoiceNumber, string remoteInvoiceNumber, string isSuccess, string message)
         {
             StreamWriter log;
             if (!File.Exists("logfile.txt"))
@@ -32,5 +36,19 @@ namespace SalesArtIntegration_AZ.Helper
 
             log.Close();
         }
+        public static async Task<string> GetDistributorCodeAsync()
+        {
+            var distributors = await ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
+
+            if (distributors != null && distributors.data != null)
+            {
+                return distributors.data.Code;
+            }
+
+            return ""; // Veya hata durumunu belirten bir değer/istisna döndürebilirsiniz.
+        }
+
+
+        
     }
 }
