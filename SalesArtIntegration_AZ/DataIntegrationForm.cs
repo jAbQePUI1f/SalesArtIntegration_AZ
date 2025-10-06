@@ -142,7 +142,7 @@ namespace SalesArtIntegration_AZ
                 var requestBody = new CustomerListRequest
                 {
                     pageNumber = 0,
-                    pageSize = 20,
+                    pageSize = 9999,
                 
                     data = new CustomerListRequest.Data
                     {
@@ -155,7 +155,7 @@ namespace SalesArtIntegration_AZ
                 await Task.WhenAll(distributorsTask, partnersListTask);
 
                 var distributors = distributorsTask.Result;
-                var partnersList = partnersListTask.Result as IEnumerable<PartnerInfo>; 
+                var partnersList = partnersListTask.Result.@return; 
 
                 requestBody.distributorIds = new List<int> { distributors.data.Id };
                 var customerResponseTask = ApiManager.PostAsync<CustomerListRequest, CustomerResponseJsonModel>(Configuration.GetUrl() + "management/customers-list?lang=tr", requestBody);
