@@ -4911,7 +4911,6 @@ namespace OneCService
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             if ((endpointConfiguration == EndpointConfiguration.WebServiceSoap12))
@@ -4920,11 +4919,11 @@ namespace OneCService
                 System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
                 textBindingElement.MessageVersion = System.ServiceModel.Channels.MessageVersion.CreateVersion(System.ServiceModel.EnvelopeVersion.Soap12, System.ServiceModel.Channels.AddressingVersion.None);
                 result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
-                httpsBindingElement.AllowCookies = true;
-                httpsBindingElement.MaxBufferSize = int.MaxValue;
-                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpsBindingElement);
+                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
+                httpBindingElement.AllowCookies = true;
+                httpBindingElement.MaxBufferSize = int.MaxValue;
+                httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
+                result.Elements.Add(httpBindingElement);
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -4934,11 +4933,11 @@ namespace OneCService
         {
             if ((endpointConfiguration == EndpointConfiguration.WebServiceSoap))
             {
-                return new System.ServiceModel.EndpointAddress("https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice");
+                return new System.ServiceModel.EndpointAddress("http://10.100.0.152/BARDA_TEST/ws/WebService/");
             }
             if ((endpointConfiguration == EndpointConfiguration.WebServiceSoap12))
             {
-                return new System.ServiceModel.EndpointAddress("https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice");
+                return new System.ServiceModel.EndpointAddress("http://10.100.0.152/BARDA_TEST/ws/WebService/");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
