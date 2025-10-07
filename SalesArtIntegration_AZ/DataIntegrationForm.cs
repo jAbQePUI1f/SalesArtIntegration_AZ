@@ -1,11 +1,9 @@
 ﻿using OneCService;
-using SalesArtIntegration_AZ.Helper;
 using SalesArtIntegration_AZ.Manager.Api;
 using SalesArtIntegration_AZ.Manager.Config;
 using SalesArtIntegration_AZ.Manager.Service;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
-using System.ServiceModel;
 using static SalesArtIntegration_AZ.Models.Response.CustomerResponseJsonModel;
 using static SalesArtIntegration_AZ.Models.Response.ProductResponseJsonModel;
 
@@ -21,7 +19,6 @@ namespace SalesArtIntegration_AZ
             _client = ServiceFactory.GetServiceClient();
 
         }
-
         private void DataIntegrationForm_Load(object sender, EventArgs e)
         {
 
@@ -36,24 +33,20 @@ namespace SalesArtIntegration_AZ
         {
             Application.Exit();
         }
-
         private async void bttnTransferToProducts_Click(object sender, EventArgs e)
         {
-
             try
             {
-
                 var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
-
 
                 var soapItemsListTask = _client.GetItemListAsync();
 
                 await Task.WhenAll(productDataTask, soapItemsListTask);
 
                 var productData = productDataTask.Result;
-                var soapItemsList = soapItemsListTask.Result; // SOAP'tan gelen ürün listesi
 
- 
+                var soapItemsList = soapItemsListTask.Result; // SOAP'tan gelen ürün listesi
+                 
                 var existingItemCodes = new HashSet<string>(
                     soapItemsList.@return
                         .Where(item => !string.IsNullOrWhiteSpace(item.ItemCodeCode))
@@ -78,7 +71,6 @@ namespace SalesArtIntegration_AZ
                             newItemsToCreate.Add(localProduct);
                         }
                     }
-
       
                     if (newItemsToCreate.Count > 0)
                     {
@@ -87,8 +79,7 @@ namespace SalesArtIntegration_AZ
                         foreach (var newItem in newItemsToCreate)
                         {
                             try
-                            {
-                        
+                            {                        
                                 string itemCode = newItem.Code.ToString(); 
                                 string itemName = newItem.Name; 
                                 bool isService = false; 
@@ -128,14 +119,10 @@ namespace SalesArtIntegration_AZ
         }
         private async void bttnTransferToCustomer_Click_1(object sender, EventArgs e)
         {
-           
-
             try
             {
-
-
-           
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
+
                 var partnersListTask = _client.GetPartnersListAsync("", ""); // Uzak SOAP Servisindeki Müşteri Listesi
 
                 // Diğer verilerin çekimi (bu kısım zaten vardı):
@@ -150,61 +137,52 @@ namespace SalesArtIntegration_AZ
                         sortBalanceByAsc = true
                     }
                 };
-
                
                 await Task.WhenAll(distributorsTask, partnersListTask);
 
                 var distributors = distributorsTask.Result;
+
                 var partnersList = partnersListTask.Result.@return; 
 
                 requestBody.distributorIds = new List<int> { distributors.data.Id };
+
                 var customerResponseTask = ApiManager.PostAsync<CustomerListRequest, CustomerResponseJsonModel>(Configuration.GetUrl() + "management/customers-list?lang=tr", requestBody);
 
                 var customerResponse = await customerResponseTask; 
-
-     
+                     
                 var existingPartnersTINs = new HashSet<string>(
                     partnersList
                         .Where(p => !string.IsNullOrWhiteSpace(p.TIN))
                         .Select(p => p.TIN),
                     StringComparer.OrdinalIgnoreCase 
                 );
-
              
                 if (customerResponse?.data?.customers != null)
                 {
                     var newCustomersToCreate = new List<Customer>();
 
                     foreach (var customerInfo in customerResponse.data.customers)
-                    {
-                      
+                    {                      
                         string customerTIN = customerInfo.code; 
-
-                     
+                                             
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {
                            
                             newCustomersToCreate.Add(customerInfo);
                         }
-               
                     }
-
                    
                     if (newCustomersToCreate.Count > 0)
                     {
                         Console.WriteLine($"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
-
-
-
-                     
+                                             
                         int totalCount = newCustomersToCreate.Count;
                         int processedCount = 0;
 
                         foreach (var newCustomer in newCustomersToCreate)
                         {
                             try
-                            {
-                              
+                            {                              
                                 string partnerCode = newCustomer.code.ToString(); 
                                 string partnerTIN = newCustomer.code;
                                 string partnerName = newCustomer.name;

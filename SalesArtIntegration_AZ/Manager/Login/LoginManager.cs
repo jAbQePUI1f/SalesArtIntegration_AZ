@@ -57,7 +57,6 @@ namespace SalesArtIntegration_AZ.Manager.Login
                 return model;
             }
 
-
             model.State = true;
             model.Token = tokenResult.Result.Token;
 

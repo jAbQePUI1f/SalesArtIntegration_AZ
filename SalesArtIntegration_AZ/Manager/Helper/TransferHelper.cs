@@ -4,7 +4,6 @@ namespace SalesArtIntegration_AZ.Manager.Helper
 {
     public static class TransferHelper
     {
-
         public static string[] ConvertToStringArray<T>(T obj)
         {
             List<string> stringArray = new List<string>();
