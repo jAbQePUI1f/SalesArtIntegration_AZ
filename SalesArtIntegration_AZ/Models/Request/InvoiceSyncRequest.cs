@@ -2,7 +2,6 @@
 {
     public class InvoiceSyncRequest
     {
-
         public IntegratedInvoice[] integratedInvoices { get; set; }
         public class IntegratedInvoice
         {

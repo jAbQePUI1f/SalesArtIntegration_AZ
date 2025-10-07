@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace SalesArtIntegration_AZ
+﻿namespace SalesArtIntegration_AZ
 {
     public partial class DataIntegrationLogs : Form
     {
@@ -13,7 +11,6 @@ namespace SalesArtIntegration_AZ
         {
 
         }
-
         private void logListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             {

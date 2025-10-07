@@ -4,9 +4,7 @@ namespace SalesArtIntegration_AZ.Models.Response
 {
     public class InvoiceModelResponse :BaseResponseJson
     {
-
         public List<InvoiceHeader> data { get; set; }
-
         public class InvoiceDetail
         {
             public long invoiceDetailId { get; set; }

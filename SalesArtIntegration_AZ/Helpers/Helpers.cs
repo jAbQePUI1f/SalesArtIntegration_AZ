@@ -1,8 +1,7 @@
 ﻿using SalesArtIntegration_AZ.Manager.Api;
-using SalesArtIntegration_AZ.Models.Response;
 using SalesArtIntegration_AZ.Manager.Config;
+using SalesArtIntegration_AZ.Models.Response;
 using System.ComponentModel.DataAnnotations;
-using static SalesArtIntegration_AZ.Models.Response.DistributorsResponseModel;
 
 namespace SalesArtIntegration_AZ.Helper
 {
@@ -47,8 +46,5 @@ namespace SalesArtIntegration_AZ.Helper
 
             return ""; // Veya hata durumunu belirten bir değer/istisna döndürebilirsiniz.
         }
-
-
-        
     }
 }
