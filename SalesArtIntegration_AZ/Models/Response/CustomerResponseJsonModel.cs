@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SalesArtIntegration_AZ.Models.Response
+﻿namespace SalesArtIntegration_AZ.Models.Response
 {
     public  class CustomerResponseJsonModel: PagedResponseJson
     {
@@ -14,7 +8,6 @@ namespace SalesArtIntegration_AZ.Models.Response
         {
             public List<Customer> customers { get; set; }
         }
-
         public class Customer
         {
             public int id { get; set; }
