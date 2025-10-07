@@ -4,7 +4,6 @@ namespace SalesArtIntegration_AZ.Manager.Config
 {
     public static  class Configuration
     {
-
         public static string GetUrl()
         {
             return ConfigurationManager.AppSettings["URL"];

@@ -2,7 +2,6 @@
 {
     public  class CollectionRequest
     {
-
         public CollectionRequest() { }
         public string startDate { get; set; }
         public string endDate { get; set; }
