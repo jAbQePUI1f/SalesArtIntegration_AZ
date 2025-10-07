@@ -35,7 +35,7 @@
             // 
             // logListBox
             // 
-            logListBox.BackColor = SystemColors.Info;
+            logListBox.BackColor = SystemColors.HighlightText;
             logListBox.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             logListBox.FormattingEnabled = true;
             logListBox.ItemHeight = 20;
