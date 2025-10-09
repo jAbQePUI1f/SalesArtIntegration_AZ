@@ -115,7 +115,9 @@ namespace SalesArtIntegration_AZ
                 if (invoiceResponse.data.Any())
                 {
                     invoiceNumbers = string.Join(", ", invoiceResponse.data.Select(header => header.number));
-                    Helpers.LogFile("Fatura Numarası: ", invoiceNumber: invoiceNumbers, "-", "-", "-");
+                    //Helpers.LogFile("Fatura Numarası: ", invoiceNumber: invoiceNumbers, "-", "-", "-");
+                    Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Faturalar API'dan başarıyla listelendi.", $"Numaralar: {invoiceNumbers}");
+
                 }
                 else
                 {
@@ -124,7 +126,8 @@ namespace SalesArtIntegration_AZ
             }
             else
             {
-                Helpers.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş olamaz.", invoiceNumber: "N/A", "-", "-", "-");
+                //Helpers.LogFile("Faturalar listelenmedi! - Fatura response data null veya boş olamaz.", invoiceNumber: "N/A", "-", "-", "-");
+                Helpers.LogFile(Helpers.LogLevel.WARNING, "Fatura", "Faturalar listelenmedi. API yanıt verisi (response data) boş veya null.", "Ek Bilgi: Veri yok");
             }
         }
         private void LoadComboBox()
@@ -163,7 +166,8 @@ namespace SalesArtIntegration_AZ
                     if (string.IsNullOrEmpty(number))
                     {
                         MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Helpers.LogFile("Faturalar Aktarılmadı! ", invoiceNumber: "N/A", "-", "-", "-"); // Fix: Use "N/A" for null or empty invoiceNumber
+                        //Helpers.LogFile("Faturalar Aktarılmadı! ", invoiceNumber: "N/A", "-", "-", "-"); // Fix: Use "N/A" for null or empty invoiceNumber
+                        Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", "Fatura numarası boş olduğu için aktarım yapılamadı.", "Numara: N/A");
                         continue;
                     }
 
@@ -216,7 +220,8 @@ namespace SalesArtIntegration_AZ
                                     success = false;
                                     errorMessage = string.Join(Environment.NewLine, invoiceResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
                                     MessageBox.Show(errorMessage, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    //Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Fatura No: {number}");
                                     bttnSendInvoice.Enabled = true;
                                     bttnGetInvoice.Enabled = true;
                                 }
@@ -224,7 +229,8 @@ namespace SalesArtIntegration_AZ
                                 {
                                     success = true;
                                     MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    //Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Fatura aktarımı **başarılı**.", $"Fatura No: {number}");
                                     bttnSendInvoice.Enabled = true;
                                     bttnGetInvoice.Enabled = true;
                                 }
@@ -241,7 +247,8 @@ namespace SalesArtIntegration_AZ
                     {
                         errorMessage = ex.Message;
                         MessageBox.Show(ex.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Helpers.LogFile("Bağlantı hatası", ex.Message.ToString(), "-", "-", "-");
+                        //Helpers.LogFile("Bağlantı hatası", ex.Message.ToString(), "-", "-", "-");
+                        Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", $"**Bağlantı/İşlem Hatası** oluştu: {ex.Message}", "Detay: Try-Catch Bloğu");
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle

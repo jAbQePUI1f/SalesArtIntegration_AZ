@@ -1,4 +1,5 @@
 ﻿using OneCService;
+using SalesArtIntegration_AZ.Helper;
 using SalesArtIntegration_AZ.Manager.Api;
 using SalesArtIntegration_AZ.Manager.Config;
 using SalesArtIntegration_AZ.Manager.Service;
@@ -35,6 +36,8 @@ namespace SalesArtIntegration_AZ
         }
         private async void bttnTransferToProducts_Click(object sender, EventArgs e)
         {
+            Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün transfer işlemi başlatıldı.");
+
             try
             {
                 var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
@@ -46,79 +49,88 @@ namespace SalesArtIntegration_AZ
                 var productData = productDataTask.Result;
 
                 var soapItemsList = soapItemsListTask.Result; // SOAP'tan gelen ürün listesi
-                 
+
                 var existingItemCodes = new HashSet<string>(
                     soapItemsList.@return
                         .Where(item => !string.IsNullOrWhiteSpace(item.ItemCodeCode))
                         .Select(item => item.ItemCodeCode),
-                    StringComparer.OrdinalIgnoreCase 
+                    StringComparer.OrdinalIgnoreCase
                 );
 
-           
+
                 if (productData?.data?.products != null)
                 {
-                    var newItemsToCreate = new List<Products>(); 
+                    var newItemsToCreate = new List<Products>();
 
                     foreach (var localProduct in productData.data.products)
                     {
 
-                        string localProductCode = localProduct.Code; 
+                        string localProductCode = localProduct.Code;
 
-                 
+
                         if (!string.IsNullOrWhiteSpace(localProductCode) && !existingItemCodes.Contains(localProductCode))
                         {
-                       
+
                             newItemsToCreate.Add(localProduct);
                         }
                     }
-      
+
                     if (newItemsToCreate.Count > 0)
                     {
-                        Console.WriteLine($"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
+                        //Console.WriteLine($"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
 
                         foreach (var newItem in newItemsToCreate)
                         {
                             try
-                            {                        
-                                string itemCode = newItem.Code.ToString(); 
-                                string itemName = newItem.Name; 
-                                bool isService = false; 
-                                string unit = newItem.UnitName; 
+                            {
+                                string itemCode = newItem.Code.ToString();
+                                string itemName = newItem.Name;
+                                bool isService = false;
+                                string unit = newItem.UnitName;
 
                                 var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit);
 
                                 if (resultValue.Result)
                                 {
-                                    Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Ürün '{itemName}' başarıyla kaydedildi.", $"Kod: {itemCode}");
+                                    //Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.Message}", $"Kod: {itemCode}");
+                                    //Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
                                 }
 
                             }
                             catch (Exception ex)
                             {
                                 // Hata yönetimi
-                                Console.WriteLine($"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}");
+                                //Console.WriteLine($"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}");
+                                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}", $"Kod: {newItem.Code}");
                             }
                         }
 
-                        Console.WriteLine("Tüm yeni ürünlerin transfer işlemi tamamlandı.");
+                        //Console.WriteLine("Tüm yeni ürünlerin transfer işlemi tamamlandı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Tüm yeni ürünlerin transfer işlemi tamamlandı.");
+
                     }
                     else
                     {
-                        Console.WriteLine("Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
+                        //Console.WriteLine("Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
                     }
                 }
             }
             catch (Exception ex)
             {
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Genel transfer hatası: {ex.Message}", "Detay: Ana Catch Bloğu");
                 MessageBox.Show($"Ürün transferinde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private async void bttnTransferToCustomer_Click_1(object sender, EventArgs e)
         {
+            Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Müşteri transfer işlemi başlatıldı.");
             try
             {
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
@@ -130,100 +142,112 @@ namespace SalesArtIntegration_AZ
                 {
                     pageNumber = 0,
                     pageSize = 9999,
-                
+
                     data = new CustomerListRequest.Data
                     {
                         searchStr = "",
                         sortBalanceByAsc = true
                     }
                 };
-               
+
                 await Task.WhenAll(distributorsTask, partnersListTask);
 
                 var distributors = distributorsTask.Result;
 
-                var partnersList = partnersListTask.Result.@return; 
+                var partnersList = partnersListTask.Result.@return;
 
                 requestBody.distributorIds = new List<int> { distributors.data.Id };
 
                 var customerResponseTask = ApiManager.PostAsync<CustomerListRequest, CustomerResponseJsonModel>(Configuration.GetUrl() + "management/customers-list?lang=tr", requestBody);
 
-                var customerResponse = await customerResponseTask; 
-                     
+                var customerResponse = await customerResponseTask;
+
                 var existingPartnersTINs = new HashSet<string>(
                     partnersList
                         .Where(p => !string.IsNullOrWhiteSpace(p.TIN))
                         .Select(p => p.TIN),
-                    StringComparer.OrdinalIgnoreCase 
+                    StringComparer.OrdinalIgnoreCase
                 );
-             
+
                 if (customerResponse?.data?.customers != null)
                 {
                     var newCustomersToCreate = new List<Customer>();
 
                     foreach (var customerInfo in customerResponse.data.customers)
-                    {                      
-                        string customerTIN = customerInfo.code; 
-                                             
+                    {
+                        string customerTIN = customerInfo.taxNumber == "" ? customerInfo.identificationNumber : customerInfo.taxNumber;
+
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {
-                           
+
                             newCustomersToCreate.Add(customerInfo);
                         }
                     }
-                   
+
                     if (newCustomersToCreate.Count > 0)
                     {
-                        Console.WriteLine($"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
-                                             
+                        //Console.WriteLine($"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", $"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
                         int totalCount = newCustomersToCreate.Count;
                         int processedCount = 0;
 
                         foreach (var newCustomer in newCustomersToCreate)
                         {
                             try
-                            {                              
-                                string partnerCode = newCustomer.code.ToString(); 
-                                string partnerTIN = newCustomer.code;
+                            {
+                                string partnerCode = newCustomer.code.ToString();
+                                string partnerTIN = newCustomer.taxNumber == "" ? newCustomer.identificationNumber : newCustomer.taxNumber;
                                 string partnerName = newCustomer.name;
-                                bool isJuridicalPerson = false; 
+                                bool isJuridicalPerson = newCustomer.taxNumber == "" ? true : false;
 
                                 var resultValue = await _client.InsertNewPartnerAsync(partnerCode, partnerTIN, partnerName, isJuridicalPerson);
 
                                 if (resultValue.Result)
                                 {
                                     processedCount++;
-                                    Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) başarıyla kaydedildi. ({processedCount}/{totalCount})");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", $"Müşteri '{partnerName}' başarıyla kaydedildi. ({processedCount}/{totalCount})", $"TIN: {partnerTIN}");
+                                    //Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) başarıyla kaydedildi. ({processedCount}/{totalCount})");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " + resultValue.Message.ToString());
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.Message}", $"TIN: {partnerTIN}");
+                                    //Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " + resultValue.Message.ToString());
                                 }
 
                             }
                             catch (Exception ex)
                             {
-                                
-                                Console.WriteLine($"Müşteri '{newCustomer.name}' kaydedilirken bir hata oluştu: {ex.Message}");
-                           
+                                Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Kayıt sırasında hata: {ex.Message}", $"Adı: {newCustomer.name}, TIN: {newCustomer.taxNumber}");
+
+                                //Console.WriteLine($"Müşteri '{newCustomer.name}' kaydedilirken bir hata oluştu: {ex.Message}");
+
                             }
                         }
-
-                        Console.WriteLine("Tüm yeni müşterilerin transfer işlemi tamamlandı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Tüm yeni müşterilerin transfer işlemi tamamlandı.");
+                        //Console.WriteLine("Tüm yeni müşterilerin transfer işlemi tamamlandı.");
                     }
                     else
                     {
-                        Console.WriteLine("Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
+                        //Console.WriteLine("Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
                     }
 
-                    Console.WriteLine($"Toplam Yerel Müşteri Sayısı: {customerResponse.data.customers.Count}");
+                    //Console.WriteLine($"Toplam Yerel Müşteri Sayısı: {customerResponse.data.customers.Count}");
+                    Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"Toplam yerel müşteri sayısı: {customerResponse.data.customers.Count}");
                 }
             }
             catch (Exception ex)
             {
                 // Hata yönetimi: Kullanıcıya uygun bir mesaj göster
                 MessageBox.Show($"Müşteri transferinde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Genel transfer hatası: {ex.Message}", "Detay: Ana Catch Bloğu");
             }
+        }
+
+        private void bttnLogs_Click(object sender, EventArgs e)
+        {
+            invoiceListLogs invoiceListLogs = new invoiceListLogs();
+            invoiceListLogs.Show();
         }
     }
     public class PartnerInfo
