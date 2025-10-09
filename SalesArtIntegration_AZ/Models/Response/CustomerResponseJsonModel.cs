@@ -1,6 +1,6 @@
 ﻿namespace SalesArtIntegration_AZ.Models.Response
 {
-    public  class CustomerResponseJsonModel: PagedResponseJson
+    public class CustomerResponseJsonModel : PagedResponseJson
     {
         public DataContainer data { get; set; }
 
@@ -26,6 +26,8 @@
             public double balance { get; set; }
             public object syncStatus { get; set; } // null olabilir
             public object syncMessage { get; set; } // null olabilir
+            public string taxNumber { get; set; }
+            public string identificationNumber { get; set; }
             public bool ebillCustomer { get; set; }
         }
     }

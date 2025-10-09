@@ -5,7 +5,7 @@ namespace SalesArtIntegration_AZ.Manager.Service
 {
     public static class ServiceFactory
     {
-        private static readonly string ServiceUrl = "https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice";    //ConfigurationManager.AppSettings["ServiceUrl"] ?? throw new ConfigurationErrorsException("ServiceUrl app.config'de tanımlı değil.");
+        private static readonly string ServiceUrl = "http://10.100.0.152/BARDA_TEST/ws/WebService/?wsdl"; //"https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice";    //ConfigurationManager.AppSettings["ServiceUrl"] ?? throw new ConfigurationErrorsException("ServiceUrl app.config'de tanımlı değil.");
         private static readonly string Username = "web_user"; //ConfigurationManager.AppSettings["ServiceUsername"] ?? throw new ConfigurationErrorsException("ServiceUsername app.config'de tanımlı değil.");
         private static readonly string Password = "wb_123";//ConfigurationManager.AppSettings["ServicePassword"] ?? throw new ConfigurationErrorsException("ServicePassword app.config'de tanımlı değil.");
 
@@ -14,7 +14,7 @@ namespace SalesArtIntegration_AZ.Manager.Service
             try
             {
                 // BasicHttpBinding yapılandırması
-                var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport)
+                var binding = new BasicHttpBinding(BasicHttpSecurityMode.TransportCredentialOnly)
                 {
                     MaxReceivedMessageSize = 2147483647,
                     MaxBufferSize = 2147483647

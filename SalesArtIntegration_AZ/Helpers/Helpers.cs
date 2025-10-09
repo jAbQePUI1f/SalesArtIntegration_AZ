@@ -7,7 +7,14 @@ namespace SalesArtIntegration_AZ.Helper
 {
     public class Helpers
     {
-        // Enum'un Display Name'ini almak için yardımcı metot
+       
+        public enum LogLevel
+        {
+            INFO,    // Bilgilendirme
+            WARNING, // Uyarı
+            ERROR,   // Hata
+            DEBUG    // Geliştirme/Detay
+        }
         public static string GetDisplayName<T>(T value) where T : Enum
         {
             var fieldInfo = typeof(T).GetField(value.ToString());
@@ -16,24 +23,39 @@ namespace SalesArtIntegration_AZ.Helper
             var attributes = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
             return attributes?.Length > 0 ? attributes[0].Name : value.ToString();
         }
-        public static void LogFile(string logCaption, string invoiceNumber, string remoteInvoiceNumber, string isSuccess, string message)
+        /// <summary>
+        /// Log mesajını belirtilen seviye ve kaynak ile dosyaya yazar.
+        /// </summary>
+        /// <param name="level">Log seviyesi (INFO, ERROR, vb.)</param>
+        /// <param name="source">Logun kaynağı (Fatura, Müşteri, Ürün, Genel)</param>
+        /// <param name="message">Log mesajı</param>
+        /// <param name="additionalInfo">Ek bilgi (Örn: Fatura No, Ürün Kodu vb.)</param>
+        public static void LogFile(LogLevel level, string source, string message, string additionalInfo = "")
         {
-            StreamWriter log;
-            if (!File.Exists("logfile.txt"))
-            {
-                log = new StreamWriter("logfile.txt");
-            }
-            else
-            {
-                log = File.AppendText("logfile.txt");
-            }
-            log.WriteLine("------------------------");
-            log.WriteLine("Hata Mesajı: " + message);
-            log.WriteLine("Faturalar listeleniyor: " + invoiceNumber );
-            log.WriteLine("Log Adı: " + logCaption);
-            log.WriteLine("Log Zamanı: " + DateTime.Now);
+            
+            const string logFilePath = "logfile.txt";
 
-            log.Close();
+            try
+            {
+                using (StreamWriter log = new StreamWriter(logFilePath, true)) // 'true' ile append modunu açtık.
+                {
+                    log.WriteLine("------------------------");
+                    log.WriteLine($"Zaman: {DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}");
+                    log.WriteLine($"Seviye: {level}");
+                    log.WriteLine($"Kaynak: {source}");
+                    log.WriteLine($"Mesaj: {message}");
+                    if (!string.IsNullOrWhiteSpace(additionalInfo))
+                    {
+                        log.WriteLine($"Ek Bilgi: {additionalInfo}");
+                    }
+                    log.WriteLine("------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+            
+                System.Diagnostics.Debug.WriteLine($"Loglama Hatası: {ex.Message}");
+            }
         }
         public static async Task<string> GetDistributorCodeAsync()
         {
