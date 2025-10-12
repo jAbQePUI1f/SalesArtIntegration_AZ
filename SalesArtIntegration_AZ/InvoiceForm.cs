@@ -16,7 +16,7 @@ namespace SalesArtIntegration_AZ
     {
         string documentType = "";
         InvoiceModelResponse invoiceResponse = new InvoiceModelResponse();
-     
+
         public InvoiceForm()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace SalesArtIntegration_AZ
         {
             if (comboboxInvoiceType.SelectedValue != null && comboboxInvoiceType.SelectedValue is Enums.InvoiceType)
             {
-                documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty; 
+                documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
             }
         }
         private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace SalesArtIntegration_AZ
         private async void bttnGetInvoice_Click(object sender, EventArgs e)
         {
 
- 
+
 
             if (string.IsNullOrEmpty(documentType) || documentType == "SEÇİNİZ...")
             {
@@ -288,6 +288,31 @@ namespace SalesArtIntegration_AZ
         {
             invoiceListLogs invoiceListLogs = new invoiceListLogs();
             invoiceListLogs.Show();
+        }
+
+        private void anaMenuyeDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
+        }
+
+        private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+            Application.Exit();
+        }
+
+        private void InvoiceForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+            Application.Exit();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
     }
 }

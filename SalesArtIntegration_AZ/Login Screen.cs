@@ -56,6 +56,18 @@ namespace SalesArtIntegration_AZ
                 rememberMeBox.Checked = false;
             }
         }
+
+        private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void loginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }
 
