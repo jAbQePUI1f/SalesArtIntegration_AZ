@@ -96,7 +96,7 @@
             txtBoxPassword.Size = new Size(336, 50);
             txtBoxPassword.TabIndex = 2;
             txtBoxPassword.Text = "";
-            txtBoxPassword.TrailingIcon = Properties.Resources.key;
+            txtBoxPassword.TrailingIcon = null;
             // 
             // lblUsername
             // 
@@ -182,6 +182,8 @@
             Name = "loginForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
+            FormClosing += loginForm_FormClosing;
+            FormClosed += loginForm_FormClosed;
             Load += loginForm_Load;
             ResumeLayout(false);
             PerformLayout();

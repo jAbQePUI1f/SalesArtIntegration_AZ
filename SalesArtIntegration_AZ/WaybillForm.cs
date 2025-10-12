@@ -103,5 +103,24 @@ namespace SalesArtIntegration_AZ
         {
 
         }
+
+        private void anaMenuyeDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
+        }
+
+        private void WaybillForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+            Application.Exit();
+        }
+
+        private void WaybillForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+            Application.Exit();
+        }
     }
 }
