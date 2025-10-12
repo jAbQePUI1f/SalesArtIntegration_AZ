@@ -116,12 +116,12 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, exitToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(603, 9);
+            menuStrip1.Location = new Point(723, 9);
             menuStrip1.MdiWindowListItem = exitToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
             menuStrip1.RightToLeft = RightToLeft.No;
-            menuStrip1.Size = new Size(236, 24);
+            menuStrip1.Size = new Size(116, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "stripSplash";
             // 
@@ -135,7 +135,7 @@
             // dataIntegrationToolStripMenuItem
             // 
             dataIntegrationToolStripMenuItem.Name = "dataIntegrationToolStripMenuItem";
-            dataIntegrationToolStripMenuItem.Size = new Size(180, 22);
+            dataIntegrationToolStripMenuItem.Size = new Size(161, 22);
             dataIntegrationToolStripMenuItem.Text = "Data Integration";
             dataIntegrationToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             dataIntegrationToolStripMenuItem.Click += DataIntegrationToolStripMenuItem_Click;
@@ -168,6 +168,8 @@
             Name = "SplashScreen";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
+            FormClosing += SplashScreen_FormClosing;
+            FormClosed += SplashScreen_FormClosed;
             Load += SplashScreen_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

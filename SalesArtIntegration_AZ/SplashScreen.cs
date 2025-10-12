@@ -54,6 +54,7 @@ namespace SalesArtIntegration_AZ
         private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void DataIntegrationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,6 +62,18 @@ namespace SalesArtIntegration_AZ
             DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
             dataIntegrationForm.Show();
             this.Hide();
+        }
+
+        private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
