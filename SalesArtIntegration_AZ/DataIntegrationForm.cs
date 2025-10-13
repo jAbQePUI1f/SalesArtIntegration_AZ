@@ -66,12 +66,13 @@ namespace SalesArtIntegration_AZ
                     {
 
                         string localProductCode = localProduct.Code;
-
+                        Helpers.LogFileDataIntegration("Ürün Kod: ", localProductCode);
 
                         if (!string.IsNullOrWhiteSpace(localProductCode) && !existingItemCodes.Contains(localProductCode))
                         {
 
                             newItemsToCreate.Add(localProduct);
+                            Helpers.LogFileDataIntegration("Yeni Ürün Kod: ", localProductCode);
                         }
                     }
 
@@ -126,6 +127,7 @@ namespace SalesArtIntegration_AZ
             {
                 Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Genel transfer hatası: {ex.Message}", "Detay: Ana Catch Bloğu");
                 MessageBox.Show($"Ürün transferinde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helpers.LogFileDataIntegration($"Ürün Aktarılamadı. Bilgi: ", "Tüm Kayıtlar Yenilenemedi");
             }
         }
         private async void bttnTransferToCustomer_Click_1(object sender, EventArgs e)
@@ -134,6 +136,7 @@ namespace SalesArtIntegration_AZ
             try
             {
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
+
 
                 var partnersListTask = _client.GetPartnersListAsync("", ""); // Uzak SOAP Servisindeki Müşteri Listesi
 
@@ -175,12 +178,13 @@ namespace SalesArtIntegration_AZ
 
                     foreach (var customerInfo in customerResponse.data.customers)
                     {
-                        string customerTIN = customerInfo.taxNumber == "" ? customerInfo.identificationNumber : customerInfo.taxNumber;
+                        string customerTIN = customerInfo.taxNumber == null ? customerInfo.identificationNumber : customerInfo.taxNumber;
 
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {
 
                             newCustomersToCreate.Add(customerInfo);
+                            Helpers.LogFileDataIntegration($"Müşteri Bilgi: ", customerInfo.code);
                         }
                     }
 

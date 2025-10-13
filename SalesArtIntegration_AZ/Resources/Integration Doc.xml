@@ -1,7 +1,7 @@
 <!-- SalesArt & 1C Integration Info -->
 
 <!-- API User & Link Info 
-API Link :  https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice?wsdl
+API Link :  http://10.100.0.152/BARDA_TEST/ws/WebService/?wsdl
 User Info : U: web_user, P: wb_123 -->
 
 
@@ -121,7 +121,7 @@ User Info : U: web_user, P: wb_123 -->
 <!--  Data Aktarımı Müşteri & Ürün POST/GET -->
 
 <!--  Web-servisin linki:
-http://10.100.0.55/BARDA_TEST_1/ws/WebService/
+http://10.100.0.152/BARDA_TEST/ws/WebService/?wsdl
 Kullanıcı adı: WEB_USER, Şifre: Wb_123  -->
 
 <!--1.Tüm Ürün listesini almak için: GetItemList -->
