@@ -168,8 +168,8 @@
             Name = "SplashScreen";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
-            FormClosing += SplashScreen_FormClosing;
-            FormClosed += SplashScreen_FormClosed;
+            //FormClosing += SplashScreen_FormClosing;
+            //FormClosed += SplashScreen_FormClosed;
             Load += SplashScreen_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
