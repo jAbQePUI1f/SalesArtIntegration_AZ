@@ -35,6 +35,24 @@ namespace SalesArtIntegration_AZ.Helper
 
             log.Close();
         }
+        public static void LogFileDataIntegration(string logCaption, string message)
+        {
+            StreamWriter log;
+            if (!File.Exists("logfileDataIntegration.txt"))
+            {
+                log = new StreamWriter("logfileDataIntegration.txt");
+            }
+            else
+            {
+                log = File.AppendText("logfileDataIntegration.txt");
+            }
+            log.WriteLine("------------------------");
+            log.WriteLine("Hata Mesajı: " + message);
+            log.WriteLine("Log Adı: " + logCaption);
+            log.WriteLine("Log Zamanı: " + DateTime.Now);
+
+            log.Close();
+        }
         public static async Task<string> GetDistributorCodeAsync()
         {
             var distributors = await ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");

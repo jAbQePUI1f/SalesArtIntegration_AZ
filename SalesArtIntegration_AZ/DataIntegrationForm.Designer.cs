@@ -54,7 +54,7 @@
             bttnTransferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToCustomer.Name = "bttnTransferToCustomer";
             bttnTransferToCustomer.NoAccentTextColor = Color.Empty;
-            bttnTransferToCustomer.Padding = new Padding(10, 10, 10, 10);
+            bttnTransferToCustomer.Padding = new Padding(10);
             bttnTransferToCustomer.Size = new Size(207, 59);
             bttnTransferToCustomer.TabIndex = 2;
             bttnTransferToCustomer.Text = "Müşterı Aktar";
@@ -78,7 +78,7 @@
             bttnTransferToProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToProducts.Name = "bttnTransferToProducts";
             bttnTransferToProducts.NoAccentTextColor = Color.Empty;
-            bttnTransferToProducts.Padding = new Padding(10, 10, 10, 10);
+            bttnTransferToProducts.Padding = new Padding(10);
             bttnTransferToProducts.Size = new Size(209, 59);
             bttnTransferToProducts.TabIndex = 3;
             bttnTransferToProducts.Text = "Ürün Aktar";
@@ -137,7 +137,7 @@
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
             bttnLogs.Location = new Point(678, 496);
-            bttnLogs.Margin = new Padding(4, 4, 4, 4);
+            bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
@@ -149,6 +149,7 @@
             bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnLogs.UseAccentColor = false;
             bttnLogs.UseVisualStyleBackColor = true;
+            bttnLogs.Click += bttnLogs_Click;
             // 
             // DataIntegrationForm
             // 

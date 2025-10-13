@@ -53,8 +53,8 @@ namespace SalesArtIntegration_AZ
                 documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
             }
 
-            string beginDate = dateTimeStartDate.Value.ToString("yyyy-MM-dd");
-            string endDate = dateTimeFinishDate.Value.ToString("yyyy-MM-dd");
+            string beginDate = dateTimeStartDate.Value.AddDays(-1).ToString("yyyy-MM-dd");
+            string endDate = dateTimeFinishDate.Value.AddDays(1).ToString("yyyy-MM-dd");
 
             var invoiceRequest = new InvoiceRequest
             {

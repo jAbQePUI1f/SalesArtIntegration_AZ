@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataIntegrationLogs));
             logListBox = new ListBox();
             loqLabel = new Label();
+            dataLogsDelete = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // logListBox
@@ -57,11 +58,34 @@
             loqLabel.Text = "Log History";
             loqLabel.Click += loqLabel_Click;
             // 
+            // dataLogsDelete
+            // 
+            dataLogsDelete.AutoSize = false;
+            dataLogsDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            dataLogsDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            dataLogsDelete.Depth = 0;
+            dataLogsDelete.FlatStyle = FlatStyle.Popup;
+            dataLogsDelete.HighEmphasis = false;
+            dataLogsDelete.Icon = null;
+            dataLogsDelete.Location = new Point(671, 23);
+            dataLogsDelete.Margin = new Padding(4, 6, 4, 6);
+            dataLogsDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            dataLogsDelete.Name = "dataLogsDelete";
+            dataLogsDelete.NoAccentTextColor = Color.Empty;
+            dataLogsDelete.Size = new Size(116, 36);
+            dataLogsDelete.TabIndex = 2;
+            dataLogsDelete.Text = "Clear";
+            dataLogsDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            dataLogsDelete.UseAccentColor = false;
+            dataLogsDelete.UseVisualStyleBackColor = true;
+            dataLogsDelete.Click += dataLogsDelete_Click;
+            // 
             // DataIntegrationLogs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 559);
+            Controls.Add(dataLogsDelete);
             Controls.Add(loqLabel);
             Controls.Add(logListBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -76,5 +100,6 @@
 
         private ListBox logListBox;
         private Label loqLabel;
+        private MaterialSkin.Controls.MaterialButton dataLogsDelete;
     }
 }
