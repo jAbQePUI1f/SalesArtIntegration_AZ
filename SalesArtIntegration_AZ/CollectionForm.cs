@@ -217,5 +217,10 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
+
+        private void CollectionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

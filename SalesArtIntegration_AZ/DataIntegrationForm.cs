@@ -32,10 +32,12 @@ namespace SalesArtIntegration_AZ
         }
         private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
         private async void bttnTransferToProducts_Click(object sender, EventArgs e)
         {
+            Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün transfer işlemi başlatıldı.");
+
             try
             {
                 var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
@@ -76,8 +78,8 @@ namespace SalesArtIntegration_AZ
 
                     if (newItemsToCreate.Count > 0)
                     {
-                        Console.WriteLine($"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
-                        Helpers.LogFileDataIntegration($"Aktarım Başlatılamadı. Hata:  { newItemsToCreate.Count}","-");
+                        //Console.WriteLine($"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Uzaktaki servise aktarılacak yeni ürün sayısı: {newItemsToCreate.Count}");
 
                         foreach (var newItem in newItemsToCreate)
                         {
@@ -92,42 +94,45 @@ namespace SalesArtIntegration_AZ
 
                                 if (resultValue.Result)
                                 {
-                                    Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
-                                    Helpers.LogFileDataIntegration($"Ürün Aktarıldı. Bilgi:  {itemName}", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Ürün '{itemName}' başarıyla kaydedildi.", $"Kod: {itemCode}");
+                                    //Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
-                                    Helpers.LogFileDataIntegration($"Ürünler Aktarılamadı. Bilgi:  {itemName}", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.Message}", $"Kod: {itemCode}");
+                                    //Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
                                 }
 
                             }
                             catch (Exception ex)
                             {
                                 // Hata yönetimi
-                                Console.WriteLine($"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}");
-                                Helpers.LogFileDataIntegration($"Ürün Aktarılamadı. Bilgi:  {ex.Message}", "-");
+                                //Console.WriteLine($"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}");
+                                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{newItem.Name}' kaydedilirken bir hata oluştu: {ex.Message}", $"Kod: {newItem.Code}");
                             }
                         }
 
-                        Console.WriteLine("Tüm yeni ürünlerin transfer işlemi tamamlandı.");
-                        Helpers.LogFileDataIntegration($"Ürünler Aktarıldı. Bilgi: ", "Tüm Kayıtlar Yenilendi");
+                        //Console.WriteLine("Tüm yeni ürünlerin transfer işlemi tamamlandı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Tüm yeni ürünlerin transfer işlemi tamamlandı.");
+
                     }
                     else
                     {
-                        Console.WriteLine("Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
-                        Helpers.LogFileDataIntegration($"Ürün Aktarılmadı. Bilgi: ", "Uzaktaki Servise aktarılacak Yeni ürün bulunamadı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
+                        //Console.WriteLine("Uzaktaki servise aktarılacak yeni ürün bulunamadı.");
                     }
                 }
             }
             catch (Exception ex)
             {
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Genel transfer hatası: {ex.Message}", "Detay: Ana Catch Bloğu");
                 MessageBox.Show($"Ürün transferinde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Helpers.LogFileDataIntegration($"Ürün Aktarılamadı. Bilgi: ", "Tüm Kayıtlar Yenilenemedi");
             }
         }
         private async void bttnTransferToCustomer_Click_1(object sender, EventArgs e)
         {
+            Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Müşteri transfer işlemi başlatıldı.");
             try
             {
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
@@ -172,8 +177,8 @@ namespace SalesArtIntegration_AZ
 
                     foreach (var customerInfo in customerResponse.data.customers)
                     {
-                        string customerTIN = customerInfo.code;
-                        Helpers.LogFileDataIntegration($"Müşteri Bilgi: ", customerTIN);
+                        string customerTIN = customerInfo.taxNumber == "" ? customerInfo.identificationNumber : customerInfo.taxNumber;
+
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {
 
@@ -184,9 +189,8 @@ namespace SalesArtIntegration_AZ
 
                     if (newCustomersToCreate.Count > 0)
                     {
-                        Console.WriteLine($"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
-                        Helpers.LogFileDataIntegration($"Müşteri Bilgi:  { newCustomersToCreate.Count}","--");
-
+                        //Console.WriteLine($"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", $"Uzaktaki servise aktarılacak yeni müşteri sayısı: {newCustomersToCreate.Count}");
                         int totalCount = newCustomersToCreate.Count;
                         int processedCount = 0;
 
@@ -195,58 +199,63 @@ namespace SalesArtIntegration_AZ
                             try
                             {
                                 string partnerCode = newCustomer.code.ToString();
-                                string partnerTIN = newCustomer.code;
+                                string partnerTIN = newCustomer.taxNumber == "" ? newCustomer.identificationNumber : newCustomer.taxNumber;
                                 string partnerName = newCustomer.name;
-                                bool isJuridicalPerson = false;
-                                Helpers.LogFileDataIntegration($"Müşteri Bilgi: ", partnerCode + " " + partnerTIN + " " + partnerName);
+                                bool isJuridicalPerson = newCustomer.taxNumber == "" ? true : false;
 
                                 var resultValue = await _client.InsertNewPartnerAsync(partnerCode, partnerTIN, partnerName, isJuridicalPerson);
 
                                 if (resultValue.Result)
                                 {
                                     processedCount++;
-                                    Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) başarıyla kaydedildi. ({processedCount}/{totalCount})");
-                                    Helpers.LogFileDataIntegration($"Müşteri '{partnerName}' ({partnerTIN}) başarıyla kaydedildi. ({processedCount}/{totalCount})","-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", $"Müşteri '{partnerName}' başarıyla kaydedildi. ({processedCount}/{totalCount})", $"TIN: {partnerTIN}");
+                                    //Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) başarıyla kaydedildi. ({processedCount}/{totalCount})");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " + resultValue.Message.ToString());
-                                    Helpers.LogFileDataIntegration($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " , resultValue.Message.ToString());
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.Message}", $"TIN: {partnerTIN}");
+                                    //Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " + resultValue.Message.ToString());
                                 }
 
                             }
                             catch (Exception ex)
                             {
+                                Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Kayıt sırasında hata: {ex.Message}", $"Adı: {newCustomer.name}, TIN: {newCustomer.taxNumber}");
 
-                                Console.WriteLine($"Müşteri '{newCustomer.name}' kaydedilirken bir hata oluştu: {ex.Message}");
-                                Helpers.LogFileDataIntegration($"Müşteri '{newCustomer.name}' kaydedilirken bir hata oluştu: {ex.Message}","--");
+                                //Console.WriteLine($"Müşteri '{newCustomer.name}' kaydedilirken bir hata oluştu: {ex.Message}");
+
                             }
                         }
-
-                        Console.WriteLine("Tüm yeni müşterilerin transfer işlemi tamamlandı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Tüm yeni müşterilerin transfer işlemi tamamlandı.");
+                        //Console.WriteLine("Tüm yeni müşterilerin transfer işlemi tamamlandı.");
                     }
                     else
                     {
-                        Console.WriteLine("Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
-                        Helpers.LogFileDataIntegration("Uzaktaki Servise aktarılacak yeni müşteri bulunamadı.", "--");
+                        //Console.WriteLine("Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
+                        Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Uzaktaki servise aktarılacak yeni müşteri bulunamadı.");
                     }
 
-                    Console.WriteLine($"Toplam Yerel Müşteri Sayısı: {customerResponse.data.customers.Count}");
-                    Helpers.LogFileDataIntegration($"Toplam Yerel Müşteri Sayısı: {customerResponse.data.customers.Count}","--");
+                    //Console.WriteLine($"Toplam Yerel Müşteri Sayısı: {customerResponse.data.customers.Count}");
+                    Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"Toplam yerel müşteri sayısı: {customerResponse.data.customers.Count}");
                 }
             }
             catch (Exception ex)
             {
                 // Hata yönetimi: Kullanıcıya uygun bir mesaj göster
                 MessageBox.Show($"Müşteri transferinde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Helpers.LogFileDataIntegration($"Müşteri transferinde bir hata oluştu: {ex.Message}", "Hata");
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Genel transfer hatası: {ex.Message}", "Detay: Ana Catch Bloğu");
             }
         }
 
         private void bttnLogs_Click(object sender, EventArgs e)
         {
-            DataIntegrationLogs dataIntegrationLogs = new DataIntegrationLogs();
-            dataIntegrationLogs.Show();
+            invoiceListLogs invoiceListLogs = new invoiceListLogs();
+            invoiceListLogs.Show();
+        }
+
+        private void DataIntegrationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
     public class PartnerInfo
