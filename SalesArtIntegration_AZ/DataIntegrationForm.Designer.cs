@@ -138,7 +138,7 @@
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
             bttnLogs.Location = new Point(775, 661);
-            bttnLogs.Margin = new Padding(5, 5, 5, 5);
+            bttnLogs.Margin = new Padding(5);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
@@ -173,6 +173,7 @@
             Name = "DataIntegrationForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
+            FormClosed += DataIntegrationForm_FormClosed;
             Load += DataIntegrationForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

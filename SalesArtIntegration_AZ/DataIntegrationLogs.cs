@@ -68,5 +68,10 @@
                 MessageBox.Show("Log Dosyası Bulunamadı", "Log Bilgisi", MessageBoxButtons.OK);
             }
         }
+
+        private void DataIntegrationLogs_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -38,11 +38,12 @@
             logListBox.BackColor = SystemColors.HighlightText;
             logListBox.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             logListBox.FormattingEnabled = true;
-            logListBox.ItemHeight = 20;
-            logListBox.Location = new Point(3, 74);
+            logListBox.ItemHeight = 25;
+            logListBox.Location = new Point(3, 99);
+            logListBox.Margin = new Padding(3, 4, 3, 4);
             logListBox.Name = "logListBox";
             logListBox.SelectionMode = SelectionMode.MultiExtended;
-            logListBox.Size = new Size(794, 484);
+            logListBox.Size = new Size(907, 629);
             logListBox.TabIndex = 0;
             logListBox.SelectedIndexChanged += logListBox_SelectedIndexChanged;
             // 
@@ -50,23 +51,25 @@
             // 
             loqLabel.AutoSize = true;
             loqLabel.Font = new Font("Segoe UI Semibold", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            loqLabel.Location = new Point(3, 9);
+            loqLabel.Location = new Point(3, 12);
             loqLabel.Name = "loqLabel";
-            loqLabel.Size = new Size(216, 50);
+            loqLabel.Size = new Size(274, 62);
             loqLabel.TabIndex = 1;
             loqLabel.Text = "Log History";
             loqLabel.Click += loqLabel_Click;
             // 
             // DataIntegrationLogs
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 559);
+            ClientSize = new Size(914, 745);
             Controls.Add(loqLabel);
             Controls.Add(logListBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DataIntegrationLogs";
             Text = "DataIntegrationLogs";
+            FormClosed += DataIntegrationLogs_FormClosed;
             Load += DataIntegrationLogs_Load;
             ResumeLayout(false);
             PerformLayout();

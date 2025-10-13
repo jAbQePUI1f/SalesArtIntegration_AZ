@@ -59,15 +59,11 @@ namespace SalesArtIntegration_AZ
 
         private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
-            System.Windows.Forms.Application.Exit();
+            Environment.Exit(0);
+
         }
 
-        private void loginForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-            System.Windows.Forms.Application.Exit();
-        }
+       
     }
 }
 

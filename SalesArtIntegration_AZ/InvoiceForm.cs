@@ -306,20 +306,17 @@ namespace SalesArtIntegration_AZ
 
         private void InvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
-            Application.Exit();
+            Environment.Exit(0);
         }
 
-        private void InvoiceForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-            Application.Exit();
-        }
+        //private void InvoiceForm_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+
+        //}
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
-            Application.Exit();
+            Environment.Exit(0);
         }
     }
 }

@@ -344,7 +344,7 @@
             Name = "InvoiceForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Transfer Invoice";
-            FormClosing += InvoiceForm_FormClosing;
+            //FormClosing += InvoiceForm_FormClosing;
             FormClosed += InvoiceForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();

@@ -32,7 +32,7 @@ namespace SalesArtIntegration_AZ
         }
         private void çıkışToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
         private async void bttnTransferToProducts_Click(object sender, EventArgs e)
         {
@@ -248,6 +248,11 @@ namespace SalesArtIntegration_AZ
         {
             invoiceListLogs invoiceListLogs = new invoiceListLogs();
             invoiceListLogs.Show();
+        }
+
+        private void DataIntegrationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
     public class PartnerInfo
