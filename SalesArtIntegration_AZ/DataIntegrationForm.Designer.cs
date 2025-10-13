@@ -47,15 +47,16 @@
             bttnTransferToCustomer.Depth = 0;
             bttnTransferToCustomer.FlatAppearance.BorderColor = SystemColors.ActiveCaption;
             bttnTransferToCustomer.FlatAppearance.BorderSize = 8;
+            bttnTransferToCustomer.FlatStyle = FlatStyle.Flat;
             bttnTransferToCustomer.HighEmphasis = true;
             bttnTransferToCustomer.Icon = null;
-            bttnTransferToCustomer.Location = new Point(191, 531);
-            bttnTransferToCustomer.Margin = new Padding(5, 8, 5, 8);
+            bttnTransferToCustomer.Location = new Point(118, 416);
+            bttnTransferToCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnTransferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToCustomer.Name = "bttnTransferToCustomer";
             bttnTransferToCustomer.NoAccentTextColor = Color.Empty;
-            bttnTransferToCustomer.Padding = new Padding(10);
-            bttnTransferToCustomer.Size = new Size(207, 59);
+            bttnTransferToCustomer.Padding = new Padding(9, 8, 9, 8);
+            bttnTransferToCustomer.Size = new Size(284, 60);
             bttnTransferToCustomer.TabIndex = 2;
             bttnTransferToCustomer.Text = "Müşterı Aktar";
             bttnTransferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -71,15 +72,16 @@
             bttnTransferToProducts.Depth = 0;
             bttnTransferToProducts.FlatAppearance.BorderColor = SystemColors.ActiveCaption;
             bttnTransferToProducts.FlatAppearance.BorderSize = 8;
+            bttnTransferToProducts.FlatStyle = FlatStyle.Flat;
             bttnTransferToProducts.HighEmphasis = true;
             bttnTransferToProducts.Icon = null;
-            bttnTransferToProducts.Location = new Point(571, 531);
-            bttnTransferToProducts.Margin = new Padding(5, 8, 5, 8);
+            bttnTransferToProducts.Location = new Point(471, 416);
+            bttnTransferToProducts.Margin = new Padding(4, 6, 4, 6);
             bttnTransferToProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToProducts.Name = "bttnTransferToProducts";
             bttnTransferToProducts.NoAccentTextColor = Color.Empty;
-            bttnTransferToProducts.Padding = new Padding(10);
-            bttnTransferToProducts.Size = new Size(209, 59);
+            bttnTransferToProducts.Padding = new Padding(9, 8, 9, 8);
+            bttnTransferToProducts.Size = new Size(270, 60);
             bttnTransferToProducts.TabIndex = 3;
             bttnTransferToProducts.Text = "Ürün Aktar";
             bttnTransferToProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -98,34 +100,34 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(856, 23);
+            menuStrip1.Location = new Point(739, 9);
             menuStrip1.MdiWindowListItem = çıkışToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
             menuStrip1.RightToLeft = RightToLeft.No;
-            menuStrip1.Size = new Size(120, 30);
+            menuStrip1.Size = new Size(96, 24);
             menuStrip1.TabIndex = 6;
             menuStrip1.Text = "stripSplash";
             // 
             // menüToolStripMenuItem
             // 
+            menüToolStripMenuItem.BackgroundImageLayout = ImageLayout.Center;
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anaMenüyeDönToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(63, 24);
+            menüToolStripMenuItem.Size = new Size(50, 20);
             menüToolStripMenuItem.Text = "Menu";
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(210, 26);
+            anaMenüyeDönToolStripMenuItem.Size = new Size(180, 22);
             anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenüyeDönToolStripMenuItem_Click;
             // 
             // çıkışToolStripMenuItem1
             // 
             çıkışToolStripMenuItem1.Name = "çıkışToolStripMenuItem1";
-            çıkışToolStripMenuItem1.Size = new Size(48, 24);
+            çıkışToolStripMenuItem1.Size = new Size(38, 20);
             çıkışToolStripMenuItem1.Text = "Exit";
             çıkışToolStripMenuItem1.Click += çıkışToolStripMenuItem1_Click;
             // 
@@ -135,14 +137,15 @@
             bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnLogs.Depth = 0;
+            bttnLogs.FlatStyle = FlatStyle.Flat;
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(678, 496);
-            bttnLogs.Margin = new Padding(4);
+            bttnLogs.Location = new Point(672, 531);
+            bttnLogs.Margin = new Padding(4, 3, 4, 3);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(186, 61);
+            bttnLogs.Size = new Size(163, 46);
             bttnLogs.TabIndex = 18;
             bttnLogs.Text = "Logs";
             bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
@@ -154,12 +157,12 @@
             // 
             // DataIntegrationForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(976, 728);
+            ClientSize = new Size(848, 589);
             ControlBox = false;
             Controls.Add(bttnLogs);
             Controls.Add(menuStrip1);
@@ -168,7 +171,6 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "DataIntegrationForm";
             StartPosition = FormStartPosition.CenterParent;
