@@ -298,7 +298,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "WaybillForm";
             Text = "Transfer Waybill";
-            FormClosing += WaybillForm_FormClosing;
+            //FormClosing += WaybillForm_FormClosing;
             FormClosed += WaybillForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();

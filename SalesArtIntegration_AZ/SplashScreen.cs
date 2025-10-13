@@ -16,9 +16,14 @@ namespace SalesArtIntegration_AZ
 
         private void bttnInvoice_Click(object sender, EventArgs e)
         {
+            //InvoiceForm invoiceForm = new InvoiceForm();
+            //invoiceForm.Show();
+            //this.Hide();
+
             InvoiceForm invoiceForm = new InvoiceForm();
-            invoiceForm.Show();
             this.Hide();
+            invoiceForm.FormClosed += (s, args) => this.Close(); // Alt form kapanınca bu form da kapansın
+            invoiceForm.ShowDialog(); // Show() yerine ShowDialog() kullanabilirsiniz
         }
 
         private void bttnWaybill_Click(object sender, EventArgs e)
@@ -53,8 +58,8 @@ namespace SalesArtIntegration_AZ
 
         private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-            System.Windows.Forms.Application.Exit();
+            Environment.Exit(0);
+
         }
 
         private void DataIntegrationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,16 +69,15 @@ namespace SalesArtIntegration_AZ
             this.Hide();
         }
 
-        private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-            System.Windows.Forms.Application.Exit();
-        }
+        //private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+         
 
-        private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-            System.Windows.Forms.Application.Exit();
-        }
+        //}
+
+        //private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+            
+        //}
     }
 }

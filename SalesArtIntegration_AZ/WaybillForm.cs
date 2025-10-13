@@ -41,7 +41,7 @@ namespace SalesArtIntegration_AZ
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private async void bttnGetWaybill_Click(object sender, EventArgs e)
@@ -113,14 +113,8 @@ namespace SalesArtIntegration_AZ
 
         private void WaybillForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
-            Application.Exit();
+            Environment.Exit(0);
         }
 
-        private void WaybillForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-            Application.Exit();
-        }
     }
 }

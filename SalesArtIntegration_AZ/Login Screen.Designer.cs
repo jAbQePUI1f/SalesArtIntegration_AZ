@@ -182,7 +182,7 @@
             Name = "loginForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
-            FormClosing += loginForm_FormClosing;
+            //FormClosing += loginForm_FormClosing;
             FormClosed += loginForm_FormClosed;
             Load += loginForm_Load;
             ResumeLayout(false);
