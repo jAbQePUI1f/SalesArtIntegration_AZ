@@ -137,6 +137,7 @@ namespace SalesArtIntegration_AZ
             {
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
 
+
                 var partnersListTask = _client.GetPartnersListAsync("", ""); // Uzak SOAP Servisindeki Müşteri Listesi
 
                 // Diğer verilerin çekimi (bu kısım zaten vardı):
@@ -177,7 +178,7 @@ namespace SalesArtIntegration_AZ
 
                     foreach (var customerInfo in customerResponse.data.customers)
                     {
-                        string customerTIN = customerInfo.taxNumber == "" ? customerInfo.identificationNumber : customerInfo.taxNumber;
+                        string customerTIN = customerInfo.taxNumber == null ? customerInfo.identificationNumber : customerInfo.taxNumber;
 
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {

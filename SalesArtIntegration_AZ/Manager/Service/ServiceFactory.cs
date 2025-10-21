@@ -1,6 +1,7 @@
 ﻿using OneCService;
 using SalesArtIntegration_AZ.Manager.Config;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace SalesArtIntegration_AZ.Manager.Service
 {
