@@ -1,4 +1,5 @@
 ﻿using OneCService;
+using SalesArtIntegration_AZ.Manager.Config;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
@@ -6,9 +7,9 @@ namespace SalesArtIntegration_AZ.Manager.Service
 {
     public static class ServiceFactory
     {
-        private static readonly string ServiceUrl = "http://10.100.0.152/BARDA_TEST/ws/WebService/"; //"https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice";    //ConfigurationManager.AppSettings["ServiceUrl"] ?? throw new ConfigurationErrorsException("ServiceUrl app.config'de tanımlı değil.");
-        private static readonly string Username = "web_user"; //ConfigurationManager.AppSettings["ServiceUsername"] ?? throw new ConfigurationErrorsException("ServiceUsername app.config'de tanımlı değil.");
-        private static readonly string Password = "wb_123";//ConfigurationManager.AppSettings["ServicePassword"] ?? throw new ConfigurationErrorsException("ServicePassword app.config'de tanımlı değil.");
+        private static readonly string ServiceUrl = Configuration.getC1ServiceUrl(); //"http://10.100.0.152/BARDA_TEST/ws/WebService/"; //"https://1cdist.sgofc.com/BARDA_TEST_1/ws/webservice";    //ConfigurationManager.AppSettings["ServiceUrl"] ?? throw new ConfigurationErrorsException("ServiceUrl app.config'de tanımlı değil.");
+        private static readonly string Username = Configuration.getC1ServiceUsername();//"web_user"; //ConfigurationManager.AppSettings["ServiceUsername"] ?? throw new ConfigurationErrorsException("ServiceUsername app.config'de tanımlı değil.");
+        private static readonly string Password = Configuration.getC1ServiceUserpassword();// "wb_123";//ConfigurationManager.AppSettings["ServicePassword"] ?? throw new ConfigurationErrorsException("ServicePassword app.config'de tanımlı değil.");
 
         public static WebServicePortTypeClient GetServiceClient(int timeout = 100000) // Varsayılan timeout: 100 saniye
         {

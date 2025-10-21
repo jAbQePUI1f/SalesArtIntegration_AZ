@@ -100,7 +100,7 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem, çıkışToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(739, 9);
+            menuStrip1.Location = new Point(879, 45);
             menuStrip1.MdiWindowListItem = çıkışToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -140,8 +140,8 @@
             bttnLogs.FlatStyle = FlatStyle.Flat;
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(672, 531);
-            bttnLogs.Margin = new Padding(4, 3, 4, 3);
+            bttnLogs.Location = new Point(800, 665);
+            bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
@@ -162,7 +162,7 @@
             BackColor = Color.Snow;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(848, 589);
+            ClientSize = new Size(999, 750);
             ControlBox = false;
             Controls.Add(bttnLogs);
             Controls.Add(menuStrip1);

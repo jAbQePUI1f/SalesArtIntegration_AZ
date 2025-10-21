@@ -12,6 +12,18 @@ namespace SalesArtIntegration_AZ.Manager.Config
         {
             return ConfigurationManager.AppSettings["collectionIsAutoApply"];
         }
+        public static string getC1ServiceUrl()
+        {
+            return ConfigurationManager.AppSettings["C1ServiceUrl"];
+        }
+        public static string getC1ServiceUsername()
+        {
+            return ConfigurationManager.AppSettings["C1ServiceUsername"];
+        }
+        public static string getC1ServiceUserpassword()
+        {
+            return ConfigurationManager.AppSettings["C1ServicePassword"];
+        }
         public static bool getIsInvoice()
         {
             return Convert.ToBoolean(ConfigurationManager.AppSettings["isInvoice"]);
