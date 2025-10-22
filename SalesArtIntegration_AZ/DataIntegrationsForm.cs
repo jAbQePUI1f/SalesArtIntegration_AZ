@@ -342,6 +342,7 @@ namespace SalesArtIntegration_AZ
                                 code = product.Code,
                                 name = product.Name,
                                 unit = product.UnitName
+                                
                             });
 
                             Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
@@ -438,10 +439,11 @@ namespace SalesArtIntegration_AZ
                         string itemName = product.name;
                         bool isService = false;
                         string unit = product.unit;
+                        
 
-                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit);
+                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
 
-                        if (resultValue.Result)
+                        if (resultValue.@return.Result)
                         {
                             processedCount++;
                             successCount++;
@@ -454,7 +456,7 @@ namespace SalesArtIntegration_AZ
                             processedCount++;
                             errorCount++;
                             Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                $"Ürün '{itemName}' kayıt edilemedi: {resultValue.Message}",
+                                $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}",
                                 $"Kod: {itemCode}");
                         }
                     }
