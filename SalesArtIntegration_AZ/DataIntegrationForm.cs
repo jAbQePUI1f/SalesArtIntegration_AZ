@@ -90,16 +90,16 @@ namespace SalesArtIntegration_AZ
                                 bool isService = false;
                                 string unit = newItem.UnitName;
 
-                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit);
+                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
 
-                                if (resultValue.Result)
+                                if (resultValue.@return.Result)
                                 {
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Ürün '{itemName}' başarıyla kaydedildi.", $"Kod: {itemCode}");
                                     //Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
                                 }
                                 else
                                 {
-                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.Message}", $"Kod: {itemCode}");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}", $"Kod: {itemCode}");
                                     //Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
                                 }
 
