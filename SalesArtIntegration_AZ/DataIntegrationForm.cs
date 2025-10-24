@@ -90,16 +90,16 @@ namespace SalesArtIntegration_AZ
                                 bool isService = false;
                                 string unit = newItem.UnitName;
 
-                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit);
+                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
 
-                                if (resultValue.Result)
+                                if (resultValue.@return.Result)
                                 {
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", $"Ürün '{itemName}' başarıyla kaydedildi.", $"Kod: {itemCode}");
                                     //Console.WriteLine($"Ürün '{itemName}' başarıyla kaydedildi.");
                                 }
                                 else
                                 {
-                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.Message}", $"Kod: {itemCode}");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}", $"Kod: {itemCode}");
                                     //Console.WriteLine($"Ürün '{itemName}' kayıt edilemedi!! . " + resultValue.Message.ToString());
                                 }
 
@@ -136,6 +136,7 @@ namespace SalesArtIntegration_AZ
             try
             {
                 var distributorsTask = ApiManager.GetAsync<DistributorsResponseModel>(Configuration.GetUrl() + "management/distributors");
+
 
                 var partnersListTask = _client.GetPartnersListAsync("", ""); // Uzak SOAP Servisindeki Müşteri Listesi
 
@@ -177,7 +178,7 @@ namespace SalesArtIntegration_AZ
 
                     foreach (var customerInfo in customerResponse.data.customers)
                     {
-                        string customerTIN = customerInfo.taxNumber == "" ? customerInfo.identificationNumber : customerInfo.taxNumber;
+                        string customerTIN = customerInfo.taxNumber == null ? customerInfo.identificationNumber : customerInfo.taxNumber;
 
                         if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
                         {

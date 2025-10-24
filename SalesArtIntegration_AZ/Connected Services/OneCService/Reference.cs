@@ -95,8 +95,7 @@ namespace OneCService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewItem", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        System.Threading.Tasks.Task<OneCService.ItemsResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit);
+        System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(OneCService.InsertNewItemRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:GetItemList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -4543,6 +4542,63 @@ namespace OneCService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertNewItem", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class InsertNewItemRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
+        public string ItemCode;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=1)]
+        public string ItemName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=2)]
+        public bool IsService;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=3)]
+        public string Unit;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> TaxID;
+        
+        public InsertNewItemRequest()
+        {
+        }
+        
+        public InsertNewItemRequest(string ItemCode, string ItemName, bool IsService, string Unit, System.Nullable<int> TaxID)
+        {
+            this.ItemCode = ItemCode;
+            this.ItemName = ItemName;
+            this.IsService = IsService;
+            this.Unit = Unit;
+            this.TaxID = TaxID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertNewItemResponse", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class InsertNewItemResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
+        public OneCService.ItemsResponse @return;
+        
+        public InsertNewItemResponse()
+        {
+        }
+        
+        public InsertNewItemResponse(OneCService.ItemsResponse @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="GetItemList", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
     public partial class GetItemListRequest
     {
@@ -4873,9 +4929,21 @@ namespace OneCService
             return base.Channel.InsertNewPartnerAsync(PartnerCode, PartnerTIN, PartnerName, IsJuridicalPerson);
         }
         
-        public System.Threading.Tasks.Task<OneCService.ItemsResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit)
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> OneCService.WebServicePortType.InsertNewItemAsync(OneCService.InsertNewItemRequest request)
         {
-            return base.Channel.InsertNewItemAsync(ItemCode, ItemName, IsService, Unit);
+            return base.Channel.InsertNewItemAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit, System.Nullable<int> TaxID)
+        {
+            OneCService.InsertNewItemRequest inValue = new OneCService.InsertNewItemRequest();
+            inValue.ItemCode = ItemCode;
+            inValue.ItemName = ItemName;
+            inValue.IsService = IsService;
+            inValue.Unit = Unit;
+            inValue.TaxID = TaxID;
+            return ((OneCService.WebServicePortType)(this)).InsertNewItemAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

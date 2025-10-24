@@ -64,9 +64,13 @@ namespace SalesArtIntegration_AZ
 
         private void DataIntegrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
+            DataIntegrationsForm dataIntegrationForm = new DataIntegrationsForm();
             dataIntegrationForm.Show();
             this.Hide();
+
+            //DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
+            //dataIntegrationForm.Show();
+            //this.Hide();
         }
 
         //private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
