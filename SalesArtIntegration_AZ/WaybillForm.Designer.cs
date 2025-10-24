@@ -73,34 +73,34 @@
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, collectionToolStripMenuItem, exitToolStripMenuItem, anaMenüyeDönToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             menuToolStripMenuItem.Size = new Size(50, 20);
-            menuToolStripMenuItem.Text = "Menu";
+            menuToolStripMenuItem.Text = "Menü";
             // 
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(167, 22);
-            invoiceToolStripMenuItem.Text = "Invoice";
+            invoiceToolStripMenuItem.Size = new Size(206, 22);
+            invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(167, 22);
-            collectionToolStripMenuItem.Text = "Collection";
+            collectionToolStripMenuItem.Size = new Size(206, 22);
+            collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(167, 22);
-            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Size = new Size(206, 22);
+            exitToolStripMenuItem.Text = "Çıkış yap";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(167, 22);
-            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye Dön";
+            anaMenüyeDönToolStripMenuItem.Size = new Size(206, 22);
+            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenuyeDonToolStripMenuItem_Click;
             // 
             // bttnSendWaybill
@@ -297,8 +297,7 @@
             Controls.Add(materialCard1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "WaybillForm";
-            Text = "Transfer Waybill";
-            //FormClosing += WaybillForm_FormClosing;
+            Text = "SalesArt Integration";
             FormClosed += WaybillForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();

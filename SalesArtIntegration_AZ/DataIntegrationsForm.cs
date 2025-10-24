@@ -267,6 +267,7 @@ namespace SalesArtIntegration_AZ
                         "Liste Güncelleme",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
+                        chckAll.Checked = false;
 
                     if (confirmRemove == DialogResult.Yes)
                     {
@@ -310,7 +311,7 @@ namespace SalesArtIntegration_AZ
             {
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün listesi çekme işlemi başlatıldı.");
 
-               
+
                 var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
                 var soapItemsListTask = _client.GetItemListAsync();
 
@@ -330,14 +331,14 @@ namespace SalesArtIntegration_AZ
 
                 if (productData?.data?.products != null)
                 {
-                    
+
                     var newProductsToDisplay = new List<ProductInfo>();
 
                     foreach (var product in productData.data.products)
                     {
                         string productCode = product.Code;
 
-                      
+
                         if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
                         {
                             newProductsToDisplay.Add(new ProductInfo
@@ -345,7 +346,7 @@ namespace SalesArtIntegration_AZ
                                 code = product.Code,
                                 name = product.Name,
                                 unit = product.UnitName
-                                
+
                             });
 
                             Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
@@ -453,9 +454,9 @@ namespace SalesArtIntegration_AZ
                         string itemName = product.name;
                         bool isService = false;
                         string unit = product.unit;
-                        
 
-                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
+
+                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit, 18);
 
                         if (resultValue.@return.Result)
                         {
@@ -526,6 +527,37 @@ namespace SalesArtIntegration_AZ
                 bttnSendProducts.Enabled = true;
                 dataGridInvoiceList.Enabled = true;
             }
+        }
+
+        private void DataIntegrationsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WaybillForm waybillForm = new WaybillForm();
+            waybillForm.Show();
+            this.Hide();
+        }
+
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CollectionForm collectionForm = new CollectionForm();
+            collectionForm.Show();
+            this.Hide();
+        }
+
+        private void anaMenüyeDönToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
         #endregion
 

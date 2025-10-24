@@ -116,12 +116,12 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, exitToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(723, 9);
+            menuStrip1.Location = new Point(637, 9);
             menuStrip1.MdiWindowListItem = exitToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
             menuStrip1.RightToLeft = RightToLeft.No;
-            menuStrip1.Size = new Size(116, 24);
+            menuStrip1.Size = new Size(202, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "stripSplash";
             // 
@@ -129,22 +129,22 @@
             // 
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dataIntegrationToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            menuToolStripMenuItem.Size = new Size(70, 20);
-            menuToolStripMenuItem.Text = "Menu Bar";
+            menuToolStripMenuItem.Size = new Size(129, 20);
+            menuToolStripMenuItem.Text = "Menü - Veri Aktarımı";
             // 
             // dataIntegrationToolStripMenuItem
             // 
             dataIntegrationToolStripMenuItem.Name = "dataIntegrationToolStripMenuItem";
-            dataIntegrationToolStripMenuItem.Size = new Size(161, 22);
-            dataIntegrationToolStripMenuItem.Text = "Data Integration";
+            dataIntegrationToolStripMenuItem.Size = new Size(180, 22);
+            dataIntegrationToolStripMenuItem.Text = "Veri Aktarımı";
             dataIntegrationToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             dataIntegrationToolStripMenuItem.Click += DataIntegrationToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(38, 20);
-            exitToolStripMenuItem1.Text = "Exit";
+            exitToolStripMenuItem1.Size = new Size(65, 20);
+            exitToolStripMenuItem1.Text = "Çıkış yap";
             exitToolStripMenuItem1.TextImageRelation = TextImageRelation.Overlay;
             exitToolStripMenuItem1.Click += ExitToolStripMenuItem1_Click;
             // 
@@ -168,8 +168,6 @@
             Name = "SplashScreen";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
-            //FormClosing += SplashScreen_FormClosing;
-            //FormClosed += SplashScreen_FormClosed;
             Load += SplashScreen_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

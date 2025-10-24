@@ -34,6 +34,7 @@
             waybillToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             bttnLogs = new MaterialSkin.Controls.MaterialButton();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
@@ -48,7 +49,6 @@
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
             chk = new DataGridViewCheckBoxColumn();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -76,28 +76,35 @@
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 27);
-            menüToolStripMenuItem.Text = "Menu";
+            menüToolStripMenuItem.Text = "Menü";
             // 
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(180, 22);
-            waybillToolStripMenuItem.Text = "Waybill";
+            waybillToolStripMenuItem.Size = new Size(206, 22);
+            waybillToolStripMenuItem.Text = "İrsaliye İşlemleri";
             waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
-            collectionToolStripMenuItem.Text = "Collection";
+            collectionToolStripMenuItem.Size = new Size(206, 22);
+            collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(180, 22);
-            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye Dön";
+            anaMenüyeDönToolStripMenuItem.Size = new Size(206, 22);
+            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenuyeDonToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(206, 22);
+            exitToolStripMenuItem.Text = "Çıkış yap";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // materialCard1
             // 
@@ -319,13 +326,6 @@
             chk.Name = "chk";
             chk.Width = 80;
             // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
-            // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -343,8 +343,7 @@
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "InvoiceForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Transfer Invoice";
-            //FormClosing += InvoiceForm_FormClosing;
+            Text = "SalesArt Integration";
             FormClosed += InvoiceForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();

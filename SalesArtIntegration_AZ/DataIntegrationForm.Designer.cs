@@ -50,7 +50,7 @@
             bttnTransferToCustomer.FlatStyle = FlatStyle.Flat;
             bttnTransferToCustomer.HighEmphasis = true;
             bttnTransferToCustomer.Icon = null;
-            bttnTransferToCustomer.Location = new Point(118, 416);
+            bttnTransferToCustomer.Location = new Point(163, 540);
             bttnTransferToCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnTransferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToCustomer.Name = "bttnTransferToCustomer";
@@ -75,7 +75,7 @@
             bttnTransferToProducts.FlatStyle = FlatStyle.Flat;
             bttnTransferToProducts.HighEmphasis = true;
             bttnTransferToProducts.Icon = null;
-            bttnTransferToProducts.Location = new Point(471, 416);
+            bttnTransferToProducts.Location = new Point(578, 540);
             bttnTransferToProducts.Margin = new Padding(4, 6, 4, 6);
             bttnTransferToProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToProducts.Name = "bttnTransferToProducts";
@@ -115,12 +115,12 @@
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anaMenüyeDönToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 20);
-            menüToolStripMenuItem.Text = "Menu";
+            menüToolStripMenuItem.Text = "Menü";
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(180, 22);
+            anaMenüyeDönToolStripMenuItem.Size = new Size(165, 22);
             anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenüyeDönToolStripMenuItem_Click;
             // 
@@ -140,12 +140,12 @@
             bttnLogs.FlatStyle = FlatStyle.Flat;
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(800, 665);
+            bttnLogs.Location = new Point(809, 678);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(163, 46);
+            bttnLogs.Size = new Size(177, 59);
             bttnLogs.TabIndex = 18;
             bttnLogs.Text = "Logs";
             bttnLogs.TextAlign = ContentAlignment.MiddleLeft;

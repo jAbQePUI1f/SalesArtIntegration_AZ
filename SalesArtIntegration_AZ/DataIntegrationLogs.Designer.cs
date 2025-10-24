@@ -67,8 +67,8 @@
             dataLogsDelete.FlatStyle = FlatStyle.Popup;
             dataLogsDelete.HighEmphasis = false;
             dataLogsDelete.Icon = null;
-            dataLogsDelete.Location = new Point(666, 22);
-            dataLogsDelete.Margin = new Padding(4, 4, 4, 4);
+            dataLogsDelete.Location = new Point(666, 17);
+            dataLogsDelete.Margin = new Padding(4);
             dataLogsDelete.MouseState = MaterialSkin.MouseState.HOVER;
             dataLogsDelete.Name = "dataLogsDelete";
             dataLogsDelete.NoAccentTextColor = Color.Empty;
@@ -90,7 +90,7 @@
             Controls.Add(logListBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DataIntegrationLogs";
-            Text = "DataIntegrationLogs";
+            Text = "SalesArt Integration";
             Load += DataIntegrationLogs_Load;
             ResumeLayout(false);
             PerformLayout();
