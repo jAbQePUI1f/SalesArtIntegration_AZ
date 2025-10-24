@@ -90,6 +90,7 @@
             // bttnLogs
             // 
             bttnLogs.AutoSize = false;
+            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnLogs.Depth = 0;
             bttnLogs.Dock = DockStyle.Right;
@@ -97,7 +98,7 @@
             bttnLogs.HighEmphasis = false;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
             bttnLogs.Location = new Point(1140, 10);
-            bttnLogs.Margin = new Padding(4, 4, 4, 4);
+            bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
@@ -120,7 +121,7 @@
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(-2, 33);
-            materialCard1.Margin = new Padding(14, 14, 14, 14);
+            materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(12, 10, 12, 10);
@@ -274,18 +275,21 @@
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(206, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
             collectionToolStripMenuItem.Size = new Size(206, 22);
             collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
+            collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
             waybillToolStripMenuItem.Size = new Size(206, 22);
             waybillToolStripMenuItem.Text = "İrsaliye İşlemleri";
+            waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
             // 
             // menüToolStripMenuItem
             // 
@@ -299,6 +303,7 @@
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
             anaMenüyeDönToolStripMenuItem.Size = new Size(206, 22);
             anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
+            anaMenüyeDönToolStripMenuItem.Click += anaMenüyeDönToolStripMenuItem_Click;
             // 
             // stripInvoice
             // 

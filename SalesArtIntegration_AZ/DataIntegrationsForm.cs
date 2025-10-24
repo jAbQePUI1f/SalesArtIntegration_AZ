@@ -267,6 +267,7 @@ namespace SalesArtIntegration_AZ
                         "Liste Güncelleme",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
+                        chckAll.Checked = false;
 
                     if (confirmRemove == DialogResult.Yes)
                     {
@@ -531,6 +532,32 @@ namespace SalesArtIntegration_AZ
         private void DataIntegrationsForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WaybillForm waybillForm = new WaybillForm();
+            waybillForm.Show();
+            this.Hide();
+        }
+
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CollectionForm collectionForm = new CollectionForm();
+            collectionForm.Show();
+            this.Hide();
+        }
+
+        private void anaMenüyeDönToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
         #endregion
 
