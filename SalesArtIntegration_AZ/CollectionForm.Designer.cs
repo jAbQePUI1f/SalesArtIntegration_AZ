@@ -46,6 +46,8 @@
             chk = new DataGridViewCheckBoxColumn();
             divider = new MaterialSkin.Controls.MaterialDivider();
             chckAll = new CheckBox();
+            backToolStripMenuItem1 = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -62,31 +64,30 @@
             stripInvoice.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
-            stripInvoice.Padding = new Padding(7, 3, 0, 3);
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1016, 30);
+            stripInvoice.Size = new Size(1008, 24);
             stripInvoice.TabIndex = 19;
             stripInvoice.Text = "Fatura Menü";
             // 
             // menuToolStripMenuItem
             // 
-            menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, collectionToolStripMenuItem });
+            menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, collectionToolStripMenuItem, backToolStripMenuItem1, exitToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            menuToolStripMenuItem.Size = new Size(63, 24);
-            menuToolStripMenuItem.Text = "Menu";
+            menuToolStripMenuItem.Size = new Size(50, 20);
+            menuToolStripMenuItem.Text = "Menü";
             // 
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(142, 26);
-            invoiceToolStripMenuItem.Text = "Invoice";
+            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(142, 26);
-            collectionToolStripMenuItem.Text = "Waybill";
+            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Text = "İrsaliye İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // materialCard1
@@ -102,12 +103,12 @@
             materialCard1.Controls.Add(lblFinishDate);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(7, 47);
-            materialCard1.Margin = new Padding(16, 19, 16, 19);
+            materialCard1.Location = new Point(9, 26);
+            materialCard1.Margin = new Padding(14, 14, 14, 14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(16, 19, 16, 19);
-            materialCard1.Size = new Size(1000, 233);
+            materialCard1.Padding = new Padding(14, 14, 14, 14);
+            materialCard1.Size = new Size(992, 187);
             materialCard1.TabIndex = 22;
             // 
             // comboboxInvoiceType
@@ -125,12 +126,11 @@
             comboboxInvoiceType.FormattingEnabled = true;
             comboboxInvoiceType.IntegralHeight = false;
             comboboxInvoiceType.ItemHeight = 43;
-            comboboxInvoiceType.Location = new Point(27, 47);
-            comboboxInvoiceType.Margin = new Padding(3, 4, 3, 4);
+            comboboxInvoiceType.Location = new Point(24, 35);
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
             comboboxInvoiceType.Name = "comboboxInvoiceType";
-            comboboxInvoiceType.Size = new Size(252, 49);
+            comboboxInvoiceType.Size = new Size(262, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 10;
             comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
@@ -141,7 +141,7 @@
             lblType.Depth = 0;
             lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(27, 12);
+            lblType.Location = new Point(24, 9);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
             lblType.Size = new Size(128, 14);
@@ -156,12 +156,12 @@
             bttnSendWaybill.Depth = 0;
             bttnSendWaybill.HighEmphasis = true;
             bttnSendWaybill.Icon = null;
-            bttnSendWaybill.Location = new Point(726, 156);
-            bttnSendWaybill.Margin = new Padding(5, 8, 5, 8);
+            bttnSendWaybill.Location = new Point(760, 113);
+            bttnSendWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnSendWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendWaybill.Name = "bttnSendWaybill";
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
-            bttnSendWaybill.Size = new Size(229, 56);
+            bttnSendWaybill.Size = new Size(200, 42);
             bttnSendWaybill.TabIndex = 15;
             bttnSendWaybill.Text = "Gönder";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -175,7 +175,7 @@
             lblStartDate.Depth = 0;
             lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(387, 11);
+            lblStartDate.Location = new Point(464, 4);
             lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(99, 14);
@@ -190,12 +190,12 @@
             bttnGetWaybill.Depth = 0;
             bttnGetWaybill.HighEmphasis = true;
             bttnGetWaybill.Icon = null;
-            bttnGetWaybill.Location = new Point(27, 151);
-            bttnGetWaybill.Margin = new Padding(5, 8, 5, 8);
+            bttnGetWaybill.Location = new Point(24, 113);
+            bttnGetWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnGetWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetWaybill.Name = "bttnGetWaybill";
             bttnGetWaybill.NoAccentTextColor = Color.Empty;
-            bttnGetWaybill.Size = new Size(251, 56);
+            bttnGetWaybill.Size = new Size(262, 42);
             bttnGetWaybill.TabIndex = 8;
             bttnGetWaybill.Text = "Getİr";
             bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -205,22 +205,18 @@
             // 
             // dateTimeFinishDate
             // 
-            dateTimeFinishDate.Location = new Point(688, 47);
-            dateTimeFinishDate.Margin = new Padding(3, 4, 3, 4);
+            dateTimeFinishDate.Location = new Point(727, 31);
             dateTimeFinishDate.Name = "dateTimeFinishDate";
-            dateTimeFinishDate.ShowCheckBox = true;
-            dateTimeFinishDate.Size = new Size(266, 27);
+            dateTimeFinishDate.Size = new Size(233, 23);
             dateTimeFinishDate.TabIndex = 14;
             dateTimeFinishDate.Value = new DateTime(2025, 7, 8, 0, 0, 0, 0);
             // 
             // dateTimeStartDate
             // 
             dateTimeStartDate.CustomFormat = "2025-08-08 00:00:00.000";
-            dateTimeStartDate.Location = new Point(387, 47);
-            dateTimeStartDate.Margin = new Padding(3, 4, 3, 4);
+            dateTimeStartDate.Location = new Point(464, 31);
             dateTimeStartDate.Name = "dateTimeStartDate";
-            dateTimeStartDate.ShowCheckBox = true;
-            dateTimeStartDate.Size = new Size(260, 27);
+            dateTimeStartDate.Size = new Size(228, 23);
             dateTimeStartDate.TabIndex = 13;
             dateTimeStartDate.Value = new DateTime(2025, 7, 8, 0, 0, 0, 0);
             // 
@@ -230,7 +226,7 @@
             lblFinishDate.Depth = 0;
             lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(688, 11);
+            lblFinishDate.Location = new Point(727, 4);
             lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblFinishDate.Name = "lblFinishDate";
             lblFinishDate.Size = new Size(106, 14);
@@ -250,12 +246,11 @@
             dataGridInvoiceList.Cursor = Cursors.Hand;
             dataGridInvoiceList.GridColor = SystemColors.ControlDark;
             dataGridInvoiceList.ImeMode = ImeMode.On;
-            dataGridInvoiceList.Location = new Point(7, 313);
-            dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
+            dataGridInvoiceList.Location = new Point(6, 235);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
             dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(1000, 571);
+            dataGridInvoiceList.Size = new Size(995, 428);
             dataGridInvoiceList.StandardTab = true;
             dataGridInvoiceList.TabIndex = 21;
             // 
@@ -270,44 +265,52 @@
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-2, 289);
-            divider.Margin = new Padding(3, 4, 3, 4);
+            divider.Location = new Point(-2, 217);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1022, 13);
+            divider.Size = new Size(1010, 10);
             divider.TabIndex = 20;
             // 
             // chckAll
             // 
             chckAll.AutoSize = true;
             chckAll.BackColor = SystemColors.Control;
-            chckAll.CheckAlign = ContentAlignment.MiddleRight;
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
             chckAll.Font = new Font("Microsoft Sans Serif", 9F);
-            chckAll.Location = new Point(71, 320);
-            chckAll.Margin = new Padding(3, 4, 3, 4);
+            chckAll.Location = new Point(62, 240);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(111, 22);
+            chckAll.Size = new Size(94, 19);
             chckAll.TabIndex = 23;
             chckAll.Text = "Tümünü Seç";
             chckAll.UseVisualStyleBackColor = true;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
             // 
+            // backToolStripMenuItem1
+            // 
+            backToolStripMenuItem1.Name = "backToolStripMenuItem1";
+            backToolStripMenuItem1.Size = new Size(180, 22);
+            backToolStripMenuItem1.Text = "Ana Menüye dön";
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Text = "Çıkış yap";
+            // 
             // CollectionForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1016, 889);
+            ClientSize = new Size(1008, 667);
             Controls.Add(chckAll);
             Controls.Add(stripInvoice);
             Controls.Add(materialCard1);
             Controls.Add(dataGridInvoiceList);
             Controls.Add(divider);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             Name = "CollectionForm";
-            Text = "Transfer Collection";
+            Text = "SalesArt Integration";
             FormClosed += CollectionForm_FormClosed;
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
@@ -337,5 +340,7 @@
         private MaterialSkin.Controls.MaterialDivider divider;
         private DataGridViewCheckBoxColumn chk;
         private CheckBox chckAll;
+        private ToolStripMenuItem backToolStripMenuItem1;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }
