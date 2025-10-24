@@ -2,18 +2,10 @@
 using SalesArtIntegration_AZ.Helper;
 using SalesArtIntegration_AZ.Manager.Api;
 using SalesArtIntegration_AZ.Manager.Config;
-using SalesArtIntegration_AZ.Models.Invoice;
+using SalesArtIntegration_AZ.Manager.Service;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SalesArtIntegration_AZ
 {
@@ -24,6 +16,7 @@ namespace SalesArtIntegration_AZ
         public DataIntegrationsForm()
         {
             InitializeComponent();
+            _client = ServiceFactory.GetServiceClient();
         }
 
         private async void bttnGetCustomers_Click(object sender, EventArgs e)
@@ -95,9 +88,19 @@ namespace SalesArtIntegration_AZ
                     }
 
                     // GridView'e bağla
-                    allCustomers = newCustomersToDisplay.ToList();
+                    dataGridInvoiceList.DataSource = null;
+                    dataGridInvoiceList.Columns.Clear();
+
                     dataGridInvoiceList.DataSource = newCustomersToDisplay;
-                    dataGridInvoiceList.AutoGenerateColumns = false;
+                    dataGridInvoiceList.AutoGenerateColumns = true;
+
+
+                    DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                    chk.HeaderText = "";
+                    chk.MinimumWidth = 6;
+                    chk.Name = "chk";
+                    chk.Width = 80;
+                    dataGridInvoiceList.Columns.Insert(0, chk); // İlk sıraya ekle
 
                     dataGridInvoiceList.Columns["code"].HeaderText = "Müşteri Numarası";
                     dataGridInvoiceList.Columns["name"].HeaderText = "Müşteri Adı";
@@ -349,8 +352,19 @@ namespace SalesArtIntegration_AZ
                         }
                     }
 
+                    dataGridInvoiceList.DataSource = null;
+                    dataGridInvoiceList.Columns.Clear();
+
                     dataGridInvoiceList.DataSource = newProductsToDisplay;
-                    dataGridInvoiceList.AutoGenerateColumns = false;
+                    dataGridInvoiceList.AutoGenerateColumns = true;
+
+
+                    DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                    chk.HeaderText = "";
+                    chk.MinimumWidth = 6;
+                    chk.Name = "chk";
+                    chk.Width = 80;
+                    dataGridInvoiceList.Columns.Insert(0, chk); // İlk sıraya ekle
 
                     dataGridInvoiceList.Columns["code"].HeaderText = "Ürün Kodu";
                     dataGridInvoiceList.Columns["name"].HeaderText = "Ürün Adı";
