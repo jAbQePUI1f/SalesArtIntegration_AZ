@@ -45,9 +45,6 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnGetInvoice_Click(object sender, EventArgs e)
         {
-
-
-
             if (string.IsNullOrEmpty(documentType) || documentType == "SEÇİNİZ...")
             {
                 documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
@@ -64,6 +61,12 @@ namespace SalesArtIntegration_AZ
             };
 
             invoiceResponse = await ApiManager.PostAsync<InvoiceRequest, InvoiceModelResponse>(Configuration.GetUrl() + "management/invoices-for-erp", invoiceRequest);
+
+            if (invoiceResponse?.data == null)
+            {
+                MessageBox.Show("Fatura bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             List<DisplayInvoiceInfo> displayInfoList = invoiceResponse.data.Select(header => new DisplayInvoiceInfo
             {

@@ -70,9 +70,10 @@ namespace SalesArtIntegration_AZ
 
             if (collectionResponse?.data == null)
             {
-                MessageBox.Show("Veri alınamadı veya sonuç bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tahsilat/Ödeme bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
             {
                 Number = header.invoiceNo,
