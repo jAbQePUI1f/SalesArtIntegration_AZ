@@ -310,7 +310,7 @@ namespace SalesArtIntegration_AZ
             {
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün listesi çekme işlemi başlatıldı.");
 
-               
+
                 var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
                 var soapItemsListTask = _client.GetItemListAsync();
 
@@ -330,14 +330,14 @@ namespace SalesArtIntegration_AZ
 
                 if (productData?.data?.products != null)
                 {
-                    
+
                     var newProductsToDisplay = new List<ProductInfo>();
 
                     foreach (var product in productData.data.products)
                     {
                         string productCode = product.Code;
 
-                      
+
                         if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
                         {
                             newProductsToDisplay.Add(new ProductInfo
@@ -345,7 +345,7 @@ namespace SalesArtIntegration_AZ
                                 code = product.Code,
                                 name = product.Name,
                                 unit = product.UnitName
-                                
+
                             });
 
                             Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
@@ -453,9 +453,9 @@ namespace SalesArtIntegration_AZ
                         string itemName = product.name;
                         bool isService = false;
                         string unit = product.unit;
-                        
 
-                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
+
+                        var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit, 18);
 
                         if (resultValue.@return.Result)
                         {
@@ -526,6 +526,11 @@ namespace SalesArtIntegration_AZ
                 bttnSendProducts.Enabled = true;
                 dataGridInvoiceList.Enabled = true;
             }
+        }
+
+        private void DataIntegrationsForm_Load(object sender, EventArgs e)
+        {
+
         }
         #endregion
 

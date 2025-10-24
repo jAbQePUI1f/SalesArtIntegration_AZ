@@ -70,10 +70,9 @@
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
             chckAll.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chckAll.Location = new Point(98, 259);
-            chckAll.Margin = new Padding(3, 4, 3, 4);
+            chckAll.Location = new Point(65, 258);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(15, 14);
+            chckAll.Size = new Size(13, 12);
             chckAll.TabIndex = 27;
             chckAll.UseVisualStyleBackColor = true;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
@@ -82,29 +81,29 @@
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-11, 229);
-            divider.Margin = new Padding(3, 4, 3, 4);
+            divider.Location = new Point(-1, 228);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1354, 13);
+            divider.Size = new Size(1233, 19);
             divider.TabIndex = 23;
             // 
             // bttnLogs
             // 
             bttnLogs.AutoSize = false;
-            bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnLogs.Depth = 0;
             bttnLogs.Dock = DockStyle.Right;
-            bttnLogs.HighEmphasis = true;
+            bttnLogs.FlatStyle = FlatStyle.Popup;
+            bttnLogs.HighEmphasis = false;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(1245, 13);
-            bttnLogs.Margin = new Padding(5);
+            bttnLogs.Location = new Point(1140, 10);
+            bttnLogs.Margin = new Padding(4, 4, 4, 4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(71, 205);
+            bttnLogs.Size = new Size(82, 174);
             bttnLogs.TabIndex = 17;
+            bttnLogs.TabStop = false;
             bttnLogs.Text = "Logs";
             bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
             bttnLogs.TextImageRelation = TextImageRelation.TextBeforeImage;
@@ -120,12 +119,12 @@
             materialCard1.Controls.Add(bttnLogs);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(-2, -10);
-            materialCard1.Margin = new Padding(16, 19, 16, 19);
+            materialCard1.Location = new Point(-2, 33);
+            materialCard1.Margin = new Padding(14, 14, 14, 14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14, 13, 14, 13);
-            materialCard1.Size = new Size(1330, 231);
+            materialCard1.Padding = new Padding(12, 10, 12, 10);
+            materialCard1.Size = new Size(1234, 194);
             materialCard1.TabIndex = 25;
             // 
             // materialCard3
@@ -136,12 +135,12 @@
             materialCard3.Controls.Add(materialLabel2);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(640, 27);
-            materialCard3.Margin = new Padding(14);
+            materialCard3.Location = new Point(572, 10);
+            materialCard3.Margin = new Padding(12, 10, 12, 10);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(14);
-            materialCard3.Size = new Size(608, 194);
+            materialCard3.Padding = new Padding(12, 10, 12, 10);
+            materialCard3.Size = new Size(532, 174);
             materialCard3.TabIndex = 19;
             // 
             // bttnSendProducts
@@ -152,12 +151,12 @@
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
             bttnSendProducts.Icon = null;
-            bttnSendProducts.Location = new Point(379, 133);
-            bttnSendProducts.Margin = new Padding(5, 8, 5, 8);
+            bttnSendProducts.Location = new Point(320, 126);
+            bttnSendProducts.Margin = new Padding(4, 6, 4, 6);
             bttnSendProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendProducts.Name = "bttnSendProducts";
             bttnSendProducts.NoAccentTextColor = Color.Empty;
-            bttnSendProducts.Size = new Size(229, 56);
+            bttnSendProducts.Size = new Size(204, 42);
             bttnSendProducts.TabIndex = 8;
             bttnSendProducts.Text = "Ürün Gönder";
             bttnSendProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -173,12 +172,12 @@
             bttnGetProducts.Depth = 0;
             bttnGetProducts.HighEmphasis = true;
             bttnGetProducts.Icon = null;
-            bttnGetProducts.Location = new Point(0, 138);
-            bttnGetProducts.Margin = new Padding(5, 8, 5, 8);
+            bttnGetProducts.Location = new Point(7, 126);
+            bttnGetProducts.Margin = new Padding(4, 6, 4, 6);
             bttnGetProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetProducts.Name = "bttnGetProducts";
             bttnGetProducts.NoAccentTextColor = Color.Empty;
-            bttnGetProducts.Size = new Size(251, 56);
+            bttnGetProducts.Size = new Size(204, 42);
             bttnGetProducts.TabIndex = 2;
             bttnGetProducts.Text = "Ürün Getİr";
             bttnGetProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -207,12 +206,12 @@
             materialCard2.Controls.Add(bttnSendCustomer);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(2, 27);
-            materialCard2.Margin = new Padding(14);
+            materialCard2.Location = new Point(14, 10);
+            materialCard2.Margin = new Padding(12, 10, 12, 10);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(610, 194);
+            materialCard2.Padding = new Padding(12, 10, 12, 10);
+            materialCard2.Size = new Size(549, 174);
             materialCard2.TabIndex = 18;
             // 
             // materialLabel1
@@ -221,7 +220,7 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            materialLabel1.Location = new Point(0, 0);
+            materialLabel1.Location = new Point(1, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(150, 24);
@@ -236,12 +235,12 @@
             bttnGetCustomers.Depth = 0;
             bttnGetCustomers.HighEmphasis = true;
             bttnGetCustomers.Icon = null;
-            bttnGetCustomers.Location = new Point(0, 135);
-            bttnGetCustomers.Margin = new Padding(5, 8, 5, 8);
+            bttnGetCustomers.Location = new Point(11, 126);
+            bttnGetCustomers.Margin = new Padding(4, 6, 4, 6);
             bttnGetCustomers.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetCustomers.Name = "bttnGetCustomers";
             bttnGetCustomers.NoAccentTextColor = Color.Empty;
-            bttnGetCustomers.Size = new Size(251, 56);
+            bttnGetCustomers.Size = new Size(220, 42);
             bttnGetCustomers.TabIndex = 0;
             bttnGetCustomers.Text = "Müşteri Getİr";
             bttnGetCustomers.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -257,12 +256,12 @@
             bttnSendCustomer.Depth = 0;
             bttnSendCustomer.HighEmphasis = true;
             bttnSendCustomer.Icon = null;
-            bttnSendCustomer.Location = new Point(381, 133);
-            bttnSendCustomer.Margin = new Padding(5, 8, 5, 8);
+            bttnSendCustomer.Location = new Point(322, 126);
+            bttnSendCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnSendCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendCustomer.Name = "bttnSendCustomer";
             bttnSendCustomer.NoAccentTextColor = Color.Empty;
-            bttnSendCustomer.Size = new Size(229, 56);
+            bttnSendCustomer.Size = new Size(220, 42);
             bttnSendCustomer.TabIndex = 7;
             bttnSendCustomer.Text = "Müşteri Gönder";
             bttnSendCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -273,33 +272,33 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(212, 26);
-            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Size = new Size(206, 22);
+            exitToolStripMenuItem.Text = "Çıkış yap";
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(212, 26);
-            collectionToolStripMenuItem.Text = "Collection";
+            collectionToolStripMenuItem.Size = new Size(206, 22);
+            collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
             // 
             // waybillToolStripMenuItem
             // 
             waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(212, 26);
-            waybillToolStripMenuItem.Text = "Waybill";
+            waybillToolStripMenuItem.Size = new Size(206, 22);
+            waybillToolStripMenuItem.Text = "İrsaliye İşlemleri";
             // 
             // menüToolStripMenuItem
             // 
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(63, 35);
-            menüToolStripMenuItem.Text = "Menu";
+            menüToolStripMenuItem.Size = new Size(50, 26);
+            menüToolStripMenuItem.Text = "Menü";
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(212, 26);
-            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye Dön";
+            anaMenüyeDönToolStripMenuItem.Size = new Size(206, 22);
+            anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             // 
             // stripInvoice
             // 
@@ -313,9 +312,8 @@
             stripInvoice.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem });
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
-            stripInvoice.Padding = new Padding(7, 3, 0, 3);
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1332, 41);
+            stripInvoice.Size = new Size(1232, 30);
             stripInvoice.TabIndex = 24;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -332,27 +330,32 @@
             dataGridInvoiceList.Cursor = Cursors.Hand;
             dataGridInvoiceList.GridColor = SystemColors.ControlDark;
             dataGridInvoiceList.ImeMode = ImeMode.On;
-            dataGridInvoiceList.Location = new Point(-2, 250);
-            dataGridInvoiceList.Margin = new Padding(3, 4, 3, 4);
+            dataGridInvoiceList.Location = new Point(10, 253);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
             dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(1330, 565);
+            dataGridInvoiceList.Size = new Size(1212, 436);
             dataGridInvoiceList.StandardTab = true;
             dataGridInvoiceList.TabIndex = 26;
             // 
             // DataIntegrationsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1332, 761);
+            ClientSize = new Size(1232, 701);
+            ControlBox = false;
             Controls.Add(chckAll);
             Controls.Add(divider);
             Controls.Add(materialCard1);
             Controls.Add(stripInvoice);
             Controls.Add(dataGridInvoiceList);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "DataIntegrationsForm";
-            Text = "DataIntegrationsForm";
+            Text = "SalesArt Integration";
+            Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
             materialCard3.ResumeLayout(false);
             materialCard3.PerformLayout();
