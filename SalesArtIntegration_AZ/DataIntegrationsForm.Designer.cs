@@ -111,6 +111,7 @@
             bttnLogs.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnLogs.UseAccentColor = false;
             bttnLogs.UseVisualStyleBackColor = true;
+            bttnLogs.Click += bttnLogs_Click;
             // 
             // materialCard1
             // 
@@ -148,6 +149,7 @@
             // 
             bttnSendProducts.AutoSize = false;
             bttnSendProducts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnSendProducts.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
             bttnSendProducts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
@@ -159,7 +161,7 @@
             bttnSendProducts.NoAccentTextColor = Color.Empty;
             bttnSendProducts.Size = new Size(204, 42);
             bttnSendProducts.TabIndex = 8;
-            bttnSendProducts.Text = "Ürün Gönder";
+            bttnSendProducts.Text = "Ürünleri Aktar";
             bttnSendProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendProducts.UseAccentColor = false;
             bttnSendProducts.UseVisualStyleBackColor = true;
@@ -169,6 +171,7 @@
             // 
             bttnGetProducts.AutoSize = false;
             bttnGetProducts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnGetProducts.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
             bttnGetProducts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnGetProducts.Depth = 0;
             bttnGetProducts.HighEmphasis = true;
@@ -180,7 +183,7 @@
             bttnGetProducts.NoAccentTextColor = Color.Empty;
             bttnGetProducts.Size = new Size(204, 42);
             bttnGetProducts.TabIndex = 2;
-            bttnGetProducts.Text = "Ürün Getİr";
+            bttnGetProducts.Text = "Ürünleri Getir";
             bttnGetProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetProducts.UseAccentColor = false;
             bttnGetProducts.UseVisualStyleBackColor = true;
@@ -221,7 +224,7 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            materialLabel1.Location = new Point(1, 0);
+            materialLabel1.Location = new Point(0, -1);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(150, 24);
@@ -232,6 +235,7 @@
             // 
             bttnGetCustomers.AutoSize = false;
             bttnGetCustomers.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnGetCustomers.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
             bttnGetCustomers.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnGetCustomers.Depth = 0;
             bttnGetCustomers.HighEmphasis = true;
@@ -243,7 +247,7 @@
             bttnGetCustomers.NoAccentTextColor = Color.Empty;
             bttnGetCustomers.Size = new Size(220, 42);
             bttnGetCustomers.TabIndex = 0;
-            bttnGetCustomers.Text = "Müşteri Getİr";
+            bttnGetCustomers.Text = "Müşterileri Getir";
             bttnGetCustomers.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnGetCustomers.UseAccentColor = false;
             bttnGetCustomers.UseVisualStyleBackColor = true;
@@ -253,6 +257,7 @@
             // 
             bttnSendCustomer.AutoSize = false;
             bttnSendCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnSendCustomer.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
             bttnSendCustomer.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnSendCustomer.Depth = 0;
             bttnSendCustomer.HighEmphasis = true;
@@ -264,7 +269,7 @@
             bttnSendCustomer.NoAccentTextColor = Color.Empty;
             bttnSendCustomer.Size = new Size(220, 42);
             bttnSendCustomer.TabIndex = 7;
-            bttnSendCustomer.Text = "Müşteri Gönder";
+            bttnSendCustomer.Text = "Müşterileri Aktar";
             bttnSendCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendCustomer.UseAccentColor = false;
             bttnSendCustomer.UseVisualStyleBackColor = true;

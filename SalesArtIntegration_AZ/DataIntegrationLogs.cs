@@ -15,31 +15,31 @@ namespace SalesArtIntegration_AZ
         }
         private void logListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            {
-                string logPath = Path.Combine(Application.StartupPath, "logfileDataIntegration.txt");
+            //{
+            //    string logPath = Path.Combine(Application.StartupPath, "logfileDataIntegration.txt");
 
-                try
-                {
-                    if (File.Exists(logPath))
-                    {
-                        File.WriteAllText(logPath, string.Empty); // Log dosyasını temizle
+            //    try
+            //    {
+            //        if (File.Exists(logPath))
+            //        {
+            //            File.WriteAllText(logPath, string.Empty); // Log dosyasını temizle
 
-                        // DataSource’u sıfırla ve yeniden ata
-                        logListBox.DataSource = null;
-                        logListBox.DataSource = new List<string>(); // Boş bir liste ata
+            //            // DataSource’u sıfırla ve yeniden ata
+            //            logListBox.DataSource = null;
+            //            logListBox.DataSource = new List<string>(); // Boş bir liste ata
 
-                        MessageBox.Show("Log başarıyla temizlendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Log dosyası bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Log temizlenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //            MessageBox.Show("Log başarıyla temizlendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Log dosyası bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Log temizlenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void DataIntegrationLogs_Load(object sender, EventArgs e)
@@ -73,28 +73,31 @@ namespace SalesArtIntegration_AZ
 
         private void dataLogsDelete_Click(object sender, EventArgs e)
         {
-            string logPath = Path.Combine(Application.StartupPath, "logfile.txt");
 
-            try
             {
-                if (File.Exists(logPath))
-                {
-                    File.WriteAllText(logPath, string.Empty); // Log dosyasını temizle
+                string logPath = Path.Combine(Application.StartupPath, "logfileDataIntegration.txt");
 
-                    // DataSource’u sıfırla ve yeniden ata
-                    logListBox.DataSource = null;
-                    logListBox.DataSource = new List<string>(); // Boş bir liste ata
-
-                    MessageBox.Show("Log başarıyla temizlendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                try
                 {
-                    MessageBox.Show("Log dosyası bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (File.Exists(logPath))
+                    {
+                        File.WriteAllText(logPath, string.Empty); // Log dosyasını temizle
+
+                        // DataSource’u sıfırla ve yeniden ata
+                        logListBox.DataSource = null;
+                        logListBox.DataSource = new List<string>(); // Boş bir liste ata
+
+                        MessageBox.Show("Log başarıyla temizlendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Log dosyası bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Log temizlenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Log temizlenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

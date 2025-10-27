@@ -33,6 +33,8 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             invoiceToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
+            backToolStripMenuItem1 = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             comboboxInvoiceType = new MaterialSkin.Controls.MaterialComboBox();
             lblType = new MaterialSkin.Controls.MaterialLabel();
@@ -46,8 +48,6 @@
             chk = new DataGridViewCheckBoxColumn();
             divider = new MaterialSkin.Controls.MaterialDivider();
             chckAll = new CheckBox();
-            backToolStripMenuItem1 = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -79,16 +79,28 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(165, 22);
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(165, 22);
             collectionToolStripMenuItem.Text = "İrsaliye İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
+            // 
+            // backToolStripMenuItem1
+            // 
+            backToolStripMenuItem1.Name = "backToolStripMenuItem1";
+            backToolStripMenuItem1.Size = new Size(165, 22);
+            backToolStripMenuItem1.Text = "Ana Menüye dön";
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(165, 22);
+            exitToolStripMenuItem.Text = "Çıkış yap";
             // 
             // materialCard1
             // 
@@ -104,10 +116,10 @@
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(9, 26);
-            materialCard1.Margin = new Padding(14, 14, 14, 14);
+            materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14, 14, 14, 14);
+            materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(992, 187);
             materialCard1.TabIndex = 22;
             // 
@@ -274,29 +286,15 @@
             // chckAll
             // 
             chckAll.AutoSize = true;
-            chckAll.BackColor = SystemColors.Control;
+            chckAll.CheckAlign = ContentAlignment.MiddleRight;
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
-            chckAll.Font = new Font("Microsoft Sans Serif", 9F);
-            chckAll.Location = new Point(62, 240);
+            chckAll.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chckAll.Location = new Point(60, 245);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(94, 19);
-            chckAll.TabIndex = 23;
-            chckAll.Text = "Tümünü Seç";
+            chckAll.Size = new Size(13, 12);
+            chckAll.TabIndex = 28;
             chckAll.UseVisualStyleBackColor = true;
-            chckAll.CheckedChanged += chckAll_CheckedChanged;
-            // 
-            // backToolStripMenuItem1
-            // 
-            backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            backToolStripMenuItem1.Size = new Size(180, 22);
-            backToolStripMenuItem1.Text = "Ana Menüye dön";
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
-            exitToolStripMenuItem.Text = "Çıkış yap";
             // 
             // CollectionForm
             // 
@@ -339,8 +337,8 @@
         private DataGridView dataGridInvoiceList;
         private MaterialSkin.Controls.MaterialDivider divider;
         private DataGridViewCheckBoxColumn chk;
-        private CheckBox chckAll;
         private ToolStripMenuItem backToolStripMenuItem1;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private CheckBox chckAll;
     }
 }
