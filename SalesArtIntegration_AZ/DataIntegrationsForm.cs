@@ -21,6 +21,7 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnGetCustomers_Click(object sender, EventArgs e)
         {
+            bttnSendProducts.Enabled = false;
             try
             {
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", "Müşteri listesi çekme işlemi başlatıldı.");
@@ -61,7 +62,7 @@ namespace SalesArtIntegration_AZ
                         .Select(p => p.TIN),
                     StringComparer.OrdinalIgnoreCase
                 );
-
+                bttnSendCustomer.Enabled = true;
                 Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"Uzak serviste bulunan müşteri sayısı: {existingPartnersTINs.Count}");
 
                 if (customerResponse?.data?.customers != null)
@@ -128,8 +129,6 @@ namespace SalesArtIntegration_AZ
                 Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Liste çekme hatası: {ex.Message}", "Detay: bttnGetCustomers_Click");
             }
         }
-
-
 
         private void chckAll_CheckedChanged(object sender, EventArgs e)
         {
@@ -267,7 +266,7 @@ namespace SalesArtIntegration_AZ
                         "Liste Güncelleme",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
-                        chckAll.Checked = false;
+                    chckAll.Checked = false;
 
                     if (confirmRemove == DialogResult.Yes)
                     {
@@ -288,6 +287,7 @@ namespace SalesArtIntegration_AZ
                 // Buton ve GridView'i tekrar aktif et
                 bttnSendCustomer.Enabled = true;
                 dataGridInvoiceList.Enabled = true;
+                bttnSendProducts.Enabled = false;
             }
         }
 
@@ -307,6 +307,7 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnGetProducts_Click(object sender, EventArgs e)
         {
+            bttnSendCustomer.Enabled = false;
             try
             {
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün listesi çekme işlemi başlatıldı.");
@@ -331,7 +332,6 @@ namespace SalesArtIntegration_AZ
 
                 if (productData?.data?.products != null)
                 {
-
                     var newProductsToDisplay = new List<ProductInfo>();
 
                     foreach (var product in productData.data.products)
@@ -352,13 +352,12 @@ namespace SalesArtIntegration_AZ
                             Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
                         }
                     }
-
+                    bttnSendProducts.Enabled = true;
                     dataGridInvoiceList.DataSource = null;
                     dataGridInvoiceList.Columns.Clear();
 
                     dataGridInvoiceList.DataSource = newProductsToDisplay;
                     dataGridInvoiceList.AutoGenerateColumns = true;
-
 
                     DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
                     chk.HeaderText = "";
@@ -415,7 +414,7 @@ namespace SalesArtIntegration_AZ
                         });
                     }
                 }
-
+                bttnSendProducts.Enabled = true;
                 if (selectedProducts.Count == 0)
                 {
                     MessageBox.Show("Lütfen göndermek istediğiniz ürünleri seçin.", "Uyarı",
@@ -435,7 +434,6 @@ namespace SalesArtIntegration_AZ
                     return;
                 }
 
-                bttnSendProducts.Enabled = false;
                 dataGridInvoiceList.Enabled = false;
 
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
@@ -524,14 +522,15 @@ namespace SalesArtIntegration_AZ
             finally
             {
                 // Buton ve GridView'i tekrar aktif et
-                bttnSendProducts.Enabled = true;
                 dataGridInvoiceList.Enabled = true;
+
             }
         }
 
         private void DataIntegrationsForm_Load(object sender, EventArgs e)
         {
-
+            bttnSendCustomer.Enabled = false;
+            bttnSendProducts.Enabled = false;
         }
 
         private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
@@ -558,6 +557,12 @@ namespace SalesArtIntegration_AZ
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void bttnLogs_Click(object sender, EventArgs e)
+        {
+            DataIntegrationLogs dataIntegrationLogs = new DataIntegrationLogs();
+            dataIntegrationLogs.Show();
         }
         #endregion
 
