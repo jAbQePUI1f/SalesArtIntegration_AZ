@@ -58,7 +58,7 @@ namespace SalesArtIntegration_AZ
             List<DisplayInvoiceInfo> displayInfoList = waybillResponse.data.Select(header => new DisplayInvoiceInfo
             {
                 Number = header.number,
-                Date = header.date.ToShortDateString(),
+                //Date = header.date.ToShortDateString(),
                 DocumentNumber = header.documentNumber,
                 CustomerCode = header.customerCode,
                 CustomerName = header.customerName,

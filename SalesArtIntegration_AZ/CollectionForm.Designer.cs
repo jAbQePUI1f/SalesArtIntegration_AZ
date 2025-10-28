@@ -40,7 +40,7 @@
             lblType = new MaterialSkin.Controls.MaterialLabel();
             bttnSendWaybill = new MaterialSkin.Controls.MaterialButton();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
-            bttnGetWaybill = new MaterialSkin.Controls.MaterialButton();
+            bttnGetCollection = new MaterialSkin.Controls.MaterialButton();
             dateTimeFinishDate = new DateTimePicker();
             dateTimeStartDate = new DateTimePicker();
             lblFinishDate = new MaterialSkin.Controls.MaterialLabel();
@@ -109,7 +109,7 @@
             materialCard1.Controls.Add(lblType);
             materialCard1.Controls.Add(bttnSendWaybill);
             materialCard1.Controls.Add(lblStartDate);
-            materialCard1.Controls.Add(bttnGetWaybill);
+            materialCard1.Controls.Add(bttnGetCollection);
             materialCard1.Controls.Add(dateTimeFinishDate);
             materialCard1.Controls.Add(dateTimeStartDate);
             materialCard1.Controls.Add(lblFinishDate);
@@ -175,7 +175,7 @@
             bttnSendWaybill.NoAccentTextColor = Color.Empty;
             bttnSendWaybill.Size = new Size(200, 42);
             bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Gönder";
+            bttnSendWaybill.Text = "Aktar";
             bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendWaybill.UseAccentColor = false;
             bttnSendWaybill.UseVisualStyleBackColor = true;
@@ -194,26 +194,26 @@
             lblStartDate.TabIndex = 11;
             lblStartDate.Text = "Choose Start Date";
             // 
-            // bttnGetWaybill
+            // bttnGetCollection
             // 
-            bttnGetWaybill.AutoSize = false;
-            bttnGetWaybill.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnGetWaybill.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnGetWaybill.Depth = 0;
-            bttnGetWaybill.HighEmphasis = true;
-            bttnGetWaybill.Icon = null;
-            bttnGetWaybill.Location = new Point(24, 113);
-            bttnGetWaybill.Margin = new Padding(4, 6, 4, 6);
-            bttnGetWaybill.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnGetWaybill.Name = "bttnGetWaybill";
-            bttnGetWaybill.NoAccentTextColor = Color.Empty;
-            bttnGetWaybill.Size = new Size(262, 42);
-            bttnGetWaybill.TabIndex = 8;
-            bttnGetWaybill.Text = "Getİr";
-            bttnGetWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnGetWaybill.UseAccentColor = false;
-            bttnGetWaybill.UseVisualStyleBackColor = true;
-            bttnGetWaybill.Click += bttnGetWaybill_Click;
+            bttnGetCollection.AutoSize = false;
+            bttnGetCollection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnGetCollection.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnGetCollection.Depth = 0;
+            bttnGetCollection.HighEmphasis = true;
+            bttnGetCollection.Icon = null;
+            bttnGetCollection.Location = new Point(24, 113);
+            bttnGetCollection.Margin = new Padding(4, 6, 4, 6);
+            bttnGetCollection.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnGetCollection.Name = "bttnGetCollection";
+            bttnGetCollection.NoAccentTextColor = Color.Empty;
+            bttnGetCollection.Size = new Size(262, 42);
+            bttnGetCollection.TabIndex = 8;
+            bttnGetCollection.Text = "Getİr";
+            bttnGetCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnGetCollection.UseAccentColor = false;
+            bttnGetCollection.UseVisualStyleBackColor = true;
+            bttnGetCollection.Click += bttnGetCollection_Click;
             // 
             // dateTimeFinishDate
             // 
@@ -221,16 +221,16 @@
             dateTimeFinishDate.Name = "dateTimeFinishDate";
             dateTimeFinishDate.Size = new Size(233, 23);
             dateTimeFinishDate.TabIndex = 14;
-            dateTimeFinishDate.Value = new DateTime(2025, 7, 8, 0, 0, 0, 0);
+            dateTimeFinishDate.Value = new DateTime(2025, 10, 28, 0, 0, 0, 0);
             // 
             // dateTimeStartDate
             // 
-            dateTimeStartDate.CustomFormat = "2025-08-08 00:00:00.000";
+            dateTimeStartDate.CustomFormat = "";
             dateTimeStartDate.Location = new Point(464, 31);
             dateTimeStartDate.Name = "dateTimeStartDate";
             dateTimeStartDate.Size = new Size(228, 23);
             dateTimeStartDate.TabIndex = 13;
-            dateTimeStartDate.Value = new DateTime(2025, 7, 8, 0, 0, 0, 0);
+            dateTimeStartDate.Value = new DateTime(2025, 10, 28, 0, 0, 0, 0);
             // 
             // lblFinishDate
             // 
@@ -330,7 +330,7 @@
         private MaterialSkin.Controls.MaterialLabel lblType;
         private MaterialSkin.Controls.MaterialButton bttnSendWaybill;
         private MaterialSkin.Controls.MaterialLabel lblStartDate;
-        private MaterialSkin.Controls.MaterialButton bttnGetWaybill;
+        private MaterialSkin.Controls.MaterialButton bttnGetCollection;
         private DateTimePicker dateTimeFinishDate;
         private DateTimePicker dateTimeStartDate;
         private MaterialSkin.Controls.MaterialLabel lblFinishDate;

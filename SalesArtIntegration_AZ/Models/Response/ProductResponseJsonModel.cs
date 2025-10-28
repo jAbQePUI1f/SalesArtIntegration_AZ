@@ -5,11 +5,11 @@ namespace SalesArtIntegration_AZ.Models.Response
 {
     public class ProductResponseJsonModel : BaseResponseJson
     {
-        public DataContainer data { get; set; }
+        public DataContainer? data { get; set; }
 
         public class DataContainer
         {
-            public List<Products> products { get; set; }
+            public List<Products>? products { get; set; }
         }
         public class Products
         {
@@ -17,13 +17,13 @@ namespace SalesArtIntegration_AZ.Models.Response
             public int Id { get; set; }
 
             [JsonProperty("name")]
-            public string Name { get; set; }
+            public string? Name { get; set; }
 
             [JsonProperty("code")]
-            public string Code { get; set; }
+            public string? Code { get; set; }
 
             [JsonProperty("mainUnitName")]
-            public string UnitName { get; set; }
+            public string? UnitName { get; set; }
         }
     }
 }
