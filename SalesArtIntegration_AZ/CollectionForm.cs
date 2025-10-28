@@ -48,12 +48,12 @@ namespace SalesArtIntegration_AZ
             this.Hide();
         }
 
-        private async void bttnGetWaybill_Click(object sender, EventArgs e)
+        private async void bttnGetCollection_Click(object sender, EventArgs e)
         {
             // "Seçiniz" kontrolü
             if (string.IsNullOrEmpty(documentType) || documentType == "SEÇİNİZ...")
             {
-                documentType = comboboxInvoiceType.SelectedValue.ToString();
+                documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
             }
 
             string beginDate = dateTimeStartDate.Value.ToString("yyyy-MM-dd");

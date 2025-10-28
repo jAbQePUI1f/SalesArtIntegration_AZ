@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SalesArtIntegration_AZ.Models
+﻿namespace SalesArtIntegration_AZ.Models
 {
     public class UserInfoEntity
     {
-        public string Token { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string? Token { get; set; }
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
     }
     public static class UserSharedInfo
     {
-        private static UserInfoEntity _userInfo;
+        private static UserInfoEntity? _userInfo;
 
         public static UserInfoEntity UserInfo
         {
@@ -31,16 +25,16 @@ namespace SalesArtIntegration_AZ.Models
                 _userInfo = value;
             }
         }
-        public static string GetToken()
+        public static string? GetToken()
         {
             return _userInfo.Token;
         }
-        public static string GetUserName()
+        public static string? GetUserName()
         {
             return _userInfo.UserName;
 
         }
-        public static string GetUserPass()
+        public static string? GetUserPass()
         {
             return _userInfo.Password;
 

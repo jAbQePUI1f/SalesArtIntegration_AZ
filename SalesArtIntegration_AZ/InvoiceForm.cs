@@ -207,7 +207,7 @@ namespace SalesArtIntegration_AZ
                                     tableLines.Add(new InvoiceItemTableLine
                                     {
                                         ItemCode = detail.code,
-                                        Quantity = detail.quantity,
+                                        Quantity = (decimal)detail.quantity,
                                         Unit = detail.unitCode,
                                         Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
 

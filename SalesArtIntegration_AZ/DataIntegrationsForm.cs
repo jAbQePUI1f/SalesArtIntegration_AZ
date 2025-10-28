@@ -163,9 +163,9 @@ namespace SalesArtIntegration_AZ
                     {
                         selectedCustomers.Add(new CustomerInfo
                         {
-                            code = row.Cells["code"].Value?.ToString(),
-                            name = row.Cells["name"].Value?.ToString(),
-                            vkn = row.Cells["vkn"].Value?.ToString()
+                            code = row.Cells["code"].Value?.ToString() ?? string.Empty,
+                            name = row.Cells["name"].Value?.ToString() ?? string.Empty,
+                            vkn = row.Cells["vkn"].Value?.ToString() ?? string.Empty
                         });
                     }
                 }
