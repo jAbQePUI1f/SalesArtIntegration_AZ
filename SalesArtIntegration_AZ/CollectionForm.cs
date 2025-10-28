@@ -61,48 +61,56 @@ namespace SalesArtIntegration_AZ
 
             var invoiceRequest = new CollectionRequest
             {
-                startDate = beginDate + " 00:00:00.000 ",
-                endDate = endDate + " 23:59:59.999 ",
+                startDate = beginDate ,
+                endDate = endDate+ "T23:59:00.000Z",
                 transactionTypes = new[] { documentType }
             };
-
-            collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelResponse>(Configuration.GetUrl() + "management/collections-for-erp", invoiceRequest);
-
-            if (collectionResponse?.data == null)
+            try
             {
-                MessageBox.Show("Tahsilat/Ödeme bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelResponse>(Configuration.GetUrl() + "management/collections-for-erp", invoiceRequest);
+
+                if (collectionResponse?.data == null)
+                {
+                    MessageBox.Show("Tahsilat/Ödeme bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
+                {
+                    Number = header.invoiceNo,
+                    Date = header.date.ToShortDateString(),
+                    DocumentNo = header.documentNo,
+                    CustomerCode = header.customerCode,
+                    CustomerName = header.customerName,
+                    Amount = header.amount.ToString(),
+
+                }).ToList();
+                dataGridInvoiceList.Visible = true;
+
+                dataGridInvoiceList.DataSource = displayInfoList;
+
+                dataGridInvoiceList.Columns["Number"].HeaderText = "Numara";
+                dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
+                dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Belge No";
+                dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
+                dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+                dataGridInvoiceList.Columns["Amount"].HeaderText = "Tutar";
+                dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridInvoiceList.Columns["DocumentNo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridInvoiceList.Columns["CustomerCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridInvoiceList.Columns["CustomerName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridInvoiceList.Columns["Amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                chckAll.Visible = true;
+                chckAll.BringToFront();
             }
-
-            List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
+            catch (Exception ex)
             {
-                Number = header.invoiceNo,
-                Date = header.date.ToShortDateString(),
-                DocumentNo = header.documentNo,
-                CustomerCode = header.customerCode,
-                CustomerName = header.customerName,
-                Amount = header.amount.ToString(),
 
-            }).ToList();
-            dataGridInvoiceList.Visible = true;
-
-            dataGridInvoiceList.DataSource = displayInfoList;
-
-            dataGridInvoiceList.Columns["Number"].HeaderText = "Numara";
-            dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
-            dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Belge No";
-            dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
-            dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
-            dataGridInvoiceList.Columns["Amount"].HeaderText = "Tutar";
-            dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["DocumentNo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["CustomerCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["CustomerName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["Amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            chckAll.Visible = true;
-            chckAll.BringToFront();
+                throw;
+            }
+          
         }
 
         private void chckAll_CheckedChanged(object sender, EventArgs e)
