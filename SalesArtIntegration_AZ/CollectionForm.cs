@@ -77,9 +77,9 @@ namespace SalesArtIntegration_AZ
 
                 List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
                 {
-                    Number = header.invoiceNo,
+                    Number = header.documentNo,
                     Date = header.date.ToShortDateString(),
-                    DocumentNo = header.documentNo,
+                    DocumentNo = header.ficheNo,
                     CustomerCode = header.customerCode,
                     CustomerName = header.customerName,
                     Amount = header.amount.ToString(),
@@ -167,11 +167,12 @@ namespace SalesArtIntegration_AZ
                     }
 
                     var selectedInvoice = collectionResponse?.data?.FirstOrDefault(inv => inv.documentNo == number);
-                    if (selectedInvoice == null)
-                    {
-                        MessageBox.Show($"Fatura numarası {number} bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
+
+                    //if (selectedInvoice == null)
+                    //{
+                    //    MessageBox.Show($"Fatura numarası {number} bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    continue;
+                    //}
 
                     bool success = false;
                     string errorMessage = "";
@@ -181,9 +182,9 @@ namespace SalesArtIntegration_AZ
                     {
                         switch (documentType)
                         {
-                            case nameof(Enums.TransactionType.CASH_PAYMENT):
+                            case nameof(Enums.TransactionType.CASH_COLLECTION):
 
-                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
+                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASA TAHSILAT", selectedInvoice.documentNo
                                     , selectedInvoice.customerCode, selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, selectedInvoice.customerCode, selectedInvoice.amount, selectedInvoice.description);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
