@@ -352,7 +352,7 @@ namespace SalesArtIntegration_AZ
                             Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
                         }
                     }
-                    bttnSendProducts.Enabled = true;
+              
                     dataGridInvoiceList.DataSource = null;
                     dataGridInvoiceList.Columns.Clear();
 
@@ -375,7 +375,7 @@ namespace SalesArtIntegration_AZ
                     dataGridInvoiceList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
                     chckAll.BringToFront();
-
+                    bttnSendProducts.Enabled = true;
                     Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
                         $"Toplam yerel ürün: {productData.data.products.Count}, " +
                         $"Uzak serviste olmayan: {newProductsToDisplay.Count}");
@@ -451,7 +451,7 @@ namespace SalesArtIntegration_AZ
                         string itemCode = product.code;
                         string itemName = product.name;
                         bool isService = false;
-                        string unit = product.unit;
+                        string unit = BirimYoneticisi.BirimGetir(product.unit);
 
 
                         var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit, 18);
