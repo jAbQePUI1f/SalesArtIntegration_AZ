@@ -9,7 +9,13 @@
     <ApplicationIcon>bannerico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\unit_mapping.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="bannerico.ico" />
+    <Content Include="Resources\unit_mapping.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
