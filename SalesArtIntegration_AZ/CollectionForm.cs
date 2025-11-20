@@ -6,6 +6,7 @@ using SalesArtIntegration_AZ.Models.Collection;
 using SalesArtIntegration_AZ.Models.Enums;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
+using static SalesArtIntegration_AZ.Models.Request.CollectionSyncRequest;
 using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
 
 namespace SalesArtIntegration_AZ
@@ -185,8 +186,8 @@ namespace SalesArtIntegration_AZ
                         {
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
-                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASA TAHSILAT", selectedInvoice.documentNo
-                                    , "12312312312", selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, "18", selectedInvoice.amount, selectedInvoice.description);
+                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
+                                    ,"12312312312", "", "", "", "18", selectedInvoice.amount, selectedInvoice.description);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
                                
@@ -208,22 +209,22 @@ namespace SalesArtIntegration_AZ
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle
-                    InvoiceSyncRequest syncRequest = new InvoiceSyncRequest
+                    CollectionSyncRequest syncRequest = new CollectionSyncRequest
                     {
-                        integratedInvoices = new[]
+                         integratedCollections = new[]
                         {
-                            new IntegratedInvoice
+                            new  IntegratedCollection
                             {
-                                successfullyIntegrated = success,
-                                invoiceNumber = selectedInvoice.documentNo,
-                                remoteInvoiceNumber = remoteInvoiceNumber,
-                                errorMessage = errorMessage
+                                 synced = success,
+                                 ficheNo = selectedInvoice.documentNo,
+                                 remoteCollectionNumber = remoteInvoiceNumber,
+                                 message = errorMessage
                             }
                         }
                     };
 
-                    var syncResponse = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(
-                        syncRequest, Configuration.GetUrl() + "management/sync-collection-statuses");
+                    var syncResponse = await ApiManager.PostAsync<CollectionSyncRequest, InvoiceSyncResponse>(
+                         Configuration.GetUrl() + "management/sync-collection-statuses", syncRequest);
 
 
                     #endregion
