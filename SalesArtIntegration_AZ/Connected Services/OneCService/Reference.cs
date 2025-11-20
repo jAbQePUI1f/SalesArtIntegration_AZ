@@ -4469,7 +4469,6 @@ namespace OneCService
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime Date;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=1)]
@@ -4553,12 +4552,16 @@ namespace OneCService
         public string ItemName;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=2)]
-        public bool IsService;
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string fullDescription;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=3)]
-        public string Unit;
+        public bool IsService;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=4)]
+        public string Unit;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=5)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public System.Nullable<int> TaxID;
         
@@ -4566,10 +4569,11 @@ namespace OneCService
         {
         }
         
-        public InsertNewItemRequest(string ItemCode, string ItemName, bool IsService, string Unit, System.Nullable<int> TaxID)
+        public InsertNewItemRequest(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, System.Nullable<int> TaxID)
         {
             this.ItemCode = ItemCode;
             this.ItemName = ItemName;
+            this.fullDescription = fullDescription;
             this.IsService = IsService;
             this.Unit = Unit;
             this.TaxID = TaxID;
@@ -4935,11 +4939,12 @@ namespace OneCService
             return base.Channel.InsertNewItemAsync(request);
         }
         
-        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, bool IsService, string Unit, System.Nullable<int> TaxID)
+        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, System.Nullable<int> TaxID)
         {
             OneCService.InsertNewItemRequest inValue = new OneCService.InsertNewItemRequest();
             inValue.ItemCode = ItemCode;
             inValue.ItemName = ItemName;
+            inValue.fullDescription = fullDescription;
             inValue.IsService = IsService;
             inValue.Unit = Unit;
             inValue.TaxID = TaxID;
