@@ -102,6 +102,7 @@
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // materialCard1
             // 
@@ -180,7 +181,7 @@
             bttnSendCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnSendCollection.UseAccentColor = false;
             bttnSendCollection.UseVisualStyleBackColor = true;
-            bttnSendCollection.Click += bttnSendWaybill_Click;
+            bttnSendCollection.Click += bttnSendCollection_Click;
             // 
             // lblStartDate
             // 
