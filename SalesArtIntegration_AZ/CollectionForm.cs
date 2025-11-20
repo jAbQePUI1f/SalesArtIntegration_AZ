@@ -62,8 +62,8 @@ namespace SalesArtIntegration_AZ
 
             var invoiceRequest = new CollectionRequest
             {
-                startDate = beginDate ,
-                endDate = endDate+ "T23:59:00.000Z",
+                startDate = beginDate,
+                endDate = endDate + "T23:59:00.000Z",
                 transactionTypes = new[] { documentType }
             };
             try
@@ -111,7 +111,7 @@ namespace SalesArtIntegration_AZ
 
                 throw;
             }
-          
+
         }
 
         private void chckAll_CheckedChanged(object sender, EventArgs e)
@@ -187,10 +187,10 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    ,"12312312312", "", "", "", "18", selectedInvoice.amount, selectedInvoice.description);
+                                    , "12312312312", "", "", "", "18", selectedInvoice.amount, selectedInvoice.description);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
-                               
+
                                 success = true;
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
@@ -205,13 +205,13 @@ namespace SalesArtIntegration_AZ
                     {
                         errorMessage = ex.Message;
                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
-                 
+
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle
                     CollectionSyncRequest syncRequest = new CollectionSyncRequest
                     {
-                         integratedCollections = new[]
+                        integratedCollections = new[]
                         {
                             new  IntegratedCollection
                             {
@@ -235,6 +235,13 @@ namespace SalesArtIntegration_AZ
         private void CollectionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void backToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SplashScreen splashScreen = new SplashScreen();
+            splashScreen.Show();
+            this.Hide();
         }
     }
 }
