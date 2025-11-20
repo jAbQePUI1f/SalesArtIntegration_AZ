@@ -513,15 +513,10 @@ namespace SalesArtIntegration_AZ
                                 try
                                 {
                                     // Unit code'u birim yöneticisinden al
-                                    string unit = BirimYoneticisi.BirimGetir(activeUnit.Code);
-
-                                    // Birden fazla unit varsa, ürün koduna unit code'u ekleyerek unique yap
-                                    string uniqueItemCode = product.ActiveUnits.Count > 1
-                                        ? $"{itemCode}_{activeUnit.Code}"
-                                        : itemCode;
+                                    string unit = BirimYoneticisi.BirimGetir(activeUnit.Code);                     
 
                                     var resultValue = await _client.InsertNewItemAsync(
-                                        uniqueItemCode,
+                                        itemCode,
                                         itemName,
                                         itemName,
                                         isService,
@@ -536,14 +531,14 @@ namespace SalesArtIntegration_AZ
                                         successCount++;
                                         Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
                                             $"Ürün '{itemName}' - Birim '{activeUnit.Name}' başarıyla kaydedildi. ({processedCount}/{totalUnitsCount})",
-                                            $"Kod: {uniqueItemCode}, Birim: {activeUnit.Code}, Çevrim Faktörü: {activeUnit.ConversionFactor}");
+                                            $"Kod: {itemCode}, Birim: {activeUnit.Code}, Çevrim Faktörü: {activeUnit.ConversionFactor}");
                                     }
                                     else
                                     {
                                         errorCount++;
                                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
                                             $"Ürün '{itemName}' - Birim '{activeUnit.Name}' kayıt edilemedi: {resultValue.@return.Message}",
-                                            $"Kod: {uniqueItemCode}, Birim: {activeUnit.Code}");
+                                            $"Kod: {itemCode}, Birim: {activeUnit.Code}");
                                     }
                                 }
                                 catch (Exception unitEx)
