@@ -81,6 +81,7 @@ namespace SalesArtIntegration_AZ
                             {
                                 code = customer.code,
                                 name = customer.shortName,
+                                fullName = customer.name,
                                 vkn = customerTIN
                             });
 
@@ -105,11 +106,14 @@ namespace SalesArtIntegration_AZ
 
                     dataGridInvoiceList.Columns["code"].HeaderText = "Müşteri Numarası";
                     dataGridInvoiceList.Columns["name"].HeaderText = "Müşteri Adı";
+                    dataGridInvoiceList.Columns["fullName"].HeaderText = "Müşteri Voen Adı";
                     dataGridInvoiceList.Columns["vkn"].HeaderText = "VKN / TCKN";
 
                     dataGridInvoiceList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dataGridInvoiceList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridInvoiceList.Columns["fullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dataGridInvoiceList.Columns["vkn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
 
                     chckAll.BringToFront();
 
@@ -165,7 +169,9 @@ namespace SalesArtIntegration_AZ
                         {
                             code = row.Cells["code"].Value?.ToString() ?? string.Empty,
                             name = row.Cells["name"].Value?.ToString() ?? string.Empty,
-                            vkn = row.Cells["vkn"].Value?.ToString() ?? string.Empty
+                            vkn = row.Cells["vkn"].Value?.ToString() ?? string.Empty,
+                            fullName = row.Cells["fullName"].Value?.ToString() ?? string.Empty,
+
                         });
                     }
                 }
@@ -208,6 +214,7 @@ namespace SalesArtIntegration_AZ
                         string partnerCode = customer.code;
                         string partnerTIN = customer.vkn;
                         string partnerName = customer.name;
+                        string fullName = customer.fullName;
 
                         // TIN uzunluğuna göre gerçek/tüzel kişi kontrolü (11 haneli TCKN, 10 haneli VKN)
                         bool isJuridicalPerson = partnerTIN?.Length == 10;
@@ -297,6 +304,7 @@ namespace SalesArtIntegration_AZ
             public string vkn { get; set; }
             public string code { get; set; }
             public string name { get; set; }
+            public string fullName { get; set; }
         }
         public class ProductInfo
         {
@@ -330,12 +338,12 @@ namespace SalesArtIntegration_AZ
                 var productData = productDataTask.Result;
 
                 //var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
-                
+
                 //var soapItemsListTask = _client.GetItemListAsync();
 
                 //soapItemsListTask
 
-               
+
                 //var soapItemsList = soapItemsListTask.Result.@return;
 
                 //var existingItemCodes = new HashSet<string>(
@@ -358,18 +366,18 @@ namespace SalesArtIntegration_AZ
 
                         //if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
                         //{
-                            newProductsToDisplay.Add(new ProductInfo
-                            {
-                                code = product.Code,
-                                name = product.Name,
-                                unit = product.UnitName
+                        newProductsToDisplay.Add(new ProductInfo
+                        {
+                            code = product.Code,
+                            name = product.Name,
+                            unit = product.UnitName
 
-                            });
+                        });
 
-                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
+                        Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
                         //}
                     }
-              
+
                     dataGridInvoiceList.DataSource = null;
                     dataGridInvoiceList.Columns.Clear();
 
@@ -515,6 +523,7 @@ namespace SalesArtIntegration_AZ
                                     var resultValue = await _client.InsertNewItemAsync(
                                         uniqueItemCode,
                                         itemName,
+                                        itemName,
                                         isService,
                                         unit,
                                         18
@@ -551,7 +560,7 @@ namespace SalesArtIntegration_AZ
                         {
                             // ActiveUnits yoksa UnitName ile kaydet (fallback)
                             string unit = BirimYoneticisi.BirimGetir(product.UnitName);
-                            var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit, 18);
+                            var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, itemName, isService, unit, 18);
 
                             processedCount++;
 
