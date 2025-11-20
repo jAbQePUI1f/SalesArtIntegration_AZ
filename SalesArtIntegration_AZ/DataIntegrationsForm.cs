@@ -107,7 +107,7 @@ namespace SalesArtIntegration_AZ
                     dataGridInvoiceList.Columns["code"].HeaderText = "Müşteri Numarası";
                     dataGridInvoiceList.Columns["name"].HeaderText = "Müşteri Adı";
                     dataGridInvoiceList.Columns["fullName"].HeaderText = "Müşteri Voen Adı";
-                    dataGridInvoiceList.Columns["vkn"].HeaderText = "VKN / TCKN";
+                    dataGridInvoiceList.Columns["vkn"].HeaderText = "Voen No";
 
                     dataGridInvoiceList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dataGridInvoiceList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

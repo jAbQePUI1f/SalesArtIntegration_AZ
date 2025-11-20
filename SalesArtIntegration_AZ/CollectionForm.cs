@@ -145,7 +145,7 @@ namespace SalesArtIntegration_AZ
             }
         }
 
-        private async void bttnSendWaybill_Click(object sender, EventArgs e)
+        private async void bttnSendCollection_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(documentType))
             {
@@ -187,7 +187,7 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    , "12312312312", "", "", "", "18", selectedInvoice.amount, selectedInvoice.description);
+                                    , "12312312312", "", "", "", "18", selectedInvoice.amount, "");
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
@@ -242,6 +242,11 @@ namespace SalesArtIntegration_AZ
             SplashScreen splashScreen = new SplashScreen();
             splashScreen.Show();
             this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
