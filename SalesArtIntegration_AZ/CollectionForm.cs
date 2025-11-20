@@ -162,7 +162,8 @@ namespace SalesArtIntegration_AZ
                     string? number = row.Cells["Number"].Value?.ToString();
                     if (string.IsNullOrEmpty(number))
                     {
-                        MessageBox.Show("Fatura numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Tahsilat numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", "Tahsilat numarası boş olduğu için aktarım yapılamadı.", "Numara: N/A");
                         continue;
                     }
 
@@ -185,13 +186,13 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASA TAHSILAT", selectedInvoice.documentNo
-                                    , selectedInvoice.customerCode, selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, selectedInvoice.customerCode, selectedInvoice.amount, selectedInvoice.description);
+                                    , "12312312312", selectedInvoice.paymentCode, selectedInvoice.paymentName, selectedInvoice.salesmanCode, "18", selectedInvoice.amount, selectedInvoice.description);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
-
+                               
                                 success = true;
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 break;
 
                             default:
@@ -202,6 +203,8 @@ namespace SalesArtIntegration_AZ
                     catch (Exception ex)
                     {
                         errorMessage = ex.Message;
+                        Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
+                 
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle
@@ -220,7 +223,7 @@ namespace SalesArtIntegration_AZ
                     };
 
                     var syncResponse = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(
-                        syncRequest, Configuration.GetUrl() + "management/sync-invoice-statuses");
+                        syncRequest, Configuration.GetUrl() + "management/sync-collection-statuses");
 
 
                     #endregion
