@@ -334,24 +334,24 @@ namespace SalesArtIntegration_AZ
                 // POST isteği ile ürün listesi çekme
                 var productDataTask = ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
                     Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
-                await Task.WhenAll(productDataTask);
-                var productData = productDataTask.Result;
+
 
                 //var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
 
-                //var soapItemsListTask = _client.GetItemListAsync();
+                var soapItemsListTask = _client.GetItemListAsync();
 
                 //soapItemsListTask
+                await Task.WhenAll(productDataTask, soapItemsListTask);
+                var productData = productDataTask.Result;
 
+                var soapItemsList = soapItemsListTask.Result.@return;
 
-                //var soapItemsList = soapItemsListTask.Result.@return;
-
-                //var existingItemCodes = new HashSet<string>(
-                //    soapItemsList
-                //        .Where(item => !string.IsNullOrWhiteSpace(item.ItemCodeCode))
-                //        .Select(item => item.ItemCodeCode),
-                //    StringComparer.OrdinalIgnoreCase
-                //);
+                var existingItemCodes = new HashSet<string>(
+                    soapItemsList
+                        .Where(item => !string.IsNullOrWhiteSpace(item.ItemCodeCode))
+                        .Select(item => item.ItemCodeCode),
+                    StringComparer.OrdinalIgnoreCase
+                );
 
                 //Helpers.LogFile(Helpers.LogLevel.DEBUG, "Ürün", $"Uzak serviste bulunan ürün sayısı: {existingItemCodes.Count}");
 
@@ -364,18 +364,18 @@ namespace SalesArtIntegration_AZ
                         string productCode = product.Code;
 
 
-                        //if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
-                        //{
-                        newProductsToDisplay.Add(new ProductInfo
+                        if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
                         {
-                            code = product.Code,
-                            name = product.Name,
-                            unit = product.UnitName
+                            newProductsToDisplay.Add(new ProductInfo
+                            {
+                                code = product.Code,
+                                name = product.Name,
+                                unit = product.UnitName
 
-                        });
+                            });
 
-                        Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
-                        //}
+                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
+                        }
                     }
 
                     dataGridInvoiceList.DataSource = null;
