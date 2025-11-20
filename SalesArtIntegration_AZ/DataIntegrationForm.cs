@@ -90,7 +90,7 @@ namespace SalesArtIntegration_AZ
                                 bool isService = false;
                                 string unit = newItem.UnitName;
 
-                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit,18);
+                                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, itemName, isService, unit,18);
 
                                 if (resultValue.@return.Result)
                                 {
