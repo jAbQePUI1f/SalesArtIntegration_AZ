@@ -1,17 +1,17 @@
 ﻿{
   "Mapping": {
-    "ƏDƏD": "PC",
-    "K.QUTU": "CV",
-    "KISƏ": "BAG",
-    "KQ": "KG",
-    "BAGL": "PAC",
-    "DƏST": "SET",
-    "TON": "TO",
-    "B.QUTU": "CRT",
+    "PC": "ƏDƏD",
+    "CV": "K.QUTU",
+    "BAG": "KISƏ",
+    "KG": "KQ",
+    "PAC": "BAGL",
+    "SET": "DƏST",
+    "TO": "TON",
+    "CRT": "B.QUTU",
     "Kilogram": "Kilogram",
-    "MİN LİT": "BNL",
-    "MT": "M",
-    "LİTR": "L",
+    "BNL": "MİN LİT",
+    "M": "MT",
+    "L": "LİTR",
     "Pack": "Pack"
   }
 }
