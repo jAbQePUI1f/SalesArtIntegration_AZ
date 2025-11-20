@@ -38,7 +38,7 @@
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             comboboxInvoiceType = new MaterialSkin.Controls.MaterialComboBox();
             lblType = new MaterialSkin.Controls.MaterialLabel();
-            bttnSendWaybill = new MaterialSkin.Controls.MaterialButton();
+            bttnSendCollection = new MaterialSkin.Controls.MaterialButton();
             lblStartDate = new MaterialSkin.Controls.MaterialLabel();
             bttnGetCollection = new MaterialSkin.Controls.MaterialButton();
             dateTimeFinishDate = new DateTimePicker();
@@ -79,27 +79,28 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(165, 22);
+            invoiceToolStripMenuItem.Size = new Size(180, 22);
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(165, 22);
+            collectionToolStripMenuItem.Size = new Size(180, 22);
             collectionToolStripMenuItem.Text = "İrsaliye İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // backToolStripMenuItem1
             // 
             backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            backToolStripMenuItem1.Size = new Size(165, 22);
+            backToolStripMenuItem1.Size = new Size(180, 22);
             backToolStripMenuItem1.Text = "Ana Menüye dön";
+            backToolStripMenuItem1.Click += backToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(165, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
             // 
             // materialCard1
@@ -107,7 +108,7 @@
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
             materialCard1.Controls.Add(comboboxInvoiceType);
             materialCard1.Controls.Add(lblType);
-            materialCard1.Controls.Add(bttnSendWaybill);
+            materialCard1.Controls.Add(bttnSendCollection);
             materialCard1.Controls.Add(lblStartDate);
             materialCard1.Controls.Add(bttnGetCollection);
             materialCard1.Controls.Add(dateTimeFinishDate);
@@ -160,26 +161,26 @@
             lblType.TabIndex = 9;
             lblType.Text = "Choose Collection Type";
             // 
-            // bttnSendWaybill
+            // bttnSendCollection
             // 
-            bttnSendWaybill.AutoSize = false;
-            bttnSendWaybill.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnSendWaybill.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnSendWaybill.Depth = 0;
-            bttnSendWaybill.HighEmphasis = true;
-            bttnSendWaybill.Icon = null;
-            bttnSendWaybill.Location = new Point(760, 113);
-            bttnSendWaybill.Margin = new Padding(4, 6, 4, 6);
-            bttnSendWaybill.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnSendWaybill.Name = "bttnSendWaybill";
-            bttnSendWaybill.NoAccentTextColor = Color.Empty;
-            bttnSendWaybill.Size = new Size(200, 42);
-            bttnSendWaybill.TabIndex = 15;
-            bttnSendWaybill.Text = "Aktar";
-            bttnSendWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnSendWaybill.UseAccentColor = false;
-            bttnSendWaybill.UseVisualStyleBackColor = true;
-            bttnSendWaybill.Click += bttnSendWaybill_Click;
+            bttnSendCollection.AutoSize = false;
+            bttnSendCollection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnSendCollection.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnSendCollection.Depth = 0;
+            bttnSendCollection.HighEmphasis = true;
+            bttnSendCollection.Icon = null;
+            bttnSendCollection.Location = new Point(760, 113);
+            bttnSendCollection.Margin = new Padding(4, 6, 4, 6);
+            bttnSendCollection.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnSendCollection.Name = "bttnSendCollection";
+            bttnSendCollection.NoAccentTextColor = Color.Empty;
+            bttnSendCollection.Size = new Size(200, 42);
+            bttnSendCollection.TabIndex = 15;
+            bttnSendCollection.Text = "Aktar";
+            bttnSendCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnSendCollection.UseAccentColor = false;
+            bttnSendCollection.UseVisualStyleBackColor = true;
+            bttnSendCollection.Click += bttnSendWaybill_Click;
             // 
             // lblStartDate
             // 
@@ -328,7 +329,7 @@
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialComboBox comboboxInvoiceType;
         private MaterialSkin.Controls.MaterialLabel lblType;
-        private MaterialSkin.Controls.MaterialButton bttnSendWaybill;
+        private MaterialSkin.Controls.MaterialButton bttnSendCollection;
         private MaterialSkin.Controls.MaterialLabel lblStartDate;
         private MaterialSkin.Controls.MaterialButton bttnGetCollection;
         private DateTimePicker dateTimeFinishDate;
