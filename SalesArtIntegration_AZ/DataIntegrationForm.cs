@@ -204,9 +204,9 @@ namespace SalesArtIntegration_AZ
                                 string partnerName = newCustomer.name;
                                 bool isJuridicalPerson = newCustomer.taxNumber == "" ? true : false;
 
-                                var resultValue = await _client.InsertNewPartnerAsync(partnerCode, partnerTIN, partnerName, isJuridicalPerson);
+                                var resultValue = await _client.InsertNewPartnerAsync(partnerCode, partnerTIN, partnerName,partnerName, isJuridicalPerson);
 
-                                if (resultValue.Result)
+                                if (resultValue.@return.Result)
                                 {
                                     processedCount++;
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri", $"Müşteri '{partnerName}' başarıyla kaydedildi. ({processedCount}/{totalCount})", $"TIN: {partnerTIN}");
@@ -214,7 +214,7 @@ namespace SalesArtIntegration_AZ
                                 }
                                 else
                                 {
-                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.Message}", $"TIN: {partnerTIN}");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri", $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.@return.Message}", $"TIN: {partnerTIN}");
                                     //Console.WriteLine($"Müşteri '{partnerName}' ({partnerTIN}) kayıt edilemedi!!.  " + resultValue.Message.ToString());
                                 }
 
