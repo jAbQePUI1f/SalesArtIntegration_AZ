@@ -90,8 +90,7 @@ namespace OneCService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewPartner", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        System.Threading.Tasks.Task<OneCService.PartnerResponse> InsertNewPartnerAsync(string PartnerCode, string PartnerTIN, string PartnerName, bool IsJuridicalPerson);
+        System.Threading.Tasks.Task<OneCService.InsertNewPartnerResponse> InsertNewPartnerAsync(OneCService.InsertNewPartnerRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://127.0.0.1#WebService:InsertNewItem", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -4541,6 +4540,63 @@ namespace OneCService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertNewPartner", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class InsertNewPartnerRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
+        public string PartnerCode;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=1)]
+        public string PartnerTIN;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=2)]
+        public string PartnerName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string fullDescription;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=4)]
+        public bool IsJuridicalPerson;
+        
+        public InsertNewPartnerRequest()
+        {
+        }
+        
+        public InsertNewPartnerRequest(string PartnerCode, string PartnerTIN, string PartnerName, string fullDescription, bool IsJuridicalPerson)
+        {
+            this.PartnerCode = PartnerCode;
+            this.PartnerTIN = PartnerTIN;
+            this.PartnerName = PartnerName;
+            this.fullDescription = fullDescription;
+            this.IsJuridicalPerson = IsJuridicalPerson;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertNewPartnerResponse", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
+    public partial class InsertNewPartnerResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=0)]
+        public OneCService.PartnerResponse @return;
+        
+        public InsertNewPartnerResponse()
+        {
+        }
+        
+        public InsertNewPartnerResponse(OneCService.PartnerResponse @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="InsertNewItem", WrapperNamespace="http://127.0.0.1", IsWrapped=true)]
     public partial class InsertNewItemRequest
     {
@@ -4928,9 +4984,21 @@ namespace OneCService
             return ((OneCService.WebServicePortType)(this)).InsertNewIncomingPaymentAsync(inValue);
         }
         
-        public System.Threading.Tasks.Task<OneCService.PartnerResponse> InsertNewPartnerAsync(string PartnerCode, string PartnerTIN, string PartnerName, bool IsJuridicalPerson)
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<OneCService.InsertNewPartnerResponse> OneCService.WebServicePortType.InsertNewPartnerAsync(OneCService.InsertNewPartnerRequest request)
         {
-            return base.Channel.InsertNewPartnerAsync(PartnerCode, PartnerTIN, PartnerName, IsJuridicalPerson);
+            return base.Channel.InsertNewPartnerAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<OneCService.InsertNewPartnerResponse> InsertNewPartnerAsync(string PartnerCode, string PartnerTIN, string PartnerName, string fullDescription, bool IsJuridicalPerson)
+        {
+            OneCService.InsertNewPartnerRequest inValue = new OneCService.InsertNewPartnerRequest();
+            inValue.PartnerCode = PartnerCode;
+            inValue.PartnerTIN = PartnerTIN;
+            inValue.PartnerName = PartnerName;
+            inValue.fullDescription = fullDescription;
+            inValue.IsJuridicalPerson = IsJuridicalPerson;
+            return ((OneCService.WebServicePortType)(this)).InsertNewPartnerAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
