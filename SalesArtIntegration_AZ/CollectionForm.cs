@@ -187,7 +187,7 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    , "12312312312", "", "", "", "18", selectedInvoice.amount, "");
+                                    , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
