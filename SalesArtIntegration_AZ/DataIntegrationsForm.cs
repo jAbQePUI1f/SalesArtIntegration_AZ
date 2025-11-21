@@ -223,9 +223,10 @@ namespace SalesArtIntegration_AZ
                             partnerCode,
                             partnerTIN,
                             partnerName,
+                            fullName,
                             isJuridicalPerson);
 
-                        if (resultValue.Result)
+                        if (resultValue.@return.Result)
                         {
                             processedCount++;
                             successCount++;
@@ -238,7 +239,7 @@ namespace SalesArtIntegration_AZ
                             processedCount++;
                             errorCount++;
                             Helpers.LogFile(Helpers.LogLevel.ERROR, "Müşteri",
-                                $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.Message}",
+                                $"Müşteri '{partnerName}' kayıt edilemedi: {resultValue.@return.Message}",
                                 $"TIN: {partnerTIN}");
                         }
                     }
