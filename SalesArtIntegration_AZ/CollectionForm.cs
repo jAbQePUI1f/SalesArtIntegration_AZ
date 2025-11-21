@@ -195,7 +195,17 @@ namespace SalesArtIntegration_AZ
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 break;
+                            case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
 
+                                 invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "BANKA_TAHSILAT", selectedInvoice.documentNo
+                                    , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");
+
+                                remoteInvoiceNumber = selectedInvoice.documentNo;
+
+                                success = true;
+                                MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
+                                break;
                             default:
                                 errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";
                                 break;
