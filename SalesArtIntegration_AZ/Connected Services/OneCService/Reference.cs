@@ -400,6 +400,384 @@ namespace OneCService
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
+    public partial class KoeficientTableLine : object, System.ComponentModel.INotifyPropertyChanged
+    {
+        
+        private string nameField;
+        
+        private string codeField;
+        
+        private System.Nullable<decimal> conversionFactorField;
+        
+        private System.Nullable<decimal> areaField;
+        
+        private System.Nullable<decimal> grossVolumeField;
+        
+        private System.Nullable<decimal> grossWeightField;
+        
+        private System.Nullable<decimal> heightField;
+        
+        private System.Nullable<decimal> lengthField;
+        
+        private System.Nullable<decimal> volumeField;
+        
+        private System.Nullable<decimal> weightField;
+        
+        private System.Nullable<decimal> widthField;
+        
+        private System.Nullable<bool> financeField;
+        
+        private System.Nullable<bool> quantityField;
+        
+        private System.Nullable<bool> saleField;
+        
+        private System.Nullable<bool> reportField;
+        
+        private System.Nullable<decimal> cONVFACT2Field;
+        
+        private System.Nullable<decimal> sHELFLIFEField;
+        
+        private System.Nullable<decimal> dISTPOINTField;
+        
+        private System.Nullable<decimal> uNITTYPEField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string code
+        {
+            get
+            {
+                return this.codeField;
+            }
+            set
+            {
+                this.codeField = value;
+                this.RaisePropertyChanged("code");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<decimal> conversionFactor
+        {
+            get
+            {
+                return this.conversionFactorField;
+            }
+            set
+            {
+                this.conversionFactorField = value;
+                this.RaisePropertyChanged("conversionFactor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public System.Nullable<decimal> area
+        {
+            get
+            {
+                return this.areaField;
+            }
+            set
+            {
+                this.areaField = value;
+                this.RaisePropertyChanged("area");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<decimal> grossVolume
+        {
+            get
+            {
+                return this.grossVolumeField;
+            }
+            set
+            {
+                this.grossVolumeField = value;
+                this.RaisePropertyChanged("grossVolume");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<decimal> grossWeight
+        {
+            get
+            {
+                return this.grossWeightField;
+            }
+            set
+            {
+                this.grossWeightField = value;
+                this.RaisePropertyChanged("grossWeight");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<decimal> height
+        {
+            get
+            {
+                return this.heightField;
+            }
+            set
+            {
+                this.heightField = value;
+                this.RaisePropertyChanged("height");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public System.Nullable<decimal> length
+        {
+            get
+            {
+                return this.lengthField;
+            }
+            set
+            {
+                this.lengthField = value;
+                this.RaisePropertyChanged("length");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public System.Nullable<decimal> volume
+        {
+            get
+            {
+                return this.volumeField;
+            }
+            set
+            {
+                this.volumeField = value;
+                this.RaisePropertyChanged("volume");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public System.Nullable<decimal> weight
+        {
+            get
+            {
+                return this.weightField;
+            }
+            set
+            {
+                this.weightField = value;
+                this.RaisePropertyChanged("weight");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<decimal> width
+        {
+            get
+            {
+                return this.widthField;
+            }
+            set
+            {
+                this.widthField = value;
+                this.RaisePropertyChanged("width");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+        public System.Nullable<bool> Finance
+        {
+            get
+            {
+                return this.financeField;
+            }
+            set
+            {
+                this.financeField = value;
+                this.RaisePropertyChanged("Finance");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<bool> Quantity
+        {
+            get
+            {
+                return this.quantityField;
+            }
+            set
+            {
+                this.quantityField = value;
+                this.RaisePropertyChanged("Quantity");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=13)]
+        public System.Nullable<bool> Sale
+        {
+            get
+            {
+                return this.saleField;
+            }
+            set
+            {
+                this.saleField = value;
+                this.RaisePropertyChanged("Sale");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=14)]
+        public System.Nullable<bool> Report
+        {
+            get
+            {
+                return this.reportField;
+            }
+            set
+            {
+                this.reportField = value;
+                this.RaisePropertyChanged("Report");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=15)]
+        public System.Nullable<decimal> CONVFACT2
+        {
+            get
+            {
+                return this.cONVFACT2Field;
+            }
+            set
+            {
+                this.cONVFACT2Field = value;
+                this.RaisePropertyChanged("CONVFACT2");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=16)]
+        public System.Nullable<decimal> SHELFLIFE
+        {
+            get
+            {
+                return this.sHELFLIFEField;
+            }
+            set
+            {
+                this.sHELFLIFEField = value;
+                this.RaisePropertyChanged("SHELFLIFE");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=17)]
+        public System.Nullable<decimal> DISTPOINT
+        {
+            get
+            {
+                return this.dISTPOINTField;
+            }
+            set
+            {
+                this.dISTPOINTField = value;
+                this.RaisePropertyChanged("DISTPOINT");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=18)]
+        public System.Nullable<decimal> UNITTYPE
+        {
+            get
+            {
+                return this.uNITTYPEField;
+            }
+            set
+            {
+                this.uNITTYPEField = value;
+                this.RaisePropertyChanged("UNITTYPE");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
+    public partial class KoeficientTable : object, System.ComponentModel.INotifyPropertyChanged
+    {
+        
+        private KoeficientTableLine koeficientTableLineField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public KoeficientTableLine KoeficientTableLine
+        {
+            get
+            {
+                return this.koeficientTableLineField;
+            }
+            set
+            {
+                this.koeficientTableLineField = value;
+                this.RaisePropertyChanged("KoeficientTableLine");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
     public partial class PartnerResponse : object, System.ComponentModel.INotifyPropertyChanged
     {
         
@@ -4618,6 +4996,9 @@ namespace OneCService
         public string Unit;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=5)]
+        public OneCService.KoeficientTable KoeficientTable;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=6)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public System.Nullable<int> TaxID;
         
@@ -4625,13 +5006,14 @@ namespace OneCService
         {
         }
         
-        public InsertNewItemRequest(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, System.Nullable<int> TaxID)
+        public InsertNewItemRequest(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTable KoeficientTable, System.Nullable<int> TaxID)
         {
             this.ItemCode = ItemCode;
             this.ItemName = ItemName;
             this.fullDescription = fullDescription;
             this.IsService = IsService;
             this.Unit = Unit;
+            this.KoeficientTable = KoeficientTable;
             this.TaxID = TaxID;
         }
     }
@@ -5007,7 +5389,7 @@ namespace OneCService
             return base.Channel.InsertNewItemAsync(request);
         }
         
-        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, System.Nullable<int> TaxID)
+        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTable KoeficientTable, System.Nullable<int> TaxID)
         {
             OneCService.InsertNewItemRequest inValue = new OneCService.InsertNewItemRequest();
             inValue.ItemCode = ItemCode;
@@ -5015,6 +5397,7 @@ namespace OneCService
             inValue.fullDescription = fullDescription;
             inValue.IsService = IsService;
             inValue.Unit = Unit;
+            inValue.KoeficientTable = KoeficientTable;
             inValue.TaxID = TaxID;
             return ((OneCService.WebServicePortType)(this)).InsertNewItemAsync(inValue);
         }
