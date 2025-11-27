@@ -197,8 +197,8 @@ namespace SalesArtIntegration_AZ
                                 break;
                             case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
 
-                                 invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "BANKA_TAHSILAT", selectedInvoice.documentNo
-                                    , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");
+                                invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "BANKA_TAHSILAT", selectedInvoice.documentNo
+                                   , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
@@ -225,10 +225,10 @@ namespace SalesArtIntegration_AZ
                         {
                             new  IntegratedCollection
                             {
-                                 synced = success,
+                                  successfullyIntegrated = success,
                                  ficheNo = selectedInvoice.documentNo,
                                  remoteCollectionNumber = remoteInvoiceNumber,
-                                 message = errorMessage
+                                  errorMessage = errorMessage
                             }
                         }
                     };
