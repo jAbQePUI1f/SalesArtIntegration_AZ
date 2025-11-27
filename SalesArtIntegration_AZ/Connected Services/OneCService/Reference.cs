@@ -742,42 +742,6 @@ namespace OneCService
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
-    public partial class KoeficientTable : object, System.ComponentModel.INotifyPropertyChanged
-    {
-        
-        private KoeficientTableLine koeficientTableLineField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public KoeficientTableLine KoeficientTableLine
-        {
-            get
-            {
-                return this.koeficientTableLineField;
-            }
-            set
-            {
-                this.koeficientTableLineField = value;
-                this.RaisePropertyChanged("KoeficientTableLine");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://127.0.0.1")]
     public partial class PartnerResponse : object, System.ComponentModel.INotifyPropertyChanged
     {
         
@@ -4996,7 +4960,8 @@ namespace OneCService
         public string Unit;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=5)]
-        public OneCService.KoeficientTable KoeficientTable;
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public OneCService.KoeficientTableLine[] KoeficientTable;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=6)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -5006,7 +4971,7 @@ namespace OneCService
         {
         }
         
-        public InsertNewItemRequest(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTable KoeficientTable, System.Nullable<int> TaxID)
+        public InsertNewItemRequest(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTableLine[] KoeficientTable, System.Nullable<int> TaxID)
         {
             this.ItemCode = ItemCode;
             this.ItemName = ItemName;
@@ -5389,7 +5354,7 @@ namespace OneCService
             return base.Channel.InsertNewItemAsync(request);
         }
         
-        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTable KoeficientTable, System.Nullable<int> TaxID)
+        public System.Threading.Tasks.Task<OneCService.InsertNewItemResponse> InsertNewItemAsync(string ItemCode, string ItemName, string fullDescription, bool IsService, string Unit, OneCService.KoeficientTableLine[] KoeficientTable, System.Nullable<int> TaxID)
         {
             OneCService.InsertNewItemRequest inValue = new OneCService.InsertNewItemRequest();
             inValue.ItemCode = ItemCode;

@@ -11,7 +11,8 @@
     "Kilogram": "Kilogram",
     "BNL": "MİN LİT",
     "M": "MT",
-    "L": "LİTR",
-    "Pack": "Pack"
+    "L": "L",
+    "Pack": "Pack",
+    "LİTR": "LİTR"
   }
 }
