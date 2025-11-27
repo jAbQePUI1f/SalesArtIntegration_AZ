@@ -438,7 +438,9 @@ namespace SalesArtIntegration_AZ
                         }
                     }
                 }
+
                 bttnSendProducts.Enabled = true;
+
                 if (selectedProductCodes.Count == 0)
                 {
                     MessageBox.Show("Lütfen göndermek istediğiniz ürünleri seçin.", "Uyarı",
@@ -488,14 +490,13 @@ namespace SalesArtIntegration_AZ
                     .Where(p => selectedProductCodes.Contains(p.Code, StringComparer.OrdinalIgnoreCase))
                     .ToList();
 
-                int totalUnitsCount = selectedProductsWithDetails.Sum(p => p.ActiveUnits?.Count ?? 1);
+                int totalCount = selectedProductsWithDetails.Count;
                 int processedCount = 0;
                 int successCount = 0;
                 int errorCount = 0;
 
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-                    $"Toplam işlenecek ürün birimi sayısı: {totalUnitsCount}");
-
+                    $"Toplam işlenecek ürün sayısı: {totalCount}");
 
                 foreach (var product in selectedProductsWithDetails)
                 {
@@ -503,77 +504,85 @@ namespace SalesArtIntegration_AZ
                     {
                         string itemCode = product.Code;
                         string itemName = product.Name;
+                        string fullDescription = product.Name;
                         bool isService = false;
 
-                        // ActiveUnits kontrolü
+                        // Ana birim (Unit) - İlk ActiveUnit veya UnitName
+                        string mainUnit = string.Empty;
+                        OneCService.KoeficientTable koeficientTable = new OneCService.KoeficientTable();
+
+                        // ActiveUnits kontrolü - sadece ilk birimi al
                         if (product.ActiveUnits != null && product.ActiveUnits.Count > 0)
                         {
-                            // Her bir active unit için ayrı insert
-                            foreach (var activeUnit in product.ActiveUnits)
+                            // İlk aktif birimi ana birim olarak al
+                            var firstUnit = product.ActiveUnits.First();
+                            mainUnit = BirimYoneticisi.BirimGetir(firstUnit.Code);
+
+                            // Sadece ilk birimi KoeficientTableLine olarak oluştur (tek satır)
+                            koeficientTable.KoeficientTableLine = new OneCService.KoeficientTableLine
                             {
-                                try
-                                {
-                                    // Unit code'u birim yöneticisinden al
-                                    string unit = BirimYoneticisi.BirimGetir(activeUnit.Code);                     
+                                Name = firstUnit.Name,
+                                code = firstUnit.Code,
+                                conversionFactor = (decimal)firstUnit.ConversionFactor,
+                                area = (decimal)firstUnit.Area,
+                                grossVolume = (decimal)firstUnit.GrossVolume,
+                                grossWeight = (decimal)firstUnit.GrossWeight,
+                                height = (decimal)firstUnit.Height,
+                                length = (decimal)firstUnit.Length,
+                                volume = (decimal)firstUnit.Volume,
+                                weight = (decimal)firstUnit.Weight,
+                                width = (decimal)firstUnit.Width,
+                                Finance = true,
+                                Quantity = true,
+                                Sale = true,
+                                Report = true,
+                                CONVFACT2 = 1,
+                                SHELFLIFE = 0,
+                                DISTPOINT = 0,
+                                UNITTYPE = 0
+                            };
 
-                                    var resultValue = await _client.InsertNewItemAsync(
-                                        itemCode,
-                                        itemName,
-                                        itemName,
-                                        isService,
-                                        unit,
-                                        18
-                                    );
-
-                                    processedCount++;
-
-                                    if (resultValue.@return.Result)
-                                    {
-                                        successCount++;
-                                        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-                                            $"Ürün '{itemName}' - Birim '{activeUnit.Name}' başarıyla kaydedildi. ({processedCount}/{totalUnitsCount})",
-                                            $"Kod: {itemCode}, Birim: {activeUnit.Code}, Çevrim Faktörü: {activeUnit.ConversionFactor}");
-                                    }
-                                    else
-                                    {
-                                        errorCount++;
-                                        Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                            $"Ürün '{itemName}' - Birim '{activeUnit.Name}' kayıt edilemedi: {resultValue.@return.Message}",
-                                            $"Kod: {itemCode}, Birim: {activeUnit.Code}");
-                                    }
-                                }
-                                catch (Exception unitEx)
-                                {
-                                    processedCount++;
-                                    errorCount++;
-                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                        $"Birim kayıt sırasında hata: {unitEx.Message}",
-                                        $"Ürün: {itemName}, Kod: {itemCode}, Birim: {activeUnit.Code}");
-                                }
-                            }
+                            Helpers.LogFile(Helpers.LogLevel.DEBUG, "Ürün",
+                                $"Ürün '{itemName}' için ilk birim hazırlandı.",
+                                $"Ana birim: {mainUnit}, Birim kodu: {firstUnit.Code}");
                         }
                         else
                         {
-                            // ActiveUnits yoksa UnitName ile kaydet (fallback)
-                            string unit = BirimYoneticisi.BirimGetir(product.UnitName);
-                            var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, itemName, isService, unit, 18);
+                            // ActiveUnits yoksa fallback
+                            mainUnit = BirimYoneticisi.BirimGetir(product.UnitName);
+                            koeficientTable.KoeficientTableLine = null;
 
-                            processedCount++;
+                            Helpers.LogFile(Helpers.LogLevel.WARNING, "Ürün",
+                                $"Ürün '{itemName}' için ActiveUnits bulunamadı, sadece ana birim gönderiliyor.",
+                                $"Ana birim: {mainUnit}");
+                        }
 
-                            if (resultValue.@return.Result)
-                            {
-                                successCount++;
-                                Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-                                    $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{totalUnitsCount})",
-                                    $"Kod: {itemCode}");
-                            }
-                            else
-                            {
-                                errorCount++;
-                                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                    $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}",
-                                    $"Kod: {itemCode}");
-                            }
+                        // Tek bir insert ile tüm bilgileri gönder
+                        var resultValue = await _client.InsertNewItemAsync(
+                            itemCode,
+                            itemName,
+                            fullDescription,
+                            isService,
+                            mainUnit,
+                            koeficientTable,
+                            18
+                        );
+
+                        processedCount++;
+
+                        if (resultValue.@return.Result)
+                        {
+                            successCount++;
+                            Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
+                                $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{totalCount})",
+                                $"Kod: {itemCode}, Ana Birim: {mainUnit}");
+                        }
+                        else
+                        {
+                            errorCount++;
+                            Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
+                                $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}",
+                                $"Kod: {itemCode}");
                         }
                     }
                     catch (Exception ex)
@@ -588,7 +597,7 @@ namespace SalesArtIntegration_AZ
 
                 // Sonuç mesajı
                 string resultMessage = $"Transfer işlemi tamamlandı.\n\n" +
-                                       $"Toplam Birim: {totalUnitsCount}\n" +
+                                       $"Toplam Ürün: {totalCount}\n" +
                                        $"Başarılı: {successCount}\n" +
                                        $"Hatalı: {errorCount}";
 
@@ -626,7 +635,6 @@ namespace SalesArtIntegration_AZ
             {
                 // Buton ve GridView'i tekrar aktif et
                 dataGridInvoiceList.Enabled = true;
-
             }
         }
         //private async void bttnSendProducts_Click(object sender, EventArgs e)
@@ -824,5 +832,28 @@ namespace SalesArtIntegration_AZ
         //        dataGridInvoiceList.DataSource = filtered;
         //    }
         //}
+
+        public class KoeficientTableLine
+        {
+            public string Name { get; set; }
+            public string code { get; set; }
+            public decimal conversionFactor { get; set; }
+            public decimal area { get; set; }
+            public decimal grossVolume { get; set; }
+            public decimal grossWeight { get; set; }
+            public decimal height { get; set; }
+            public decimal length { get; set; }
+            public decimal volume { get; set; }
+            public decimal weight { get; set; }
+            public decimal width { get; set; }
+            public bool Finance { get; set; }
+            public bool Quantity { get; set; }
+            public bool Sale { get; set; }
+            public bool Report { get; set; }
+            public decimal CONVFACT2 { get; set; }
+            public decimal SHELFLIFE { get; set; }
+            public decimal DISTPOINT { get; set; }
+            public decimal UNITTYPE { get; set; }
+        }
     }
 }
