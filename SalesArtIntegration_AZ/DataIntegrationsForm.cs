@@ -509,7 +509,7 @@ namespace SalesArtIntegration_AZ
 
                             foreach (var unit in product.ActiveUnits)
                             {
-                                if (unit.MainUnit) { mainUnit = unit.Code; }
+                                if (unit.MainUnit) { mainUnit = BirimYoneticisi.BirimGetir(unit.Code); }
 
                                 var koeficientLine = new OneCService.KoeficientTableLine
                                 {
@@ -558,10 +558,10 @@ namespace SalesArtIntegration_AZ
                             volume = 0,
                             weight = 0,
                             width = 0,
-                            Finance = true,
-                            Quantity = true,
+                            Finance = false,
+                            Quantity = false,
                             Sale = true,
-                            Report = true,
+                            Report = false,
                             CONVFACT2 = 1,
                             SHELFLIFE = 0,
                             DISTPOINT = 0,
