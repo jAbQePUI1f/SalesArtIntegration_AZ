@@ -61,6 +61,10 @@ namespace SalesArtIntegration_AZ.Models.Response
 
             [JsonProperty("width")]
             public double Width { get; set; }
+
+            [JsonProperty("mainUnit")]
+            public bool MainUnit { get; set; }
+
         }
     }
 }
