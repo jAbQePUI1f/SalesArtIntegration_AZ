@@ -1,15 +1,15 @@
 ﻿{
   "Mapping": {
-    "PC": "ƏDƏD",
+    "PC": "PC",
     "CV": "K.QUTU",
     "BAG": "KISƏ",
     "KG": "KQ",
     "PAC": "BAGL",
     "SET": "DƏST",
     "TO": "TON",
-    "CRT": "B.QUTU",
+    "CRT": "CRT",
     "Kilogram": "Kilogram",
-    "BNL": "MİN LİT",
+    "BNL": "BNL",
     "M": "MT",
     "L": "L",
     "Pack": "Pack",
