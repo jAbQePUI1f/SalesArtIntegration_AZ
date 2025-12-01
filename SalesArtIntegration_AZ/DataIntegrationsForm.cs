@@ -111,7 +111,7 @@ namespace SalesArtIntegration_AZ
 
                     dataGridInvoiceList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dataGridInvoiceList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["fullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridInvoiceList.Columns["fullName"].AutoS izeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dataGridInvoiceList.Columns["vkn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
 

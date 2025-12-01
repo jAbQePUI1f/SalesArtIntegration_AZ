@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataIntegrationsForm));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             chk = new DataGridViewCheckBoxColumn();
             chckAll = new CheckBox();
             divider = new MaterialSkin.Controls.MaterialDivider();
@@ -70,7 +71,7 @@
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
             chckAll.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chckAll.Location = new Point(65, 258);
+            chckAll.Location = new Point(65, 275);
             chckAll.Name = "chckAll";
             chckAll.Size = new Size(13, 12);
             chckAll.TabIndex = 27;
@@ -81,10 +82,10 @@
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-1, 228);
+            divider.Location = new Point(1, 243);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
-            divider.Size = new Size(1233, 19);
+            divider.Size = new Size(782, 20);
             divider.TabIndex = 23;
             // 
             // bttnLogs
@@ -97,12 +98,12 @@
             bttnLogs.FlatStyle = FlatStyle.Popup;
             bttnLogs.HighEmphasis = false;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(1140, 10);
+            bttnLogs.Location = new Point(677, 11);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(82, 174);
+            bttnLogs.Size = new Size(82, 185);
             bttnLogs.TabIndex = 17;
             bttnLogs.TabStop = false;
             bttnLogs.Text = "Logs";
@@ -116,17 +117,19 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(materialLabel1);
+            materialCard1.Controls.Add(materialLabel2);
             materialCard1.Controls.Add(materialCard3);
             materialCard1.Controls.Add(materialCard2);
             materialCard1.Controls.Add(bttnLogs);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(-2, 33);
-            materialCard1.Margin = new Padding(14);
+            materialCard1.Location = new Point(5, 35);
+            materialCard1.Margin = new Padding(14, 15, 14, 15);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(12, 10, 12, 10);
-            materialCard1.Size = new Size(1234, 194);
+            materialCard1.Padding = new Padding(12, 11, 12, 11);
+            materialCard1.Size = new Size(771, 207);
             materialCard1.TabIndex = 25;
             // 
             // materialCard3
@@ -134,15 +137,14 @@
             materialCard3.BackColor = Color.FromArgb(255, 255, 255);
             materialCard3.Controls.Add(bttnSendProducts);
             materialCard3.Controls.Add(bttnGetProducts);
-            materialCard3.Controls.Add(materialLabel2);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(572, 10);
-            materialCard3.Margin = new Padding(12, 10, 12, 10);
+            materialCard3.Location = new Point(331, 39);
+            materialCard3.Margin = new Padding(12, 11, 12, 11);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(12, 10, 12, 10);
-            materialCard3.Size = new Size(532, 174);
+            materialCard3.Padding = new Padding(12, 11, 12, 11);
+            materialCard3.Size = new Size(320, 157);
             materialCard3.TabIndex = 19;
             // 
             // bttnSendProducts
@@ -154,12 +156,12 @@
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
             bttnSendProducts.Icon = null;
-            bttnSendProducts.Location = new Point(320, 126);
+            bttnSendProducts.Location = new Point(41, 97);
             bttnSendProducts.Margin = new Padding(4, 6, 4, 6);
             bttnSendProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendProducts.Name = "bttnSendProducts";
             bttnSendProducts.NoAccentTextColor = Color.Empty;
-            bttnSendProducts.Size = new Size(204, 42);
+            bttnSendProducts.Size = new Size(240, 43);
             bttnSendProducts.TabIndex = 8;
             bttnSendProducts.Text = "Ürünleri Aktar";
             bttnSendProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -176,12 +178,12 @@
             bttnGetProducts.Depth = 0;
             bttnGetProducts.HighEmphasis = true;
             bttnGetProducts.Icon = null;
-            bttnGetProducts.Location = new Point(7, 126);
+            bttnGetProducts.Location = new Point(41, 27);
             bttnGetProducts.Margin = new Padding(4, 6, 4, 6);
             bttnGetProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetProducts.Name = "bttnGetProducts";
             bttnGetProducts.NoAccentTextColor = Color.Empty;
-            bttnGetProducts.Size = new Size(204, 42);
+            bttnGetProducts.Size = new Size(240, 43);
             bttnGetProducts.TabIndex = 2;
             bttnGetProducts.Text = "Ürünleri Getir";
             bttnGetProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -193,9 +195,9 @@
             // 
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel2.Font = new Font("Microsoft YaHei UI", 15F, FontStyle.Bold);
             materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            materialLabel2.Location = new Point(0, 0);
+            materialLabel2.Location = new Point(331, 11);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(123, 24);
@@ -205,26 +207,25 @@
             // materialCard2
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard2.Controls.Add(materialLabel1);
             materialCard2.Controls.Add(bttnGetCustomers);
             materialCard2.Controls.Add(bttnSendCustomer);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(14, 10);
-            materialCard2.Margin = new Padding(12, 10, 12, 10);
+            materialCard2.Location = new Point(14, 39);
+            materialCard2.Margin = new Padding(12, 11, 12, 11);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(12, 10, 12, 10);
-            materialCard2.Size = new Size(549, 174);
+            materialCard2.Padding = new Padding(12, 11, 12, 11);
+            materialCard2.Size = new Size(303, 157);
             materialCard2.TabIndex = 18;
             // 
             // materialLabel1
             // 
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel1.Font = new Font("Microsoft YaHei UI", 15F, FontStyle.Bold);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            materialLabel1.Location = new Point(0, -1);
+            materialLabel1.Location = new Point(14, 11);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(150, 24);
@@ -240,12 +241,12 @@
             bttnGetCustomers.Depth = 0;
             bttnGetCustomers.HighEmphasis = true;
             bttnGetCustomers.Icon = null;
-            bttnGetCustomers.Location = new Point(11, 126);
+            bttnGetCustomers.Location = new Point(41, 27);
             bttnGetCustomers.Margin = new Padding(4, 6, 4, 6);
             bttnGetCustomers.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetCustomers.Name = "bttnGetCustomers";
             bttnGetCustomers.NoAccentTextColor = Color.Empty;
-            bttnGetCustomers.Size = new Size(220, 42);
+            bttnGetCustomers.Size = new Size(220, 43);
             bttnGetCustomers.TabIndex = 0;
             bttnGetCustomers.Text = "Müşterileri Getir";
             bttnGetCustomers.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -262,12 +263,12 @@
             bttnSendCustomer.Depth = 0;
             bttnSendCustomer.HighEmphasis = true;
             bttnSendCustomer.Icon = null;
-            bttnSendCustomer.Location = new Point(322, 126);
+            bttnSendCustomer.Location = new Point(41, 97);
             bttnSendCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnSendCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendCustomer.Name = "bttnSendCustomer";
             bttnSendCustomer.NoAccentTextColor = Color.Empty;
-            bttnSendCustomer.Size = new Size(220, 42);
+            bttnSendCustomer.Size = new Size(220, 44);
             bttnSendCustomer.TabIndex = 7;
             bttnSendCustomer.Text = "Müşterileri Aktar";
             bttnSendCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -323,7 +324,7 @@
             stripInvoice.Location = new Point(0, 0);
             stripInvoice.Name = "stripInvoice";
             stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(1232, 30);
+            stripInvoice.Size = new Size(780, 32);
             stripInvoice.TabIndex = 24;
             stripInvoice.Text = "Fatura Menü";
             // 
@@ -332,33 +333,41 @@
             dataGridInvoiceList.AllowUserToAddRows = false;
             dataGridInvoiceList.AllowUserToDeleteRows = false;
             dataGridInvoiceList.AllowUserToOrderColumns = true;
-            dataGridInvoiceList.BorderStyle = BorderStyle.Fixed3D;
             dataGridInvoiceList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridInvoiceList.ColumnHeadersHeight = 29;
             dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
             dataGridInvoiceList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridInvoiceList.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridInvoiceList.GridColor = SystemColors.ControlDark;
             dataGridInvoiceList.ImeMode = ImeMode.On;
-            dataGridInvoiceList.Location = new Point(10, 253);
+            dataGridInvoiceList.Location = new Point(12, 270);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
             dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(1212, 436);
+            dataGridInvoiceList.Size = new Size(757, 471);
             dataGridInvoiceList.StandardTab = true;
             dataGridInvoiceList.TabIndex = 26;
             // 
             // DataIntegrationsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1232, 701);
+            ClientSize = new Size(780, 748);
             ControlBox = false;
             Controls.Add(chckAll);
             Controls.Add(divider);
-            Controls.Add(materialCard1);
             Controls.Add(stripInvoice);
             Controls.Add(dataGridInvoiceList);
+            Controls.Add(materialCard1);
+            Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -367,10 +376,9 @@
             Text = "SalesArt Integration";
             Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             materialCard3.ResumeLayout(false);
-            materialCard3.PerformLayout();
             materialCard2.ResumeLayout(false);
-            materialCard2.PerformLayout();
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
