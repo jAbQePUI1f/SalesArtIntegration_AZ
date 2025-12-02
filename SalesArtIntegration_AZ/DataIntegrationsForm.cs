@@ -509,11 +509,11 @@ namespace SalesArtIntegration_AZ
 
                             foreach (var unit in product.ActiveUnits)
                             {
-                                if (unit.MainUnit) { mainUnit = BirimYoneticisi.BirimGetir(unit.Code); }
+                                if (unit.MainUnit) { mainUnit = unit.Code; }
 
                                 var koeficientLine = new OneCService.KoeficientTableLine
                                 {
-                                    Name = unit.Name,
+                                    Name = unit.Code,
                                     code = unit.Code,
                                     conversionFactor = (decimal)unit.ConversionFactor,
                                     area = (decimal)unit.Area,
@@ -524,10 +524,10 @@ namespace SalesArtIntegration_AZ
                                     volume = (decimal)unit.Volume,
                                     weight = (decimal)unit.Weight,
                                     width = (decimal)unit.Width,
-                                    Finance = true,
-                                    Quantity = true,
-                                    Sale = true,
-                                    Report = true,
+                                    Finance = unit.MainUnit,
+                                    Quantity = unit.MainUnit,
+                                    Sale = unit.MainUnit,
+                                    Report = unit.MainUnit,
                                     CONVFACT2 = 1,
                                     SHELFLIFE = 0,
                                     DISTPOINT = 0,
@@ -542,13 +542,13 @@ namespace SalesArtIntegration_AZ
                         else
                         {
                             // ActiveUnits yoksa tek bir birim oluştur
-                            string mainUnit1 = BirimYoneticisi.BirimGetir(product.UnitName);
+                            string mainUnit1 = product.UnitName;
                             koeficientTableLines = new OneCService.KoeficientTableLine[]
                             {
                         new OneCService.KoeficientTableLine
                         {
                             Name = mainUnit1,
-                            code = product.UnitName ?? "",
+                            code = product.UnitName,
                             conversionFactor = 1,
                             area = 0,
                             grossVolume = 0,
