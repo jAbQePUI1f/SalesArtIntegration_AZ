@@ -187,7 +187,7 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");
+                                    , selectedInvoice.customerCode, "", "", selectedInvoice.salesmanCode, "18", selectedInvoice.amount, "");
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
@@ -206,6 +206,7 @@ namespace SalesArtIntegration_AZ
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 break;
+
                             default:
                                 errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";
                                 break;
