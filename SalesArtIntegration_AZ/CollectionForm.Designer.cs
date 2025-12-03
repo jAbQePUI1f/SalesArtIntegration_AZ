@@ -79,28 +79,28 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(165, 22);
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(180, 22);
+            collectionToolStripMenuItem.Size = new Size(165, 22);
             collectionToolStripMenuItem.Text = "İrsaliye İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
             // backToolStripMenuItem1
             // 
             backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            backToolStripMenuItem1.Size = new Size(180, 22);
+            backToolStripMenuItem1.Size = new Size(165, 22);
             backToolStripMenuItem1.Text = "Ana Menüye dön";
             backToolStripMenuItem1.Click += backToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(165, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -222,8 +222,8 @@
             dateTimeFinishDate.Location = new Point(727, 31);
             dateTimeFinishDate.Name = "dateTimeFinishDate";
             dateTimeFinishDate.Size = new Size(233, 23);
-            dateTimeFinishDate.TabIndex = 14;
-            dateTimeFinishDate.Value = new DateTime(2025, 10, 28, 0, 0, 0, 0);
+            dateTimeFinishDate.TabIndex = 5;
+            dateTimeFinishDate.Value = new DateTime(2025, 12, 3, 17, 15, 0, 0);
             // 
             // dateTimeStartDate
             // 
@@ -231,8 +231,8 @@
             dateTimeStartDate.Location = new Point(464, 31);
             dateTimeStartDate.Name = "dateTimeStartDate";
             dateTimeStartDate.Size = new Size(228, 23);
-            dateTimeStartDate.TabIndex = 13;
-            dateTimeStartDate.Value = new DateTime(2025, 10, 28, 0, 0, 0, 0);
+            dateTimeStartDate.TabIndex = 5;
+            dateTimeStartDate.Value = new DateTime(2025, 12, 3, 17, 15, 0, 0);
             // 
             // lblFinishDate
             // 
