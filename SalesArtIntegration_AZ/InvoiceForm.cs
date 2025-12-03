@@ -192,6 +192,12 @@ namespace SalesArtIntegration_AZ
                     try
                     {
                         bttnGetInvoice.Enabled = false;
+                        var tableLines = new List<InvoiceItemTableLine>();
+
+                        var tableReceiptLines = new List<ReceiptItemTableLine>();
+
+                        InsertNewInvoiceResponse invoiceResponse = null; 
+                        InsertNewRefundOfInvoiceResponse invoiceResponseRefund = null; 
                         switch (documentType)
                         {
                             case nameof(Enums.InvoiceType.SELLING):
@@ -201,7 +207,7 @@ namespace SalesArtIntegration_AZ
                                     continue;
                                 }
 
-                                var tableLines = new List<InvoiceItemTableLine>();
+                                 tableLines = new List<InvoiceItemTableLine>();
                                 foreach (var detail in selectedInvoice.details)
                                 {
                                     tableLines.Add(new InvoiceItemTableLine
@@ -214,7 +220,7 @@ namespace SalesArtIntegration_AZ
                                     });
                                 }
 
-                                var invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
+                                 invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
                                     selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
 
                                 remoteInvoiceNumber = selectedInvoice.number;
@@ -239,7 +245,143 @@ namespace SalesArtIntegration_AZ
                                     bttnGetInvoice.Enabled = true;
                                 }
                                 break;
+                            case nameof(Enums.InvoiceType.BUYING):
+                                if (selectedInvoice.details == null || !selectedInvoice.details.Any())
+                                {
+                                    MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    continue;
+                                }
 
+                                tableReceiptLines = new List<ReceiptItemTableLine>();
+                                foreach (var detail in selectedInvoice.details)
+                                {
+                                    tableReceiptLines.Add(new ReceiptItemTableLine
+                                    {
+                                        ItemCode = detail.code,
+                                        Quantity = (decimal)detail.quantity,
+                                        Unit = detail.unitCode,
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+
+                                    });
+                                }
+
+                               var ınsertNewRefundOfReceiptResponse = await client.InsertNewReceiptAsync(selectedInvoice.distCode = distributorCode, formattedDate,
+                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
+
+                                remoteInvoiceNumber = selectedInvoice.number;
+
+                                if (ınsertNewRefundOfReceiptResponse.@return.ErrorTable != null && ınsertNewRefundOfReceiptResponse.@return.ErrorTable.Any())
+                                {
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, ınsertNewRefundOfReceiptResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                else
+                                {
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Fatura aktarımı **başarılı**.", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                break;
+                            case nameof(Enums.InvoiceType.SELLING_RETURN):
+                            case nameof(Enums.InvoiceType.DAMAGED_SELLING_RETURN):
+                                if (selectedInvoice.details == null || !selectedInvoice.details.Any())
+                                {
+                                    MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    continue;
+                                }
+
+                                tableLines = new List<InvoiceItemTableLine>();
+                                foreach (var detail in selectedInvoice.details)
+                                {
+                                    tableLines.Add(new InvoiceItemTableLine
+                                    {
+                                        ItemCode = detail.code,
+                                        Quantity = (decimal)detail.quantity,
+                                        Unit = detail.unitCode,
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+
+                                    });
+                                }
+
+                                invoiceResponseRefund = await client.InsertNewRefundOfInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
+                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
+
+                                remoteInvoiceNumber = selectedInvoice.number;
+
+                                if (invoiceResponseRefund.@return.ErrorTable != null && invoiceResponseRefund.@return.ErrorTable.Any())
+                                {
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, invoiceResponseRefund.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                else
+                                {
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Fatura aktarımı **başarılı**.", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                break;
+                            case nameof(Enums.InvoiceType.BUYING_RETURN):
+                            case nameof(Enums.InvoiceType.DAMAGED_BUYING_RETURN):
+                                if (selectedInvoice.details == null || !selectedInvoice.details.Any())
+                                {
+                                    MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    continue;
+                                }
+
+                                tableReceiptLines = new List<ReceiptItemTableLine>();
+                                foreach (var detail in selectedInvoice.details)
+                                {
+                                    tableReceiptLines.Add(new ReceiptItemTableLine
+                                    {
+                                        ItemCode = detail.code,
+                                        Quantity = (decimal)detail.quantity,
+                                        Unit = detail.unitCode,
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+
+                                    });
+                                }
+
+                               var invoiceResponseRefundResponse = await client.InsertNewRefundOfReceiptAsync(selectedInvoice.distCode = distributorCode, formattedDate,
+                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
+
+                                remoteInvoiceNumber = selectedInvoice.number;
+
+                                if (invoiceResponseRefundResponse.@return.ErrorTable != null && invoiceResponseRefundResponse.@return.ErrorTable.Any())
+                                {
+                                    success = false;
+                                    errorMessage = string.Join(Environment.NewLine, invoiceResponseRefundResponse.@return.ErrorTable.Select(e => e.ErrorMessage));
+                                    MessageBox.Show(errorMessage, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //Helpers.LogFile("Faturalar Aktarılmadı! ", $"Fatura {number}", errorMessage, "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Fatura", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                else
+                                {
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Fatura aktarımı **başarılı**.", $"Fatura No: {number}");
+                                    bttnSendInvoice.Enabled = true;
+                                    bttnGetInvoice.Enabled = true;
+                                }
+                                break;
                             default:
                                 errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";
                                 bttnSendInvoice.Enabled = true;
