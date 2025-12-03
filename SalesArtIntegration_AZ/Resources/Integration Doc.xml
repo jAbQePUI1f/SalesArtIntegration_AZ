@@ -18,10 +18,10 @@ User Info : U: web_user, P: wb_123 -->
             <PartnerCode>[string]</PartnerCode> - Müşteri Kodu (VÖENi)
             <Bank_Acc_Code>[string]</Bank_Acc_Code> - Bank Hesabı Kodu
             <Bank_Acc_Name>[string]</Bank_Acc_Name> - Bank Hesabı Adı
-            <Bank_Cash_Name>[string]</Bank_Cash_Name>  - Bankanın yada Kasanın Adı
+            <Bank_Cash_Name>[string]</Bank_Cash_Name>  - Bankanın yada Kasanın Adı (Kassa Adı Xezine bölmesine düşecek) Eğer Bank Havale ise Xezine bölmesine gerek yoktur.
             <Vat_Acc_Code>[string]</Vat_Acc_Code> - KDV bilgisi
             <Amount>[decimal]</Amount> - Tutar
-            <Description>[string]</Description> -  Açıklama
+            <Description>[string]</Description> - Açıklama (Şerh Kısmı\Makbuz No)
         </InsertNewIncomingPayment>
     </Body>
 </Envelope>
