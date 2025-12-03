@@ -578,7 +578,7 @@ namespace SalesArtIntegration_AZ
                             isService,
                             mainUnit,
                             koeficientTableLines,
-                            18
+                            1
                         );
 
                         processedCount++;
