@@ -82,7 +82,7 @@
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-2, 246);
+            divider.Location = new Point(-2, 248);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
             divider.Size = new Size(952, 20);
@@ -164,12 +164,12 @@
             materialCard3.Controls.Add(bttnGetProducts);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(459, 39);
+            materialCard3.Location = new Point(439, 39);
             materialCard3.Margin = new Padding(12, 11, 12, 11);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
             materialCard3.Padding = new Padding(12, 11, 12, 11);
-            materialCard3.Size = new Size(363, 157);
+            materialCard3.Size = new Size(383, 157);
             materialCard3.TabIndex = 19;
             // 
             // bttnSendProducts
@@ -181,7 +181,7 @@
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
             bttnSendProducts.Icon = null;
-            bttnSendProducts.Location = new Point(53, 97);
+            bttnSendProducts.Location = new Point(65, 97);
             bttnSendProducts.Margin = new Padding(4, 6, 4, 6);
             bttnSendProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendProducts.Name = "bttnSendProducts";
@@ -203,12 +203,12 @@
             bttnGetProducts.Depth = 0;
             bttnGetProducts.HighEmphasis = true;
             bttnGetProducts.Icon = null;
-            bttnGetProducts.Location = new Point(53, 27);
+            bttnGetProducts.Location = new Point(65, 27);
             bttnGetProducts.Margin = new Padding(4, 6, 4, 6);
             bttnGetProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetProducts.Name = "bttnGetProducts";
             bttnGetProducts.NoAccentTextColor = Color.Empty;
-            bttnGetProducts.Size = new Size(254, 43);
+            bttnGetProducts.Size = new Size(254, 58);
             bttnGetProducts.TabIndex = 2;
             bttnGetProducts.Text = "Ürünleri Getir";
             bttnGetProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -228,7 +228,7 @@
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(12, 11, 12, 11);
-            materialCard2.Size = new Size(364, 157);
+            materialCard2.Size = new Size(387, 157);
             materialCard2.TabIndex = 18;
             // 
             // bttnGetCustomers
@@ -240,12 +240,12 @@
             bttnGetCustomers.Depth = 0;
             bttnGetCustomers.HighEmphasis = true;
             bttnGetCustomers.Icon = null;
-            bttnGetCustomers.Location = new Point(59, 27);
+            bttnGetCustomers.Location = new Point(64, 27);
             bttnGetCustomers.Margin = new Padding(4, 6, 4, 6);
             bttnGetCustomers.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetCustomers.Name = "bttnGetCustomers";
             bttnGetCustomers.NoAccentTextColor = Color.Empty;
-            bttnGetCustomers.Size = new Size(246, 43);
+            bttnGetCustomers.Size = new Size(246, 58);
             bttnGetCustomers.TabIndex = 0;
             bttnGetCustomers.Text = "Müşterileri Getir";
             bttnGetCustomers.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -262,7 +262,7 @@
             bttnSendCustomer.Depth = 0;
             bttnSendCustomer.HighEmphasis = true;
             bttnSendCustomer.Icon = null;
-            bttnSendCustomer.Location = new Point(59, 97);
+            bttnSendCustomer.Location = new Point(64, 97);
             bttnSendCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnSendCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendCustomer.Name = "bttnSendCustomer";
@@ -347,7 +347,7 @@
             dataGridInvoiceList.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridInvoiceList.GridColor = SystemColors.ControlDark;
             dataGridInvoiceList.ImeMode = ImeMode.On;
-            dataGridInvoiceList.Location = new Point(12, 270);
+            dataGridInvoiceList.Location = new Point(12, 272);
             dataGridInvoiceList.Name = "dataGridInvoiceList";
             dataGridInvoiceList.RowHeadersWidth = 51;
             dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
