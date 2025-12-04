@@ -209,6 +209,8 @@ namespace SalesArtIntegration_AZ
 
                 foreach (var customer in selectedCustomers)
                 {
+                    bttnGetCustomers.Enabled = false;
+                    bttnGetProducts.Enabled = false;
                     try
                     {
                         string partnerCode = customer.code;
@@ -274,6 +276,8 @@ namespace SalesArtIntegration_AZ
                         "Liste Güncelleme",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
+                    bttnGetCustomers.Enabled = true;
+                    bttnGetProducts.Enabled = true;
                     chckAll.Checked = false;
 
                     if (confirmRemove == DialogResult.Yes)
