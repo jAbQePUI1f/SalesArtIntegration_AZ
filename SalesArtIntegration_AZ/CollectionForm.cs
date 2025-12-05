@@ -7,7 +7,6 @@ using SalesArtIntegration_AZ.Models.Enums;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
 using static SalesArtIntegration_AZ.Models.Request.CollectionSyncRequest;
-using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
 
 namespace SalesArtIntegration_AZ
 {
@@ -90,9 +89,9 @@ namespace SalesArtIntegration_AZ
 
                 dataGridInvoiceList.DataSource = displayInfoList;
 
-                dataGridInvoiceList.Columns["Number"].HeaderText = "Numara";
+                dataGridInvoiceList.Columns["Number"].HeaderText = "Makbuz No";
                 dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
-                dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Belge No";
+                dataGridInvoiceList.Columns["DocumentNo"].HeaderText = "Fiş No";
                 dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
                 dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
                 dataGridInvoiceList.Columns["Amount"].HeaderText = "Tutar";
@@ -149,7 +148,7 @@ namespace SalesArtIntegration_AZ
         {
             if (string.IsNullOrEmpty(documentType))
             {
-                MessageBox.Show("Lütfen bir fatura tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen bir tahsilat tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -170,12 +169,6 @@ namespace SalesArtIntegration_AZ
 
                     var selectedInvoice = collectionResponse?.data?.FirstOrDefault(inv => inv.documentNo == number);
 
-                    //if (selectedInvoice == null)
-                    //{
-                    //    MessageBox.Show($"Fatura numarası {number} bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    continue;
-                    //}
-
                     bool success = false;
                     string errorMessage = "";
                     string remoteInvoiceNumber = "";
@@ -186,8 +179,17 @@ namespace SalesArtIntegration_AZ
                         {
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
-                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    , selectedInvoice.customerCode, "", "", selectedInvoice.salesmanCode, "18", selectedInvoice.amount, "");
+                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(
+                                    selectedInvoice.date, 
+                                    "KASSA TAHSILAT", 
+                                    selectedInvoice.documentNo,
+                                    selectedInvoice.customerCode, 
+                                    "", 
+                                    "", 
+                                    selectedInvoice.salesmanFirstName + " " + selectedInvoice.salesmanLastName,
+                                    "18", 
+                                    selectedInvoice.amount, 
+                                    selectedInvoice.documentNo);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
@@ -197,13 +199,22 @@ namespace SalesArtIntegration_AZ
                                 break;
                             case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
 
-                                invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "BANKA_TAHSILAT", selectedInvoice.documentNo
-                                   , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");//decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak.
+                                invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, 
+                                    "BANKA_TAHSILAT", 
+                                    selectedInvoice.documentNo,
+                                    selectedInvoice.customerCode, 
+                                    selectedInvoice.detail.bankCode, 
+                                    selectedInvoice.detail.bankName, 
+                                    selectedInvoice.detail.bankBranchName, 
+                                    "18", 
+                                    selectedInvoice.amount, 
+                                    selectedInvoice.description);
+                                //decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak. Bank_Acc_Code,Bank_Acc_Name,Bank_Cash_Name
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
                                 success = true;
-                                MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Aktarım Başarılı", "Success" + selectedInvoice.documentNo.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 break;
 
@@ -216,6 +227,7 @@ namespace SalesArtIntegration_AZ
                     {
                         errorMessage = ex.Message;
                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
+                        MessageBox.Show(ex.Message.ToString(),"Hata", MessageBoxButtons.OK,MessageBoxIcon.Error);
 
                     }
 
@@ -236,7 +248,6 @@ namespace SalesArtIntegration_AZ
 
                     var syncResponse = await ApiManager.PostAsync<CollectionSyncRequest, InvoiceSyncResponse>(
                          Configuration.GetUrl() + "management/sync-collection-statuses", syncRequest);
-
 
                     #endregion
                 }
