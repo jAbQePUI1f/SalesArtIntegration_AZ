@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
-            bttnWaybill = new MaterialSkin.Controls.MaterialButton();
             bttnCollection = new MaterialSkin.Controls.MaterialButton();
             bttnInvoice = new MaterialSkin.Controls.MaterialButton();
             menuStrip1 = new MenuStrip();
@@ -39,27 +38,6 @@
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // bttnWaybill
-            // 
-            bttnWaybill.AutoSize = false;
-            bttnWaybill.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnWaybill.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnWaybill.Depth = 0;
-            bttnWaybill.HighEmphasis = true;
-            bttnWaybill.Icon = null;
-            bttnWaybill.Location = new Point(336, 384);
-            bttnWaybill.Margin = new Padding(4, 6, 4, 6);
-            bttnWaybill.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnWaybill.Name = "bttnWaybill";
-            bttnWaybill.NoAccentTextColor = Color.Empty;
-            bttnWaybill.Size = new Size(174, 59);
-            bttnWaybill.TabIndex = 0;
-            bttnWaybill.Text = "Aktar";
-            bttnWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnWaybill.UseAccentColor = false;
-            bttnWaybill.UseVisualStyleBackColor = true;
-            bttnWaybill.Click += bttnWaybill_Click;
-            // 
             // bttnCollection
             // 
             bttnCollection.AutoSize = false;
@@ -68,7 +46,7 @@
             bttnCollection.Depth = 0;
             bttnCollection.HighEmphasis = true;
             bttnCollection.Icon = null;
-            bttnCollection.Location = new Point(594, 384);
+            bttnCollection.Location = new Point(399, 397);
             bttnCollection.Margin = new Padding(4, 6, 4, 6);
             bttnCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnCollection.Name = "bttnCollection";
@@ -92,7 +70,7 @@
             bttnInvoice.FlatAppearance.BorderSize = 8;
             bttnInvoice.HighEmphasis = true;
             bttnInvoice.Icon = null;
-            bttnInvoice.Location = new Point(76, 384);
+            bttnInvoice.Location = new Point(145, 397);
             bttnInvoice.Margin = new Padding(4, 6, 4, 6);
             bttnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnInvoice.Name = "bttnInvoice";
@@ -116,7 +94,7 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, exitToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(637, 9);
+            menuStrip1.Location = new Point(496, 44);
             menuStrip1.MdiWindowListItem = exitToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -135,7 +113,7 @@
             // dataIntegrationToolStripMenuItem
             // 
             dataIntegrationToolStripMenuItem.Name = "dataIntegrationToolStripMenuItem";
-            dataIntegrationToolStripMenuItem.Size = new Size(180, 22);
+            dataIntegrationToolStripMenuItem.Size = new Size(142, 22);
             dataIntegrationToolStripMenuItem.Text = "Veri Aktarımı";
             dataIntegrationToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             dataIntegrationToolStripMenuItem.Click += DataIntegrationToolStripMenuItem_Click;
@@ -154,11 +132,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(848, 538);
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(707, 573);
             ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
-            Controls.Add(bttnWaybill);
             Controls.Add(menuStrip1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -176,8 +154,6 @@
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialButton bttnWaybill;
         private MaterialSkin.Controls.MaterialButton bttnCollection;
         private MaterialSkin.Controls.MaterialButton bttnInvoice;
         private MenuStrip menuStrip1;

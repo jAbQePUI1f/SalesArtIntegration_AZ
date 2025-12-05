@@ -42,15 +42,11 @@ namespace SalesArtIntegration_AZ
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-            if (Configuration.getIsCollection())
+            if (Configuration.getIsCollection() ==true)
             {
                 bttnCollection.Enabled = true;
             }
-            if (Configuration.getIsWaybill())
-            {
-                bttnWaybill.Enabled = false;
-            }
-            if (Configuration.getIsInvoice())
+            if (Configuration.getIsInvoice()==true)
             {
                 bttnInvoice.Enabled = true;
             }
@@ -59,7 +55,6 @@ namespace SalesArtIntegration_AZ
         private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-
         }
 
         private void DataIntegrationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,21 +62,6 @@ namespace SalesArtIntegration_AZ
             DataIntegrationsForm dataIntegrationForm = new DataIntegrationsForm();
             dataIntegrationForm.Show();
             this.Hide();
-
-            //DataIntegrationForm dataIntegrationForm = new DataIntegrationForm();
-            //dataIntegrationForm.Show();
-            //this.Hide();
         }
-
-        //private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-         
-
-        //}
-
-        //private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-            
-        //}
     }
 }
