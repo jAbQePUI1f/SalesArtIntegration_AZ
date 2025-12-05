@@ -49,12 +49,12 @@
             menüToolStripMenuItem = new ToolStripMenuItem();
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice = new MenuStrip();
-            dataGridInvoiceList = new DataGridView();
+            dataGridDataList = new DataGridView();
             materialCard1.SuspendLayout();
             materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
             stripInvoice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridDataList).BeginInit();
             SuspendLayout();
             // 
             // chk
@@ -327,16 +327,16 @@
             stripInvoice.TabIndex = 24;
             stripInvoice.Text = "Fatura Menü";
             // 
-            // dataGridInvoiceList
+            // dataGridDataList
             // 
-            dataGridInvoiceList.AllowUserToAddRows = false;
-            dataGridInvoiceList.AllowUserToDeleteRows = false;
-            dataGridInvoiceList.AllowUserToOrderColumns = true;
-            dataGridInvoiceList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridInvoiceList.ColumnHeadersHeight = 29;
-            dataGridInvoiceList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridInvoiceList.Columns.AddRange(new DataGridViewColumn[] { chk });
-            dataGridInvoiceList.Cursor = Cursors.Hand;
+            dataGridDataList.AllowUserToAddRows = false;
+            dataGridDataList.AllowUserToDeleteRows = false;
+            dataGridDataList.AllowUserToOrderColumns = true;
+            dataGridDataList.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridDataList.ColumnHeadersHeight = 29;
+            dataGridDataList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridDataList.Columns.AddRange(new DataGridViewColumn[] { chk });
+            dataGridDataList.Cursor = Cursors.Hand;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -344,16 +344,16 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridInvoiceList.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridInvoiceList.GridColor = SystemColors.ControlDark;
-            dataGridInvoiceList.ImeMode = ImeMode.On;
-            dataGridInvoiceList.Location = new Point(12, 272);
-            dataGridInvoiceList.Name = "dataGridInvoiceList";
-            dataGridInvoiceList.RowHeadersWidth = 51;
-            dataGridInvoiceList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridInvoiceList.Size = new Size(923, 471);
-            dataGridInvoiceList.StandardTab = true;
-            dataGridInvoiceList.TabIndex = 26;
+            dataGridDataList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridDataList.GridColor = SystemColors.ControlDark;
+            dataGridDataList.ImeMode = ImeMode.On;
+            dataGridDataList.Location = new Point(12, 272);
+            dataGridDataList.Name = "dataGridDataList";
+            dataGridDataList.RowHeadersWidth = 51;
+            dataGridDataList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridDataList.Size = new Size(923, 471);
+            dataGridDataList.StandardTab = true;
+            dataGridDataList.TabIndex = 26;
             // 
             // DataIntegrationsForm
             // 
@@ -364,7 +364,7 @@
             Controls.Add(divider);
             Controls.Add(chckAll);
             Controls.Add(stripInvoice);
-            Controls.Add(dataGridInvoiceList);
+            Controls.Add(dataGridDataList);
             Controls.Add(materialCard1);
             Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -380,7 +380,7 @@
             materialCard2.ResumeLayout(false);
             stripInvoice.ResumeLayout(false);
             stripInvoice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridDataList).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,7 +402,7 @@
         private ToolStripMenuItem menüToolStripMenuItem;
         private ToolStripMenuItem anaMenüyeDönToolStripMenuItem;
         private MenuStrip stripInvoice;
-        private DataGridView dataGridInvoiceList;
+        private DataGridView dataGridDataList;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialButton bttnSendProducts;
         private MaterialSkin.Controls.MaterialButton bttnGetProducts;
