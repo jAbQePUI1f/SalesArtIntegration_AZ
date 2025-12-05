@@ -47,7 +47,7 @@
             bttnWaybill.Depth = 0;
             bttnWaybill.HighEmphasis = true;
             bttnWaybill.Icon = null;
-            bttnWaybill.Location = new Point(336, 384);
+            bttnWaybill.Location = new Point(81, 15);
             bttnWaybill.Margin = new Padding(4, 6, 4, 6);
             bttnWaybill.MouseState = MaterialSkin.MouseState.HOVER;
             bttnWaybill.Name = "bttnWaybill";
@@ -58,6 +58,7 @@
             bttnWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnWaybill.UseAccentColor = false;
             bttnWaybill.UseVisualStyleBackColor = true;
+            bttnWaybill.Visible = false;
             bttnWaybill.Click += bttnWaybill_Click;
             // 
             // bttnCollection
@@ -68,7 +69,7 @@
             bttnCollection.Depth = 0;
             bttnCollection.HighEmphasis = true;
             bttnCollection.Icon = null;
-            bttnCollection.Location = new Point(594, 384);
+            bttnCollection.Location = new Point(399, 397);
             bttnCollection.Margin = new Padding(4, 6, 4, 6);
             bttnCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnCollection.Name = "bttnCollection";
@@ -92,7 +93,7 @@
             bttnInvoice.FlatAppearance.BorderSize = 8;
             bttnInvoice.HighEmphasis = true;
             bttnInvoice.Icon = null;
-            bttnInvoice.Location = new Point(76, 384);
+            bttnInvoice.Location = new Point(145, 397);
             bttnInvoice.Margin = new Padding(4, 6, 4, 6);
             bttnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnInvoice.Name = "bttnInvoice";
@@ -116,7 +117,7 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, exitToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(637, 9);
+            menuStrip1.Location = new Point(496, 9);
             menuStrip1.MdiWindowListItem = exitToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -135,7 +136,7 @@
             // dataIntegrationToolStripMenuItem
             // 
             dataIntegrationToolStripMenuItem.Name = "dataIntegrationToolStripMenuItem";
-            dataIntegrationToolStripMenuItem.Size = new Size(180, 22);
+            dataIntegrationToolStripMenuItem.Size = new Size(142, 22);
             dataIntegrationToolStripMenuItem.Text = "Veri Aktarımı";
             dataIntegrationToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             dataIntegrationToolStripMenuItem.Click += DataIntegrationToolStripMenuItem_Click;
@@ -154,7 +155,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(848, 538);
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(707, 538);
             ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
