@@ -63,7 +63,7 @@ namespace SalesArtIntegration_AZ
                     StringComparer.OrdinalIgnoreCase
                 );
                 bttnSendCustomer.Enabled = true;
-                Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"Uzak serviste bulunan müşteri sayısı: {existingPartnersTINs.Count}");
+                Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"1C'te bulunan müşteri sayısı: {existingPartnersTINs.Count}");
 
                 if (customerResponse?.data?.customers != null)
                 {
@@ -85,16 +85,16 @@ namespace SalesArtIntegration_AZ
                                 vkn = customerTIN
                             });
 
-                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan müşteri: ", customer.code);
+                            Helpers.LogFileDataIntegration($"1C'te kayıtlı olmayan müşteri: ", customer.code);
                         }
                     }
 
                     // GridView'e bağla
-                    dataGridInvoiceList.DataSource = null;
-                    dataGridInvoiceList.Columns.Clear();
+                    dataGridDataList.DataSource = null;
+                    dataGridDataList.Columns.Clear();
 
-                    dataGridInvoiceList.DataSource = newCustomersToDisplay;
-                    dataGridInvoiceList.AutoGenerateColumns = true;
+                    dataGridDataList.DataSource = newCustomersToDisplay;
+                    dataGridDataList.AutoGenerateColumns = true;
 
 
                     DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
@@ -102,28 +102,28 @@ namespace SalesArtIntegration_AZ
                     chk.MinimumWidth = 6;
                     chk.Name = "chk";
                     chk.Width = 80;
-                    dataGridInvoiceList.Columns.Insert(0, chk); // İlk sıraya ekle
+                    dataGridDataList.Columns.Insert(0, chk); // İlk sıraya ekle
 
-                    dataGridInvoiceList.Columns["code"].HeaderText = "Müşteri Numarası";
-                    dataGridInvoiceList.Columns["name"].HeaderText = "Müşteri Adı";
-                    dataGridInvoiceList.Columns["fullName"].HeaderText = "Müşteri Voen Adı";
-                    dataGridInvoiceList.Columns["vkn"].HeaderText = "Voen No";
+                    dataGridDataList.Columns["code"].HeaderText = "Müşteri Numarası";
+                    dataGridDataList.Columns["name"].HeaderText = "Müşteri Adı";
+                    dataGridDataList.Columns["fullName"].HeaderText = "Müşteri Voen Adı";
+                    dataGridDataList.Columns["vkn"].HeaderText = "Voen No";
 
-                    dataGridInvoiceList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["fullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["vkn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["fullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["vkn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
 
                     chckAll.BringToFront();
 
                     Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri",
-                        $"Toplam yerel müşteri: {customerResponse.data.customers.Count}, " +
-                        $"Uzak serviste olmayan: {newCustomersToDisplay.Count}");
+                        $"SalesArt'taki Toplam Müşteri sayısı : {customerResponse.data.customers.Count}, " +
+                        $"1C'te olmayan Müşteri sayısı : {newCustomersToDisplay.Count}");
                 }
                 else
                 {
-                    Helpers.LogFile(Helpers.LogLevel.WARNING, "Müşteri", "Yerel servisten müşteri verisi alınamadı.");
+                    Helpers.LogFile(Helpers.LogLevel.WARNING, "Müşteri", "SalesArt'tan Müşteri verisi alınamadı.");
                     MessageBox.Show("Müşteri verisi alınamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -138,14 +138,14 @@ namespace SalesArtIntegration_AZ
         {
             if (chckAll.Checked)
             {
-                foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
+                foreach (DataGridViewRow row in dataGridDataList.Rows)
                 {
                     row.Cells["chk"].Value = true;
                 }
             }
             else
             {
-                foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
+                foreach (DataGridViewRow row in dataGridDataList.Rows)
                 {
                     row.Cells["chk"].Value = false;
                 }
@@ -161,7 +161,7 @@ namespace SalesArtIntegration_AZ
                 // GridView'den seçili satırları al
                 var selectedCustomers = new List<CustomerInfo>();
 
-                foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
+                foreach (DataGridViewRow row in dataGridDataList.Rows)
                 {
                     if (row.Cells["chk"].Value != null && Convert.ToBoolean(row.Cells["chk"].Value))
                     {
@@ -179,13 +179,13 @@ namespace SalesArtIntegration_AZ
                 if (selectedCustomers.Count == 0)
                 {
                     MessageBox.Show("Lütfen göndermek istediğiniz müşterileri seçin.", "Uyarı",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
                 // Onay mesajı
                 var confirmResult = MessageBox.Show(
-                    $"{selectedCustomers.Count} adet müşteri uzak servise gönderilecek. Devam etmek istiyor musunuz?",
+                    $"{selectedCustomers.Count} adet Müşteri 1C'e gönderilecek. Devam etmek istiyor musunuz?",
                     "Onay",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
@@ -197,10 +197,10 @@ namespace SalesArtIntegration_AZ
 
                 // Buton ve GridView'i devre dışı bırak
                 bttnSendCustomer.Enabled = false;
-                dataGridInvoiceList.Enabled = false;
+                dataGridDataList.Enabled = false;
 
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri",
-                    $"Uzak servise aktarılacak müşteri sayısı: {selectedCustomers.Count}");
+                    $"1C'e aktarımı yapılacak Müşteri sayısı: {selectedCustomers.Count}");
 
                 int totalCount = selectedCustomers.Count;
                 int processedCount = 0;
@@ -209,6 +209,8 @@ namespace SalesArtIntegration_AZ
 
                 foreach (var customer in selectedCustomers)
                 {
+                    bttnGetCustomers.Enabled = false;
+                    bttnGetProducts.Enabled = false;
                     try
                     {
                         string partnerCode = customer.code;
@@ -233,6 +235,8 @@ namespace SalesArtIntegration_AZ
                             Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri",
                                 $"Müşteri '{partnerName}' başarıyla kaydedildi. ({processedCount}/{totalCount})",
                                 $"TIN: {partnerTIN}");
+                            dataGridDataList.Refresh();
+                            chckAll.Checked = false;
                         }
                         else
                         {
@@ -259,9 +263,9 @@ namespace SalesArtIntegration_AZ
                                        $"Başarılı: {successCount}\n" +
                                        $"Hatalı: {errorCount}";
 
-                MessageBox.Show(resultMessage, "Tamamlandı",
-                    MessageBoxButtons.OK,
-                    errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                MessageBox.Show(resultMessage, "Tamamlandı",MessageBoxButtons.OK,errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                dataGridDataList.Refresh();
+                chckAll.Checked = false;
 
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Müşteri",
                     $"Seçili müşterilerin transfer işlemi tamamlandı. Başarılı: {successCount}, Hatalı: {errorCount}");
@@ -274,6 +278,8 @@ namespace SalesArtIntegration_AZ
                         "Liste Güncelleme",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
+                    bttnGetCustomers.Enabled = true;
+                    bttnGetProducts.Enabled = true;
                     chckAll.Checked = false;
 
                     if (confirmRemove == DialogResult.Yes)
@@ -294,7 +300,7 @@ namespace SalesArtIntegration_AZ
             {
                 // Buton ve GridView'i tekrar aktif et
                 bttnSendCustomer.Enabled = true;
-                dataGridInvoiceList.Enabled = true;
+                dataGridDataList.Enabled = true;
                 bttnSendProducts.Enabled = false;
             }
         }
@@ -336,9 +342,6 @@ namespace SalesArtIntegration_AZ
                 var productDataTask = ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
                     Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
 
-
-                //var productDataTask = ApiManager.GetAsync<ProductResponseJsonModel>(Configuration.GetUrl() + "management/products?lang=tr");
-
                 var soapItemsListTask = _client.GetItemListAsync();
 
                 //soapItemsListTask
@@ -379,26 +382,26 @@ namespace SalesArtIntegration_AZ
                         }
                     }
 
-                    dataGridInvoiceList.DataSource = null;
-                    dataGridInvoiceList.Columns.Clear();
+                    dataGridDataList.DataSource = null;
+                    dataGridDataList.Columns.Clear();
 
-                    dataGridInvoiceList.DataSource = newProductsToDisplay;
-                    dataGridInvoiceList.AutoGenerateColumns = true;
+                    dataGridDataList.DataSource = newProductsToDisplay;
+                    dataGridDataList.AutoGenerateColumns = true;
 
                     DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
                     chk.HeaderText = "";
                     chk.MinimumWidth = 6;
                     chk.Name = "chk";
                     chk.Width = 80;
-                    dataGridInvoiceList.Columns.Insert(0, chk); // İlk sıraya ekle
+                    dataGridDataList.Columns.Insert(0, chk); // İlk sıraya ekle
 
-                    dataGridInvoiceList.Columns["code"].HeaderText = "Ürün Kodu";
-                    dataGridInvoiceList.Columns["name"].HeaderText = "Ürün Adı";
-                    dataGridInvoiceList.Columns["unit"].HeaderText = "Birim";
+                    dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
+                    dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
+                    dataGridDataList.Columns["unit"].HeaderText = "Birim";
 
-                    dataGridInvoiceList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridInvoiceList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
                     chckAll.BringToFront();
                     bttnSendProducts.Enabled = true;
@@ -426,7 +429,7 @@ namespace SalesArtIntegration_AZ
 
                 // GridView'den seçili satırların kodlarını al
                 var selectedProductCodes = new List<string>();
-                foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
+                foreach (DataGridViewRow row in dataGridDataList.Rows)
                 {
                     if (row.Cells["chk"].Value != null && Convert.ToBoolean(row.Cells["chk"].Value))
                     {
@@ -450,7 +453,7 @@ namespace SalesArtIntegration_AZ
                     return;
                 }
 
-                dataGridInvoiceList.Enabled = false;
+                dataGridDataList.Enabled = false;
 
                 int processedCount = 0;
                 int successCount = 0;
@@ -588,6 +591,8 @@ namespace SalesArtIntegration_AZ
                             Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
                                 $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{selectedProductCodes.Count})",
                                 $"Kod: {itemCode}, Birim Sayısı: {koeficientTableLines.Length}");
+                            dataGridDataList.Refresh();
+                            chckAll.Checked = false;
                         }
                         else
                         {
@@ -612,8 +617,9 @@ namespace SalesArtIntegration_AZ
                                       $"Başarılı: {successCount}\n" +
                                       $"Hatalı: {errorCount}";
 
-                MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK,
-                    errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK,errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                dataGridDataList.Refresh();
+                chckAll.Checked = false;
             }
             catch (Exception ex)
             {
@@ -622,365 +628,10 @@ namespace SalesArtIntegration_AZ
             }
             finally
             {
-                dataGridInvoiceList.Enabled = true;
+                dataGridDataList.Enabled = true;
             }
         }
-        //private async void bttnSendProducts_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Seçili ürünlerin transfer işlemi başlatıldı.");
-
-        //        // GridView'den seçili satırları al
-        //        var selectedProductCodes = new List<string>();
-
-        //        foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
-        //        {
-        //            if (row.Cells["chk"].Value != null && Convert.ToBoolean(row.Cells["chk"].Value))
-        //            {
-        //                string productCode = row.Cells["code"].Value?.ToString();
-        //                if (!string.IsNullOrWhiteSpace(productCode))
-        //                {
-        //                    selectedProductCodes.Add(productCode);
-        //                }
-        //            }
-        //        }
-
-        //        bttnSendProducts.Enabled = true;
-
-        //        if (selectedProductCodes.Count == 0)
-        //        {
-        //            MessageBox.Show("Lütfen göndermek istediğiniz ürünleri seçin.", "Uyarı",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        // Onay mesajı
-        //        var confirmResult = MessageBox.Show(
-        //            $"{selectedProductCodes.Count} adet ürün uzak servise gönderilecek. Devam etmek istiyor musunuz?",
-        //            "Onay",
-        //            MessageBoxButtons.YesNo,
-        //            MessageBoxIcon.Question);
-
-        //        if (confirmResult != DialogResult.Yes)
-        //        {
-        //            return;
-        //        }
-
-        //        dataGridInvoiceList.Enabled = false;
-
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //            $"Uzak servise aktarılacak ürün sayısı: {selectedProductCodes.Count}");
-
-        //        // Seçili ürünlerin detaylarını API'den çek (ActiveUnits dahil)
-        //        var requestBody = new ProductListRequest
-        //        {
-        //            pageNumber = 0,
-        //            pageSize = 2000,
-        //            data = new ProductListRequest.Data
-        //            {
-        //                productName = ""
-        //            }
-        //        };
-
-        //        var productData = await ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
-        //            Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
-
-        //        if (productData?.data?.products == null)
-        //        {
-        //            MessageBox.Show("Ürün detayları alınamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return;
-        //        }
-
-        //        // Seçili ürünleri filtrele
-        //        var selectedProductsWithDetails = productData.data.products
-        //            .Where(p => selectedProductCodes.Contains(p.Code, StringComparer.OrdinalIgnoreCase))
-        //            .ToList();
-
-        //        int totalCount = selectedProductsWithDetails.Count;
-        //        int processedCount = 0;
-        //        int successCount = 0;
-        //        int errorCount = 0;
-
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //            $"Toplam işlenecek ürün sayısı: {totalCount}");
-
-        //        foreach (var product in selectedProductsWithDetails)
-        //        {
-        //            try
-        //            {
-        //                string itemCode = product.Code;
-        //                string itemName = product.Name;
-        //                string fullDescription = product.Name;
-        //                bool isService = false;
-
-        //                // Ana birim (Unit) - İlk ActiveUnit veya UnitName
-        //                string mainUnit = string.Empty;
-        //                OneCService.KoeficientTable koeficientTable = new OneCService.KoeficientTable();
-
-        //                // ActiveUnits kontrolü - sadece ilk birimi al
-        //                if (product.ActiveUnits != null && product.ActiveUnits.Count > 0)
-        //                {
-        //                    // İlk aktif birimi ana birim olarak al
-        //                    var firstUnit = product.ActiveUnits.First();
-        //                    mainUnit = BirimYoneticisi.BirimGetir(firstUnit.Code);
-
-        //                    // Sadece ilk birimi KoeficientTableLine olarak oluştur (tek satır)
-        //                    koeficientTable.KoeficientTableLine = new OneCService.KoeficientTableLine
-        //                    {
-        //                        Name = firstUnit.Name,
-        //                        code = firstUnit.Code,
-        //                        conversionFactor = (decimal)firstUnit.ConversionFactor,
-        //                        area = (decimal)firstUnit.Area,
-        //                        grossVolume = (decimal)firstUnit.GrossVolume,
-        //                        grossWeight = (decimal)firstUnit.GrossWeight,
-        //                        height = (decimal)firstUnit.Height,
-        //                        length = (decimal)firstUnit.Length,
-        //                        volume = (decimal)firstUnit.Volume,
-        //                        weight = (decimal)firstUnit.Weight,
-        //                        width = (decimal)firstUnit.Width,
-        //                        Finance = true,
-        //                        Quantity = true,
-        //                        Sale = true,
-        //                        Report = true,
-        //                        CONVFACT2 = 1,
-        //                        SHELFLIFE = 0,
-        //                        DISTPOINT = 0,
-        //                        UNITTYPE = 0
-        //                    };
-
-        //                    Helpers.LogFile(Helpers.LogLevel.DEBUG, "Ürün",
-        //                        $"Ürün '{itemName}' için ilk birim hazırlandı.",
-        //                        $"Ana birim: {mainUnit}, Birim kodu: {firstUnit.Code}");
-        //                }
-        //                else
-        //                {
-        //                    // ActiveUnits yoksa fallback
-        //                    mainUnit = BirimYoneticisi.BirimGetir(product.UnitName);
-        //                    koeficientTable.KoeficientTableLine = null;
-
-        //                    Helpers.LogFile(Helpers.LogLevel.WARNING, "Ürün",
-        //                        $"Ürün '{itemName}' için ActiveUnits bulunamadı, sadece ana birim gönderiliyor.",
-        //                        $"Ana birim: {mainUnit}");
-        //                }
-
-        //                // Tek bir insert ile tüm bilgileri gönder
-        //                var resultValue = await _client.InsertNewItemAsync(
-        //                    itemCode,
-        //                    itemName,
-        //                    fullDescription,
-        //                    isService,
-        //                    mainUnit,
-        //                    koeficientTable,
-        //                    18
-        //                );
-
-        //                processedCount++;
-
-        //                if (resultValue.@return.Result)
-        //                {
-        //                    successCount++;
-        //                    Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //                        $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{totalCount})",
-        //                        $"Kod: {itemCode}, Ana Birim: {mainUnit}");
-        //                }
-        //                else
-        //                {
-        //                    errorCount++;
-        //                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //                        $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}",
-        //                        $"Kod: {itemCode}");
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                processedCount++;
-        //                errorCount++;
-        //                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //                    $"Kayıt sırasında hata: {ex.Message}",
-        //                    $"Adı: {product.Name}, Kod: {product.Code}");
-        //            }
-        //        }
-
-        //        // Sonuç mesajı
-        //        string resultMessage = $"Transfer işlemi tamamlandı.\n\n" +
-        //                               $"Toplam Ürün: {totalCount}\n" +
-        //                               $"Başarılı: {successCount}\n" +
-        //                               $"Hatalı: {errorCount}";
-
-        //        MessageBox.Show(resultMessage, "Tamamlandı",
-        //            MessageBoxButtons.OK,
-        //            errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
-
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //            $"Seçili ürünlerin transfer işlemi tamamlandı. Başarılı: {successCount}, Hatalı: {errorCount}");
-
-        //        // Başarılı transferleri GridView'den kaldır (opsiyonel)
-        //        if (successCount > 0)
-        //        {
-        //            var confirmRemove = MessageBox.Show(
-        //                "Başarıyla gönderilen ürünler listeden kaldırılsın mı?",
-        //                "Liste Güncelleme",
-        //                MessageBoxButtons.YesNo,
-        //                MessageBoxIcon.Question);
-
-        //            if (confirmRemove == DialogResult.Yes)
-        //            {
-        //                // Listeyi yeniden yükle
-        //                bttnGetProducts_Click(sender, e);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Ürün gönderiminde bir hata oluştu: {ex.Message}",
-        //            "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //            $"Genel gönderim hatası: {ex.Message}", "Detay: bttnSendProducts_Click");
-        //    }
-        //    finally
-        //    {
-        //        // Buton ve GridView'i tekrar aktif et
-        //        dataGridInvoiceList.Enabled = true;
-        //    }
-        //}
-
-
-        //private async void bttnSendProducts_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Seçili ürünlerin transfer işlemi başlatıldı.");
-
-        //        // GridView'den seçili satırları al
-        //        var selectedProducts = new List<ProductInfo>();
-
-        //        foreach (DataGridViewRow row in dataGridInvoiceList.Rows)
-        //        {
-        //            if (row.Cells["chk"].Value != null && Convert.ToBoolean(row.Cells["chk"].Value))
-        //            {
-        //                selectedProducts.Add(new ProductInfo
-        //                {
-        //                    code = row.Cells["code"].Value?.ToString(),
-        //                    name = row.Cells["name"].Value?.ToString(),
-        //                    unit = row.Cells["unit"].Value?.ToString()
-        //                });
-        //            }
-        //        }
-        //        bttnSendProducts.Enabled = true;
-        //        if (selectedProducts.Count == 0)
-        //        {
-        //            MessageBox.Show("Lütfen göndermek istediğiniz ürünleri seçin.", "Uyarı",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        // Onay mesajı
-        //        var confirmResult = MessageBox.Show(
-        //            $"{selectedProducts.Count} adet ürün uzak servise gönderilecek. Devam etmek istiyor musunuz?",
-        //            "Onay",
-        //            MessageBoxButtons.YesNo,
-        //            MessageBoxIcon.Question);
-
-        //        if (confirmResult != DialogResult.Yes)
-        //        {
-        //            return;
-        //        }
-
-        //        dataGridInvoiceList.Enabled = false;
-
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //            $"Uzak servise aktarılacak ürün sayısı: {selectedProducts.Count}");
-
-        //        int totalCount = selectedProducts.Count;
-        //        int processedCount = 0;
-        //        int successCount = 0;
-        //        int errorCount = 0;
-
-        //        foreach (var product in selectedProducts)
-        //        {
-        //            try
-        //            {
-
-        //                string itemCode = product.code;
-        //                string itemName = product.name;
-        //                bool isService = false;
-        //                string unit = BirimYoneticisi.BirimGetir(product.unit);
-
-
-        //                var resultValue = await _client.InsertNewItemAsync(itemCode, itemName, isService, unit, 18);
-
-        //                if (resultValue.@return.Result)
-        //                {
-        //                    processedCount++;
-        //                    successCount++;
-        //                    Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //                        $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{totalCount})",
-        //                        $"Kod: {itemCode}");
-        //                }
-        //                else
-        //                {
-        //                    processedCount++;
-        //                    errorCount++;
-        //                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //                        $"Ürün '{itemName}' kayıt edilemedi: {resultValue.@return.Message}",
-        //                        $"Kod: {itemCode}");
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                processedCount++;
-        //                errorCount++;
-        //                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //                    $"Kayıt sırasında hata: {ex.Message}",
-        //                    $"Adı: {product.name}, Kod: {product.code}");
-        //            }
-        //        }
-
-        //        // Sonuç mesajı
-        //        string resultMessage = $"Transfer işlemi tamamlandı.\n\n" +
-        //                               $"Toplam: {totalCount}\n" +
-        //                               $"Başarılı: {successCount}\n" +
-        //                               $"Hatalı: {errorCount}";
-
-        //        MessageBox.Show(resultMessage, "Tamamlandı",
-        //            MessageBoxButtons.OK,
-        //            errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
-
-        //        Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-        //            $"Seçili ürünlerin transfer işlemi tamamlandı. Başarılı: {successCount}, Hatalı: {errorCount}");
-
-        //        // Başarılı transferleri GridView'den kaldır (opsiyonel)
-        //        if (successCount > 0)
-        //        {
-        //            var confirmRemove = MessageBox.Show(
-        //                "Başarıyla gönderilen ürünler listeden kaldırılsın mı?",
-        //                "Liste Güncelleme",
-        //                MessageBoxButtons.YesNo,
-        //                MessageBoxIcon.Question);
-
-        //            if (confirmRemove == DialogResult.Yes)
-        //            {
-        //                // Listeyi yeniden yükle
-        //                bttnGetProducts_Click(sender, e);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Ürün gönderiminde bir hata oluştu: {ex.Message}",
-        //            "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-        //            $"Genel gönderim hatası: {ex.Message}", "Detay: bttnSendProducts_Click");
-        //    }
-        //    finally
-        //    {
-        //        // Buton ve GridView'i tekrar aktif et
-        //        dataGridInvoiceList.Enabled = true;
-
-        //    }
-        //}
-
+        
         private void DataIntegrationsForm_Load(object sender, EventArgs e)
         {
             bttnSendCustomer.Enabled = false;
@@ -1019,28 +670,6 @@ namespace SalesArtIntegration_AZ
             dataIntegrationLogs.Show();
         }
         #endregion
-
-        //private void txtSearch_TextChanged(object sender, EventArgs e)
-        //{
-        //    string searchText = txtSearch.Text.Trim().ToLower();
-
-        //    if (string.IsNullOrEmpty(searchText))
-        //    {
-        //        // Boşsa tüm veriyi göster
-        //        dataGridInvoiceList.DataSource = allCustomers;
-        //    }
-        //    else
-        //    {
-        //        // Tüm kolonlarda arama yap
-        //        var filtered = allCustomers.Where(x =>
-        //            (x.vkn != null && x.vkn.ToLower().Contains(searchText)) ||
-        //            (x.code != null && x.code.ToLower().Contains(searchText)) ||
-        //             (x.name != null && x.name.ToLower().Contains(searchText))
-        //        ).ToList();
-
-        //        dataGridInvoiceList.DataSource = filtered;
-        //    }
-        //}
 
         public class KoeficientTableLine
         {
