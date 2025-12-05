@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
-            bttnWaybill = new MaterialSkin.Controls.MaterialButton();
             bttnCollection = new MaterialSkin.Controls.MaterialButton();
             bttnInvoice = new MaterialSkin.Controls.MaterialButton();
             menuStrip1 = new MenuStrip();
@@ -38,28 +37,6 @@
             exitToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // bttnWaybill
-            // 
-            bttnWaybill.AutoSize = false;
-            bttnWaybill.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnWaybill.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnWaybill.Depth = 0;
-            bttnWaybill.HighEmphasis = true;
-            bttnWaybill.Icon = null;
-            bttnWaybill.Location = new Point(81, 15);
-            bttnWaybill.Margin = new Padding(4, 6, 4, 6);
-            bttnWaybill.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnWaybill.Name = "bttnWaybill";
-            bttnWaybill.NoAccentTextColor = Color.Empty;
-            bttnWaybill.Size = new Size(174, 59);
-            bttnWaybill.TabIndex = 0;
-            bttnWaybill.Text = "Aktar";
-            bttnWaybill.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnWaybill.UseAccentColor = false;
-            bttnWaybill.UseVisualStyleBackColor = true;
-            bttnWaybill.Visible = false;
-            bttnWaybill.Click += bttnWaybill_Click;
             // 
             // bttnCollection
             // 
@@ -160,7 +137,6 @@
             ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
-            Controls.Add(bttnWaybill);
             Controls.Add(menuStrip1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -178,8 +154,6 @@
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialButton bttnWaybill;
         private MaterialSkin.Controls.MaterialButton bttnCollection;
         private MaterialSkin.Controls.MaterialButton bttnInvoice;
         private MenuStrip menuStrip1;
