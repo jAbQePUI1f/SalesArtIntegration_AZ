@@ -187,7 +187,7 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
                                 var invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "KASSA TAHSILAT", selectedInvoice.documentNo
-                                    , selectedInvoice.customerCode, "", "", selectedInvoice.salesmanCode, "18", selectedInvoice.amount, "");
+                                    , selectedInvoice.customerCode, "", "", selectedInvoice.salesmanFirstName +" "+ selectedInvoice.salesmanLastName, "18", selectedInvoice.amount, selectedInvoice.documentNo);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
@@ -198,7 +198,8 @@ namespace SalesArtIntegration_AZ
                             case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
 
                                 invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, "BANKA_TAHSILAT", selectedInvoice.documentNo
-                                   , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, "");//decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak.
+                                   , selectedInvoice.customerCode, "", "", "", "18", selectedInvoice.amount, selectedInvoice.description);
+                                //decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak. Bank_Acc_Code,Bank_Acc_Name,Bank_Cash_Name
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 

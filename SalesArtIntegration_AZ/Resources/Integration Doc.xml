@@ -102,7 +102,7 @@ User Info : U: web_user, P: wb_123 -->
         <InsertNewRefundOfReceipt xmlns="http://127.0.0.1">
             <EnterpriseCode>[string]</EnterpriseCode> - Şirket Kodu
             <Date>[string]</Date>   - Fatura Tarihi (2020-01-01)
-            <ReceiptNumber>[string]</ReceiptNumber>   -  Fatura Numarası
+            <DocNumber>[string]</DocNumber>   -  Fatura Numarası
             <PartnersCode>[string]</PartnersCode> - Müşteri Kodu (VÖENi)
             <AmountIncludesVat>[int]</AmountIncludesVat> - KDV (1 - KDV Dahildir , 0 - KDV Hariçtir)
             <StockID>[string]</StockID> - Depo Kodu
