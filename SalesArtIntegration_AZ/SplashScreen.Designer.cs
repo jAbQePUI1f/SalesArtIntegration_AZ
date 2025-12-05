@@ -117,7 +117,7 @@
             menuStrip1.ImeMode = ImeMode.Katakana;
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, exitToolStripMenuItem1 });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(496, 9);
+            menuStrip1.Location = new Point(496, 44);
             menuStrip1.MdiWindowListItem = exitToolStripMenuItem1;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -156,7 +156,7 @@
             BackColor = Color.Snow;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(707, 538);
+            ClientSize = new Size(707, 573);
             ControlBox = false;
             Controls.Add(bttnInvoice);
             Controls.Add(bttnCollection);
