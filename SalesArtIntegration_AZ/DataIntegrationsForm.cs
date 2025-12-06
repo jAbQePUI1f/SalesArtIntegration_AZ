@@ -343,8 +343,6 @@ namespace SalesArtIntegration_AZ
                     Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
 
                 var soapItemsListTask = _client.GetItemListAsync();
-
-                //soapItemsListTask
                 await Task.WhenAll(productDataTask, soapItemsListTask);
                 var productData = productDataTask.Result;
 
@@ -356,8 +354,6 @@ namespace SalesArtIntegration_AZ
                         .Select(item => item.ItemCodeCode),
                     StringComparer.OrdinalIgnoreCase
                 );
-
-                //Helpers.LogFile(Helpers.LogLevel.DEBUG, "Ürün", $"Uzak serviste bulunan ürün sayısı: {existingItemCodes.Count}");
 
                 if (productData?.data?.products != null)
                 {
