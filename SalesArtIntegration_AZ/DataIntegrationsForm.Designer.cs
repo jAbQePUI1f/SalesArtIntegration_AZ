@@ -92,18 +92,16 @@
             // 
             bttnLogs.AutoSize = false;
             bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
             bttnLogs.Depth = 0;
-            bttnLogs.Dock = DockStyle.Right;
-            bttnLogs.FlatStyle = FlatStyle.Popup;
             bttnLogs.HighEmphasis = false;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(836, 11);
+            bttnLogs.Location = new Point(836, 39);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(82, 185);
+            bttnLogs.Size = new Size(82, 157);
             bttnLogs.TabIndex = 17;
             bttnLogs.TabStop = false;
             bttnLogs.Text = "Logs";
@@ -134,32 +132,32 @@
             // 
             // materialLabel1
             // 
-            materialLabel1.AutoEllipsis = true;
-            materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(163, 11);
+            materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            materialLabel1.Location = new Point(161, 25);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(54, 19);
+            materialLabel1.Size = new Size(92, 25);
             materialLabel1.TabIndex = 0;
-            materialLabel1.Text = "Müşteri";
+            materialLabel1.Text = "  Müşteri";
             // 
             // materialLabel2
             // 
-            materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(621, 11);
+            materialLabel2.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            materialLabel2.Location = new Point(604, 25);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(34, 19);
+            materialLabel2.Size = new Size(60, 25);
             materialLabel2.TabIndex = 1;
-            materialLabel2.Text = "Ürün";
+            materialLabel2.Text = "  Ürün";
             // 
             // materialCard3
             // 
             materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.BorderStyle = BorderStyle.FixedSingle;
             materialCard3.Controls.Add(bttnSendProducts);
             materialCard3.Controls.Add(bttnGetProducts);
             materialCard3.Depth = 0;
@@ -219,6 +217,7 @@
             // materialCard2
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.BorderStyle = BorderStyle.FixedSingle;
             materialCard2.Controls.Add(bttnGetCustomers);
             materialCard2.Controls.Add(bttnSendCustomer);
             materialCard2.Depth = 0;
@@ -375,7 +374,6 @@
             Text = "SalesArt Integration";
             Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
             materialCard3.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
             stripInvoice.ResumeLayout(false);
