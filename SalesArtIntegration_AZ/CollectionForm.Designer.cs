@@ -32,7 +32,6 @@
             stripInvoice = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             invoiceToolStripMenuItem = new ToolStripMenuItem();
-            collectionToolStripMenuItem = new ToolStripMenuItem();
             backToolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
@@ -71,7 +70,7 @@
             // 
             // menuToolStripMenuItem
             // 
-            menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, collectionToolStripMenuItem, backToolStripMenuItem1, exitToolStripMenuItem });
+            menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolStripMenuItem, backToolStripMenuItem1, exitToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             menuToolStripMenuItem.Size = new Size(50, 20);
             menuToolStripMenuItem.Text = "Menü";
@@ -79,21 +78,21 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(165, 22);
+            invoiceToolStripMenuItem.Size = new Size(180, 22);
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // backToolStripMenuItem1
             // 
             backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            backToolStripMenuItem1.Size = new Size(165, 22);
+            backToolStripMenuItem1.Size = new Size(180, 22);
             backToolStripMenuItem1.Text = "Ana Menüye dön";
             backToolStripMenuItem1.Click += backToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(165, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -319,7 +318,6 @@
         private MenuStrip stripInvoice;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem invoiceToolStripMenuItem;
-        private ToolStripMenuItem collectionToolStripMenuItem;
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialComboBox comboboxInvoiceType;
         private MaterialSkin.Controls.MaterialLabel lblType;

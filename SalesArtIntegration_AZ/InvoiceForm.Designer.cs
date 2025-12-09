@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
             stripInvoice = new MenuStrip();
             menüToolStripMenuItem = new ToolStripMenuItem();
-            waybillToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
@@ -73,11 +72,11 @@
             // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 27);
             menüToolStripMenuItem.Text = "Menü";
-            //
+            // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
@@ -362,7 +361,6 @@
         private DateTimePicker dateTimeFinishDate;
         private DateTimePicker dateTimeStartDate;
         private DataGridView dataGridInvoiceList;
-        private ToolStripMenuItem waybillToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
         private CheckBox chckAll;
         private MaterialSkin.Controls.MaterialButton bttnLogs;
