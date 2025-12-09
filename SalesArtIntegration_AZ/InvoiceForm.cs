@@ -29,12 +29,6 @@ namespace SalesArtIntegration_AZ
                 documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
             }
         }
-        private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WaybillForm waybillForm = new WaybillForm();
-            waybillForm.Show();
-            this.Hide();
-        }
 
         private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
         {

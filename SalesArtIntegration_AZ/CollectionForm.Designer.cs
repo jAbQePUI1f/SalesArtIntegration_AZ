@@ -83,13 +83,6 @@
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
-            // collectionToolStripMenuItem
-            // 
-            collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(165, 22);
-            collectionToolStripMenuItem.Text = "İrsaliye İşlemleri";
-            collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
-            // 
             // backToolStripMenuItem1
             // 
             backToolStripMenuItem1.Name = "backToolStripMenuItem1";

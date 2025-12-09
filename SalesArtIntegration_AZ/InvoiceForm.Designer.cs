@@ -77,14 +77,7 @@
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 27);
             menüToolStripMenuItem.Text = "Menü";
-            // 
-            // waybillToolStripMenuItem
-            // 
-            waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(206, 22);
-            waybillToolStripMenuItem.Text = "İrsaliye İşlemleri";
-            waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
-            // 
+            //
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
