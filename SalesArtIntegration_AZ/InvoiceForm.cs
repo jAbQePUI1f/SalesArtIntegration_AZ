@@ -66,12 +66,14 @@ namespace SalesArtIntegration_AZ
             {
                 Number = header.number,
                 Date = header.date.ToShortDateString(),
-                DocumentNumber = header.documentNumber,
+                //DocumentNumber = header.documentNumber,
                 CustomerCode = header.customerCode,
                 CustomerName = header.customerName,
                 DiscountTotal = header.discountTotal.ToString(),
                 VatTotal = header.vatTotal.ToString(),
-                GrossTotal = header.grossTotal.ToString()
+                GrossTotal = header.grossTotal.ToString(),
+                SalesDepartmentName = header.salesDepartmentName,
+                SalesGroupName = header.salesGroupName
             }).ToList();
 
             dataGridInvoiceList.DataSource = displayInfoList;
@@ -79,21 +81,26 @@ namespace SalesArtIntegration_AZ
 
             dataGridInvoiceList.Columns["Number"].HeaderText = "Fatura Numarası";
             dataGridInvoiceList.Columns["Date"].HeaderText = "Tarih";
-            dataGridInvoiceList.Columns["DocumentNumber"].HeaderText = "Belge Numarası";
+            //dataGridInvoiceList.Columns["DocumentNumber"].HeaderText = "Belge Numarası";
             dataGridInvoiceList.Columns["CustomerCode"].HeaderText = "Müşteri Kodu";
             dataGridInvoiceList.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dataGridInvoiceList.Columns["SalesDepartmentName"].HeaderText = "Satış Bölümü";
+            dataGridInvoiceList.Columns["SalesGroupName"].HeaderText = "Satış Şefliği";
             dataGridInvoiceList.Columns["DiscountTotal"].HeaderText = "İndirim Toplamı";
             dataGridInvoiceList.Columns["VatTotal"].HeaderText = "KDV Toplamı";
             dataGridInvoiceList.Columns["GrossTotal"].HeaderText = "Genel Toplam";
 
+
             dataGridInvoiceList.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridInvoiceList.Columns["DocumentNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dataGridInvoiceList.Columns["DocumentNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["CustomerCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["CustomerName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["DiscountTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["VatTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridInvoiceList.Columns["GrossTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["SalesDepartmentName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridInvoiceList.Columns["SalesGroupName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             chckAll.BringToFront();
 
@@ -214,8 +221,15 @@ namespace SalesArtIntegration_AZ
                                     });
                                 }
 
-                                 invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                    selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
+                                invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
+                                    selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray(),
+                                    selectedInvoice.customerCode+"C"+selectedInvoice.salesDepartmentName+
+                                    "_"
+                                    +selectedInvoice.customerName+
+                                    "_"+
+                                    selectedInvoice.number+
+                                    "_"+
+                                    selectedInvoice.salesGroupName);
 
                                 remoteInvoiceNumber = selectedInvoice.number;
 
@@ -448,12 +462,6 @@ namespace SalesArtIntegration_AZ
         {
             Environment.Exit(0);
         }
-
-        //private void InvoiceForm_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-
-        //}
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);

@@ -806,6 +806,8 @@ namespace OneCService
         
         private System.DateTime dateTimeField;
         
+        private string statusField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string Number
@@ -863,6 +865,21 @@ namespace OneCService
             {
                 this.dateTimeField = value;
                 this.RaisePropertyChanged("DateTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public string Status
+        {
+            get
+            {
+                return this.statusField;
+            }
+            set
+            {
+                this.statusField = value;
+                this.RaisePropertyChanged("Status");
             }
         }
         
@@ -4240,11 +4257,15 @@ namespace OneCService
         [System.Xml.Serialization.XmlArrayItemAttribute("TableLine", IsNullable=false)]
         public OneCService.InvoiceItemTableLine[] ItemTable;
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://127.0.0.1", Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Comment;
+        
         public InsertNewInvoiceRequest()
         {
         }
         
-        public InsertNewInvoiceRequest(string EnterpriseCode, string Date, string InvoiceNumber, string PartnersCode, System.Nullable<int> AmountIncludesVat, string StockID, OneCService.InvoiceItemTableLine[] ItemTable)
+        public InsertNewInvoiceRequest(string EnterpriseCode, string Date, string InvoiceNumber, string PartnersCode, System.Nullable<int> AmountIncludesVat, string StockID, OneCService.InvoiceItemTableLine[] ItemTable, string Comment)
         {
             this.EnterpriseCode = EnterpriseCode;
             this.Date = Date;
@@ -4253,6 +4274,7 @@ namespace OneCService
             this.AmountIncludesVat = AmountIncludesVat;
             this.StockID = StockID;
             this.ItemTable = ItemTable;
+            this.Comment = Comment;
         }
     }
     
@@ -5122,7 +5144,7 @@ namespace OneCService
             return base.Channel.InsertNewInvoiceAsync(request);
         }
         
-        public System.Threading.Tasks.Task<OneCService.InsertNewInvoiceResponse> InsertNewInvoiceAsync(string EnterpriseCode, string Date, string InvoiceNumber, string PartnersCode, System.Nullable<int> AmountIncludesVat, string StockID, OneCService.InvoiceItemTableLine[] ItemTable)
+        public System.Threading.Tasks.Task<OneCService.InsertNewInvoiceResponse> InsertNewInvoiceAsync(string EnterpriseCode, string Date, string InvoiceNumber, string PartnersCode, System.Nullable<int> AmountIncludesVat, string StockID, OneCService.InvoiceItemTableLine[] ItemTable, string Comment)
         {
             OneCService.InsertNewInvoiceRequest inValue = new OneCService.InsertNewInvoiceRequest();
             inValue.EnterpriseCode = EnterpriseCode;
@@ -5132,6 +5154,7 @@ namespace OneCService
             inValue.AmountIncludesVat = AmountIncludesVat;
             inValue.StockID = StockID;
             inValue.ItemTable = ItemTable;
+            inValue.Comment = Comment;
             return ((OneCService.WebServicePortType)(this)).InsertNewInvoiceAsync(inValue);
         }
         
