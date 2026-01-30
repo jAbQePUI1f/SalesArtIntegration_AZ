@@ -15,7 +15,7 @@ namespace SalesArtIntegration_AZ.Helper
             ERROR,   // Hata
             DEBUG    // Geliştirme/Detay
         }
-        public static string GetDisplayName<T>(T value) where T : Enum
+        public static string? GetDisplayName<T>(T value) where T : Enum
         {
             var fieldInfo = typeof(T).GetField(value.ToString());
             if (fieldInfo == null) return value.ToString();

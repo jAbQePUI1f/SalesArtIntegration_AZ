@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataIntegrationsForm));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             chk = new DataGridViewCheckBoxColumn();
             chckAll = new CheckBox();
             divider = new MaterialSkin.Controls.MaterialDivider();
             bttnLogs = new MaterialSkin.Controls.MaterialButton();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            lblCustomer = new MaterialSkin.Controls.MaterialLabel();
+            lblProduct = new MaterialSkin.Controls.MaterialLabel();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
             bttnSendProducts = new MaterialSkin.Controls.MaterialButton();
             bttnGetProducts = new MaterialSkin.Controls.MaterialButton();
@@ -45,15 +44,15 @@
             bttnSendCustomer = new MaterialSkin.Controls.MaterialButton();
             exitToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
-            waybillToolStripMenuItem = new ToolStripMenuItem();
             menüToolStripMenuItem = new ToolStripMenuItem();
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
-            stripInvoice = new MenuStrip();
+            stripDataEntegration = new MenuStrip();
             dataGridDataList = new DataGridView();
+            invoiceToolTip = new ToolStripMenuItem();
             materialCard1.SuspendLayout();
             materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
-            stripInvoice.SuspendLayout();
+            stripDataEntegration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDataList).BeginInit();
             SuspendLayout();
             // 
@@ -92,18 +91,16 @@
             // 
             bttnLogs.AutoSize = false;
             bttnLogs.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnLogs.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
             bttnLogs.Depth = 0;
-            bttnLogs.Dock = DockStyle.Right;
-            bttnLogs.FlatStyle = FlatStyle.Popup;
             bttnLogs.HighEmphasis = false;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(836, 11);
+            bttnLogs.Location = new Point(836, 39);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(82, 185);
+            bttnLogs.Size = new Size(82, 157);
             bttnLogs.TabIndex = 17;
             bttnLogs.TabStop = false;
             bttnLogs.Text = "Logs";
@@ -117,8 +114,8 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(materialLabel1);
-            materialCard1.Controls.Add(materialLabel2);
+            materialCard1.Controls.Add(lblCustomer);
+            materialCard1.Controls.Add(lblProduct);
             materialCard1.Controls.Add(materialCard3);
             materialCard1.Controls.Add(materialCard2);
             materialCard1.Controls.Add(bttnLogs);
@@ -132,44 +129,48 @@
             materialCard1.Size = new Size(930, 207);
             materialCard1.TabIndex = 25;
             // 
-            // materialLabel1
+            // lblCustomer
             // 
-            materialLabel1.AutoEllipsis = true;
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(163, 11);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(54, 19);
-            materialLabel1.TabIndex = 0;
-            materialLabel1.Text = "Müşteri";
+            lblCustomer.Depth = 0;
+            lblCustomer.FlatStyle = FlatStyle.System;
+            lblCustomer.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCustomer.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblCustomer.Location = new Point(174, 24);
+            lblCustomer.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCustomer.Name = "lblCustomer";
+            lblCustomer.Size = new Size(103, 28);
+            lblCustomer.TabIndex = 0;
+            lblCustomer.Text = "  Müşteri";
             // 
-            // materialLabel2
+            // lblProduct
             // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(621, 11);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(34, 19);
-            materialLabel2.TabIndex = 1;
-            materialLabel2.Text = "Ürün";
+            lblProduct.Depth = 0;
+            lblProduct.FlatStyle = FlatStyle.System;
+            lblProduct.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblProduct.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblProduct.HighEmphasis = true;
+            lblProduct.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
+            lblProduct.Location = new Point(601, 24);
+            lblProduct.MouseState = MaterialSkin.MouseState.HOVER;
+            lblProduct.Name = "lblProduct";
+            lblProduct.Size = new Size(77, 28);
+            lblProduct.TabIndex = 20;
+            lblProduct.Text = "  Ürün";
             // 
             // materialCard3
             // 
             materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.BorderStyle = BorderStyle.FixedSingle;
             materialCard3.Controls.Add(bttnSendProducts);
             materialCard3.Controls.Add(bttnGetProducts);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(439, 39);
+            materialCard3.Location = new Point(429, 39);
             materialCard3.Margin = new Padding(12, 11, 12, 11);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
             materialCard3.Padding = new Padding(12, 11, 12, 11);
-            materialCard3.Size = new Size(383, 157);
+            materialCard3.Size = new Size(393, 157);
             materialCard3.TabIndex = 19;
             // 
             // bttnSendProducts
@@ -181,12 +182,12 @@
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
             bttnSendProducts.Icon = null;
-            bttnSendProducts.Location = new Point(65, 97);
+            bttnSendProducts.Location = new Point(201, 43);
             bttnSendProducts.Margin = new Padding(4, 6, 4, 6);
             bttnSendProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendProducts.Name = "bttnSendProducts";
             bttnSendProducts.NoAccentTextColor = Color.Empty;
-            bttnSendProducts.Size = new Size(253, 43);
+            bttnSendProducts.Size = new Size(174, 69);
             bttnSendProducts.TabIndex = 8;
             bttnSendProducts.Text = "Ürünleri Aktar";
             bttnSendProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -203,12 +204,12 @@
             bttnGetProducts.Depth = 0;
             bttnGetProducts.HighEmphasis = true;
             bttnGetProducts.Icon = null;
-            bttnGetProducts.Location = new Point(65, 27);
+            bttnGetProducts.Location = new Point(16, 43);
             bttnGetProducts.Margin = new Padding(4, 6, 4, 6);
             bttnGetProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetProducts.Name = "bttnGetProducts";
             bttnGetProducts.NoAccentTextColor = Color.Empty;
-            bttnGetProducts.Size = new Size(254, 58);
+            bttnGetProducts.Size = new Size(174, 69);
             bttnGetProducts.TabIndex = 2;
             bttnGetProducts.Text = "Ürünleri Getir";
             bttnGetProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -219,6 +220,7 @@
             // materialCard2
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.BorderStyle = BorderStyle.FixedSingle;
             materialCard2.Controls.Add(bttnGetCustomers);
             materialCard2.Controls.Add(bttnSendCustomer);
             materialCard2.Depth = 0;
@@ -228,7 +230,7 @@
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(12, 11, 12, 11);
-            materialCard2.Size = new Size(387, 157);
+            materialCard2.Size = new Size(399, 157);
             materialCard2.TabIndex = 18;
             // 
             // bttnGetCustomers
@@ -240,12 +242,12 @@
             bttnGetCustomers.Depth = 0;
             bttnGetCustomers.HighEmphasis = true;
             bttnGetCustomers.Icon = null;
-            bttnGetCustomers.Location = new Point(64, 27);
+            bttnGetCustomers.Location = new Point(16, 43);
             bttnGetCustomers.Margin = new Padding(4, 6, 4, 6);
             bttnGetCustomers.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetCustomers.Name = "bttnGetCustomers";
             bttnGetCustomers.NoAccentTextColor = Color.Empty;
-            bttnGetCustomers.Size = new Size(246, 58);
+            bttnGetCustomers.Size = new Size(174, 69);
             bttnGetCustomers.TabIndex = 0;
             bttnGetCustomers.Text = "Müşterileri Getir";
             bttnGetCustomers.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -262,12 +264,12 @@
             bttnSendCustomer.Depth = 0;
             bttnSendCustomer.HighEmphasis = true;
             bttnSendCustomer.Icon = null;
-            bttnSendCustomer.Location = new Point(64, 97);
+            bttnSendCustomer.Location = new Point(207, 43);
             bttnSendCustomer.Margin = new Padding(4, 6, 4, 6);
             bttnSendCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendCustomer.Name = "bttnSendCustomer";
             bttnSendCustomer.NoAccentTextColor = Color.Empty;
-            bttnSendCustomer.Size = new Size(246, 44);
+            bttnSendCustomer.Size = new Size(174, 69);
             bttnSendCustomer.TabIndex = 7;
             bttnSendCustomer.Text = "Müşterileri Aktar";
             bttnSendCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -289,16 +291,9 @@
             collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
-            // waybillToolStripMenuItem
-            // 
-            waybillToolStripMenuItem.Name = "waybillToolStripMenuItem";
-            waybillToolStripMenuItem.Size = new Size(206, 22);
-            waybillToolStripMenuItem.Text = "İrsaliye İşlemleri";
-            waybillToolStripMenuItem.Click += waybillToolStripMenuItem_Click;
-            // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { waybillToolStripMenuItem, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolTip, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 28);
             menüToolStripMenuItem.Text = "Menü";
@@ -310,22 +305,22 @@
             anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenüyeDönToolStripMenuItem_Click;
             // 
-            // stripInvoice
+            // stripDataEntegration
             // 
-            stripInvoice.AllowMerge = false;
-            stripInvoice.AutoSize = false;
-            stripInvoice.BackColor = Color.Transparent;
-            stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
-            stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
-            stripInvoice.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            stripInvoice.ImageScalingSize = new Size(20, 20);
-            stripInvoice.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem });
-            stripInvoice.Location = new Point(0, 0);
-            stripInvoice.Name = "stripInvoice";
-            stripInvoice.RenderMode = ToolStripRenderMode.Professional;
-            stripInvoice.Size = new Size(947, 32);
-            stripInvoice.TabIndex = 24;
-            stripInvoice.Text = "Fatura Menü";
+            stripDataEntegration.AllowMerge = false;
+            stripDataEntegration.AutoSize = false;
+            stripDataEntegration.BackColor = Color.Transparent;
+            stripDataEntegration.BackgroundImage = Properties.Resources.logo_1920;
+            stripDataEntegration.BackgroundImageLayout = ImageLayout.Zoom;
+            stripDataEntegration.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            stripDataEntegration.ImageScalingSize = new Size(20, 20);
+            stripDataEntegration.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem });
+            stripDataEntegration.Location = new Point(0, 0);
+            stripDataEntegration.Name = "stripDataEntegration";
+            stripDataEntegration.RenderMode = ToolStripRenderMode.Professional;
+            stripDataEntegration.Size = new Size(947, 32);
+            stripDataEntegration.TabIndex = 24;
+            stripDataEntegration.Text = "Fatura Menü";
             // 
             // dataGridDataList
             // 
@@ -337,14 +332,6 @@
             dataGridDataList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridDataList.Columns.AddRange(new DataGridViewColumn[] { chk });
             dataGridDataList.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridDataList.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridDataList.GridColor = SystemColors.ControlDark;
             dataGridDataList.ImeMode = ImeMode.On;
             dataGridDataList.Location = new Point(12, 272);
@@ -355,6 +342,13 @@
             dataGridDataList.StandardTab = true;
             dataGridDataList.TabIndex = 26;
             // 
+            // invoiceToolTip
+            // 
+            invoiceToolTip.Name = "invoiceToolTip";
+            invoiceToolTip.Size = new Size(206, 22);
+            invoiceToolTip.Text = "Fatura İşlemleri";
+            invoiceToolTip.Click += invoiceToolTip_Click;
+            // 
             // DataIntegrationsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
@@ -363,7 +357,7 @@
             ControlBox = false;
             Controls.Add(divider);
             Controls.Add(chckAll);
-            Controls.Add(stripInvoice);
+            Controls.Add(stripDataEntegration);
             Controls.Add(dataGridDataList);
             Controls.Add(materialCard1);
             Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
@@ -375,11 +369,10 @@
             Text = "SalesArt Integration";
             Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
             materialCard3.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
-            stripInvoice.ResumeLayout(false);
-            stripInvoice.PerformLayout();
+            stripDataEntegration.ResumeLayout(false);
+            stripDataEntegration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDataList).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -393,19 +386,19 @@
         private MaterialSkin.Controls.MaterialButton bttnLogs;
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialCard materialCard2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel lblCustomer;
         private MaterialSkin.Controls.MaterialButton bttnSendCustomer;
         private MaterialSkin.Controls.MaterialButton bttnGetCustomers;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
-        private ToolStripMenuItem waybillToolStripMenuItem;
         private ToolStripMenuItem menüToolStripMenuItem;
         private ToolStripMenuItem anaMenüyeDönToolStripMenuItem;
-        private MenuStrip stripInvoice;
+        private MenuStrip stripDataEntegration;
         private DataGridView dataGridDataList;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialButton bttnSendProducts;
         private MaterialSkin.Controls.MaterialButton bttnGetProducts;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel lblProduct;
+        private ToolStripMenuItem invoiceToolTip;
     }
 }
