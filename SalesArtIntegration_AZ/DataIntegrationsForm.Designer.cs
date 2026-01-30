@@ -45,10 +45,10 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             collectionToolStripMenuItem = new ToolStripMenuItem();
             menüToolStripMenuItem = new ToolStripMenuItem();
+            invoiceToolTip = new ToolStripMenuItem();
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
             stripDataEntegration = new MenuStrip();
             dataGridDataList = new DataGridView();
-            invoiceToolTip = new ToolStripMenuItem();
             materialCard1.SuspendLayout();
             materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
@@ -295,8 +295,15 @@
             // 
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolTip, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(50, 28);
+            menüToolStripMenuItem.Size = new Size(50, 16);
             menüToolStripMenuItem.Text = "Menü";
+            // 
+            // invoiceToolTip
+            // 
+            invoiceToolTip.Name = "invoiceToolTip";
+            invoiceToolTip.Size = new Size(206, 22);
+            invoiceToolTip.Text = "Fatura İşlemleri";
+            invoiceToolTip.Click += invoiceToolTip_Click;
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
@@ -318,7 +325,7 @@
             stripDataEntegration.Location = new Point(0, 0);
             stripDataEntegration.Name = "stripDataEntegration";
             stripDataEntegration.RenderMode = ToolStripRenderMode.Professional;
-            stripDataEntegration.Size = new Size(947, 32);
+            stripDataEntegration.Size = new Size(947, 20);
             stripDataEntegration.TabIndex = 24;
             stripDataEntegration.Text = "Fatura Menü";
             // 
@@ -341,13 +348,6 @@
             dataGridDataList.Size = new Size(923, 471);
             dataGridDataList.StandardTab = true;
             dataGridDataList.TabIndex = 26;
-            // 
-            // invoiceToolTip
-            // 
-            invoiceToolTip.Name = "invoiceToolTip";
-            invoiceToolTip.Size = new Size(206, 22);
-            invoiceToolTip.Text = "Fatura İşlemleri";
-            invoiceToolTip.Click += invoiceToolTip_Click;
             // 
             // DataIntegrationsForm
             // 
