@@ -263,7 +263,7 @@ namespace SalesArtIntegration_AZ
                                        $"Başarılı: {successCount}\n" +
                                        $"Hatalı: {errorCount}";
 
-                MessageBox.Show(resultMessage, "Tamamlandı",MessageBoxButtons.OK,errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK, errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
                 dataGridDataList.Refresh();
                 chckAll.Checked = false;
 
@@ -343,8 +343,6 @@ namespace SalesArtIntegration_AZ
                     Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
 
                 var soapItemsListTask = _client.GetItemListAsync();
-
-                //soapItemsListTask
                 await Task.WhenAll(productDataTask, soapItemsListTask);
                 var productData = productDataTask.Result;
 
@@ -356,8 +354,6 @@ namespace SalesArtIntegration_AZ
                         .Select(item => item.ItemCodeCode),
                     StringComparer.OrdinalIgnoreCase
                 );
-
-                //Helpers.LogFile(Helpers.LogLevel.DEBUG, "Ürün", $"Uzak serviste bulunan ürün sayısı: {existingItemCodes.Count}");
 
                 if (productData?.data?.products != null)
                 {
@@ -617,7 +613,7 @@ namespace SalesArtIntegration_AZ
                                       $"Başarılı: {successCount}\n" +
                                       $"Hatalı: {errorCount}";
 
-                MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK,errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK, errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
                 dataGridDataList.Refresh();
                 chckAll.Checked = false;
             }
@@ -631,18 +627,11 @@ namespace SalesArtIntegration_AZ
                 dataGridDataList.Enabled = true;
             }
         }
-        
+
         private void DataIntegrationsForm_Load(object sender, EventArgs e)
         {
             bttnSendCustomer.Enabled = false;
             bttnSendProducts.Enabled = false;
-        }
-
-        private void waybillToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WaybillForm waybillForm = new WaybillForm();
-            waybillForm.Show();
-            this.Hide();
         }
 
         private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -692,6 +681,13 @@ namespace SalesArtIntegration_AZ
             public decimal SHELFLIFE { get; set; }
             public decimal DISTPOINT { get; set; }
             public decimal UNITTYPE { get; set; }
+        }
+
+        private void invoiceToolTip_Click(object sender, EventArgs e)
+        {
+            InvoiceForm invoiceForm = new InvoiceForm();
+            invoiceForm.Show();
+            this.Hide();
         }
     }
 }

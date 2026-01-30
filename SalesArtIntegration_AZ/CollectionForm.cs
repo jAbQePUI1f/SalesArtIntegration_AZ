@@ -41,12 +41,6 @@ namespace SalesArtIntegration_AZ
             invoiceForm.Show();
             this.Hide();
         }
-        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WaybillForm waybillForm = new WaybillForm();
-            waybillForm.Show();
-            this.Hide();
-        }
 
         private async void bttnGetCollection_Click(object sender, EventArgs e)
         {

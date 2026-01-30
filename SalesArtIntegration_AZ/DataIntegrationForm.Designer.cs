@@ -87,7 +87,6 @@
             bttnTransferToProducts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTransferToProducts.UseAccentColor = false;
             bttnTransferToProducts.UseVisualStyleBackColor = true;
-            bttnTransferToProducts.Click += bttnTransferToProducts_Click;
             // 
             // menuStrip1
             // 

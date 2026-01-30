@@ -26,13 +26,6 @@ namespace SalesArtIntegration_AZ
             invoiceForm.ShowDialog(); // Show() yerine ShowDialog() kullanabilirsiniz
         }
 
-        private void bttnWaybill_Click(object sender, EventArgs e)
-        {
-            WaybillForm waybillForm = new WaybillForm();
-            waybillForm.Show();
-            this.Hide();
-        }
-
         private void bttnCollection_Click(object sender, EventArgs e)
         {
             CollectionForm collectionForm = new CollectionForm();
