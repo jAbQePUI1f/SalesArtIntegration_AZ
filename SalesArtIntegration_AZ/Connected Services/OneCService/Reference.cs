@@ -5445,11 +5445,11 @@ namespace OneCService
         {
             if ((endpointConfiguration == EndpointConfiguration.WebServiceSoap))
             {
-                return new System.ServiceModel.EndpointAddress("http://10.100.0.152/BARDA_TEST/ws/WebService/");
+                return new System.ServiceModel.EndpointAddress("http://10.100.0.55/KURDAMIR/ws/WebService/");
             }
             if ((endpointConfiguration == EndpointConfiguration.WebServiceSoap12))
             {
-                return new System.ServiceModel.EndpointAddress("http://10.100.0.152/BARDA_TEST/ws/WebService/");
+                return new System.ServiceModel.EndpointAddress("http://10.100.0.55/KURDAMIR/ws/WebService/");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

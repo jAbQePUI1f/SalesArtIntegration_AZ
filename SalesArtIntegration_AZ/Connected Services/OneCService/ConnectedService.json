@@ -1,7 +1,7 @@
 {
   "ExtendedData": {
     "inputs": [
-      "http://10.100.0.152/BARDA_TEST/ws/WebService/?wsdl"
+      "http://10.100.0.55/KURDAMIR/ws/WebService/?wsdl"
     ],
     "collectionTypes": [
       "System.Array",
