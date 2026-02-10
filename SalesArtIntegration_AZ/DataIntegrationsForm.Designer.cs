@@ -49,6 +49,10 @@
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
             stripDataEntegration = new MenuStrip();
             dataGridDataList = new DataGridView();
+            txtProductSearchBox = new MaterialSkin.Controls.MaterialTextBox();
+            bttnProductSearchBox = new MaterialSkin.Controls.MaterialButton();
+            txtCustomerSearchBox = new MaterialSkin.Controls.MaterialTextBox();
+            bttnCustomerSearchBox = new MaterialSkin.Controls.MaterialButton();
             materialCard1.SuspendLayout();
             materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
@@ -70,7 +74,7 @@
             chckAll.Cursor = Cursors.Hand;
             chckAll.FlatStyle = FlatStyle.Popup;
             chckAll.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chckAll.Location = new Point(65, 275);
+            chckAll.Location = new Point(69, 405);
             chckAll.Name = "chckAll";
             chckAll.Size = new Size(13, 12);
             chckAll.TabIndex = 27;
@@ -81,7 +85,7 @@
             // 
             divider.BackColor = SystemColors.GradientActiveCaption;
             divider.Depth = 0;
-            divider.Location = new Point(-2, 248);
+            divider.Location = new Point(-4, 359);
             divider.MouseState = MaterialSkin.MouseState.HOVER;
             divider.Name = "divider";
             divider.Size = new Size(952, 20);
@@ -100,7 +104,7 @@
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(82, 157);
+            bttnLogs.Size = new Size(82, 271);
             bttnLogs.TabIndex = 17;
             bttnLogs.TabStop = false;
             bttnLogs.Text = "Logs";
@@ -126,7 +130,7 @@
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(12, 11, 12, 11);
-            materialCard1.Size = new Size(930, 207);
+            materialCard1.Size = new Size(930, 319);
             materialCard1.TabIndex = 25;
             // 
             // lblCustomer
@@ -161,7 +165,9 @@
             // 
             materialCard3.BackColor = Color.FromArgb(255, 255, 255);
             materialCard3.BorderStyle = BorderStyle.FixedSingle;
+            materialCard3.Controls.Add(bttnProductSearchBox);
             materialCard3.Controls.Add(bttnSendProducts);
+            materialCard3.Controls.Add(txtProductSearchBox);
             materialCard3.Controls.Add(bttnGetProducts);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -170,7 +176,7 @@
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
             materialCard3.Padding = new Padding(12, 11, 12, 11);
-            materialCard3.Size = new Size(393, 157);
+            materialCard3.Size = new Size(402, 271);
             materialCard3.TabIndex = 19;
             // 
             // bttnSendProducts
@@ -182,7 +188,7 @@
             bttnSendProducts.Depth = 0;
             bttnSendProducts.HighEmphasis = true;
             bttnSendProducts.Icon = null;
-            bttnSendProducts.Location = new Point(201, 43);
+            bttnSendProducts.Location = new Point(213, 43);
             bttnSendProducts.Margin = new Padding(4, 6, 4, 6);
             bttnSendProducts.MouseState = MaterialSkin.MouseState.HOVER;
             bttnSendProducts.Name = "bttnSendProducts";
@@ -221,6 +227,8 @@
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
             materialCard2.BorderStyle = BorderStyle.FixedSingle;
+            materialCard2.Controls.Add(bttnCustomerSearchBox);
+            materialCard2.Controls.Add(txtCustomerSearchBox);
             materialCard2.Controls.Add(bttnGetCustomers);
             materialCard2.Controls.Add(bttnSendCustomer);
             materialCard2.Depth = 0;
@@ -230,7 +238,7 @@
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(12, 11, 12, 11);
-            materialCard2.Size = new Size(399, 157);
+            materialCard2.Size = new Size(405, 271);
             materialCard2.TabIndex = 18;
             // 
             // bttnGetCustomers
@@ -341,7 +349,7 @@
             dataGridDataList.Cursor = Cursors.Hand;
             dataGridDataList.GridColor = SystemColors.ControlDark;
             dataGridDataList.ImeMode = ImeMode.On;
-            dataGridDataList.Location = new Point(12, 272);
+            dataGridDataList.Location = new Point(12, 396);
             dataGridDataList.Name = "dataGridDataList";
             dataGridDataList.RowHeadersWidth = 51;
             dataGridDataList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -349,11 +357,83 @@
             dataGridDataList.StandardTab = true;
             dataGridDataList.TabIndex = 26;
             // 
+            // txtProductSearchBox
+            // 
+            txtProductSearchBox.AnimateReadOnly = false;
+            txtProductSearchBox.Depth = 0;
+            txtProductSearchBox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtProductSearchBox.LeadingIcon = null;
+            txtProductSearchBox.Location = new Point(16, 137);
+            txtProductSearchBox.MaxLength = 50;
+            txtProductSearchBox.MouseState = MaterialSkin.MouseState.OUT;
+            txtProductSearchBox.Multiline = false;
+            txtProductSearchBox.Name = "txtProductSearchBox";
+            txtProductSearchBox.Size = new Size(369, 50);
+            txtProductSearchBox.TabIndex = 28;
+            txtProductSearchBox.Text = "";
+            txtProductSearchBox.TrailingIcon = null;
+            txtProductSearchBox.ZoomFactor = 2F;
+            // 
+            // bttnProductSearchBox
+            // 
+            bttnProductSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnProductSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnProductSearchBox.Depth = 0;
+            bttnProductSearchBox.HighEmphasis = true;
+            bttnProductSearchBox.Icon = null;
+            bttnProductSearchBox.Location = new Point(144, 196);
+            bttnProductSearchBox.Margin = new Padding(4, 6, 4, 6);
+            bttnProductSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnProductSearchBox.Name = "bttnProductSearchBox";
+            bttnProductSearchBox.NoAccentTextColor = Color.Empty;
+            bttnProductSearchBox.Size = new Size(104, 36);
+            bttnProductSearchBox.TabIndex = 29;
+            bttnProductSearchBox.Text = "Arama yap";
+            bttnProductSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnProductSearchBox.UseAccentColor = false;
+            bttnProductSearchBox.UseVisualStyleBackColor = true;
+            // 
+            // txtCustomerSearchBox
+            // 
+            txtCustomerSearchBox.AnimateReadOnly = false;
+            txtCustomerSearchBox.Depth = 0;
+            txtCustomerSearchBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCustomerSearchBox.LeadingIcon = null;
+            txtCustomerSearchBox.Location = new Point(16, 137);
+            txtCustomerSearchBox.MaxLength = 50;
+            txtCustomerSearchBox.MouseState = MaterialSkin.MouseState.OUT;
+            txtCustomerSearchBox.Multiline = false;
+            txtCustomerSearchBox.Name = "txtCustomerSearchBox";
+            txtCustomerSearchBox.Size = new Size(365, 50);
+            txtCustomerSearchBox.TabIndex = 30;
+            txtCustomerSearchBox.Text = "";
+            txtCustomerSearchBox.TrailingIcon = null;
+            txtCustomerSearchBox.ZoomFactor = 2F;
+            // 
+            // bttnCustomerSearchBox
+            // 
+            bttnCustomerSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnCustomerSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnCustomerSearchBox.Depth = 0;
+            bttnCustomerSearchBox.HighEmphasis = true;
+            bttnCustomerSearchBox.Icon = null;
+            bttnCustomerSearchBox.Location = new Point(137, 196);
+            bttnCustomerSearchBox.Margin = new Padding(4, 6, 4, 6);
+            bttnCustomerSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnCustomerSearchBox.Name = "bttnCustomerSearchBox";
+            bttnCustomerSearchBox.NoAccentTextColor = Color.Empty;
+            bttnCustomerSearchBox.Size = new Size(104, 36);
+            bttnCustomerSearchBox.TabIndex = 30;
+            bttnCustomerSearchBox.Text = "Arama yap";
+            bttnCustomerSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnCustomerSearchBox.UseAccentColor = false;
+            bttnCustomerSearchBox.UseVisualStyleBackColor = true;
+            // 
             // DataIntegrationsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(947, 748);
+            ClientSize = new Size(947, 879);
             ControlBox = false;
             Controls.Add(divider);
             Controls.Add(chckAll);
@@ -370,7 +450,9 @@
             Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
             materialCard3.ResumeLayout(false);
+            materialCard3.PerformLayout();
             materialCard2.ResumeLayout(false);
+            materialCard2.PerformLayout();
             stripDataEntegration.ResumeLayout(false);
             stripDataEntegration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDataList).EndInit();
@@ -400,5 +482,9 @@
         private MaterialSkin.Controls.MaterialButton bttnGetProducts;
         private MaterialSkin.Controls.MaterialLabel lblProduct;
         private ToolStripMenuItem invoiceToolTip;
+        private MaterialSkin.Controls.MaterialButton bttnProductSearchBox;
+        private MaterialSkin.Controls.MaterialTextBox txtProductSearchBox;
+        private MaterialSkin.Controls.MaterialButton bttnCustomerSearchBox;
+        private MaterialSkin.Controls.MaterialTextBox txtCustomerSearchBox;
     }
 }
