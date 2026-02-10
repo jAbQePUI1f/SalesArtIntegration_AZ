@@ -333,7 +333,7 @@
             stripDataEntegration.Location = new Point(0, 0);
             stripDataEntegration.Name = "stripDataEntegration";
             stripDataEntegration.RenderMode = ToolStripRenderMode.Professional;
-            stripDataEntegration.Size = new Size(947, 20);
+            stripDataEntegration.Size = new Size(947, 31);
             stripDataEntegration.TabIndex = 24;
             stripDataEntegration.Text = "Fatura Menü";
             // 
