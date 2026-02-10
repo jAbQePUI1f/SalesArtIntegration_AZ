@@ -220,9 +220,9 @@ namespace SalesArtIntegration_AZ
 
                                     });
                                 }
-
+                                int vat = 0;
                                 invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                    selectedInvoice.number, selectedInvoice.customerCode, 0, selectedInvoice.warehouseCode, tableLines.ToArray(),
+                                    selectedInvoice.number, selectedInvoice.customerCode, vat, selectedInvoice.warehouseCode, tableLines.ToArray(),
                                     selectedInvoice.customerCode+"C"+selectedInvoice.salesDepartmentName+
                                     "_"
                                     +selectedInvoice.customerName+
