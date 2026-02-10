@@ -222,7 +222,7 @@ namespace SalesArtIntegration_AZ
                                 }
 
                                 invoiceResponse = await client.InsertNewInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                    selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray(),
+                                    selectedInvoice.number, selectedInvoice.customerCode, 0, selectedInvoice.warehouseCode, tableLines.ToArray(),
                                     selectedInvoice.customerCode+"C"+selectedInvoice.salesDepartmentName+
                                     "_"
                                     +selectedInvoice.customerName+
@@ -274,7 +274,7 @@ namespace SalesArtIntegration_AZ
                                 }
 
                                var ınsertNewRefundOfReceiptResponse = await client.InsertNewReceiptAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
+                                   selectedInvoice.number, selectedInvoice.customerCode, 0, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
 
                                 remoteInvoiceNumber = selectedInvoice.number;
 
@@ -320,7 +320,7 @@ namespace SalesArtIntegration_AZ
                                 }
 
                                 invoiceResponseRefund = await client.InsertNewRefundOfInvoiceAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableLines.ToArray());
+                                   selectedInvoice.number, selectedInvoice.customerCode, 0, selectedInvoice.warehouseCode, tableLines.ToArray());
 
                                 remoteInvoiceNumber = selectedInvoice.number;
 
@@ -366,7 +366,7 @@ namespace SalesArtIntegration_AZ
                                 }
 
                                var invoiceResponseRefundResponse = await client.InsertNewRefundOfReceiptAsync(selectedInvoice.distCode = distributorCode, formattedDate,
-                                   selectedInvoice.number, selectedInvoice.customerCode, 1, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
+                                   selectedInvoice.number, selectedInvoice.customerCode, 0, selectedInvoice.warehouseCode, tableReceiptLines.ToArray());
 
                                 remoteInvoiceNumber = selectedInvoice.number;
 
