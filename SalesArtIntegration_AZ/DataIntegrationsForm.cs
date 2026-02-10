@@ -55,7 +55,7 @@ namespace SalesArtIntegration_AZ
                     Configuration.GetUrl() + "management/customers-list?lang=tr", requestBody);
                 var customerResponse = await customerResponseTask;
 
-                // Uzak serviste mevcut olan TIN'leri HashSet'e al (performans için)
+                //Uzak serviste mevcut olan TIN'leri HashSet'e al(performans için)
                 var existingPartnersTINs = new HashSet<string>(
                     partnersList
                         .Where(p => !string.IsNullOrWhiteSpace(p.TIN))
@@ -75,7 +75,7 @@ namespace SalesArtIntegration_AZ
                         string customerTIN = customer.taxNumber == "" ? customer.identificationNumber : customer.taxNumber;
 
                         // TIN boş değilse VE uzak serviste yoksa listeye ekle
-                        if (!string.IsNullOrWhiteSpace(customerTIN) && !existingPartnersTINs.Contains(customerTIN))
+                        if (!string.IsNullOrWhiteSpace(customerTIN) )
                         {
                             newCustomersToDisplay.Add(new CustomerInfo
                             {
@@ -331,7 +331,7 @@ namespace SalesArtIntegration_AZ
                 var requestBody = new ProductListRequest
                 {
                     pageNumber = 0,
-                    pageSize = 2000,
+                    pageSize = 20000,
                     data = new ProductListRequest.Data
                     {
                         productName = ""
@@ -350,38 +350,33 @@ namespace SalesArtIntegration_AZ
 
                 var existingItemCodes = new HashSet<string>(
                     soapItemsList
-                        .Where(item => !string.IsNullOrWhiteSpace(item.ItemCodeCode))
-                        .Select(item => item.ItemCodeCode),
+                        .Where(item => !string.IsNullOrWhiteSpace(item.ItemName))
+                        .Select(item => item.ItemName),
                     StringComparer.OrdinalIgnoreCase
                 );
 
                 if (productData?.data?.products != null)
                 {
                     var newProductsToDisplay = new List<ProductInfo>();
-
                     foreach (var product in productData.data.products)
                     {
-                        string productCode = product.Code;
-
-
-                        if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
+                        string productCode = product.Name;
+                        if (!string.IsNullOrWhiteSpace(productCode))
                         {
                             newProductsToDisplay.Add(new ProductInfo
                             {
                                 code = product.Code,
                                 name = product.Name,
                                 unit = product.UnitName
-
                             });
-
-                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: ", product.Code);
+                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: " + productCode, product.Code);
                         }
                     }
 
                     dataGridDataList.DataSource = null;
                     dataGridDataList.Columns.Clear();
-
-                    dataGridDataList.DataSource = newProductsToDisplay;
+                    // Ürün adına göre alfabetik sıralama
+                    dataGridDataList.DataSource = newProductsToDisplay.OrderBy(p => p.name).ToList();
                     dataGridDataList.AutoGenerateColumns = true;
 
                     DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
@@ -443,7 +438,8 @@ namespace SalesArtIntegration_AZ
                     return;
                 }
 
-                var confirmResult = MessageBox.Show($"{selectedProductCodes.Count} adet ürün uzak servise gönderilecek. Devam etmek istiyor musunuz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirmResult = MessageBox.Show($"{selectedProductCodes.Count} adet ürün uzak servise gönderilecek. Devam etmek istiyor musunuz?", "Onay",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmResult != DialogResult.Yes)
                 {
                     return;
@@ -464,7 +460,7 @@ namespace SalesArtIntegration_AZ
                         var requestBody = new ProductListRequest
                         {
                             pageNumber = 0,
-                            pageSize = 2000, // Tek ürün için yeterli
+                            pageSize = 20000, // Tek ürün için yeterli
                             data = new ProductListRequest.Data
                             {
                                 productName = productName // Sadece seçili ürünün kodunu ara
@@ -544,28 +540,28 @@ namespace SalesArtIntegration_AZ
                             string mainUnit1 = product.UnitName;
                             koeficientTableLines = new OneCService.KoeficientTableLine[]
                             {
-                        new OneCService.KoeficientTableLine
-                        {
-                            Name = mainUnit1,
-                            code = product.UnitName,
-                            conversionFactor = 1,
-                            area = 0,
-                            grossVolume = 0,
-                            grossWeight = 0,
-                            height = 0,
-                            length = 0,
-                            volume = 0,
-                            weight = 0,
-                            width = 0,
-                            Finance = false,
-                            Quantity = false,
-                            Sale = true,
-                            Report = false,
-                            CONVFACT2 = 1,
-                            SHELFLIFE = 0,
-                            DISTPOINT = 0,
-                            UNITTYPE = 0
-                        }
+                new OneCService.KoeficientTableLine
+                {
+                    Name = mainUnit1,
+                    code = product.UnitName,
+                    conversionFactor = 1,
+                    area = 0,
+                    grossVolume = 0,
+                    grossWeight = 0,
+                    height = 0,
+                    length = 0,
+                    volume = 0,
+                    weight = 0,
+                    width = 0,
+                    Finance = false,
+                    Quantity = false,
+                    Sale = true,
+                    Report = false,
+                    CONVFACT2 = 1,
+                    SHELFLIFE = 0,
+                    DISTPOINT = 0,
+                    UNITTYPE = 0
+                }
                             };
                         }
 
@@ -587,8 +583,7 @@ namespace SalesArtIntegration_AZ
                             Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
                                 $"Ürün '{itemName}' başarıyla kaydedildi. ({processedCount}/{selectedProductCodes.Count})",
                                 $"Kod: {itemCode}, Birim Sayısı: {koeficientTableLines.Length}");
-                            dataGridDataList.Refresh();
-                            chckAll.Checked = false;
+
                         }
                         else
                         {
@@ -616,15 +611,42 @@ namespace SalesArtIntegration_AZ
                 MessageBox.Show(resultMessage, "Tamamlandı", MessageBoxButtons.OK, errorCount > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
                 dataGridDataList.Refresh();
                 chckAll.Checked = false;
+
+                Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
+                    $"Seçili ürünlerin transfer işlemi tamamlandı. Başarılı: {successCount}, Hatalı: {errorCount}");
+
+                // Başarılı transferleri GridView'den kaldır (opsiyonel)
+                if (successCount > 0)
+                {
+                    var confirmRemove = MessageBox.Show(
+                        "Başarıyla gönderilen ürünler listeden kaldırılsın mı?",
+                        "Liste Güncelleme",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+                    bttnGetCustomers.Enabled = true;
+                    bttnGetProducts.Enabled = true;
+                    chckAll.Checked = false;
+
+                    if (confirmRemove == DialogResult.Yes)
+                    {
+                        // Listeyi yeniden yükle
+                        bttnGetProducts_Click(sender, e);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ürün gönderiminde bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Genel gönderim hatası: {ex.Message}");
+                MessageBox.Show($"Ürün gönderiminde bir hata oluştu: {ex.Message}"
+                , "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
+                $"Genel gönderim hatası: {ex.Message}");
             }
             finally
             {
+                // Buton ve GridView'i tekrar aktif et
+                bttnSendCustomer.Enabled = true;
                 dataGridDataList.Enabled = true;
+                bttnSendProducts.Enabled = false;
             }
         }
 
