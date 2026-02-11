@@ -37,9 +37,13 @@
             lblCustomer = new MaterialSkin.Controls.MaterialLabel();
             lblProduct = new MaterialSkin.Controls.MaterialLabel();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
+            bttnProductSearchBox = new MaterialSkin.Controls.MaterialButton();
             bttnSendProducts = new MaterialSkin.Controls.MaterialButton();
+            txtProductSearchBox = new MaterialSkin.Controls.MaterialTextBox();
             bttnGetProducts = new MaterialSkin.Controls.MaterialButton();
             materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            bttnCustomerSearchBox = new MaterialSkin.Controls.MaterialButton();
+            txtCustomerSearchBox = new MaterialSkin.Controls.MaterialTextBox();
             bttnGetCustomers = new MaterialSkin.Controls.MaterialButton();
             bttnSendCustomer = new MaterialSkin.Controls.MaterialButton();
             exitToolStripMenuItem = new ToolStripMenuItem();
@@ -49,10 +53,6 @@
             anaMenüyeDönToolStripMenuItem = new ToolStripMenuItem();
             stripDataEntegration = new MenuStrip();
             dataGridDataList = new DataGridView();
-            txtProductSearchBox = new MaterialSkin.Controls.MaterialTextBox();
-            bttnProductSearchBox = new MaterialSkin.Controls.MaterialButton();
-            txtCustomerSearchBox = new MaterialSkin.Controls.MaterialTextBox();
-            bttnCustomerSearchBox = new MaterialSkin.Controls.MaterialButton();
             materialCard1.SuspendLayout();
             materialCard3.SuspendLayout();
             materialCard2.SuspendLayout();
@@ -76,7 +76,7 @@
             chckAll.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chckAll.Location = new Point(69, 405);
             chckAll.Name = "chckAll";
-            chckAll.Size = new Size(13, 12);
+            chckAll.Size = new Size(15, 14);
             chckAll.TabIndex = 27;
             chckAll.UseVisualStyleBackColor = true;
             chckAll.CheckedChanged += chckAll_CheckedChanged;
@@ -179,6 +179,26 @@
             materialCard3.Size = new Size(402, 271);
             materialCard3.TabIndex = 19;
             // 
+            // bttnProductSearchBox
+            // 
+            bttnProductSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnProductSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnProductSearchBox.Depth = 0;
+            bttnProductSearchBox.HighEmphasis = true;
+            bttnProductSearchBox.Icon = null;
+            bttnProductSearchBox.Location = new Point(144, 196);
+            bttnProductSearchBox.Margin = new Padding(4, 6, 4, 6);
+            bttnProductSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnProductSearchBox.Name = "bttnProductSearchBox";
+            bttnProductSearchBox.NoAccentTextColor = Color.Empty;
+            bttnProductSearchBox.Size = new Size(104, 36);
+            bttnProductSearchBox.TabIndex = 29;
+            bttnProductSearchBox.Text = "Arama yap";
+            bttnProductSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnProductSearchBox.UseAccentColor = false;
+            bttnProductSearchBox.UseVisualStyleBackColor = true;
+            bttnProductSearchBox.Click += bttnProductSearchBox_Click;
+            // 
             // bttnSendProducts
             // 
             bttnSendProducts.AutoSize = false;
@@ -200,6 +220,24 @@
             bttnSendProducts.UseAccentColor = false;
             bttnSendProducts.UseVisualStyleBackColor = true;
             bttnSendProducts.Click += bttnSendProducts_Click;
+            // 
+            // txtProductSearchBox
+            // 
+            txtProductSearchBox.AnimateReadOnly = false;
+            txtProductSearchBox.BorderStyle = BorderStyle.None;
+            txtProductSearchBox.Depth = 0;
+            txtProductSearchBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtProductSearchBox.LeadingIcon = null;
+            txtProductSearchBox.Location = new Point(16, 137);
+            txtProductSearchBox.MaxLength = 50;
+            txtProductSearchBox.MouseState = MaterialSkin.MouseState.OUT;
+            txtProductSearchBox.Multiline = false;
+            txtProductSearchBox.Name = "txtProductSearchBox";
+            txtProductSearchBox.Size = new Size(369, 50);
+            txtProductSearchBox.TabIndex = 28;
+            txtProductSearchBox.Text = "";
+            txtProductSearchBox.TrailingIcon = null;
+            txtProductSearchBox.ZoomFactor = 2F;
             // 
             // bttnGetProducts
             // 
@@ -240,6 +278,43 @@
             materialCard2.Padding = new Padding(12, 11, 12, 11);
             materialCard2.Size = new Size(405, 271);
             materialCard2.TabIndex = 18;
+            // 
+            // bttnCustomerSearchBox
+            // 
+            bttnCustomerSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnCustomerSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnCustomerSearchBox.Depth = 0;
+            bttnCustomerSearchBox.HighEmphasis = true;
+            bttnCustomerSearchBox.Icon = null;
+            bttnCustomerSearchBox.Location = new Point(137, 196);
+            bttnCustomerSearchBox.Margin = new Padding(4, 6, 4, 6);
+            bttnCustomerSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnCustomerSearchBox.Name = "bttnCustomerSearchBox";
+            bttnCustomerSearchBox.NoAccentTextColor = Color.Empty;
+            bttnCustomerSearchBox.Size = new Size(104, 36);
+            bttnCustomerSearchBox.TabIndex = 30;
+            bttnCustomerSearchBox.Text = "Arama yap";
+            bttnCustomerSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnCustomerSearchBox.UseAccentColor = false;
+            bttnCustomerSearchBox.UseVisualStyleBackColor = true;
+            // 
+            // txtCustomerSearchBox
+            // 
+            txtCustomerSearchBox.AnimateReadOnly = false;
+            txtCustomerSearchBox.BorderStyle = BorderStyle.None;
+            txtCustomerSearchBox.Depth = 0;
+            txtCustomerSearchBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCustomerSearchBox.LeadingIcon = null;
+            txtCustomerSearchBox.Location = new Point(16, 137);
+            txtCustomerSearchBox.MaxLength = 50;
+            txtCustomerSearchBox.MouseState = MaterialSkin.MouseState.OUT;
+            txtCustomerSearchBox.Multiline = false;
+            txtCustomerSearchBox.Name = "txtCustomerSearchBox";
+            txtCustomerSearchBox.Size = new Size(365, 50);
+            txtCustomerSearchBox.TabIndex = 30;
+            txtCustomerSearchBox.Text = "";
+            txtCustomerSearchBox.TrailingIcon = null;
+            txtCustomerSearchBox.ZoomFactor = 2F;
             // 
             // bttnGetCustomers
             // 
@@ -288,14 +363,14 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(206, 22);
+            exitToolStripMenuItem.Size = new Size(259, 26);
             exitToolStripMenuItem.Text = "Çıkış yap";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // collectionToolStripMenuItem
             // 
             collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            collectionToolStripMenuItem.Size = new Size(206, 22);
+            collectionToolStripMenuItem.Size = new Size(259, 26);
             collectionToolStripMenuItem.Text = "Tahsilat/Ödeme İşlemleri";
             collectionToolStripMenuItem.Click += collectionToolStripMenuItem_Click;
             // 
@@ -303,20 +378,20 @@
             // 
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { invoiceToolTip, collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(50, 16);
+            menüToolStripMenuItem.Size = new Size(63, 27);
             menüToolStripMenuItem.Text = "Menü";
             // 
             // invoiceToolTip
             // 
             invoiceToolTip.Name = "invoiceToolTip";
-            invoiceToolTip.Size = new Size(206, 22);
+            invoiceToolTip.Size = new Size(259, 26);
             invoiceToolTip.Text = "Fatura İşlemleri";
             invoiceToolTip.Click += invoiceToolTip_Click;
             // 
             // anaMenüyeDönToolStripMenuItem
             // 
             anaMenüyeDönToolStripMenuItem.Name = "anaMenüyeDönToolStripMenuItem";
-            anaMenüyeDönToolStripMenuItem.Size = new Size(206, 22);
+            anaMenüyeDönToolStripMenuItem.Size = new Size(259, 26);
             anaMenüyeDönToolStripMenuItem.Text = "Ana Menüye dön";
             anaMenüyeDönToolStripMenuItem.Click += anaMenüyeDönToolStripMenuItem_Click;
             // 
@@ -357,81 +432,9 @@
             dataGridDataList.StandardTab = true;
             dataGridDataList.TabIndex = 26;
             // 
-            // txtProductSearchBox
-            // 
-            txtProductSearchBox.AnimateReadOnly = false;
-            txtProductSearchBox.Depth = 0;
-            txtProductSearchBox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtProductSearchBox.LeadingIcon = null;
-            txtProductSearchBox.Location = new Point(16, 137);
-            txtProductSearchBox.MaxLength = 50;
-            txtProductSearchBox.MouseState = MaterialSkin.MouseState.OUT;
-            txtProductSearchBox.Multiline = false;
-            txtProductSearchBox.Name = "txtProductSearchBox";
-            txtProductSearchBox.Size = new Size(369, 50);
-            txtProductSearchBox.TabIndex = 28;
-            txtProductSearchBox.Text = "";
-            txtProductSearchBox.TrailingIcon = null;
-            txtProductSearchBox.ZoomFactor = 2F;
-            // 
-            // bttnProductSearchBox
-            // 
-            bttnProductSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnProductSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnProductSearchBox.Depth = 0;
-            bttnProductSearchBox.HighEmphasis = true;
-            bttnProductSearchBox.Icon = null;
-            bttnProductSearchBox.Location = new Point(144, 196);
-            bttnProductSearchBox.Margin = new Padding(4, 6, 4, 6);
-            bttnProductSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnProductSearchBox.Name = "bttnProductSearchBox";
-            bttnProductSearchBox.NoAccentTextColor = Color.Empty;
-            bttnProductSearchBox.Size = new Size(104, 36);
-            bttnProductSearchBox.TabIndex = 29;
-            bttnProductSearchBox.Text = "Arama yap";
-            bttnProductSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnProductSearchBox.UseAccentColor = false;
-            bttnProductSearchBox.UseVisualStyleBackColor = true;
-            // 
-            // txtCustomerSearchBox
-            // 
-            txtCustomerSearchBox.AnimateReadOnly = false;
-            txtCustomerSearchBox.Depth = 0;
-            txtCustomerSearchBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtCustomerSearchBox.LeadingIcon = null;
-            txtCustomerSearchBox.Location = new Point(16, 137);
-            txtCustomerSearchBox.MaxLength = 50;
-            txtCustomerSearchBox.MouseState = MaterialSkin.MouseState.OUT;
-            txtCustomerSearchBox.Multiline = false;
-            txtCustomerSearchBox.Name = "txtCustomerSearchBox";
-            txtCustomerSearchBox.Size = new Size(365, 50);
-            txtCustomerSearchBox.TabIndex = 30;
-            txtCustomerSearchBox.Text = "";
-            txtCustomerSearchBox.TrailingIcon = null;
-            txtCustomerSearchBox.ZoomFactor = 2F;
-            // 
-            // bttnCustomerSearchBox
-            // 
-            bttnCustomerSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bttnCustomerSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            bttnCustomerSearchBox.Depth = 0;
-            bttnCustomerSearchBox.HighEmphasis = true;
-            bttnCustomerSearchBox.Icon = null;
-            bttnCustomerSearchBox.Location = new Point(137, 196);
-            bttnCustomerSearchBox.Margin = new Padding(4, 6, 4, 6);
-            bttnCustomerSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
-            bttnCustomerSearchBox.Name = "bttnCustomerSearchBox";
-            bttnCustomerSearchBox.NoAccentTextColor = Color.Empty;
-            bttnCustomerSearchBox.Size = new Size(104, 36);
-            bttnCustomerSearchBox.TabIndex = 30;
-            bttnCustomerSearchBox.Text = "Arama yap";
-            bttnCustomerSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnCustomerSearchBox.UseAccentColor = false;
-            bttnCustomerSearchBox.UseVisualStyleBackColor = true;
-            // 
             // DataIntegrationsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 16F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(947, 879);
             ControlBox = false;

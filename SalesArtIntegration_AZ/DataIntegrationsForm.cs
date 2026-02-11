@@ -75,7 +75,7 @@ namespace SalesArtIntegration_AZ
                         string customerTIN = customer.taxNumber == "" ? customer.identificationNumber : customer.taxNumber;
 
                         // TIN boş değilse VE uzak serviste yoksa listeye ekle
-                        if (!string.IsNullOrWhiteSpace(customerTIN) )
+                        if (!string.IsNullOrWhiteSpace(customerTIN))
                         {
                             newCustomersToDisplay.Add(new CustomerInfo
                             {
@@ -710,6 +710,80 @@ namespace SalesArtIntegration_AZ
             InvoiceForm invoiceForm = new InvoiceForm();
             invoiceForm.Show();
             this.Hide();
+        }
+
+        private async void bttnProductSearchBox_Click(object sender, EventArgs e)
+        {
+            var txtCode = txtProductSearchBox.Text.ToString();
+
+            if (string.IsNullOrEmpty(txtCode))
+            {
+                MessageBox.Show("Text boş geçilemez.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+
+                var requestBody = new ProductListRequest
+                {
+                    pageNumber = 0,
+                    pageSize = 20000,
+                    data = new ProductListRequest.Data
+                    {
+                        productName = ""
+                    }
+                };
+
+                // POST isteği ile ürün listesi çekme
+                var productDataTask = ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
+                    Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
+
+                //var soapItemsListTask = _client.GetItemListAsync();
+                await Task.WhenAll(productDataTask);//soapItemsListTask
+                var productData = productDataTask.Result;
+
+                List<ProductInfo> list = new List<ProductInfo>();
+
+
+
+                var returnValue = productData.data.products.Where(x => x.Code.Contains(txtCode)).ToList();
+
+                foreach (var item in returnValue)
+                {
+                    list.Add(new ProductInfo
+                    {
+                        code = item.Code,
+                        name = item.Name,
+                        unit = item.UnitName
+                    });
+                }
+
+                dataGridDataList.DataSource = null;
+                dataGridDataList.Columns.Clear();
+                // Ürün adına göre alfabetik sıralama
+                dataGridDataList.DataSource = list.OrderBy(p => p.name).ToList();
+                dataGridDataList.AutoGenerateColumns = true;
+
+                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                chk.HeaderText = "";
+                chk.MinimumWidth = 6;
+                chk.Name = "chk";
+                chk.Width = 80;
+                dataGridDataList.Columns.Insert(0, chk); // İlk sıraya ekle
+
+                dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
+                dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
+                dataGridDataList.Columns["unit"].HeaderText = "Birim";
+
+                dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                chckAll.BringToFront();
+                bttnSendProducts.Enabled = true;
+                Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
+                    $"Toplam yerel ürün: {productData.data.products.Count}, " +
+                    $"Uzak serviste olmayan: {list.Count}");
+            }
         }
     }
 }
