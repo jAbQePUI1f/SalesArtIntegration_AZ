@@ -216,7 +216,7 @@ namespace SalesArtIntegration_AZ
                                         ItemCode = detail.code,
                                         Quantity = (decimal)detail.quantity,
                                         Unit = detail.unitCode,
-                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6) //Math.Round(Convert.ToDecimal(detail.price), 2)
 
                                     });
                                 }
@@ -268,7 +268,7 @@ namespace SalesArtIntegration_AZ
                                         ItemCode = detail.code,
                                         Quantity = (decimal)detail.quantity,
                                         Unit = detail.unitCode,
-                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6) //Math.Round(Convert.ToDecimal(detail.price), 2)
 
                                     });
                                 }
@@ -314,7 +314,7 @@ namespace SalesArtIntegration_AZ
                                         ItemCode = detail.code,
                                         Quantity = (decimal)detail.quantity,
                                         Unit = detail.unitCode,
-                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6) //Math.Round(Convert.ToDecimal(detail.price), 2)
 
                                     });
                                 }
@@ -360,7 +360,7 @@ namespace SalesArtIntegration_AZ
                                         ItemCode = detail.code,
                                         Quantity = (decimal)detail.quantity,
                                         Unit = detail.unitCode,
-                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 2) //Math.Round(Convert.ToDecimal(detail.price), 2)
+                                        Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6) //Math.Round(Convert.ToDecimal(detail.price), 2)
 
                                     });
                                 }
