@@ -78,21 +78,21 @@
             // invoiceToolStripMenuItem
             // 
             invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            invoiceToolStripMenuItem.Size = new Size(180, 22);
+            invoiceToolStripMenuItem.Size = new Size(165, 22);
             invoiceToolStripMenuItem.Text = "Fatura İşlemleri";
             invoiceToolStripMenuItem.Click += invoiceToolStripMenuItem_Click;
             // 
             // backToolStripMenuItem1
             // 
             backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            backToolStripMenuItem1.Size = new Size(180, 22);
+            backToolStripMenuItem1.Size = new Size(165, 22);
             backToolStripMenuItem1.Text = "Ana Menüye dön";
             backToolStripMenuItem1.Click += backToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(165, 22);
             exitToolStripMenuItem.Text = "Çıkış yap";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 

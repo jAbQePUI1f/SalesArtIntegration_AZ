@@ -191,15 +191,16 @@ namespace SalesArtIntegration_AZ
                                 MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 break;
-                            case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
+
+                                case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
 
                                 invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, 
                                     "BANKA_TAHSILAT", 
                                     selectedInvoice.documentNo,
                                     selectedInvoice.customerCode, 
                                     selectedInvoice.detail.bankCode, 
-                                    selectedInvoice.detail.bankName, 
-                                    selectedInvoice.detail.bankBranchName, 
+                                    selectedInvoice.detail.bankName,
+                                    "",
                                     "18", 
                                     selectedInvoice.amount, 
                                     selectedInvoice.description);

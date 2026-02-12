@@ -424,10 +424,10 @@ namespace SalesArtIntegration_AZ
                 {
                     if (row.Cells["chk"].Value != null && Convert.ToBoolean(row.Cells["chk"].Value))
                     {
-                        string productName = row.Cells["name"].Value?.ToString();
-                        if (!string.IsNullOrWhiteSpace(productName))
+                        string productCode = row.Cells["code"].Value?.ToString();
+                        if (!string.IsNullOrWhiteSpace(productCode))
                         {
-                            selectedProductCodes.Add(productName);
+                            selectedProductCodes.Add(productCode);
                         }
                     }
                 }
@@ -452,7 +452,7 @@ namespace SalesArtIntegration_AZ
                 int errorCount = 0;
 
                 // Her seçili ürün için ayrı ayrı detaylarını çek ve işle
-                foreach (var productName in selectedProductCodes)
+                foreach (var productCode in selectedProductCodes)
                 {
                     try
                     {
@@ -463,7 +463,7 @@ namespace SalesArtIntegration_AZ
                             pageSize = 20000, // Tek ürün için yeterli
                             data = new ProductListRequest.Data
                             {
-                                productName = productName // Sadece seçili ürünün kodunu ara
+                                productName = productCode // Sadece seçili ürünün kodunu ara
                             }
                         };
 
@@ -474,7 +474,7 @@ namespace SalesArtIntegration_AZ
                         {
                             errorCount++;
                             Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                $"Ürün kodu '{productName}' için detay bilgileri alınamadı.");
+                                $"Ürün kodu '{productCode}' için detay bilgileri alınamadı.");
                             processedCount++;
                             continue;
                         }
@@ -485,7 +485,7 @@ namespace SalesArtIntegration_AZ
                         {
                             errorCount++;
                             Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                                $"Ürün kodu '{productName}' için geçerli ürün bilgisi bulunamadı.");
+                                $"Ürün kodu '{productCode}' için geçerli ürün bilgisi bulunamadı.");
                             processedCount++;
                             continue;
                         }
@@ -598,7 +598,7 @@ namespace SalesArtIntegration_AZ
                         processedCount++;
                         errorCount++;
                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
-                            $"Ürün kodu '{productName}' işlenirken hata oluştu: {ex.Message}");
+                            $"Ürün kodu '{productCode}' işlenirken hata oluştu: {ex.Message}");
                     }
                 }
 
