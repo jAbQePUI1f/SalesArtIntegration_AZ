@@ -246,14 +246,14 @@ namespace SalesArtIntegration_AZ
                                 else
                                 {
                                     success = true;
-                                    MessageBox.Show("Aktarım Başarılı" + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show("Aktarım Başarılı " + $"Fatura {number}", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //Helpers.LogFile("Aktarım Başarılı. Fatura No: ", $"Fatura {number}", "-", "-", "-");
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Fatura", "Fatura aktarımı **başarılı**.", $"Fatura No: {number}");
                                     bttnSendInvoice.Enabled = true;
                                     bttnGetInvoice.Enabled = true;
                                 }
                                 break;
-                            case nameof(Enums.InvoiceType.BUYING):
+                                case nameof(Enums.InvoiceType.BUYING):
                                 if (selectedInvoice.details == null || !selectedInvoice.details.Any())
                                 {
                                     MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -298,8 +298,8 @@ namespace SalesArtIntegration_AZ
                                     bttnGetInvoice.Enabled = true;
                                 }
                                 break;
-                            case nameof(Enums.InvoiceType.SELLING_RETURN):
-                            case nameof(Enums.InvoiceType.DAMAGED_SELLING_RETURN):
+                                case nameof(Enums.InvoiceType.SELLING_RETURN):
+                                case nameof(Enums.InvoiceType.DAMAGED_SELLING_RETURN):
                                 if (selectedInvoice.details == null || !selectedInvoice.details.Any())
                                 {
                                     MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -344,8 +344,8 @@ namespace SalesArtIntegration_AZ
                                     bttnGetInvoice.Enabled = true;
                                 }
                                 break;
-                            case nameof(Enums.InvoiceType.BUYING_RETURN):
-                            case nameof(Enums.InvoiceType.DAMAGED_BUYING_RETURN):
+                                case nameof(Enums.InvoiceType.BUYING_RETURN):
+                                case nameof(Enums.InvoiceType.DAMAGED_BUYING_RETURN):
                                 if (selectedInvoice.details == null || !selectedInvoice.details.Any())
                                 {
                                     MessageBox.Show($"Fatura {number} için detay bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
