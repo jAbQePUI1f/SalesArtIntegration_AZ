@@ -36,5 +36,13 @@ namespace SalesArtIntegration_AZ.Manager.Config
         {
             return Convert.ToBoolean(ConfigurationManager.AppSettings["isCollection"]);
         }
+        public static string getTaxAccountCode()
+        {
+            return ConfigurationManager.AppSettings["taxAccountCode"];
+        }
+        public static string getNoTaxAccountCode()
+        {
+            return ConfigurationManager.AppSettings["noTaxAccountCode"];
+        }
     }
 }
