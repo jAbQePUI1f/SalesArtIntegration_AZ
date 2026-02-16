@@ -1,7 +1,6 @@
 ﻿using OneCService;
 using SalesArtIntegration_AZ.Manager.Config;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Xml.Linq;
 
@@ -83,12 +82,12 @@ namespace SalesArtIntegration_AZ.Manager.Service
               <Type>""{type}""</Type>
               <DocNumber>{number}</DocNumber>
               <PartnerCode>{customerCode}</PartnerCode>
-              <Bank_Acc_Code>""{bankCode}""</Bank_Acc_Code>
-              <Bank_Acc_Name>""{bankName}""</Bank_Acc_Name>
+              <Bank_Acc_Code>{bankCode}</Bank_Acc_Code>
+              <Bank_Acc_Name>{bankName}</Bank_Acc_Name>
               <Bank_Cash_Name>{bankBranchName}</Bank_Cash_Name>
               <Vat_Acc_Code>{taxCode}</Vat_Acc_Code>
               <Amount>{amountString}</Amount>
-              <Description>""{description}""</Description>
+              <Description>{description}</Description>
             </InsertNewIncomingPayment>
           </Body>
         </Envelope>";

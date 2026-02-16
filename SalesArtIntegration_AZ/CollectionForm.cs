@@ -13,13 +13,15 @@ namespace SalesArtIntegration_AZ
     public partial class CollectionForm : Form
     {
         string documentType = "";
+        string taxAccountCode = Configuration.getTaxAccountCode();
+        string edvTaxAccountCode = Configuration.getEdvTaxAccountCode();
+        string taxBankAccountNo = Configuration.getBankAccountNo();
+        string edvTaxAccountNo = Configuration.getEdvBankAccountNo();
         CollectionModelResponse collectionResponse = new CollectionModelResponse();
         public CollectionForm()
         {
             InitializeComponent();
             LoadComboBox();
-            string taxAccountCode = Configuration.getTaxAccountCode();
-            string noTaxAccountCode = Configuration.getNoTaxAccountCode();
         }
         private void LoadComboBox()
         {
@@ -142,9 +144,6 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnSendCollection_Click(object sender, EventArgs e)
         {
-            string accountTaxCode;
-            string accountDescription;
-
             if (string.IsNullOrEmpty(documentType))
             {
                 MessageBox.Show("Lütfen bir tahsilat tipi seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -207,37 +206,29 @@ namespace SalesArtIntegration_AZ
 
                                 case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
                                 // BankCode'a göre accountTaxCode belirleme
-                                accountTaxCode = selectedInvoice.detail.bankCode switch
+                                var (accountTaxCode, description, bankCode) = selectedInvoice.detail.bankCode switch
                                 {
-                                    "805454" => "223.01",
-                                    "210027" => "224.03.01",
-                                    _ => "0"
+                                    "805454" => ("223.01", "BANK", taxBankAccountNo),
+                                    "210027" => ("224.03.01", "EDV", edvTaxAccountNo),
+                                    _ => ("0", "BANKA HAVALE", edvTaxAccountNo)
                                 };
-
-                                accountDescription = selectedInvoice.description switch
-                                {
-                                    "805454" => "BANK",
-                                    "210027" => "EDV",
-                                    _ => "BANKA HAVALE"
-                                };
-
                                 var result = await ServiceFactory.SendIncomingPaymentRawAsync(
                                     selectedInvoice.date,
                                     "BANKA_TAHSILAT",
                                     selectedInvoice.documentNo,
                                     selectedInvoice.customerCode,
-                                    selectedInvoice.detail.bankCode,
+                                    bankCode,
                                     selectedInvoice.detail.bankName,
                                     selectedInvoice.detail.bankBranchName,
                                     accountTaxCode,
                                     selectedInvoice.amount,
-                                    selectedInvoice.description
-                                    );
+                                    description
+                                );
 
                                 if (result.Status)
                                 {
                                     success = true;
-                                    MessageBox.Show("Aktarım Başarılı", result.Message+" :" + selectedInvoice.documentNo.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show(result.Message +" :" + selectedInvoice.documentNo.ToString(),"Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 }
                                 else
@@ -315,6 +306,8 @@ namespace SalesArtIntegration_AZ
         {
             Environment.Exit(0);
         }
+
+        #region --eski tahsilat kodları
         //   private async Task<string> SendIncomingPaymentRawAsync(
         //         DateTime date,
         //         string type,
@@ -373,6 +366,6 @@ namespace SalesArtIntegration_AZ
 
         //    return responseXml;
         //}
-
+        #endregion
     }
 }

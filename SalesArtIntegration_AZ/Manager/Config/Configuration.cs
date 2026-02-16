@@ -40,9 +40,17 @@ namespace SalesArtIntegration_AZ.Manager.Config
         {
             return ConfigurationManager.AppSettings["taxAccountCode"];
         }
-        public static string getNoTaxAccountCode()
+        public static string getBankAccountNo()
         {
-            return ConfigurationManager.AppSettings["noTaxAccountCode"];
+            return ConfigurationManager.AppSettings["taxBankAccountNo"];
+        }
+        public static string getEdvTaxAccountCode()
+        {
+            return ConfigurationManager.AppSettings["edvTaxAccountCode"];
+        }
+        public static string getEdvBankAccountNo()
+        {
+            return ConfigurationManager.AppSettings["edvBankAccountNo"];
         }
     }
 }
