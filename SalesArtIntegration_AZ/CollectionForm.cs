@@ -13,6 +13,10 @@ namespace SalesArtIntegration_AZ
     public partial class CollectionForm : Form
     {
         string documentType = "";
+        string taxAccountCode = Configuration.getTaxAccountCode();
+        string edvTaxAccountCode = Configuration.getEdvTaxAccountCode();
+        string taxBankAccountNo = Configuration.getBankAccountNo();
+        string edvTaxAccountNo = Configuration.getEdvBankAccountNo();
         CollectionModelResponse collectionResponse = new CollectionModelResponse();
         public CollectionForm()
         {
@@ -31,6 +35,9 @@ namespace SalesArtIntegration_AZ
                 })
                 .ToList();
 
+            dateTimeStartDate.Value = DateTime.Now.AddDays(-1); 
+            dateTimeFinishDate.Value = DateTime.Now.AddDays(1);    
+
             // DisplayMember ve ValueMember ayarları
             comboboxInvoiceType.DisplayMember = "Display";
             comboboxInvoiceType.ValueMember = "Value";
@@ -44,7 +51,6 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnGetCollection_Click(object sender, EventArgs e)
         {
-            // "Seçiniz" kontrolü
             if (string.IsNullOrEmpty(documentType) || documentType == "SEÇİNİZ...")
             {
                 documentType = comboboxInvoiceType.SelectedValue?.ToString() ?? string.Empty;
@@ -104,9 +110,7 @@ namespace SalesArtIntegration_AZ
 
                 throw;
             }
-
         }
-
         private void chckAll_CheckedChanged(object sender, EventArgs e)
         {
             if (chckAll.Checked)
@@ -173,7 +177,7 @@ namespace SalesArtIntegration_AZ
                         {
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
 
-                                var invoiceResponse = await client.InsertNewIncomingPaymentAsync(
+                                var invoiceResponse = await ServiceFactory.SendIncomingPaymentRawAsync(
                                     selectedInvoice.date, 
                                     "KASSA TAHSILAT", 
                                     selectedInvoice.documentNo,
@@ -187,30 +191,67 @@ namespace SalesArtIntegration_AZ
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
-                                success = true;
-                                MessageBox.Show("Aktarım Başarılı", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
+                                if (invoiceResponse.Status)
+                                {
+                                    success = true;
+                                    MessageBox.Show("Aktarım Başarılı", invoiceResponse.Message + " :" + selectedInvoice.documentNo.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
+                                }
+                                else
+                                {
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
+                                    MessageBox.Show(invoiceResponse.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                                 break;
 
                                 case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
-
-                                invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, 
-                                    "BANKA_TAHSILAT", 
+                                // BankCode'a göre accountTaxCode belirleme
+                                var (accountTaxCode, description, bankCode) = selectedInvoice.detail.bankCode switch
+                                {
+                                    "805454" => ("223.01", "BANK", taxBankAccountNo),
+                                    "210027" => ("224.03.01", "EDV", edvTaxAccountNo),
+                                    _ => ("0", "BANKA HAVALE", edvTaxAccountNo)
+                                };
+                                var result = await ServiceFactory.SendIncomingPaymentRawAsync(
+                                    selectedInvoice.date,
+                                    "BANKA_TAHSILAT",
                                     selectedInvoice.documentNo,
-                                    selectedInvoice.customerCode, 
-                                    selectedInvoice.detail.bankCode, 
+                                    selectedInvoice.customerCode,
+                                    bankCode,
                                     selectedInvoice.detail.bankName,
-                                    "",
-                                    "18", 
-                                    selectedInvoice.amount, 
-                                    selectedInvoice.description);
+                                    selectedInvoice.detail.bankBranchName,
+                                    accountTaxCode,
+                                    selectedInvoice.amount,
+                                    description
+                                );
+
+                                if (result.Status)
+                                {
+                                    success = true;
+                                    MessageBox.Show(result.Message +" :" + selectedInvoice.documentNo.ToString(),"Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
+                                }
+                                else
+                                {
+                                    Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
+                                    MessageBox.Show(result.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
+                                #region old BANK_TRANSFER_COLLECTION code
+                                //invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, 
+                                //    "BANKA_TAHSILAT", 
+                                //    selectedInvoice.documentNo,
+                                //    selectedInvoice.customerCode, 
+                                //    selectedInvoice.detail.bankCode, 
+                                //    selectedInvoice.detail.bankName,
+                                //    "",
+                                //    "18", 
+                                //    selectedInvoice.amount, 
+                                //    selectedInvoice.description);
                                 //decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak. Bank_Acc_Code,Bank_Acc_Name,Bank_Cash_Name
-
-                                remoteInvoiceNumber = selectedInvoice.documentNo;
-
-                                success = true;
-                                MessageBox.Show("Aktarım Başarılı", "Success" + selectedInvoice.documentNo.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
+                                #endregion
+                                remoteInvoiceNumber = selectedInvoice.documentNo;                               
+                             
                                 break;
 
                             default:
@@ -265,5 +306,66 @@ namespace SalesArtIntegration_AZ
         {
             Environment.Exit(0);
         }
+
+        #region --eski tahsilat kodları
+        //   private async Task<string> SendIncomingPaymentRawAsync(
+        //         DateTime date,
+        //         string type,
+        //         string number,
+        //         string customerCode,
+        //         string bankCode,
+        //         string bankName,
+        //         string bankBranchName,
+        //         string taxCode,
+        //         decimal amount,
+        //         string description)
+        //{
+        //    var url = "http://10.100.0.55/KURDAMIR/ws/WebService/";
+
+        //    string username = "WEB_USER";
+        //    string password = "WB_123";
+
+        //    string amountString = amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+        //            string soapEnvelope = $@"<?xml version=""1.0"" encoding=""utf-8""?>
+        //<Envelope xmlns=""http://schemas.xmlsoap.org/soap/envelope/"">
+        //  <Body>
+        //    <InsertNewIncomingPayment xmlns=""http://127.0.0.1"">
+        //      <Date>{date:yyyy-MM-dd}</Date>
+        //      <Type>""{type}""</Type>
+        //      <DocNumber>""{number}""</DocNumber>
+        //      <PartnerCode>{customerCode}</PartnerCode>
+        //      <Bank_Acc_Code>""{bankCode}""</Bank_Acc_Code>
+        //      <Bank_Acc_Name>""{bankName}""</Bank_Acc_Name>
+        //      <Bank_Cash_Name>{bankBranchName}</Bank_Cash_Name>
+        //      <Vat_Acc_Code>{taxCode}</Vat_Acc_Code>
+        //      <Amount>{amountString}</Amount>
+        //      <Description>""{description}""</Description>
+        //    </InsertNewIncomingPayment>
+        //  </Body>
+        //</Envelope>";
+
+        //    var handler = new HttpClientHandler
+        //    {
+        //        PreAuthenticate = true,
+        //        Credentials = new System.Net.NetworkCredential(username, password)
+        //    };
+
+        //    using var httpClient = new HttpClient(handler);
+
+        //    var content = new StringContent(soapEnvelope, Encoding.UTF8, "text/xml");
+
+        //    content.Headers.Clear();
+        //    content.Headers.Add("Content-Type", "text/xml; charset=utf-8");
+
+        //    var response = await httpClient.PostAsync(url, content);
+        //    var responseXml = await response.Content.ReadAsStringAsync();
+
+        //    string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //    File.WriteAllText(Path.Combine(desktop, "lastResponse.xml"), responseXml);
+
+        //    return responseXml;
+        //}
+        #endregion
     }
 }
