@@ -56,12 +56,12 @@ namespace SalesArtIntegration_AZ
                 var customerResponse = await customerResponseTask;
 
                 //Uzak serviste mevcut olan TIN'leri HashSet'e al(performans için)
-                var existingPartnersTINs = new HashSet<string>
-                    (
-                    partnersList.Where(p => !string.IsNullOrWhiteSpace(p.TIN)).Select(p => p.TIN),StringComparer.OrdinalIgnoreCase
-                );
+                //var existingPartnersTINs = new HashSet<string>
+                //    (
+                //    partnersList.Where(p => !string.IsNullOrWhiteSpace(p.TIN)).Select(p => p.TIN),StringComparer.OrdinalIgnoreCase
+                //);
                 bttnSendCustomer.Enabled = true;
-                Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"1C'te bulunan müşteri sayısı: {existingPartnersTINs.Count}");
+                //Helpers.LogFile(Helpers.LogLevel.DEBUG, "Müşteri", $"1C'te bulunan müşteri sayısı: {existingPartnersTINs.Count}");
 
                 if (customerResponse?.data?.customers != null)
                 {
@@ -213,7 +213,7 @@ namespace SalesArtIntegration_AZ
                     {
                         string partnerCode = customer.code;
                         string partnerTIN = customer.vkn;
-                        string partnerName = customer.name;
+                        string partnerName = customer.fullName;
                         string fullName = customer.fullName;
 
                         // TIN uzunluğuna göre gerçek/tüzel kişi kontrolü (11 haneli TCKN, 10 haneli VKN)

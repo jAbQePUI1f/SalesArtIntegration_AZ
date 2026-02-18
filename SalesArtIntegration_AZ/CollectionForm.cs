@@ -16,7 +16,7 @@ namespace SalesArtIntegration_AZ
         string taxAccountCode = Configuration.getTaxAccountCode();
         string edvTaxAccountCode = Configuration.getEdvTaxAccountCode();
         string taxBankAccountNo = Configuration.getBankAccountNo();
-        string edvTaxAccountNo = Configuration.getEdvBankAccountNo();
+        string edvBankAccountNo = Configuration.getEdvBankAccountNo();
         CollectionModelResponse collectionResponse = new CollectionModelResponse();
         public CollectionForm()
         {
@@ -209,8 +209,8 @@ namespace SalesArtIntegration_AZ
                                 var (accountTaxCode, description, bankCode) = selectedInvoice.detail.bankCode switch
                                 {
                                     "805454" => ("223.01", "BANK", taxBankAccountNo),
-                                    "210027" => ("224.03.01", "EDV", edvTaxAccountNo),
-                                    _ => ("0", "BANKA HAVALE", edvTaxAccountNo)
+                                    "210027" => ("224.03.01", "EDV", edvBankAccountNo),
+                                    _ => ("0", "BANKA HAVALE", edvBankAccountNo)
                                 };
                                 var result = await ServiceFactory.SendIncomingPaymentRawAsync(
                                     selectedInvoice.date,
