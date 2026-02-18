@@ -289,6 +289,7 @@
             chckAll.Size = new Size(13, 12);
             chckAll.TabIndex = 28;
             chckAll.UseVisualStyleBackColor = true;
+            chckAll.CheckedChanged += chckAll_CheckedChanged;
             // 
             // CollectionForm
             // 

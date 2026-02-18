@@ -52,5 +52,9 @@ namespace SalesArtIntegration_AZ.Manager.Config
         {
             return ConfigurationManager.AppSettings["edvBankAccountNo"];
         }
+        public static string getKassaAccountCode()
+        {
+            return ConfigurationManager.AppSettings["kassaAccountCode"];
+        }
     }
 }
