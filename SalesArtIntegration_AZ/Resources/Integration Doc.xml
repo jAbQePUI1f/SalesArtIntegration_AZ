@@ -13,7 +13,7 @@ User Info : U: web_user, P: wb_123 -->
     <Body>
         <InsertNewIncomingPayment xmlns="http://127.0.0.1">
             <Date>[date]</Date>  - Tahsilat Tarihi (2020-01-01)
-            <Type>[string]</Type> - Tip ("KASSA TAHSILAT" və ya da "GELEN HEVALE")
+            <Type>[string]</Type> - Tip ("KASSA TAHSILAT" və ya da "BANKA_TAHSILAT")
             <DocNumber>[string]</DocNumber> - Fatura Numarası
             <PartnerCode>[string]</PartnerCode> - Müşteri Kodu (VÖENi)
             <Bank_Acc_Code>[string]</Bank_Acc_Code> - Bank Hesabı Kodu

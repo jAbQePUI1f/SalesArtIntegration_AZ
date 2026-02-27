@@ -79,7 +79,7 @@ namespace SalesArtIntegration_AZ.Manager.Service
           <Body>
             <InsertNewIncomingPayment xmlns=""http://127.0.0.1"">
               <Date>{date:yyyy-MM-dd}</Date>
-              <Type>""{type}""</Type>
+              <Type>{type}</Type>
               <DocNumber>{number}</DocNumber>
               <PartnerCode>{customerCode}</PartnerCode>
               <Bank_Acc_Code>{bankCode}</Bank_Acc_Code>

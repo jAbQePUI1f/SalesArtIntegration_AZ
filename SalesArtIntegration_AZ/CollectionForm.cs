@@ -16,7 +16,8 @@ namespace SalesArtIntegration_AZ
         string taxAccountCode = Configuration.getTaxAccountCode();
         string edvTaxAccountCode = Configuration.getEdvTaxAccountCode();
         string taxBankAccountNo = Configuration.getBankAccountNo();
-        string edvTaxAccountNo = Configuration.getEdvBankAccountNo();
+        string edvBankAccountNo = Configuration.getEdvBankAccountNo();
+        string kassaAccountCode = Configuration.getKassaAccountCode();
         CollectionModelResponse collectionResponse = new CollectionModelResponse();
         public CollectionForm()
         {
@@ -150,6 +151,10 @@ namespace SalesArtIntegration_AZ
                 return;
             }
 
+            // Sonuç takibi için listeler
+            var successfulCollections = new List<string>();
+            var failedCollections = new List<(string DocumentNo, string ErrorMessage)>();
+
             // ServiceFactory ile istemciyi al
             using var client = ServiceFactory.GetServiceClient();
 
@@ -160,13 +165,12 @@ namespace SalesArtIntegration_AZ
                     string? number = row.Cells["Number"].Value?.ToString();
                     if (string.IsNullOrEmpty(number))
                     {
-                        MessageBox.Show("Tahsilat numarası boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        failedCollections.Add(("N/A", "Tahsilat numarası boş olamaz!"));
                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", "Tahsilat numarası boş olduğu için aktarım yapılamadı.", "Numara: N/A");
                         continue;
                     }
 
                     var selectedInvoice = collectionResponse?.data?.FirstOrDefault(inv => inv.documentNo == number);
-
                     bool success = false;
                     string errorMessage = "";
                     string remoteInvoiceNumber = "";
@@ -176,42 +180,43 @@ namespace SalesArtIntegration_AZ
                         switch (documentType)
                         {
                             case nameof(Enums.TransactionType.CASH_COLLECTION):
-
                                 var invoiceResponse = await ServiceFactory.SendIncomingPaymentRawAsync(
-                                    selectedInvoice.date, 
-                                    "KASSA TAHSILAT", 
+                                    selectedInvoice.date,
+                                    "KASSA TAHSILAT",
                                     selectedInvoice.documentNo,
-                                    selectedInvoice.customerCode, 
-                                    "", 
-                                    "", 
-                                    selectedInvoice.salesmanFirstName + " " + selectedInvoice.salesmanLastName,
-                                    "18", 
-                                    selectedInvoice.amount, 
-                                    selectedInvoice.documentNo);
+                                    selectedInvoice.customerCode,
+                                    selectedInvoice.detail.bankCode,
+                                    selectedInvoice.detail.bankName,
+                                    "",
+                                    kassaAccountCode,
+                                    selectedInvoice.amount,
+                                    selectedInvoice.salesmanFirstName + " " + selectedInvoice.salesmanLastName);
 
                                 remoteInvoiceNumber = selectedInvoice.documentNo;
 
                                 if (invoiceResponse.Status)
                                 {
                                     success = true;
-                                    MessageBox.Show("Aktarım Başarılı", invoiceResponse.Message + " :" + selectedInvoice.documentNo.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    successfulCollections.Add(selectedInvoice.documentNo);
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 }
                                 else
                                 {
+                                    errorMessage = invoiceResponse.Message.ToString();
+                                    failedCollections.Add((selectedInvoice.documentNo, errorMessage));
                                     Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
-                                    MessageBox.Show(invoiceResponse.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 break;
 
-                                case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
+                            case nameof(Enums.TransactionType.BANK_TRANSFER_COLLECTION):
                                 // BankCode'a göre accountTaxCode belirleme
                                 var (accountTaxCode, description, bankCode) = selectedInvoice.detail.bankCode switch
                                 {
-                                    "805454" => ("223.01", "BANK", taxBankAccountNo),
-                                    "210027" => ("224.03.01", "EDV", edvTaxAccountNo),
-                                    _ => ("0", "BANKA HAVALE", edvTaxAccountNo)
+                                    "805454" => (taxAccountCode, "BANK", taxBankAccountNo),
+                                    "210027" => (edvTaxAccountCode, "EDV", edvBankAccountNo),
+                                    _ => ("0", "BANKA HAVALE", edvBankAccountNo)
                                 };
+
                                 var result = await ServiceFactory.SendIncomingPaymentRawAsync(
                                     selectedInvoice.date,
                                     "BANKA_TAHSILAT",
@@ -228,43 +233,30 @@ namespace SalesArtIntegration_AZ
                                 if (result.Status)
                                 {
                                     success = true;
-                                    MessageBox.Show(result.Message +" :" + selectedInvoice.documentNo.ToString(),"Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    successfulCollections.Add(selectedInvoice.documentNo);
                                     Helpers.LogFile(Helpers.LogLevel.INFO, "Tahsilat", "Tahsilat aktarımı **başarılı**.", $"Tahsilat No: {number}");
                                 }
                                 else
                                 {
+                                    errorMessage = result.Message.ToString();
+                                    failedCollections.Add((selectedInvoice.documentNo, errorMessage));
                                     Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
-                                    MessageBox.Show(result.Message.ToString(), "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
 
-                                #region old BANK_TRANSFER_COLLECTION code
-                                //invoiceResponse = await client.InsertNewIncomingPaymentAsync(selectedInvoice.date, 
-                                //    "BANKA_TAHSILAT", 
-                                //    selectedInvoice.documentNo,
-                                //    selectedInvoice.customerCode, 
-                                //    selectedInvoice.detail.bankCode, 
-                                //    selectedInvoice.detail.bankName,
-                                //    "",
-                                //    "18", 
-                                //    selectedInvoice.amount, 
-                                //    selectedInvoice.description);
-                                //decimal veri nokta ile ayrıştırılacak virgül kullanılmayacak. Bank_Acc_Code,Bank_Acc_Name,Bank_Cash_Name
-                                #endregion
-                                remoteInvoiceNumber = selectedInvoice.documentNo;                               
-                             
+                                remoteInvoiceNumber = selectedInvoice.documentNo;
                                 break;
 
                             default:
                                 errorMessage = $"Desteklenmeyen fatura tipi: {documentType}";
+                                failedCollections.Add((number, errorMessage));
                                 break;
                         }
                     }
                     catch (Exception ex)
                     {
                         errorMessage = ex.Message;
+                        failedCollections.Add((number, errorMessage));
                         Helpers.LogFile(Helpers.LogLevel.ERROR, "Tahsilat", $"Aktarım sırasında **SOAP Hatası** oluştu: {errorMessage}", $"Tahsilat No: {number}");
-                        MessageBox.Show(ex.Message.ToString(),"Hata", MessageBoxButtons.OK,MessageBoxIcon.Error);
-
                     }
 
                     #region Faturalar Başarılı/Başarısız İşaretle
@@ -272,22 +264,91 @@ namespace SalesArtIntegration_AZ
                     {
                         integratedCollections = new[]
                         {
-                            new  IntegratedCollection
-                            {
-                                  successfullyIntegrated = success,
-                                  ficheNo = selectedInvoice.documentNo,
-                                  remoteCollectionNumber = remoteInvoiceNumber,
-                                  errorMessage = errorMessage == "" ? "Status OK": errorMessage
-                            }
-                        }
+                    new IntegratedCollection
+                    {
+                        successfullyIntegrated = success,
+                        ficheNo = selectedInvoice.documentNo,
+                        remoteCollectionNumber = remoteInvoiceNumber,
+                        errorMessage = errorMessage == "" ? "Status OK": errorMessage
+                    }
+                }
                     };
 
                     var syncResponse = await ApiManager.PostAsync<CollectionSyncRequest, InvoiceSyncResponse>(
-                         Configuration.GetUrl() + "management/sync-collection-statuses", syncRequest);
-
+                        Configuration.GetUrl() + "management/sync-collection-statuses", syncRequest);
                     #endregion
                 }
             }
+
+            // Toplu sonuç bildirimi
+            ShowCollectionSummary(successfulCollections, failedCollections);
+        }
+
+        private void ShowCollectionSummary(List<string> successful, List<(string DocumentNo, string ErrorMessage)> failed)
+        {
+            var summary = new System.Text.StringBuilder();
+
+            summary.AppendLine("╔════════════════════════════════════════╗");
+            summary.AppendLine("║    TAHSİLAT AKTARIM RAPORU             ║");
+            summary.AppendLine("╚════════════════════════════════════════╝\n");
+
+            // Başarılı aktarımlar
+            if (successful.Count > 0)
+            {
+                summary.AppendLine($"✓ BAŞARILI AKTARIMLAR: {successful.Count} Kayıt");
+                summary.AppendLine("─────────────────────────────────────────");
+
+                // Numaraları virgülle ayırarak göster (her satırda max 5 numara)
+                for (int i = 0; i < successful.Count; i++)
+                {
+                    summary.Append(successful[i]);
+                    if (i < successful.Count - 1)
+                    {
+                        summary.Append(", ");
+                        // Her 5 numarada bir satır atla
+                        if ((i + 1) % 5 == 0)
+                            summary.AppendLine();
+                    }
+                }
+                summary.AppendLine("\n");
+            }
+
+            // Başarısız aktarımlar
+            if (failed.Count > 0)
+            {
+                summary.AppendLine($"✗ BAŞARISIZ AKTARIMLAR: {failed.Count} Kayıt");
+                summary.AppendLine("─────────────────────────────────────────");
+
+                // Her hata detaylı olarak gösterilir
+                foreach (var (docNo, error) in failed)
+                {
+                    summary.AppendLine($"• {docNo}");
+                    summary.AppendLine($"  Hata: {error}\n");
+                }
+            }
+
+            // Özet
+            summary.AppendLine("═════════════════════════════════════════");
+            summary.AppendLine($"Toplam İşlem: {successful.Count + failed.Count}");
+            summary.AppendLine($"Başarılı: {successful.Count} | Başarısız: {failed.Count}");
+
+            // Başarı oranı
+            if (successful.Count + failed.Count > 0)
+            {
+                double successRate = (double)successful.Count / (successful.Count + failed.Count) * 100;
+                summary.AppendLine($"Başarı Oranı: %{successRate:F1}");
+            }
+
+            // Uygun icon seçimi
+            MessageBoxIcon icon = failed.Count == 0 ? MessageBoxIcon.Information :
+                                  successful.Count == 0 ? MessageBoxIcon.Error :
+                                  MessageBoxIcon.Warning;
+
+            string title = failed.Count == 0 ? "Aktarım Başarılı" :
+                           successful.Count == 0 ? "Aktarım Başarısız" :
+                           "Aktarım Tamamlandı";
+
+            MessageBox.Show(summary.ToString(), title, MessageBoxButtons.OK, icon);
         }
 
         private void CollectionForm_FormClosed(object sender, FormClosedEventArgs e)
