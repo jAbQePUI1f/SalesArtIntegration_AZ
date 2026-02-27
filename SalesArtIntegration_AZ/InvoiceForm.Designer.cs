@@ -48,6 +48,7 @@
             divider = new MaterialSkin.Controls.MaterialDivider();
             dataGridInvoiceList = new DataGridView();
             chk = new DataGridViewCheckBoxColumn();
+            veriAktarımıToolStripMenuItem = new ToolStripMenuItem();
             stripInvoice.SuspendLayout();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceList).BeginInit();
@@ -72,7 +73,7 @@
             // 
             // menüToolStripMenuItem
             // 
-            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, exitToolStripMenuItem });
+            menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { collectionToolStripMenuItem, anaMenüyeDönToolStripMenuItem, veriAktarımıToolStripMenuItem, exitToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 27);
             menüToolStripMenuItem.Text = "Menü";
@@ -128,12 +129,12 @@
             bttnLogs.Depth = 0;
             bttnLogs.HighEmphasis = true;
             bttnLogs.Icon = (Image)resources.GetObject("bttnLogs.Icon");
-            bttnLogs.Location = new Point(1029, 120);
+            bttnLogs.Location = new Point(1048, 10);
             bttnLogs.Margin = new Padding(4);
             bttnLogs.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogs.Name = "bttnLogs";
             bttnLogs.NoAccentTextColor = Color.Empty;
-            bttnLogs.Size = new Size(121, 46);
+            bttnLogs.Size = new Size(102, 152);
             bttnLogs.TabIndex = 17;
             bttnLogs.Text = "Logs";
             bttnLogs.TextAlign = ContentAlignment.MiddleLeft;
@@ -150,12 +151,12 @@
             lblFinishDate.Depth = 0;
             lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(755, 8);
+            lblFinishDate.Location = new Point(755, 17);
             lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblFinishDate.Name = "lblFinishDate";
-            lblFinishDate.Size = new Size(106, 14);
+            lblFinishDate.Size = new Size(58, 14);
             lblFinishDate.TabIndex = 4;
-            lblFinishDate.Text = "Choose Finish Date";
+            lblFinishDate.Text = "Bitiş Tarihi";
             // 
             // lblStartDate
             // 
@@ -164,12 +165,12 @@
             lblStartDate.Depth = 0;
             lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(514, 8);
+            lblStartDate.Location = new Point(514, 17);
             lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(99, 14);
+            lblStartDate.Size = new Size(88, 14);
             lblStartDate.TabIndex = 3;
-            lblStartDate.Text = "Choose Start Date";
+            lblStartDate.Text = "Başlangıç Tarihi";
             // 
             // lblType
             // 
@@ -178,12 +179,12 @@
             lblType.Depth = 0;
             lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(33, 8);
+            lblType.Location = new Point(34, 17);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
-            lblType.Size = new Size(112, 14);
+            lblType.Size = new Size(60, 14);
             lblType.TabIndex = 1;
-            lblType.Text = "Choose Invoice Type";
+            lblType.Text = "Fatura Tipi";
             // 
             // bttnSendInvoice
             // 
@@ -240,7 +241,7 @@
             comboboxInvoiceType.MaxDropDownItems = 4;
             comboboxInvoiceType.MouseState = MaterialSkin.MouseState.OUT;
             comboboxInvoiceType.Name = "comboboxInvoiceType";
-            comboboxInvoiceType.Size = new Size(221, 49);
+            comboboxInvoiceType.Size = new Size(259, 49);
             comboboxInvoiceType.StartIndex = 0;
             comboboxInvoiceType.TabIndex = 2;
             comboboxInvoiceType.SelectedIndexChanged += comboboxInvoiceType_SelectedIndexChanged;
@@ -318,6 +319,13 @@
             chk.Name = "chk";
             chk.Width = 80;
             // 
+            // veriAktarımıToolStripMenuItem
+            // 
+            veriAktarımıToolStripMenuItem.Name = "veriAktarımıToolStripMenuItem";
+            veriAktarımıToolStripMenuItem.Size = new Size(206, 22);
+            veriAktarımıToolStripMenuItem.Text = "Veri Aktarımı";
+            veriAktarımıToolStripMenuItem.Click += veriAktarımıToolStripMenuItem_Click;
+            // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -367,5 +375,6 @@
         private DataGridViewCheckBoxColumn chk;
         private ToolStripMenuItem anaMenüyeDönToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem veriAktarımıToolStripMenuItem;
     }
 }

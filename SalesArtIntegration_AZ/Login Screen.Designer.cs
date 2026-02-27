@@ -36,6 +36,7 @@
             lblPassword = new MaterialSkin.Controls.MaterialLabel();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             rememberMeBox = new MaterialSkin.Controls.MaterialCheckbox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             SuspendLayout();
             // 
             // bttnLogin
@@ -133,12 +134,12 @@
             materialLabel1.FlatStyle = FlatStyle.Flat;
             materialLabel1.Font = new Font("Roboto", 10F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.Overline;
-            materialLabel1.Location = new Point(0, 582);
+            materialLabel1.Location = new Point(2, 582);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(210, 13);
             materialLabel1.TabIndex = 5;
-            materialLabel1.Text = "© Copyright 2025 SalesArt. All Rights Reserved.";
+            materialLabel1.Text = "© Copyright 2024 SalesArt. All Rights Reserved.";
             // 
             // rememberMeBox
             // 
@@ -159,6 +160,20 @@
             rememberMeBox.TextAlign = ContentAlignment.MiddleCenter;
             rememberMeBox.UseVisualStyleBackColor = true;
             // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.FlatStyle = FlatStyle.Flat;
+            materialLabel2.Font = new Font("Roboto", 10F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Overline;
+            materialLabel2.Location = new Point(419, 582);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(94, 13);
+            materialLabel2.TabIndex = 7;
+            materialLabel2.Text = " versiyon : 2.5e89c.2 ";
+            // 
             // loginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -168,6 +183,7 @@
             BackgroundImage = Properties.Resources.Login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(514, 596);
+            Controls.Add(materialLabel2);
             Controls.Add(rememberMeBox);
             Controls.Add(materialLabel1);
             Controls.Add(lblPassword);
@@ -182,7 +198,6 @@
             Name = "loginForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesArt Integration";
-            //FormClosing += loginForm_FormClosing;
             FormClosed += loginForm_FormClosed;
             Load += loginForm_Load;
             ResumeLayout(false);
@@ -198,5 +213,6 @@
         private MaterialSkin.Controls.MaterialLabel lblPassword;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialCheckbox rememberMeBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

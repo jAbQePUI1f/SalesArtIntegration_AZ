@@ -147,12 +147,12 @@
             lblType.Depth = 0;
             lblType.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblType.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblType.Location = new Point(24, 9);
+            lblType.Location = new Point(24, 18);
             lblType.MouseState = MaterialSkin.MouseState.HOVER;
             lblType.Name = "lblType";
-            lblType.Size = new Size(128, 14);
+            lblType.Size = new Size(68, 14);
             lblType.TabIndex = 9;
-            lblType.Text = "Choose Collection Type";
+            lblType.Text = "Tahsilat Tipi";
             // 
             // bttnSendCollection
             // 
@@ -181,12 +181,12 @@
             lblStartDate.Depth = 0;
             lblStartDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblStartDate.Location = new Point(464, 4);
+            lblStartDate.Location = new Point(464, 14);
             lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(99, 14);
+            lblStartDate.Size = new Size(88, 14);
             lblStartDate.TabIndex = 11;
-            lblStartDate.Text = "Choose Start Date";
+            lblStartDate.Text = "Başlangıç Tarihi";
             // 
             // bttnGetCollection
             // 
@@ -201,7 +201,7 @@
             bttnGetCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnGetCollection.Name = "bttnGetCollection";
             bttnGetCollection.NoAccentTextColor = Color.Empty;
-            bttnGetCollection.Size = new Size(262, 42);
+            bttnGetCollection.Size = new Size(209, 42);
             bttnGetCollection.TabIndex = 8;
             bttnGetCollection.Text = "Getİr";
             bttnGetCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -215,7 +215,7 @@
             dateTimeFinishDate.Name = "dateTimeFinishDate";
             dateTimeFinishDate.Size = new Size(233, 23);
             dateTimeFinishDate.TabIndex = 5;
-            dateTimeFinishDate.Value = new DateTime(2025, 12, 3, 17, 15, 0, 0);
+            dateTimeFinishDate.Value = new DateTime(2026, 2, 27, 0, 0, 0, 0);
             // 
             // dateTimeStartDate
             // 
@@ -224,7 +224,7 @@
             dateTimeStartDate.Name = "dateTimeStartDate";
             dateTimeStartDate.Size = new Size(228, 23);
             dateTimeStartDate.TabIndex = 5;
-            dateTimeStartDate.Value = new DateTime(2025, 12, 3, 17, 15, 0, 0);
+            dateTimeStartDate.Value = new DateTime(2026, 2, 27, 0, 0, 0, 0);
             // 
             // lblFinishDate
             // 
@@ -232,12 +232,12 @@
             lblFinishDate.Depth = 0;
             lblFinishDate.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblFinishDate.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            lblFinishDate.Location = new Point(727, 4);
+            lblFinishDate.Location = new Point(727, 14);
             lblFinishDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblFinishDate.Name = "lblFinishDate";
-            lblFinishDate.Size = new Size(106, 14);
+            lblFinishDate.Size = new Size(58, 14);
             lblFinishDate.TabIndex = 12;
-            lblFinishDate.Text = "Choose Finish Date";
+            lblFinishDate.Text = "Bitiş Tarihi";
             // 
             // dataGridInvoiceList
             // 

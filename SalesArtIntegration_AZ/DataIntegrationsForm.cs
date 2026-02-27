@@ -149,7 +149,6 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
-
         private async void bttnSendCustomer_Click(object sender, EventArgs e)
         {
             try
@@ -325,7 +324,7 @@ namespace SalesArtIntegration_AZ
             {
                 Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün", "Ürün listesi çekme işlemi başlatıldı.");
 
-                // Yerel servis için POST request body hazırlama
+                // İstekler paralel olarak gönderiliyor
                 var requestBody = new ProductListRequest
                 {
                     pageNumber = 0,
@@ -336,67 +335,53 @@ namespace SalesArtIntegration_AZ
                     }
                 };
 
-                // POST isteği ile ürün listesi çekme
                 var productDataTask = ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
                     Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
-
                 var soapItemsListTask = _client.GetItemListAsync();
-                await Task.WhenAll(productDataTask, soapItemsListTask);
-                var productData = productDataTask.Result;
 
+                await Task.WhenAll(productDataTask, soapItemsListTask);
+
+                var productData = productDataTask.Result;
                 var soapItemsList = soapItemsListTask.Result.@return;
 
-                var existingItemCodes = new HashSet<string>(
+                // Uzak serviste mevcut olan ürün kodlarını HashSet'e al
+                var remoteProductCodes = new HashSet<string>(
                     soapItemsList
                         .Where(item => !string.IsNullOrWhiteSpace(item.ItemName))
-                        .Select(item => item.ItemName),
+                        .Select(item => item.ItemName.Trim()),
                     StringComparer.OrdinalIgnoreCase
                 );
 
                 if (productData?.data?.products != null)
                 {
-                    var newProductsToDisplay = new List<ProductInfo>();
-                    foreach (var product in productData.data.products)
-                    {
-                        string productCode = product.Name;
-                        if (!string.IsNullOrWhiteSpace(productCode) && !existingItemCodes.Contains(productCode))
+                    // Sadece uzak serviste OLMAYAN ürünleri filtrele
+                    var productsNotInRemote = productData.data.products
+                        .Where(p => !string.IsNullOrWhiteSpace(p.Name) &&
+                                   !remoteProductCodes.Contains(p.Name.Trim()))
+                        .Select(p => new ProductInfo
                         {
-                            newProductsToDisplay.Add(new ProductInfo
-                            {
-                                code = product.Code,
-                                name = product.Name,
-                                unit = product.UnitName
-                            });
-                            Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: " + productCode, product.Code);
-                        }
+                            code = p.Code,
+                            name = p.Name,
+                            unit = p.UnitName
+                        })
+                        .OrderBy(p => p.name)
+                        .ToList();
+
+                    // Log kayıtları
+                    foreach (var product in productsNotInRemote)
+                    {
+                        Helpers.LogFileDataIntegration($"Uzak serviste bulunmayan ürün: {product.name}", product.code);
                     }
 
-                    dataGridDataList.DataSource = null;
-                    dataGridDataList.Columns.Clear();
-                    // Ürün adına göre alfabetik sıralama
-                    dataGridDataList.DataSource = newProductsToDisplay.OrderBy(p => p.name).ToList();
-                    dataGridDataList.AutoGenerateColumns = true;
+                    // DataGrid yapılandırması
+                    ConfigureProductDataGrid(productsNotInRemote);
 
-                    DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-                    chk.HeaderText = "";
-                    chk.MinimumWidth = 6;
-                    chk.Name = "chk";
-                    chk.Width = 80;
-                    dataGridDataList.Columns.Insert(0, chk); // İlk sıraya ekle
-
-                    dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
-                    dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
-                    dataGridDataList.Columns["unit"].HeaderText = "Birim";
-
-                    dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-                    chckAll.BringToFront();
                     bttnSendProducts.Enabled = true;
+
                     Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
                         $"Toplam yerel ürün: {productData.data.products.Count}, " +
-                        $"Uzak serviste olmayan: {newProductsToDisplay.Count}");
+                        $"Uzak serviste olan: {remoteProductCodes.Count}, " +
+                        $"Gönderilmesi gereken: {productsNotInRemote.Count}");
                 }
                 else
                 {
@@ -406,9 +391,41 @@ namespace SalesArtIntegration_AZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ürün listesi çekilirken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün", $"Liste çekme hatası: {ex.Message}", "Detay: bttnGetProducts_Click");
+                MessageBox.Show($"Ürün listesi çekilirken bir hata oluştu: {ex.Message}", "Hata",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helpers.LogFile(Helpers.LogLevel.ERROR, "Ürün",
+                    $"Liste çekme hatası: {ex.Message}", "Detay: bttnGetProducts_Click");
             }
+        }
+
+        private void ConfigureProductDataGrid(List<ProductInfo> products)
+        {
+            dataGridDataList.DataSource = null;
+            dataGridDataList.Columns.Clear();
+            dataGridDataList.DataSource = products;
+            dataGridDataList.AutoGenerateColumns = true;
+
+            // Checkbox kolonu ekleme
+            var chk = new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "",
+                MinimumWidth = 6,
+                Name = "chk",
+                Width = 80
+            };
+            dataGridDataList.Columns.Insert(0, chk);
+
+            // Kolon başlıklarını ayarlama
+            dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
+            dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
+            dataGridDataList.Columns["unit"].HeaderText = "Birim";
+
+            // Otomatik boyutlandırma
+            dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            chckAll.BringToFront();
         }
         private async void bttnSendProducts_Click(object sender, EventArgs e)
         {
@@ -629,6 +646,7 @@ namespace SalesArtIntegration_AZ
                     {
                         // Listeyi yeniden yükle
                         bttnGetProducts_Click(sender, e);
+                        bttnSendProducts.Enabled = true;
                     }
                 }
             }
@@ -712,76 +730,104 @@ namespace SalesArtIntegration_AZ
 
         private async void bttnProductSearchBox_Click(object sender, EventArgs e)
         {
-            var txtCode = txtProductSearchBox.Text.ToString();
-
-            if (string.IsNullOrEmpty(txtCode))
+            var rawText = txtProductSearchBox.Text ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(rawText))
             {
                 MessageBox.Show("Text boş geçilemez.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            // Kullanıcının girdiği kodları ayır (virgül, noktalı virgül, yeni satır destekli)
+            var codes = rawText
+                .Split(new[] { ',', ';', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => s.Trim())
+                .Where(s => !string.IsNullOrEmpty(s))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            if (codes.Count == 0)
             {
-
-                var requestBody = new ProductListRequest
-                {
-                    pageNumber = 0,
-                    pageSize = 20000,
-                    data = new ProductListRequest.Data
-                    {
-                        productName = ""
-                    }
-                };
-
-                // POST isteği ile ürün listesi çekme
-                var productDataTask = ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
-                    Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
-
-                //var soapItemsListTask = _client.GetItemListAsync();
-                await Task.WhenAll(productDataTask);//soapItemsListTask
-                var productData = productDataTask.Result;
-
-                List<ProductInfo> list = new List<ProductInfo>();
-
-
-
-                var returnValue = productData.data.products.Where(x => x.Code.Contains(txtCode)).ToList();
-
-                foreach (var item in returnValue)
-                {
-                    list.Add(new ProductInfo
-                    {
-                        code = item.Code,
-                        name = item.Name,
-                        unit = item.UnitName
-                    });
-                }
-
-                dataGridDataList.DataSource = null;
-                dataGridDataList.Columns.Clear();
-                // Ürün adına göre alfabetik sıralama
-                dataGridDataList.DataSource = list.OrderBy(p => p.name).ToList();
-                dataGridDataList.AutoGenerateColumns = true;
-
-                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-                chk.HeaderText = "";
-                chk.MinimumWidth = 6;
-                chk.Name = "chk";
-                chk.Width = 80;
-                dataGridDataList.Columns.Insert(0, chk); // İlk sıraya ekle
-
-                dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
-                dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
-                dataGridDataList.Columns["unit"].HeaderText = "Birim";
-
-                dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-                chckAll.BringToFront();
-                bttnSendProducts.Enabled = true;
-                Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
-                    $"Toplam yerel ürün: {productData.data.products.Count}, " +
-                    $"Uzak serviste olmayan: {list.Count}");
+                MessageBox.Show("Geçerli bir ürün kodu giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            var requestBody = new ProductListRequest
+            {
+                pageNumber = 0,
+                pageSize = 20000,
+                data = new ProductListRequest.Data
+                {
+                    productName = ""
+                }
+            };
+
+            // POST isteği ile ürün listesi çekme
+            var productData = await ApiManager.PostAsync<ProductListRequest, ProductResponseJsonModel>(
+                Configuration.GetUrl() + "management/products?includeActiveUnits=true&lang=tr", requestBody);
+
+            if (productData?.data?.products == null)
+            {
+                MessageBox.Show("Ürün verisi alınamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Daha hızlı arama için hash set (büyük listelerde performans için)
+            var codeSet = new HashSet<string>(codes, StringComparer.OrdinalIgnoreCase);
+
+            // Tam eşleşme kullanımı:
+            var matched = productData.data.products
+                .Where(x => !string.IsNullOrEmpty(x.Code) && codeSet.Contains(x.Code.Trim()))
+                .ToList();
+
+            // Eğer kısmi arama isterseniz, yukarıdaki Where yerine şu satırı kullanabilirsiniz:
+            // var matched = productData.data.products.Where(x => codeSet.Any(c => x.Code?.IndexOf(c, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            List<ProductInfo> list = matched.Select(item => new ProductInfo
+            {
+                code = item.Code,
+                name = item.Name,
+                unit = item.UnitName
+            }).ToList();
+
+            dataGridDataList.DataSource = null;
+            dataGridDataList.Columns.Clear();
+            dataGridDataList.DataSource = list.OrderBy(p => p.name).ToList();
+            dataGridDataList.AutoGenerateColumns = true;
+            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "",
+                MinimumWidth = 6,
+                Name = "chk",
+                Width = 80
+            };
+            dataGridDataList.Columns.Insert(0, chk);
+            dataGridDataList.Columns["code"].HeaderText = "Ürün Kodu";
+            dataGridDataList.Columns["name"].HeaderText = "Ürün Adı";
+            dataGridDataList.Columns["unit"].HeaderText = "Birim";
+            dataGridDataList.Columns["code"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridDataList.Columns["name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridDataList.Columns["unit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            chckAll.BringToFront();
+            bttnSendProducts.Enabled = list.Count > 0;
+
+            // Bulunan ve bulunamayan kodları raporla
+            var foundCodes = new HashSet<string>(list.Select(l => l.code), StringComparer.OrdinalIgnoreCase);
+            var notFound = codes.Where(c => !foundCodes.Contains(c)).ToList();
+
+            Helpers.LogFile(Helpers.LogLevel.INFO, "Ürün",
+                $"Toplam yerel ürün: {productData.data.products.Count}, " +
+                $"Eşleşen ürün sayısı: {list.Count}, " +
+                $"Bulunamayan kodlar: {(notFound.Count == 0 ? "Yok" : string.Join(", ", notFound))}");
+        }
+
+        private void txtProductSearchBox_Click(object sender, EventArgs e)
+        {
+            txtProductSearchBox.Clear();
+        }
+
+        private void txtCustomerSearchBox_Click(object sender, EventArgs e)
+        {
+            txtCustomerSearchBox.Clear();
         }
     }
 }
