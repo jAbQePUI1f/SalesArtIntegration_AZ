@@ -100,5 +100,14 @@ namespace SalesArtIntegration_AZ
                 }
             }
         }
+
+        private void logListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.C)
+            {
+                string s = logListBox.SelectedItem.ToString();
+                Clipboard.SetData(DataFormats.StringFormat, s);
+            }
+        }
     }
 }
