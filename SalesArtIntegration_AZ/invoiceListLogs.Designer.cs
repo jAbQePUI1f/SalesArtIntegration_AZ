@@ -57,14 +57,17 @@
             // 
             // listBox1
             // 
+            listBox1.DrawMode = DrawMode.OwnerDrawVariable;
             listBox1.FormattingEnabled = true;
             listBox1.HorizontalScrollbar = true;
             listBox1.ItemHeight = 15;
             listBox1.Location = new Point(3, 50);
             listBox1.Name = "listBox1";
-            listBox1.SelectionMode = SelectionMode.MultiExtended;
+            listBox1.ScrollAlwaysVisible = true;
+            listBox1.SelectionMode = SelectionMode.None;
             listBox1.Size = new Size(675, 514);
             listBox1.TabIndex = 2;
+            listBox1.KeyDown += listBox1_KeyDown;
             // 
             // invoiceListLogs
             // 

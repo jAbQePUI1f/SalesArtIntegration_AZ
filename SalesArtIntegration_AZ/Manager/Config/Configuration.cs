@@ -56,5 +56,13 @@ namespace SalesArtIntegration_AZ.Manager.Config
         {
             return ConfigurationManager.AppSettings["kassaAccountCode"];
         }
+        public static int getApplyEdvReturnToInv()  
+        {
+            return int.Parse(ConfigurationManager.AppSettings["applyEdvToReturnInv"]);
+        }
+        public static int getApplyEdvToSellingInv()
+        {
+            return int.Parse(ConfigurationManager.AppSettings["applyEdvToSellingInv"]);
+        }
     }
 }

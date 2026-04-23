@@ -56,7 +56,6 @@
             // 
             stripInvoice.AllowMerge = false;
             stripInvoice.BackColor = Color.Transparent;
-            stripInvoice.BackgroundImage = Properties.Resources.logo_1920;
             stripInvoice.BackgroundImageLayout = ImageLayout.Zoom;
             stripInvoice.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             stripInvoice.ImageScalingSize = new Size(20, 20);

@@ -829,5 +829,10 @@ namespace SalesArtIntegration_AZ
         {
             txtCustomerSearchBox.Clear();
         }
+
+        private void bttnCustomerSearchBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
