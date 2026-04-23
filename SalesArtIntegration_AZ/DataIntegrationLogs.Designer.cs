@@ -46,6 +46,7 @@
             logListBox.Size = new Size(794, 464);
             logListBox.TabIndex = 0;
             logListBox.SelectedIndexChanged += logListBox_SelectedIndexChanged;
+            logListBox.KeyDown += logListBox_KeyDown;
             // 
             // loqLabel
             // 

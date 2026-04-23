@@ -8,8 +8,6 @@ using SalesArtIntegration_AZ.Models.Invoice;
 using SalesArtIntegration_AZ.Models.Request;
 using SalesArtIntegration_AZ.Models.Response;
 using System.Data;
-using System.Collections;
-using System.Text.RegularExpressions;
 using static SalesArtIntegration_AZ.Models.Request.InvoiceSyncRequest;
 
 namespace SalesArtIntegration_AZ
@@ -18,6 +16,8 @@ namespace SalesArtIntegration_AZ
     {
         string documentType = "";
         InvoiceModelResponse invoiceResponse = new InvoiceModelResponse();
+        int applyEdvToReturnInv = Configuration.getApplyEdvReturnToInv();
+        int applyEdvToSellingInv = Configuration.getApplyEdvToSellingInv();
 
         public InvoiceForm()
         {
@@ -38,7 +38,6 @@ namespace SalesArtIntegration_AZ
             collectionForm.Show();
             this.Hide();
         }
-
 
         private async void bttnGetInvoice_Click(object sender, EventArgs e)
         {
@@ -226,7 +225,9 @@ namespace SalesArtIntegration_AZ
                         decimal price = 0;
                         try
                         {
-                            price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6);
+                            price = Math.Round(
+                                Convert.ToDecimal((detail.grossTotal ?? 0) - (detail.discountTotal ?? 0)) / (detail.quantity ?? 1),
+                                6);
                             if (price <= 0)
                                 failedProducts.Add($"{detail.code ?? "Kod Yok"}: Hesaplanan fiyat {price}");
                         }
@@ -260,16 +261,18 @@ namespace SalesArtIntegration_AZ
                                     ItemCode = detail.code,
                                     Quantity = (decimal)detail.quantity,
                                     Unit = detail.unitCode,
-                                    Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6)
-                                });
+                                    Price = detail.grossTotal.HasValue && detail.discountTotal.HasValue && detail.quantity.HasValue && detail.quantity.Value != 0
+                                    ? Math.Round(
+                                        Convert.ToDecimal(detail.grossTotal.Value - detail.discountTotal.Value) / Convert.ToDecimal(detail.quantity.Value),
+                                        6)
+                                    : 0});
                             }
-                            int vat = 0;
                             invoiceResponse = await client.InsertNewInvoiceAsync(
                                 selectedInvoice.distCode = distributorCode,
                                 formattedDate,
                                 selectedInvoice.number,
                                 selectedInvoice.customerCode,
-                                vat,
+                                applyEdvToSellingInv,
                                 selectedInvoice.warehouseCode,
                                 tableLines.ToArray(),
                                 selectedInvoice.customerCode + "C" + selectedInvoice.salesDepartmentName +
@@ -308,8 +311,11 @@ namespace SalesArtIntegration_AZ
                                     ItemCode = detail.code,
                                     Quantity = (decimal)detail.quantity,
                                     Unit = detail.unitCode,
-                                    Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6)
-                                });
+                                    Price = detail.grossTotal.HasValue && detail.discountTotal.HasValue && detail.quantity.HasValue && detail.quantity.Value != 0
+                                    ? Math.Round(
+                                        Convert.ToDecimal(detail.grossTotal.Value - detail.discountTotal.Value) / Convert.ToDecimal(detail.quantity.Value),
+                                        6)
+                                    : 0});
                             }
                             var insertNewRefundOfReceiptResponse = await client.InsertNewReceiptAsync(
                                 selectedInvoice.distCode = distributorCode,
@@ -350,17 +356,21 @@ namespace SalesArtIntegration_AZ
                                     ItemCode = detail.code,
                                     Quantity = (decimal)detail.quantity,
                                     Unit = detail.unitCode,
-                                    Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6)
-                                });
+                                    Price = detail.grossTotal.HasValue && detail.discountTotal.HasValue && detail.quantity.HasValue && detail.quantity.Value != 0
+                                    ? Math.Round(
+                                        Convert.ToDecimal(detail.grossTotal.Value - detail.discountTotal.Value) / Convert.ToDecimal(detail.quantity.Value),
+                                        6)
+                                    : 0});
                             }
                             invoiceResponseRefund = await client.InsertNewRefundOfInvoiceAsync(
                                 selectedInvoice.distCode = distributorCode,
                                 formattedDate,
                                 selectedInvoice.number,
                                 selectedInvoice.customerCode,
-                                0,
+                                applyEdvToReturnInv,
                                 selectedInvoice.warehouseCode,
                                 tableLines.ToArray());
+
                             remoteInvoiceNumber = selectedInvoice.number;
 
                             if (invoiceResponseRefund.@return.ErrorTable != null && invoiceResponseRefund.@return.ErrorTable.Any())
@@ -392,8 +402,11 @@ namespace SalesArtIntegration_AZ
                                     ItemCode = detail.code,
                                     Quantity = (decimal)detail.quantity,
                                     Unit = detail.unitCode,
-                                    Price = Math.Round(Convert.ToDecimal((detail.grossTotal - detail.discountTotal) / detail.quantity), 6)
-                                });
+                                    Price = detail.grossTotal.HasValue && detail.discountTotal.HasValue && detail.quantity.HasValue && detail.quantity.Value != 0
+                                    ? Math.Round(
+                                        Convert.ToDecimal(detail.grossTotal.Value - detail.discountTotal.Value) / Convert.ToDecimal(detail.quantity.Value),
+                                        6)
+                                    : 0});
                             }
                             var invoiceResponseRefundResponse = await client.InsertNewRefundOfReceiptAsync(
                                 selectedInvoice.distCode = distributorCode,
@@ -473,11 +486,12 @@ namespace SalesArtIntegration_AZ
             ShowInvoiceSummary(successfulInvoices, failedInvoices);
         }
 
-        private void ShowInvoiceSummary(List<string> successful, List<(string InvoiceNo, string ErrorMessage, List<string> FailedProducts)> failed)
+        private void ShowInvoiceSummary(List<string> successful,
+    List<(string InvoiceNo, string ErrorMessage, List<string> FailedProducts)> failed)
         {
             var summary = new System.Text.StringBuilder();
             summary.AppendLine("╔════════════════════════════════════════╗");
-            summary.AppendLine("      ║          FATURA AKTARIM RAPORU       ║");
+            summary.AppendLine("║          FATURA AKTARIM RAPORU         ║");
             summary.AppendLine("╚════════════════════════════════════════╝\n");
 
             if (successful.Count > 0)
@@ -508,7 +522,6 @@ namespace SalesArtIntegration_AZ
                     if (failedProducts != null && failedProducts.Any())
                     {
                         summary.AppendLine($"  Hatalı Ürünler ({failedProducts.Count}):");
-                        // Her hatalı ürünü bir satırda göster
                         foreach (var p in failedProducts.Distinct())
                         {
                             summary.AppendLine($"    - {p}");
@@ -521,19 +534,18 @@ namespace SalesArtIntegration_AZ
             summary.AppendLine("═════════════════════════════════════════");
             summary.AppendLine($"Toplam İşlem: {successful.Count + failed.Count}");
             summary.AppendLine($"Başarılı: {successful.Count} | Başarısız: {failed.Count}");
+
             if (successful.Count + failed.Count > 0)
             {
                 double successRate = (double)successful.Count / (successful.Count + failed.Count) * 100;
                 summary.AppendLine($"Başarı Oranı: %{successRate:F1}");
             }
 
-            MessageBoxIcon icon = failed.Count == 0 ? MessageBoxIcon.Information :
-                                  successful.Count == 0 ? MessageBoxIcon.Error :
-                                  MessageBoxIcon.Warning;
-            string title = failed.Count == 0 ? "Aktarım Başarılı" :
-                           successful.Count == 0 ? "Aktarım Başarısız" :
-                           "Aktarım Tamamlandı";
-            MessageBox.Show(summary.ToString(), title, MessageBoxButtons.OK, icon);
+            // Eski: MessageBox.Show(summary.ToString());
+            // Yeni:
+            LogDialog.Show(summary.ToString(), "Fatura Aktarım Raporu");
+            dataGridInvoiceList.Refresh();
+            chckAll.Checked = false;
         }
         private void chckAll_CheckedChanged(object sender, EventArgs e)
         {
@@ -578,6 +590,7 @@ namespace SalesArtIntegration_AZ
         {
             DataIntegrationsForm dataIntegrationsForm = new DataIntegrationsForm();
             dataIntegrationsForm.Show();
+            this.Hide();
         }
     }
 }

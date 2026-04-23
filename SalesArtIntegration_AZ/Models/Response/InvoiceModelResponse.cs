@@ -9,7 +9,7 @@ namespace SalesArtIntegration_AZ.Models.Response
         {
             public long invoiceDetailId { get; set; }
             public string? code { get; set; }
-            public int? quantity { get; set; }
+            public decimal? quantity { get; set; }
             public double? price { get; set; }
             public double? total { get; set; }
             public double? discountTotal { get; set; }

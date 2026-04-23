@@ -142,7 +142,7 @@
             lblCustomer.Location = new Point(174, 10);
             lblCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             lblCustomer.Name = "lblCustomer";
-            lblCustomer.Size = new Size(103, 28);
+            lblCustomer.Size = new Size(96, 28);
             lblCustomer.TabIndex = 0;
             lblCustomer.Text = "  Müşteri";
             // 
@@ -157,7 +157,7 @@
             lblProduct.Location = new Point(601, 10);
             lblProduct.MouseState = MaterialSkin.MouseState.HOVER;
             lblProduct.Name = "lblProduct";
-            lblProduct.Size = new Size(77, 28);
+            lblProduct.Size = new Size(73, 28);
             lblProduct.TabIndex = 20;
             lblProduct.Text = "  Ürün";
             // 
@@ -185,7 +185,6 @@
             txtProductSearchBox.BackColor = SystemColors.InactiveCaption;
             txtProductSearchBox.BorderStyle = BorderStyle.None;
             txtProductSearchBox.Depth = 0;
-            txtProductSearchBox.DetectUrls = false;
             txtProductSearchBox.Font = new Font("Microsoft Sans Serif", 12F);
             txtProductSearchBox.LeadingIcon = null;
             txtProductSearchBox.Location = new Point(16, 141);
@@ -193,7 +192,6 @@
             txtProductSearchBox.MouseState = MaterialSkin.MouseState.OUT;
             txtProductSearchBox.Multiline = false;
             txtProductSearchBox.Name = "txtProductSearchBox";
-            txtProductSearchBox.ShortcutsEnabled = false;
             txtProductSearchBox.Size = new Size(372, 36);
             txtProductSearchBox.TabIndex = 31;
             txtProductSearchBox.Text = "14001822A,14003130A";
@@ -205,17 +203,19 @@
             // 
             // bttnProductSearchBox
             // 
+            bttnProductSearchBox.AutoSize = false;
             bttnProductSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnProductSearchBox.Cursor = Cursors.AppStarting;
             bttnProductSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnProductSearchBox.Depth = 0;
             bttnProductSearchBox.HighEmphasis = true;
             bttnProductSearchBox.Icon = null;
-            bttnProductSearchBox.Location = new Point(144, 200);
+            bttnProductSearchBox.Location = new Point(65, 200);
             bttnProductSearchBox.Margin = new Padding(4, 6, 4, 6);
             bttnProductSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
             bttnProductSearchBox.Name = "bttnProductSearchBox";
             bttnProductSearchBox.NoAccentTextColor = Color.Empty;
-            bttnProductSearchBox.Size = new Size(104, 36);
+            bttnProductSearchBox.Size = new Size(273, 52);
             bttnProductSearchBox.TabIndex = 29;
             bttnProductSearchBox.Text = "Arama yap";
             bttnProductSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -287,22 +287,24 @@
             // 
             // bttnCustomerSearchBox
             // 
+            bttnCustomerSearchBox.AutoSize = false;
             bttnCustomerSearchBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             bttnCustomerSearchBox.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnCustomerSearchBox.Depth = 0;
             bttnCustomerSearchBox.HighEmphasis = true;
             bttnCustomerSearchBox.Icon = null;
-            bttnCustomerSearchBox.Location = new Point(137, 200);
+            bttnCustomerSearchBox.Location = new Point(58, 200);
             bttnCustomerSearchBox.Margin = new Padding(4, 6, 4, 6);
             bttnCustomerSearchBox.MouseState = MaterialSkin.MouseState.HOVER;
             bttnCustomerSearchBox.Name = "bttnCustomerSearchBox";
             bttnCustomerSearchBox.NoAccentTextColor = Color.Empty;
-            bttnCustomerSearchBox.Size = new Size(104, 36);
+            bttnCustomerSearchBox.Size = new Size(273, 52);
             bttnCustomerSearchBox.TabIndex = 30;
             bttnCustomerSearchBox.Text = "Arama yap";
             bttnCustomerSearchBox.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnCustomerSearchBox.UseAccentColor = false;
             bttnCustomerSearchBox.UseVisualStyleBackColor = true;
+            bttnCustomerSearchBox.Click += bttnCustomerSearchBox_Click;
             // 
             // txtCustomerSearchBox
             // 
@@ -410,7 +412,6 @@
             stripDataEntegration.AllowMerge = false;
             stripDataEntegration.AutoSize = false;
             stripDataEntegration.BackColor = Color.Transparent;
-            stripDataEntegration.BackgroundImage = Properties.Resources.logo_1920;
             stripDataEntegration.BackgroundImageLayout = ImageLayout.Zoom;
             stripDataEntegration.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             stripDataEntegration.ImageScalingSize = new Size(20, 20);
@@ -463,9 +464,7 @@
             Load += DataIntegrationsForm_Load;
             materialCard1.ResumeLayout(false);
             materialCard3.ResumeLayout(false);
-            materialCard3.PerformLayout();
             materialCard2.ResumeLayout(false);
-            materialCard2.PerformLayout();
             stripDataEntegration.ResumeLayout(false);
             stripDataEntegration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDataList).EndInit();
